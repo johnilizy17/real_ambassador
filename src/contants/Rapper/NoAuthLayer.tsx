@@ -54,14 +54,13 @@ export default function NoAuthLayer({ children, seoTitle }: { children: any, seo
                 src="https://code.jquery.com/jquery-3.3.1.min.js"
                 strategy="beforeInteractive" // or "afterInteractive" based on your need
             />
-            {/* <Script src="js/jquery-3.3.1.min.js" /> */}
 
              <Script src="js/bootstrap.min.js" />
             <Script src="js/modernizr.js" />
             <Script src="js/jquery.menu-aim.js" />
             <Script src="js/plugin.js" />
             <Script src="js/jquery.countTo.js" />
-            <Script src="js/dropify.min.js" />
+           <Script src="js/dropify.min.js" />
             <Script src="js/datatables.js" />
             <Script src="js/jquery.nice-select.min.js" />
             <Script src="js/jquery.inview.min.js" />
