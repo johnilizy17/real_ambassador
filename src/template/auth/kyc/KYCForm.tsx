@@ -23,7 +23,7 @@ import useCustomToast from '@/hooks/useCustomToast';
 import { authForgottenPassword, CompleteKYC } from '@/redux/slices/auth/authSlice';
 import { useAppDispatch } from '@/redux/store/store';
 import ROUTES from '@/utils/ROUTES';
-import CustomInput from '@/components/CustomInput/CustomInput';
+import CustomInput from '@/components/CustomInput/CustomInput'
 
 interface FormValues {
   bvn: string;
