@@ -50,8 +50,13 @@ export default function NoAuthLayer({ children, seoTitle }: { children: any, seo
             </Box>
 
             {/* <!-- all plugins here --> */}
-            <Script src="js/jquery-3.3.1.min.js" />
-            <Script src="js/bootstrap.min.js" />
+            <Script
+                src="https://code.jquery.com/jquery-3.3.1.min.js"
+                strategy="beforeInteractive" // or "afterInteractive" based on your need
+            />
+            {/* <Script src="js/jquery-3.3.1.min.js" /> */}
+
+             <Script src="js/bootstrap.min.js" />
             <Script src="js/modernizr.js" />
             <Script src="js/jquery.menu-aim.js" />
             <Script src="js/plugin.js" />

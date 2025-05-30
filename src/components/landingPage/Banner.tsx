@@ -1,12 +1,15 @@
 import { Img } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React from "react";
 
 export default function Banner() {
 
+    const router = useRouter();
+
     return (
         <div className="slider-area slider_index2_wrapper slider_index3_wrapper  float_left">
             <div className="bg-animation">
-                <Img h={["100vh","100vh","100vh"]} className="zoom-fade" src="images/pattern.png" alt="img" />
+                <Img mt="-50%" className="zoom-fade" src="images/pattern.png" alt="img" h={["130vh", "130vh", "100%"]} />
             </div>
             <div className="index2_sliderbg index3_sliderbg">
                 <img src="images/shape1.png" alt="img" className="img-responsive" />
@@ -26,15 +29,16 @@ export default function Banner() {
                                             <h3 data-animation="animated bounceInUp">Leverage on <br />
                                                 your <span>Marketing Skills</span></h3>
 
-                                            <p data-animation="animated bounceInUp">Lorem ipsum dolor sit amet, consectetur
-                                                adipiscing elit, sed do Ut enim ad minim veniam Quis nostrud exercitation
-                                                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute an irure
-                                                dolor in voluptate velit.</p>
+                                            <p data-animation="animated bounceInUp">In today’s fast-paced digital world, your marketing skills are more powerful than ever. Whether you're an entrepreneur, freelancer, or career professional, knowing how to promote, position, and persuade can give you a serious competitive edge.</p>
 
                                             <div className="slider_btn index2_sliderbtn index3_sliderbtn float_left">
                                                 <ul>
                                                     <li data-animation="animated bounceInLeft">
-                                                        <a href="#">start now</a>
+                                                        <div onClick={() => router.push("/auth/login")}>
+                                                            <a>
+                                                                start now
+                                                            </a>
+                                                        </div>
                                                     </li>
                                                     <li data-animation="animated bounceInLeft">
                                                         <a href="#plans">view plans</a>
@@ -69,21 +73,21 @@ export default function Banner() {
 
                                             <h2 data-animation="animated bounceInUp">Often Have Small</h2>
 
-                                            <h3 data-animation="animated bounceInUp">Invest Your Money <br />
-                                                For <span>Future</span></h3>
-
-                                            <p data-animation="animated bounceInUp">Lorem ipsum dolor sit amet, consectetur
-                                                adipiscing elit, sed do Ut enim ad minim veniam Quis nostrud exercitation
-                                                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute an irure
-                                                dolor in voluptate velit.</p>
+                                            <h3 data-animation="animated bounceInUp"> Build Personal  <br />
+                                                Business <span>Brands</span></h3>
+                                            <p data-animation="animated bounceInUp">Your ability to tell a story, create content, and engage audiences is the foundation of a strong brand. With effective marketing, you can grow visibility, credibility, and trust — fast.</p>
 
                                             <div className="slider_btn index2_sliderbtn index3_sliderbtn float_left">
                                                 <ul>
                                                     <li data-animation="animated bounceInLeft">
-                                                        <a href="#">start now</a>
+                                                        <div onClick={() => router.push("/auth/login")}>
+                                                            <a>
+                                                                start now
+                                                            </a>
+                                                        </div>
                                                     </li>
                                                     <li data-animation="animated bounceInLeft">
-                                                        <a href="#">view plans</a>
+                                                        <a href="#plans">view plans</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -113,23 +117,24 @@ export default function Banner() {
                                     <div className="col-xl-6 col-lg-10 col-md-12 col-sm-12 col-12">
                                         <div className="content">
 
-                                            <h2 data-animation="animated bounceInUp">Often Have Small</h2>
+                                            <h2 data-animation="animated bounceInUp">Build your network</h2>
 
-                                            <h3 data-animation="animated bounceInUp">Invest Your Money <br />
-                                                For <span>Future</span></h3>
+                                            <h3 data-animation="animated bounceInUp">Network with <br />
+                                                <span>Purpose</span></h3>
 
-                                            <p data-animation="animated bounceInUp">Lorem ipsum dolor sit amet, consectetur
-                                                adipiscing elit, sed do Ut enim ad minim veniam Quis nostrud exercitation
-                                                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute an irure
-                                                dolor in voluptate velit.</p>
+                                            <p data-animation="animated bounceInUp">Marketing is not just about ads — it's also about people. Leverage your communication and persuasion skills to build valuable relationships and strategic partnerships.</p>
 
                                             <div className="slider_btn index2_sliderbtn index3_sliderbtn float_left">
                                                 <ul>
                                                     <li data-animation="animated bounceInLeft">
-                                                        <a href="#">start now</a>
+                                                        <div onClick={() => router.push("/auth/login")}>
+                                                            <a>
+                                                                start now
+                                                            </a>
+                                                        </div>
                                                     </li>
                                                     <li data-animation="animated bounceInLeft">
-                                                        <a href="#">view plans</a>
+                                                        <a href="#plans">view plans</a>
                                                     </li>
                                                 </ul>
                                             </div>

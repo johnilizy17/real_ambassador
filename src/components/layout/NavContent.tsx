@@ -1,30 +1,36 @@
-import { Img } from "@chakra-ui/react";
+import { Box, Img } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React from "react";
 
 export default function NavContent() {
 
+    const router = useRouter();
+
     return (
-        <div className="cp_navi_main_wrapper index2_header_wrapper float_left">
-            <div className="container-fluid">
-                <div className="cp_logo_wrapper">
-                    <Img display={["none", "none", "none", "flex"]} src="images/logo2.png" alt="logo" />
+        <Box className="cp_navi_main_wrapper index2_header_wrapper float_left" pos="fixed" zIndex={100}>
+            <Box className="container-fluid">
+                <Box className="cp_logo_wrapper">
+                    <Img display={["none", "none", "none", "flex"]} src="/logo/logo_white.png" alt="logo" />
                     <Img display={["flex", "flex", "flex", "none"]} h="50px" src="images/logo4.png" alt="logo" />
-                </div>
-                <div className="top_header_right_wrapper top_phonecalls">
-                    <div className="header_btn">
+                </Box>
+                <Box className="top_header_right_wrapper top_phonecalls">
+                    <Box className="header_btn">
                         <ul>
                             <li>
-                                <a href="register.html"> register </a>
+                                <a>  <Box onClick={() => router.push("/auth/signup")} style={{ color: "white" }}> register </Box>
+                                </a>
                             </li>
                             <li>
-                                <a href="login.html"> login </a>
+                                <a>
+                                    <Box onClick={() => router.push("/auth/login")}> login </Box>
+                                </a>
                             </li>
                         </ul>
 
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </Box>
+                </Box>
+            </Box>
+        </Box>
 
     )
 }

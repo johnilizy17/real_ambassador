@@ -27,20 +27,19 @@ export default function Plan() {
                             </div>
                             <div className="investment_border_wrapper"></div>
                             <div className="investment_content_wrapper">
-                                <h1><a href="#">silver plan</a></h1>
+                                <h1><a href="/auth/login">silver plan</a></h1>
                                 <div className="line_shape line_shape2"></div>
-                                <p>Up to 5% interest on any property sold or rent out
+                                <p>Up to 5% interest on any transaction the user makes
                                 </p>
                                 <Box w="full" textAlign={"start"}>
                                     <li>Price:{cashFormat(5000)}</li>
-                                    <li>Duration: 1 year </li>
                                     <li>interest: 5%</li>
                                 </Box>
                             </div>
                             <div className="about_btn plans_btn index2_investment_btn">
                                 <ul>
                                     <li>
-                                        <a href="#">Get Started</a>
+                                        <a href="/auth/login">Get Started</a>
                                     </li>
                                 </ul>
                             </div>
@@ -55,20 +54,19 @@ export default function Plan() {
                             </div>
                             <div className="investment_border_wrapper red_border_wrapper"></div>
                             <div className="investment_content_wrapper red_content_wrapper">
-                                <h1><a href="#">Bronze Plan</a></h1>
+                                <h1><a href="/auth/login">Bronze Plan</a></h1>
                                 <div className="line_shape line_shape2"></div>
-                                <p>Up to 10% interest on any property sold or rent out
+                                <p>Up to 10% interest on any transaction the user makes
                                 </p>
                                 <Box w="full" textAlign={"start"}>
-                                    <li>Price:{cashFormat(10000)}</li>
-                                    <li>Duration: 1 year </li>
+                                    <li>Price:{cashFormat(25000)}</li>
                                     <li>interest: 10%</li>
                                 </Box>
                             </div>
                             <div className="about_btn plans_btn red_btn_plans index2_investment_btn">
                                 <ul>
                                     <li>
-                                        <a href="#">Get Started</a>
+                                        <a href="/auth/login">Get Started</a>
                                     </li>
                                 </ul>
                             </div>
@@ -83,20 +81,19 @@ export default function Plan() {
                             </div>
                             <div className="investment_border_wrapper green_border_wrapper"></div>
                             <div className="investment_content_wrapper green_content_wrapper">
-                                <h1><a href="#">gold plan</a></h1>
+                                <h1><a href="/auth/login">gold plan</a></h1>
                                 <div className="line_shape line_shape2"></div>
-                                <p>Up to 15% interest on any property sold or rent out
+                                <p>Up to 15% interest on any transaction the user makes
                                 </p>
                                 <Box w="full" textAlign={"start"}>
-                                    <li>Price:{cashFormat(15000)}</li>
-                                    <li>Duration: 1 year </li>
+                                    <li>Price:{cashFormat(35000)}</li>
                                     <li>interest: 15%</li>
                                 </Box>
                             </div>
                             <div className="about_btn plans_btn green_plan_btn index2_investment_btn">
                                 <ul>
                                     <li>
-                                        <a href="#">Get Started</a>
+                                        <a href="/auth/login">Get Started</a>
                                     </li>
                                 </ul>
                             </div>

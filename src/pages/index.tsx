@@ -16,6 +16,7 @@ export default function Home() {
     <NoAuthLayer seoTitle="Home">
       <Box color={COLORS.brand_grey} bg={COLORS.black}>
         <Header />
+        <Box h="100px" />
         <Banner />
         <About />
         <Plan />

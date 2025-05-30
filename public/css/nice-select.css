@@ -2,7 +2,7 @@
     -webkit-tap-highlight-color: black;
     background-color: transparent;
     border-radius: 5px;
-    border: solid 1px #dba622;
+    border: solid 1px #000013EF;
     color: #fff !important;
     box-sizing: border-box;
     clear: both;
@@ -29,9 +29,9 @@
     width: auto;
 }
 .nice-select:hover {
-  border-color: #dba622;
+  border-color: #000013EF;
   background: #fff;
-  color: #dba622 !important;
+  color: #000013EF !important;
 }
 .nice-select li {
     color: #222;
@@ -39,8 +39,8 @@
   .nice-select:active, .nice-select.open, .nice-select:focus {
     border-color: #999; }
   .nice-select:after {
-    border-bottom: 2px solid #dba622;
-    border-right: 2px solid #dba622;
+    border-bottom: 2px solid #000013EF;
+    border-right: 2px solid #000013EF;
     content: '';
     display: block;
     height: 5px;

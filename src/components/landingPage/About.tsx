@@ -17,22 +17,21 @@ export default function About() {
                                 <div className="line_shape line_shape2"></div>
                             </div>
                             <div style={{ color: COLORS.light_gray }} className="welcone_savehiyp float_left">
-                                <p>Put your investing ideas into action with full range of investments. Duis auteir ure
-                                    dolor in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Enjoy real
-                                    benefits and rewards on your accrue investing. </p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad an minim
-                                    veniam Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis auteirure dolor in voluptate velit esse cillum dolore eu fugiat nulla
-                                    pariatur.</p>
-                                <div className="welcome_save_inpvate_wrapper index3_welcome_checkbox">
-                                    <ul>
-                                        <li className="purple_inovate"><a href="#"><i className="flaticon-check-box"></i> We
-                                            Innovate </a></li>
-                                        <li className="blue_inovate"><a href="#"><i className="flaticon-check-box"></i> Licenced &
-                                            Certified </a></li>
-                                        <li className="green_inovate"><a href="#"><i className="flaticon-check-box"></i>We build </a></li>
-                                    </ul>
-                                </div>
+                                <p>Are you passionate about making an impact, connecting with your community, and representing a bold, forward-thinking brand? The ABN Nariohs Ambassador Program is your chance to be part of something bigger — and be rewarded for it. </p>
+                                <p>
+                                    For every person you refer who signs up or makes a purchase,
+                                    <br />
+                                    ➡️ You earn 50% of the money from their registration or first transaction.
+                                    <br />
+                                    There’s no limit to how many people you can refer — the more you share, the more you earn.
+                                    <br />
+                                    Example:
+                                    <br />
+                                    If your referral signs up and pays ₦10,000 — you get ₦5,000 straight to your wallet.
+
+
+                                </p>
+
                             </div>
                         </div>
                     </div>

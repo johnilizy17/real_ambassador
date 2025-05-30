@@ -15,7 +15,7 @@ import { COLORS } from '@/utils/Theme';
 import { STORAGE } from '@/utils/storage';
 import { LOCAL_STORAGE_KEYS } from '@/utils/constants';
 import ROUTES from '@/utils/ROUTES';
-import { LeftArrowIcon } from '@/utils/svg';
+// import { LeftArrowIcon } from '@/utils/svg';
 import Head from 'next/head';
 import { useSelector } from 'react-redux';
 
@@ -64,7 +64,7 @@ function AuthLayout({ children, seoTitle }: { children: any, seoTitle?:string })
                     <Box pl='96px' pt='36px' h='full' bgImage='/assets/images/bg.png'>
                         <Center w='71px' mb='34px' onClick={() => router.back()}>
                             <IconButton aria-label='' bg='transparent'>
-                                <LeftArrowIcon />
+                                {/* <LeftArrowIcon /> */}
                             </IconButton>
                             <Box fontWeight='400' color={COLORS.white} fontSize='13px'>
                                 BACK

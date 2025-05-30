@@ -13,7 +13,7 @@ export default function Footer() {
                     <Box className="col-lg-4 col-md-6 col-12 col-sm-12">
                         <Box className="wrapper_second_about">
                             <Box className="wrapper_first_image">
-                                <a href="index.html"><img src="images/logo2.png" className="img-responsive" alt="logo" /></a>
+                                <a href="index.html"><img src="/logo/logo_white.png" className="img-responsive" alt="logo" /></a>
                             </Box>
                             <p>Gateway to better life and with future sustainance.</p>
                         </Box>

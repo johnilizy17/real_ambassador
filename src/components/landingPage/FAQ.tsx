@@ -407,61 +407,6 @@ export default function FAQ() {
                     </div>
                 </div>
             </div>
-            <div className="payments_wrapper slider_btn_min  float_left">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12 col-md-12 col-sm-12">
-
-                            <div className="sv_heading_wraper index2_heading index3_heading index3_headung2">
-                                <h4>Payment Methods</h4>
-                                <h3>Accepted Payment Method</h3>
-                                <div className="line_shape line_shape2"></div>
-                            </div>
-                        </div>
-                        <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                            <div className="payment_slider_wrapper index3_payment_slider_wrapper">
-                                <div className="owl-carousel owl-theme">
-                                    <div className="item">
-
-                                        <div className="partner_img_wrapper float_left">
-                                            <img src="images/partner1.png" className="img-responsive" alt="img" />
-                                        </div>
-
-                                    </div>
-                                    <div className="item">
-
-                                        <div className="partner_img_wrapper float_left">
-                                            <img src="images/partner2.png" className="img-responsive" alt="img" />
-                                        </div>
-
-                                    </div>
-                                    <div className="item">
-
-                                        <div className="partner_img_wrapper float_left">
-                                            <img src="images/partner3.png" className="img-responsive" alt="img" />
-                                        </div>
-
-                                    </div>
-                                    <div className="item">
-
-                                        <div className="partner_img_wrapper float_left">
-                                            <img src="images/partner4.png" className="img-responsive" alt="img" />
-                                        </div>
-
-                                    </div>
-                                    <div className="item">
-
-                                        <div className="partner_img_wrapper float_left">
-                                            <img src="images/partner2.png" className="img-responsive" alt="img" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </>
     )
 }
