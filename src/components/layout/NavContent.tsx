@@ -7,7 +7,7 @@ export default function NavContent() {
     const router = useRouter();
 
     return (
-        <Box className="cp_navi_main_wrapper index2_header_wrapper float_left" pos="fixed" zIndex={100}>
+        <Box className="cp_navi_main_wrapper index2_header_wrapper float_left" pos="fixed" zIndex={10}>
             <Box className="container-fluid">
                 <Box className="cp_logo_wrapper">
                     <Img display={["none", "none", "none", "flex"]} src="/logo/logo_white.png" alt="logo" />

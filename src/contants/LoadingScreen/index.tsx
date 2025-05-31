@@ -11,7 +11,7 @@ export default function LoadingScreen() {
     const { isLoading } = useSelector((a: { user: { isLoading: boolean } }) => a.user)
 
     return (
-        <Center display={isLoading ? "none" : "flex"} zIndex={100} flexDir={"column"} pos="fixed" top="0px" h="100vh" w="100vw" bg={COLORS.black}>
+        <Center display={isLoading ? "none" : "flex"} zIndex={200} flexDir={"column"} pos="fixed" top="0px" h="100vh" w="100vw" bg={COLORS.black}>
             <Img className='animate-image' w="200px" objectFit={"contain"} src='/logo/logo_white.png' />
         </Center>
     )
