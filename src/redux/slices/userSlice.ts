@@ -10,8 +10,10 @@ const initialState: UserState = {
   isLoading: false,
   isError: false,
   kycData: null,
+  history: [],
+  investment: [],
   banner: [],
-  investment: []
+  wallet: { amount: 0 }
 };
 
 
@@ -118,6 +120,10 @@ interface UserState {
   kycData: any;
   banner: any;
   investment: any;
+  history: any;
+  wallet: {
+    amount: number;
+  };
 }
 
 

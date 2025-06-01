@@ -17,13 +17,13 @@ export default function NavContent() {
                     <Box className="header_btn">
                         <ul>
                             <li>
-                                <a>  <Box onClick={() => router.push("/auth/signup")} style={{ color: "white" }}> register </Box>
-                                </a>
+                                <Box onClick={() => router.push("/auth/signup")} style={{ color: "white" }}> <a style={{color:"#fff"}}>   register
+                                </a></Box>
                             </li>
                             <li>
-                                <a>
-                                    <Box onClick={() => router.push("/auth/login")}> login </Box>
-                                </a>
+
+                                <Box onClick={() => router.push("/auth/login")}> <a>login</a> </Box>
+
                             </li>
                         </ul>
 

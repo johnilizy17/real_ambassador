@@ -15,19 +15,19 @@ import { COLORS } from '@/utils/Theme';
 import { STORAGE } from '@/utils/storage';
 import { LOCAL_STORAGE_KEYS } from '@/utils/constants';
 import ROUTES from '@/utils/ROUTES';
-// import { LeftArrowIcon } from '@/utils/svg';
+import { LeftArrowIcon } from '@/utils/svg';
 import Head from 'next/head';
 import { useSelector } from 'react-redux';
 
-function AuthLayout({ children, seoTitle }: { children: any, seoTitle?:string }) {
+function AuthLayout({ children, seoTitle }: { children: any, seoTitle?: string }) {
     const router = useRouter();
-    const user = useSelector((a:any)=>a.auth)
+    const user = useSelector((a: any) => a.auth)
 
-    useEffect(()=>{
-     if(user.id){
-        router.push("/dashboard")
-     }
-    },[])
+    useEffect(() => {
+        if (user.id) {
+            router.push("/dashboard")
+        }
+    }, [])
 
     return (
         <>
@@ -51,12 +51,11 @@ function AuthLayout({ children, seoTitle }: { children: any, seoTitle?:string })
                         objectFit={"contain"}
                         src={
                             router.pathname === ROUTES.register
-                                ? '/auth/profile_man.png'
-                                : '/auth/profile_lady.png'
+                                ? '/images/person.png'
+                                : '/images/person2.png'
                         }
-                        h='60vh'
-                        w="100%"
-                        right='-180px'
+                        h='70vh'
+                        right={ router.pathname === ROUTES.register? '-15px':"-0vh"}
                         pos='absolute'
                         bottom='0px'
                         alt='auth sign in'
@@ -64,31 +63,31 @@ function AuthLayout({ children, seoTitle }: { children: any, seoTitle?:string })
                     <Box pl='96px' pt='36px' h='full' bgImage='/assets/images/bg.png'>
                         <Center w='71px' mb='34px' onClick={() => router.back()}>
                             <IconButton aria-label='' bg='transparent'>
-                                {/* <LeftArrowIcon /> */}
+                                <LeftArrowIcon />
                             </IconButton>
                             <Box fontWeight='400' color={COLORS.white} fontSize='13px'>
                                 BACK
                             </Box>
                         </Center>
-                        <Img src='/image/Logo_White2.png' />
-                       {router.pathname === ROUTES.register? <Box
+                        <Img h="100px" src='/logo/logo_white.png' />
+                        {router.pathname === ROUTES.register ? <Box
                             fontWeight='700'
                             fontSize='30px'
                             w='276px'
                             mt='20px'
                             color={COLORS.white}
                             lineHeight='36.3px'
-                        >Your Trusted Bridge to Real Estate Success
-                        </Box>:
-                        <Box
-                        fontWeight='700'
-                        fontSize='30px'
-                        w='276px'
-                        mt='20px'
-                        color={COLORS.white}
-                        lineHeight='36.3px'
-                    >Invest Smart, Own with Confidence
-                    </Box>
+                        >Explore the reward of your network
+                        </Box> :
+                            <Box
+                                fontWeight='700'
+                                fontSize='30px'
+                                w='276px'
+                                mt='20px'
+                                color={COLORS.white}
+                                lineHeight='36.3px'
+                            >Check your downline and your income with ease
+                            </Box>
                         }
                     </Box>
                 </Box>

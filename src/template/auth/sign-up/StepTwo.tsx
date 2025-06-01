@@ -19,6 +19,8 @@ import { authRegister } from '@/redux/slices/auth/authSlice';
 import ROUTES from '@/utils/ROUTES';
 import useCustomToast from '@/hooks/useCustomToast';
 import { useAppDispatch } from '@/redux/store/store';
+import { cashFormat } from '@/utils/cashformat';
+import NormalPaymentFlutterwave from '@/template/payment/normalPayment';
 
 interface SignUpForm2Props {
   setPage: (page: number) => void;
@@ -39,6 +41,8 @@ const validationSchema = Yup.object({
   confirm_password: Yup.string()
     .required('Confirm Password is required')
     .oneOf([Yup.ref('password')], 'Passwords must match'),
+  type: Yup.string()
+    .required('Subscription is required'),
   acceptedTerms: Yup.boolean().oneOf(
     [true],
     'You must accept the terms and conditions'
@@ -50,6 +54,7 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
   const userRole = 4; // Default role, adjust as needed
   const dispatch = useAppDispatch();
   const showToast = useCustomToast();
+  const [amount, setAmount] = useState(0);
 
   const handleSubmit = async (
     values: any,
@@ -79,9 +84,16 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
       delete formData.acceptedTerms;
 
       await dispatch(authRegister(formData) as any).unwrap();
-
+      if (values.type === '1') {
+        setAmount(5000);
+      }
+      else if (values.type === '2') {
+        setAmount(20000);
+      } else if (values.type === '3') {
+        setAmount(35000);
+      }
       showToast('you have successfully been registered', 'success');
-      router.push(ROUTES.login);
+      // router.push(ROUTES.login);
     } catch (error: any) {
       const errorMessage =
         error.response?.data?.message ||
@@ -95,9 +107,10 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
 
   return (
     <Center flexDir='column'>
+      {amount && amount !== 0 ? <NormalPaymentFlutterwave id={data.email} user={data} amount={amount} setDisplay={setAmount} /> : ""}
       <Img
         w='200px'
-        src="/image/Logo.png"
+        src="/logo/logo_white.png"
         mb='30px'
         display={['flex', 'flex', 'flex', 'none']}
       />
@@ -147,6 +160,7 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
             ...data,
             password: '',
             confirm_password: '',
+            type: "",
             acceptedTerms: false,
           }}
           validationSchema={validationSchema}
@@ -154,6 +168,19 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
         >
           {({ isSubmitting, handleChange, values, errors, touched }) => (
             <Form>
+              <Box w='full' mt='44px'>
+                <CustomInput
+                  label='Subscription'
+                  name='type'
+                  type={"select"}
+                  placeholder='Enter your subscription'
+                  value={values.type}
+                >
+                  <option value='1'>Sliver {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
+                  <option value='2'>Bronze {"(" + cashFormat(20000) + " " + "percentage shares 10%" + ")"}</option>
+                  <option value='3'>Gold {"(" + cashFormat(35000) + " " + "percentage shares 15%" + ")"}</option>
+                </CustomInput>
+              </Box>
               <Box w='full' mt='44px'>
                 <CustomInput
                   label='Password'
@@ -220,14 +247,14 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
                   isLoading={isSubmitting}
                   isDisabled={
                     isSubmitting ||
-                    !values.acceptedTerms ||
-                    errors.confirm_password
+                      !values.acceptedTerms ||
+                      errors.confirm_password
                       ? true
                       : false || errors.password
-                      ? true
-                      : false || errors.phone_number
-                      ? true
-                      : false
+                        ? true
+                        : false || errors.phone_number
+                          ? true
+                          : false
                   }
                   h='48px'
                   w='full'

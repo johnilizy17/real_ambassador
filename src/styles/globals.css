@@ -120,10 +120,38 @@ body {
   height: calc(100vh - 250px);
 }
 
+
+.TopNavTab {
+  width: calc(100vw  - 270px);
+  position: absolute;
+  right: 0px;
+  z-index: 3;
+}
+
+.SibeBar{
+  height:calc(100vh  - 100px);
+}
+
+.RoleAdmin{
+  width: calc(100% );
+  margin-right: -60px;
+}
+
 @media screen and (max-width:1000px) {
   .authPage {
     width: calc(100vw);
   }
+
+  .dashboard_user {
+    width: calc(100vw);
+  }
+
+  
+  
+  .TopNavTab {
+    width: calc(100vw);
+  }
+  
 }
 
 @media (prefers-color-scheme: dark) {

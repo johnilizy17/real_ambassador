@@ -79,7 +79,7 @@ export default function StepOne({ data, setPage, user, setData }: any) {
     <Center flexDir='column'>
       <Img
         w='200px'
-        src="/image/Logo2.png"
+        src="/logo/logo_white.png"
         mb='30px'
         display={['flex', 'flex', 'flex', 'none']}
       />

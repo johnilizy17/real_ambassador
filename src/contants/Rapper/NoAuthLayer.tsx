@@ -42,18 +42,10 @@ export default function NoAuthLayer({ children, seoTitle }: { children: any, seo
                 <link rel="stylesheet" type="text/css" href="css/magnific-popup.css" />
                 <link rel="stylesheet" type="text/css" href="css/style.css" />
                 <link rel="stylesheet" type="text/css" href="css/responsive.css" />
-                {/* Owl Carousel CSS */}
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bxslider@4.2.15/dist/jquery.bxslider.css">
+                </link> {/* Owl Carousel CSS */}
 
             </Head>
-            <Script
-                src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-                strategy="beforeInteractive"
-            />
-
-
-
-            {/* Owl Carousel JS */}
-            <Script src="https://code.jquery.com/jquery-3.6.0.min.js" strategy="beforeInteractive" />
             <Script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" strategy="afterInteractive" />
             <Script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" strategy="afterInteractive" />
 
@@ -64,8 +56,13 @@ export default function NoAuthLayer({ children, seoTitle }: { children: any, seo
             </Box>
 
             {/* <!-- all plugins here --> */}
+
             <Script
-                src="https://code.jquery.com/jquery-3.3.1.min.js"
+                src="https://cdn.jsdelivr.net/npm/bxslider@4.2.15/dist/jquery.bxslider.min.js"
+                strategy="beforeInteractive" // or "afterInteractive" based on your need
+            />
+            <Script
+                src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
                 strategy="beforeInteractive" // or "afterInteractive" based on your need
             />
             <Script src="js/owl.carousel.js" />
