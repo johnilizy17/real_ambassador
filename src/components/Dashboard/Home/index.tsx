@@ -5,20 +5,17 @@ import HomeCard from "./HomeCard";
 import HomeChart from "./HomeChart";
 import HomeTable from "./HomeTable";
 import HomeTableUsage from "./HomeTableUsage";
-import MyErrorBoundary from "../../boundary";
 
 
 export default function DashboardHome() {
 
     return (
         <Box pt={["0px", "0px", "0px", "40px"]}>
-            <MyErrorBoundary>
-                <HomeHeader />
-                <HomeCard />
-                <HomeChart />
-                <HomeTable />
-                <HomeTableUsage />
-            </MyErrorBoundary>
+            <HomeHeader />
+            <HomeCard />
+            <HomeChart />
+            <HomeTable />
+            <HomeTableUsage />
 
             <Box h="100px" />
         </Box>

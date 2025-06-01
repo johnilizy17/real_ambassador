@@ -1,4 +1,4 @@
-import { cashFormat } from '@/utils/cashformat'
+import { cashFormat, cashFormat2 } from '@/utils/cashformat'
 import { COLORS } from "@/layout/Theme";
 import { Box, Card, Center, Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState }  from "react";

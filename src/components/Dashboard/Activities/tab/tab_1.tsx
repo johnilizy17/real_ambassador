@@ -15,7 +15,6 @@ import {
     useDisclosure,
     Text
 } from '@chakra-ui/react';
-import { cashFormat2 } from '@/components/Util/cashformat';
 import { COLORS } from '@/layout/Theme';
 
 export default function Tab_1() {

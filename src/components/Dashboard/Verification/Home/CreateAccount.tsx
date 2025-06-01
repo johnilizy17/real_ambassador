@@ -8,7 +8,7 @@ import CustomInput from '@/layout/utills/CustomInput';
 import Link from 'next/link';
 import { createAccountWallet } from '@/url/api\'s/userProfile';
 import { useDispatch, useSelector } from 'react-redux';
-import { getWallet } from '@/redux/slices/userSlice';
+// import { getWallet } from '@/redux/slices/userSlice';
 import useCustomToast from '@/hooks/useCustomToast';
 
 export default function CreateAccount({ onClose }: { onClose: any }) {
@@ -33,7 +33,7 @@ export default function CreateAccount({ onClose }: { onClose: any }) {
                 ...values, "last_name": user.last_name, first_name: user.first_name,
                 "type": 6, user_id: user.officer_id, email: user.email_address
             })
-            dispatch(getWallet(user.officer_id) as any)
+            // dispatch(getWallet(user.officer_id) as any)
             onClose()
             showToast("Account number successfully generated", 'success')
             setSubmitting(false)

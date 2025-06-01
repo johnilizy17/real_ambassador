@@ -16,7 +16,6 @@ export default function Withdraw({ onClose }: { onClose: any }) {
     const [data, setData] = useState({ "account_number": "", "account_bank": "" })
     const [details, setDetails] = useState("");
     const router = useRouter();
-    const formikRef: any = useRef();
 
     const validationSchema = Yup.object({
         account_number: Yup.string().required("Account Number is required"),

@@ -21,7 +21,6 @@ import {
 import React, { useState, useEffect } from 'react'; // Import useState and useEffect
 import AddAdmin from './AddAdmin';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
 
 interface User {
     corp_id: string;
@@ -36,7 +35,7 @@ export default function SettingsAdmin() {
     const [teamMembers, setTeamMembers] = useState<any[]>([]); // Initialize with an empty array
     const [loading, setLoading] = useState(true); // Add a loading state
     const [error, setError] = useState<string | null>(null); // Add an error state
-    const { user } = useSelector((state: RootState) => state.auth); // Get user data directly here
+    const { user } = useSelector((state: any) => state.auth); // Get user data directly here
 
     useEffect(() => {
         const fetchTeamMembers = async () => {

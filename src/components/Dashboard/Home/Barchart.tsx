@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Center, Flex } from "@chakra-ui/react";
 import { COLORS } from "@/layout/Theme";
 import IndexArrow from "@/Asset/IndexArrow";
-import { cashFormat, nFormatter, nFormatterNaira } from "@/components/Util/cashformat";
+import { cashFormat, nFormatter, nFormatterNaira } from "@/utils/cashformat";
 
 function BarChart() {
 

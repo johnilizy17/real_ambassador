@@ -1,4 +1,4 @@
-import { cashFormat } from '@/utils/cashformat'
+import { cashFormat, cashFormat2 } from '@/utils/cashformat'
 import {
     Box, Card, Center, Flex, Input,
     Table,

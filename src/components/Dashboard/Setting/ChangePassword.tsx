@@ -9,7 +9,6 @@ import Link from 'next/link';
 import ROUTES from '@/utils/ROUTES';
 import { getAccessToken } from '@/utils/storage';
 import { useDispatch } from 'react-redux';
-import { authResetPassword } from '@/redux/slices/auth/authSlice';
 
 export default function ChangePassword({ onClose }: { onClose: any }) {
 
@@ -29,7 +28,7 @@ export default function ChangePassword({ onClose }: { onClose: any }) {
     ) => {
         try {
             const token = await getAccessToken()
-            dispatch(authResetPassword({password:values.password, token: token})as any)
+            // dispatch(authResetPassword({password:values.password, token: token})as any)
             toast({
                 position: "top-right",
                 description: "Password changed",

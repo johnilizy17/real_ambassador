@@ -14,7 +14,6 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import DashboardHome from '@/components/Dashboard/Home'
-import VerificationDashboard from '@/components/Verification/Home';
 import VerificationNavBar from '@/components/Dashboard/Verification/Home/SideBar';
 import { COLORS } from '@/layout/Theme';
 import { useRouter } from 'next/router';

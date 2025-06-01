@@ -1,7 +1,6 @@
 import React from 'react';
 import EnterAddress from './EnterAddress';
 import HomeCard from '../Home/HomeCard';
-import MapDashboard from '../User/MapDashboard';
 import HomeHeaderUser from '../Home/HomeHeaderUser';
 import VerificationAlert from '../DashboardLayout/VerificationAlert';
 
@@ -12,7 +11,6 @@ export default function UserAddress() {
             <HomeHeaderUser />
             <VerificationAlert />
             <HomeCard />
-            <MapDashboard />
         </>
     )
 }

@@ -17,7 +17,7 @@ import ChangePassword from './ChangePassword';
 import { updateProfileVerification, getUserProfile } from '@/url/api\'s/userProfile';
 import { useSelector } from 'react-redux';
 import CustomInput from '@/layout/utills/CustomInput';
-import { RootState } from '@/redux/store';
+
 import useCustomToast from '@/hooks/useCustomToast';
 
 interface User {
@@ -32,7 +32,7 @@ interface User {
 export default function SettingForm() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { user } = useSelector((state: RootState) => state.auth);
+    const { user } = useSelector((state: any) => state.auth);
     const [phoneNumber, setPhoneNumber] = useState(user.contact_info)
     const [showPassword, setShowPassword] = useState(false);
     const showMessage = useCustomToast()

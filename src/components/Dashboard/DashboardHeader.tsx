@@ -2,8 +2,8 @@ import { Box, Button, Center } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
 import { COLORS } from '@/layout/Theme';
+import { RootState } from '@/redux/store/store';
 
 interface ButtonConfig {
     label: string;
