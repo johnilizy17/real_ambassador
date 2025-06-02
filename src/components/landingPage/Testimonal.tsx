@@ -15,7 +15,7 @@ export default function Testimonial() {
                     margin: 10,
                     nav: true,
                     dots: true,
-                    items: 3,
+                    items: 1,
                     autoplay: true,
                     autoplayTimeout: 3000,
                     autoplayHoverPause: true,
