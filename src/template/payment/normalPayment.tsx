@@ -36,7 +36,7 @@ export default function NormalPaymentFlutterwave({
             setDisplay(false);
         },
         onclose: function () {
-            console.log("Payment closed");
+            setDisplay(false);
         },
     };
 
@@ -51,7 +51,8 @@ export default function NormalPaymentFlutterwave({
                 closePaymentModal();
             },
             onClose: () => {
-                console.log("Payment closed");
+                console.log("Payment closed2");
+                setDisplay(false);
             },
         });
     }, [])

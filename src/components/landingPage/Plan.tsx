@@ -27,13 +27,16 @@ export default function Plan() {
                             </div>
                             <div className="investment_border_wrapper"></div>
                             <div className="investment_content_wrapper">
-                                <h1><a href="/auth/login">silver plan</a></h1>
+                                <h1><a href="/auth/login">Tier 1</a></h1>
                                 <div className="line_shape line_shape2"></div>
                                 <p>Up to 5% interest on any transaction the user makes
                                 </p>
                                 <Box w="full" textAlign={"start"}>
                                     <li>Price:{cashFormat(5000)}</li>
-                                    <li>interest: 5%</li>
+                                    <li>Refferal Downline: 15%</li>
+                                    <li>Registration Interest: 15%</li>
+                                    <li>interest product: 5%</li>
+                                    <li>Refferal stages: 1</li>
                                 </Box>
                             </div>
                             <div className="about_btn plans_btn index2_investment_btn">
@@ -54,13 +57,16 @@ export default function Plan() {
                             </div>
                             <div className="investment_border_wrapper red_border_wrapper"></div>
                             <div className="investment_content_wrapper red_content_wrapper">
-                                <h1><a href="/auth/login">Bronze Plan</a></h1>
+                                <h1><a href="/auth/login">Tier 2</a></h1>
                                 <div className="line_shape line_shape2"></div>
                                 <p>Up to 10% interest on any transaction the user makes
                                 </p>
                                 <Box w="full" textAlign={"start"}>
-                                    <li>Price:{cashFormat(25000)}</li>
-                                    <li>interest: 10%</li>
+                                    <li>Price:{cashFormat(15000)}</li>
+                                    <li>Refferal Downline: 30%</li>
+                                    <li>Registration Interest: 25%</li>
+                                    <li>interest product: 10%</li>
+                                    <li>Refferal stages: 3</li>
                                 </Box>
                             </div>
                             <div className="about_btn plans_btn red_btn_plans index2_investment_btn">
@@ -81,14 +87,17 @@ export default function Plan() {
                             </div>
                             <div className="investment_border_wrapper green_border_wrapper"></div>
                             <div className="investment_content_wrapper green_content_wrapper">
-                                <h1><a href="/auth/login">gold plan</a></h1>
+                                <h1><a href="/auth/login">Tier 3</a></h1>
                                 <div className="line_shape line_shape2"></div>
                                 <p>Up to 15% interest on any transaction the user makes
                                 </p>
                                 <Box w="full" textAlign={"start"}>
-                                    <li>Price:{cashFormat(35000)}</li>
-                                    <li>interest: 15%</li>
-                                </Box>
+                                    <li>Price:{cashFormat(25000)}</li>
+                                    <li>Refferal Downline: 40%</li>
+                                    <li>Registration Interest: 40%</li>
+                                    <li>interest product: 15%</li>
+                                   <li>Refferal stages: 4{"(40%, 20%, 10%, 5%)"}</li>
+                                 </Box>
                             </div>
                             <div className="about_btn plans_btn green_plan_btn index2_investment_btn">
                                 <ul>

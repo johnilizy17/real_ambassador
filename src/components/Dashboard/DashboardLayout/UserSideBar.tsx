@@ -1,4 +1,4 @@
-import { Box, Flex, Img } from "@chakra-ui/react";
+import { Box, Flex, Img, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 import SearchTab from "./SearchTab";
 import DashboardNav from "./User/DashBoardNav";
@@ -7,6 +7,8 @@ import VerificationAlert from "./VerificationAlert";
 import UserDashboardAuth from "@/Auth/UserDashboardAuth";
 
 export default function UserSideBar({ children }: any) {
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
         <UserDashboardAuth>

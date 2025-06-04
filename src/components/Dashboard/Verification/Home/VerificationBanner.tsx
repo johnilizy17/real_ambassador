@@ -22,7 +22,7 @@ export default function VerificationBanner() {
         return (
             <Modal isOpen={isOpen} onClose={onClose} isCentered>
                 <ModalOverlay />
-                <ModalContent h="369px" w={["300px", "300px", "300px", "504px"]}>
+                <ModalContent h="auto" w={["300px", "300px", "300px", "504px"]}>
                     <ModalHeader justifyContent="center" fontSize="20px" fontWeight="500"  alignItems="center">Withdraw Money</ModalHeader>
                     <ModalBody w="full">
                         <Withdraw onClose={onClose} />

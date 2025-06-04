@@ -9,10 +9,12 @@ import animationData from './loading.json';
 import { Button, Center, Img, useDisclosure } from '@chakra-ui/react'
 import LottieLoader from "@/utils/LottieLoader";
 import Head from 'next/head'
+import RegistrationPopUp from '@/components/Dashboard/payment/PopPlan'
 
 export default function UserDashboardAuth({ children }: any) {
     const { user, setOnboarded } = useSelector((a: { auth: { user: any, setOnboarded: any } }) => a.auth)
     const wallet = useSelector((a: { user: { wallet: any } }) => a)
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true); // Track overall loading state
     const router = useRouter();
@@ -67,7 +69,7 @@ export default function UserDashboardAuth({ children }: any) {
                 {/* Owl Carousel CSS */}
 
             </Head>
-
+            <RegistrationPopUp isOpen={user && user.payment && user.payment > 1.5 ? isOpen : isOpen} onOpen={onOpen} onClose={onClose} />
             {/* Show loading screen only while loading is true */}
             {loading && (
                 <Center w="full" background="white" zIndex={1000} pos="fixed" top="0px" flexDir="column" h="100vh">

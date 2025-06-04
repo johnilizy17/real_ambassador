@@ -73,7 +73,7 @@ export const authRegister = createAsyncThunk(
   async (payload: RegisterDto, { rejectWithValue }) => {
     try {
       const response: AxiosResponse<{ data: RegisterResponse }> =
-        await publicRequest.post('/auth/signup', payload);
+        await publicRequest.post('/auth/signup/ambassador', payload);
       const userData = response.data.data;
       return userData;
     } catch (error: any) {
