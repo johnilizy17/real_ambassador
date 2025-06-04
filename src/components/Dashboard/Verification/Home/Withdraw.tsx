@@ -8,12 +8,14 @@ import CustomInput from '@/layout/utills/CustomInput';
 import Link from 'next/link';
 import { banklist } from "@/url/banklist";
 import { verifyWallet } from '@/url/api\'s/userProfile';
+import { useSelector } from 'react-redux';
 
 export default function Withdraw({ onClose }: { onClose: any }) {
 
     const toast = useToast();
     const [showPassword, setShowPassword] = useState(true);
     const [data, setData] = useState({ "account_number": "", "account_bank": "" })
+    const { user } = useSelector((a: { auth: any }) => a.auth)    //const [notificationsData, setNotifictionData] = useState([{ uniqueID: "1", header: "created account", text: "You're now part of the G-AIM community, where we’re committed to helping you achieve your goals with ease and efficiency. Whether you’re here to track progress, stay organized, or explore new opportunities, we're excited to have you on board.", createAt:"10:00am" }]);
     const [details, setDetails] = useState("");
     const router = useRouter();
 

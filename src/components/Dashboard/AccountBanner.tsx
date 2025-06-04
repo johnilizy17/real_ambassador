@@ -8,6 +8,7 @@ import CustomInput from "@/layout/utills/CustomInput";
 import * as Yup from "yup";
 import { useSelector } from "react-redux";
 import { fetchAddressData, getAddressData } from "@/url/api's/claimAddress";
+import DownStep from "@/template/Step/DownStep";
 
 
 export default function AccountBanner({ list, name, VerificationApi }: { list: any, name: string, VerificationApi: any }) {
@@ -56,11 +57,12 @@ export default function AccountBanner({ list, name, VerificationApi }: { list: a
                     <ModalHeader>{name}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        {/* {bulk ?
-                            <BulkEnumeration claimApi={VerificationApi} claimName={name.toLowerCase()} formData={data} onClose={closingEnumeration} />
+                        {name === "Referrals" ?
+                            <DownStep />
                             :
-                            <CardClaimForm claimApi={VerificationApi} claimName={name.toLowerCase()} formData={data} onClose={closingEnumeration} />
-                        } */}
+                            <>
+                            </>
+                        }
                     </ModalBody>
                 </ModalContent>
             </Modal>

@@ -1,0 +1,100 @@
+import { COLORS } from '@/utils/Theme';
+import {
+    Box,
+    Button,
+    Center,
+    Flex,
+    Img,
+    ModalFooter,
+    Text,
+    useToast,
+} from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import { Form, Formik, Field } from 'formik';
+import * as Yup from 'yup';
+import CustomInput from '@/components/CustomInput/CustomInput';
+
+export const runtime = 'edge';
+
+export default function StepTwo({ data, page, setPage, setData }: any) {
+    const [phoneNumber, setPhoneNumber] = useState("+234");
+    const router = useRouter();
+
+    // Adjust validation schema based on userType
+    const validationSchema = Yup.object({
+        firstName: Yup.string().required('First name is required'),
+        birth_date: Yup.string().required('Date of Birth is required'),
+        lastName: Yup.string().required('Last name is required')
+    });
+
+    const initiateLogin = async (
+        values: any,
+        { setSubmitting, resetForm }: any
+    ) => {
+        try {
+            // Include the role_id based on userType
+            setData({ ...values });
+            setPage(2);
+            setSubmitting(true);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+    return (
+        <Center flexDir='column'>
+            <Box
+                paddingLeft={['10px']}
+                w="full"
+                paddingRight={['10px']}
+                pos='relative'
+            >
+                <Formik
+                    initialValues={data}
+                    onSubmit={initiateLogin}
+                    validationSchema={validationSchema}
+                >
+                    {({ isSubmitting, handleChange }) => (
+                        <Form>
+                            {/* Conditionally render name fields based on userType */}
+
+                            <>
+                                <Box w='full' mt='44px'>
+                                    <CustomInput
+                                        label='Email'
+                                        name='email'
+                                        placeholder='example@gmail.com'
+                                        fieldProps={{ type: 'email' }}
+                                        typeInput=''
+                                        value=''
+                                    />
+                                </Box>
+                                <Box w='full' mt='44px'>
+                                    <CustomInput
+                                        label='Phone Number'
+                                        name='phone'
+                                        typeInput=''
+                                        type='phone'
+                                        value={phoneNumber}
+                                        handleChange={setPhoneNumber}
+                                        placeholder='Enter phone number'
+                                        fieldProps={{ type: 'phone' }}
+                                    />
+                                </Box>
+                                <Button mr={3} mt={8} colorScheme='bllue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
+                                    Back
+                                </Button>
+                                <Button mt={8} colorScheme='green' type={"submit"}>
+                                    Next
+                                </Button>
+                            </>
+                        </Form>
+                    )}
+                </Formik>
+            </Box>
+        </Center>
+    );
+}
