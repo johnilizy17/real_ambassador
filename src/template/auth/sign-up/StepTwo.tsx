@@ -110,7 +110,7 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
       {amount && amount !== 0 ? <NormalPaymentFlutterwave id={data.email} user={data} amount={amount} setDisplay={setAmount} /> : ""}
       <Img
         w='200px'
-        src="/logo/logo_white.png"
+        src="/logo/logo_blue.png"
         mb='30px'
         display={['flex', 'flex', 'flex', 'none']}
       />
@@ -176,9 +176,9 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
                   placeholder='Enter your subscription'
                   value={values.type}
                 >
-                  <option value='1'>Sliver {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
-                  <option value='2'>Bronze {"(" + cashFormat(20000) + " " + "percentage shares 10%" + ")"}</option>
-                  <option value='3'>Gold {"(" + cashFormat(35000) + " " + "percentage shares 15%" + ")"}</option>
+                  <option value='1'>Tier 2 {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
+                  <option value='2'>Tier 1 {"(" + cashFormat(20000) + " " + "percentage shares 10%" + ")"}</option>
+                  <option value='3'>Tier 3 {"(" + cashFormat(35000) + " " + "percentage shares 15%" + ")"}</option>
                 </CustomInput>
               </Box>
               <Box w='full' mt='44px'>

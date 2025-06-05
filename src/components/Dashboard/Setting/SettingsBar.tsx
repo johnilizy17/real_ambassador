@@ -16,6 +16,7 @@ import TwoFactorAuthentication from './TwoFactorAuthentication';
 import ChangePassword from './ChangePassword';
 import { COLORS } from '@/layout/Theme';
 import SettingProfile from './SettingProfile';
+import SettingPlan from '../payment/SettingPlan';
 
 interface SecurityPage {
     id: number;
@@ -109,6 +110,14 @@ function SettingsBar() {
                 'Review privacy settings to control what information is visible and to whom. This can help ensure that personal information is only accessible to trusted contacts.',
             component: <SettingProfile />,
             slug: 'profile',
+        },
+        {
+            id: 3,
+            title: 'Upgrade your Tier',
+            description:
+                'Change your interest and benefit more from ABN',
+            component: <SettingPlan />,
+            slug: 'upgrade',
         }
     ];
 

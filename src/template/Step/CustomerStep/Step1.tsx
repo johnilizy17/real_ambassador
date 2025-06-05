@@ -17,8 +17,8 @@ import CustomInput from '@/components/CustomInput/CustomInput';
 
 export const runtime = 'edge';
 
-export default function StepTwo({ data, page, setPage, setData }: any) {
-    const [phoneNumber, setPhoneNumber] = useState("+234");
+export default function StepOne({ data, page, setPage, setData }: any) {
+    const [phoneNumber, setPhoneNumber] = useState();
     const router = useRouter();
 
     // Adjust validation schema based on userType
@@ -34,8 +34,8 @@ export default function StepTwo({ data, page, setPage, setData }: any) {
     ) => {
         try {
             // Include the role_id based on userType
-            setData({ ...data, phone:phoneNumber, ...values });
-            setPage(3);
+            setData({ ...values });
+            setPage(2);
             setSubmitting(true);
         } catch (error) {
             console.log(error);
@@ -64,33 +64,41 @@ export default function StepTwo({ data, page, setPage, setData }: any) {
                             <>
                                 <Box w='full' mt='44px'>
                                     <CustomInput
-                                        label='Email'
-                                        name='email'
-                                        placeholder='example@gmail.com'
-                                        fieldProps={{ type: 'email' }}
+                                        label='First Name'
+                                        name='firstName'
+                                        placeholder='Enter First Name'
+                                        fieldProps={{ type: 'text' }}
                                         typeInput=''
                                         value=''
                                     />
                                 </Box>
                                 <Box w='full' mt='44px'>
                                     <CustomInput
-                                        label='Phone Number'
-                                        name='phone'
+                                        label='Last Name (Surname)'
+                                        name='lastName'
+                                        placeholder='Enter Last Name'
+                                        fieldProps={{ type: 'text' }}
                                         typeInput=''
-                                        type='phone'
-                                        value={phoneNumber}
-                                        handleChange={setPhoneNumber}
-                                        placeholder='Enter phone number'
-                                        fieldProps={{ type: 'phone' }}
+                                        value=''
                                     />
                                 </Box>
-                                <Button mr={3} mt={8} colorScheme='bllue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
-                                    Back
-                                </Button>
-                                <Button mt={8} colorScheme='green' type={"submit"}>
-                                    Next
-                                </Button>
                             </>
+                            <Box w='full' mt='44px'>
+                                <CustomInput
+                                    label='Date of Birth'
+                                    name='birth_date'
+                                    placeholder='2/20/2024'
+                                    fieldProps={{ type: 'date' }}
+                                    typeInput=''
+                                    value=''
+                                />
+                            </Box>
+                            <Button mr={3} mt={8} colorScheme='blue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
+                                Back
+                            </Button>
+                            <Button mt={8} colorScheme='green' type={"submit"}>
+                                Next
+                            </Button>
                         </Form>
                     )}
                 </Formik>

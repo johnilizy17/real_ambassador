@@ -69,7 +69,7 @@ export default function UserDashboardAuth({ children }: any) {
                 {/* Owl Carousel CSS */}
 
             </Head>
-            <RegistrationPopUp isOpen={user && user.payment && user.payment > 1.5 ? isOpen : isOpen} onOpen={onOpen} onClose={onClose} />
+            <RegistrationPopUp isOpen={user && user.payment && user.payment > 1.5 ? isOpen : !isOpen} onOpen={onOpen} onClose={onClose} />
             {/* Show loading screen only while loading is true */}
             {loading && (
                 <Center w="full" background="white" zIndex={1000} pos="fixed" top="0px" flexDir="column" h="100vh">

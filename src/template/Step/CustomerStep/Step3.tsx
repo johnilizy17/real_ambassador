@@ -16,7 +16,6 @@ import * as Yup from 'yup';
 import CustomInput from '@/components/CustomInput/CustomInput';
 import { cashFormat } from '@/utils/cashformat';
 import NormalPaymentFlutterwave from '@/template/payment/normalPayment';
-import { RegisterReferral } from '@/url/api\'s/userProfile';
 
 export const runtime = 'edge';
 
@@ -35,18 +34,16 @@ export default function StepThree({ data, page, setPage, setData, onClose }: any
         { setSubmitting, resetForm }: any
     ) => {
         try {
-            setData({ ...data, ...values });
-            await RegisterReferral({ ...data, ...values, role: "USERAMBASSADOR" })
             // Include the role_id based on userType
-            // setData({ ...values });
-            // if (values.type === '1') {
-            //     setAmount(5000);
-            // }
-            // else if (values.type === '2') {
-            //     setAmount(20000);
-            // } else if (values.type === '3') {
-            //     setAmount(35000);
-            // }
+            setData({ ...values });
+            if (values.type === '1') {
+                setAmount(5000);
+            }
+            else if (values.type === '2') {
+                setAmount(20000);
+            } else if (values.type === '3') {
+                setAmount(35000);
+            }
             onClose(false)
             setSubmitting(true);
         } catch (error) {

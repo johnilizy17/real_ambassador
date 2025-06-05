@@ -6,13 +6,14 @@ import StepOne from './Step1';
 import StepTwo from './Step2';
 import StepThree from './Step3';
 
-export default function DownStep({ onClose }: any) {
+export default function CustomerStep({ onClose }: any) {
 
     const [wizardStep, setWizardStep] = useState(1)
     const steps = [
         { title: "Personal details" },
         { title: "Contact Info" },
-        { title: "Registeration Fee" }
+        { title: "Registeration Fee" },
+        { title: "Subscription" }
     ]
     const [data, setData] = useState({})
     return (

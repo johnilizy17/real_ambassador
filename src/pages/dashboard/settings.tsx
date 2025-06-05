@@ -27,12 +27,6 @@ function SettingsPage() {
             title: "Security and login access",
             component: <SettingsBar />,
             slug: "security"
-        },
-        {
-            id: 2,
-            title: "Organization Management",
-            component: <SettingsAdmin />,
-            slug: "Organization"
         }
     ];
 

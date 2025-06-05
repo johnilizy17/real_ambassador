@@ -14,20 +14,18 @@ import React, { useState } from 'react';
 import { Form, Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import CustomInput from '@/components/CustomInput/CustomInput';
-import { cashFormat } from '@/utils/cashformat';
-import NormalPaymentFlutterwave from '@/template/payment/normalPayment';
-import { RegisterReferral } from '@/url/api\'s/userProfile';
 
 export const runtime = 'edge';
 
-export default function StepThree({ data, page, setPage, setData, onClose }: any) {
-
+export default function StepTwo({ data, page, setPage, setData }: any) {
+    const [phoneNumber, setPhoneNumber] = useState("+234");
     const router = useRouter();
-    const [amount, setAmount] = useState(0);
 
     // Adjust validation schema based on userType
     const validationSchema = Yup.object({
-        type: Yup.string().required('Type is required'),
+        firstName: Yup.string().required('First name is required'),
+        birth_date: Yup.string().required('Date of Birth is required'),
+        lastName: Yup.string().required('Last name is required')
     });
 
     const initiateLogin = async (
@@ -35,19 +33,9 @@ export default function StepThree({ data, page, setPage, setData, onClose }: any
         { setSubmitting, resetForm }: any
     ) => {
         try {
-            setData({ ...data, ...values });
-            await RegisterReferral({ ...data, ...values, role: "USERAMBASSADOR" })
             // Include the role_id based on userType
-            // setData({ ...values });
-            // if (values.type === '1') {
-            //     setAmount(5000);
-            // }
-            // else if (values.type === '2') {
-            //     setAmount(20000);
-            // } else if (values.type === '3') {
-            //     setAmount(35000);
-            // }
-            onClose(false)
+            setData({ ...values });
+            setPage(3);
             setSubmitting(true);
         } catch (error) {
             console.log(error);
@@ -64,32 +52,38 @@ export default function StepThree({ data, page, setPage, setData, onClose }: any
                 paddingRight={['10px']}
                 pos='relative'
             >
-                {amount && amount !== 0 ? <NormalPaymentFlutterwave id={data.email} user={data} amount={amount} setDisplay={setAmount} /> : ""}
-
                 <Formik
-                    initialValues={{ type: "" }}
+                    initialValues={data}
                     onSubmit={initiateLogin}
                     validationSchema={validationSchema}
                 >
-                    {({ isSubmitting, handleChange, values }) => (
+                    {({ isSubmitting, handleChange }) => (
                         <Form>
                             {/* Conditionally render name fields based on userType */}
 
                             <>
                                 <Box w='full' mt='44px'>
                                     <CustomInput
-                                        label='Subscription'
-                                        name='type'
-                                        type={"select"}
-                                        placeholder='Enter your subscription'
-                                        value={values.type}
-                                    >
-                                        <option value='1'>Tier 2 {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
-                                        <option value='2'>Tier 1 {"(" + cashFormat(15000) + " " + "percentage shares 10%" + ")"}</option>
-                                        <option value='3'>Tier 3 {"(" + cashFormat(25000) + " " + "percentage shares 15%" + ")"}</option>
-                                    </CustomInput>
+                                        label='Email'
+                                        name='email'
+                                        placeholder='example@gmail.com'
+                                        fieldProps={{ type: 'email' }}
+                                        typeInput=''
+                                        value=''
+                                    />
                                 </Box>
-
+                                <Box w='full' mt='44px'>
+                                    <CustomInput
+                                        label='Phone Number'
+                                        name='phone'
+                                        typeInput=''
+                                        type='phone'
+                                        value={phoneNumber}
+                                        handleChange={setPhoneNumber}
+                                        placeholder='Enter phone number'
+                                        fieldProps={{ type: 'phone' }}
+                                    />
+                                </Box>
                                 <Button mr={3} mt={8} colorScheme='bllue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
                                     Back
                                 </Button>

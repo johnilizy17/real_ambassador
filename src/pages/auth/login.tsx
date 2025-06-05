@@ -30,7 +30,7 @@ export default function LogIn() {
           <Center flexDir={"column"}>
             <Image
               w='200px'
-              src='/image/Logo2.png'
+              src='/logo/logo_blue.png'
               mb={8}
               display={['flex', 'flex', 'flex', 'none']}
               alt='Logo'

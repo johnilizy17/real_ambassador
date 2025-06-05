@@ -38,9 +38,9 @@ export default function RegistrationPopUp({ isOpen, onOpen, onClose }: { isOpen:
             setAmount(5000);
         }
         else if (values.type === '2') {
-            setAmount(20000);
+            setAmount(15000);
         } else if (values.type === '3') {
-            setAmount(35000);
+            setAmount(25000);
         }
     };
 
@@ -71,9 +71,9 @@ export default function RegistrationPopUp({ isOpen, onOpen, onClose }: { isOpen:
                                         placeholder='Enter your subscription'
                                         value={values.type}
                                     >
-                                        <option value='1'>Sliver {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
-                                        <option value='2'>Bronze {"(" + cashFormat(20000) + " " + "percentage shares 10%" + ")"}</option>
-                                        <option value='3'>Gold {"(" + cashFormat(35000) + " " + "percentage shares 15%" + ")"}</option>
+                                        <option value='1'>Tier 2 {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
+                                        <option value='2'>Tier 1 {"(" + cashFormat(15000) + " " + "percentage shares 10%" + ")"}</option>
+                                        <option value='3'>Tier 3 {"(" + cashFormat(25000) + " " + "percentage shares 15%" + ")"}</option>
                                     </CustomInput>
                                 </Box>
                                 <ModalFooter>

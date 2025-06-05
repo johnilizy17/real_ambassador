@@ -1,4 +1,4 @@
-import { userFileUpload } from "@/utils/axios";
+import { userFileUpload, userRequest } from "@/utils/axios";
 import server from "../axios/server";
 
 
@@ -54,6 +54,16 @@ export const verifyWallet = async (payload: any) => {
 
 export const claimAddress = async (userId: string, address: string, data: any) => {
     const { data: response } = await server.post(`/user/${userId}/address/claim/${address}`, data);
+    return response;
+};
+
+export const userActive = async (payload: any) => {
+    const { data: response } = await userRequest.post(`/profile/activate`, payload);
+    return response;
+};
+
+export const RegisterReferral = async (payload: any) => {
+    const { data: response } = await userRequest.post(`/auth/signup/referral`, payload);
     return response;
 };
 
