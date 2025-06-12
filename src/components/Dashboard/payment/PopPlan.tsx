@@ -36,12 +36,12 @@ export default function RegistrationPopUp({ isOpen, onOpen, onClose }: { isOpen:
     ) => {
 
         if (values.type === '1') {
-            setAmount(500);
+            setAmount(5000);
         }
         else if (values.type === '2') {
-            setAmount(1500);
+            setAmount(15000);
         } else if (values.type === '3') {
-            setAmount(2500);
+            setAmount(25000);
         }
     };
 
