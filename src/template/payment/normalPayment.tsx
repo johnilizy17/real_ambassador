@@ -49,7 +49,7 @@ export default function NormalPaymentFlutterwave({
         await userActive({ email: user.email, payment: status, amount:amount })
         showToast("Subscription successful", "success")
         setDisplay(false);
-        router.push("auth/login")
+        router.push("/auth/login")
 
     }
 

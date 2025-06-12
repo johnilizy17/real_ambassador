@@ -68,8 +68,8 @@ export default function SettingPlan() {
                                 placeholder='Enter your subscription'
                                 value={values.type}
                             >
-                                <option value='1'>Tier 2 {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
-                                <option value='2'>Tier 1 {"(" + cashFormat(15000) + " " + "percentage shares 10%" + ")"}</option>
+                                <option value='1'>Tier 1 {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
+                                <option value='2'>Tier 2 {"(" + cashFormat(15000) + " " + "percentage shares 10%" + ")"}</option>
                                 <option value='3'>Tier 3 {"(" + cashFormat(25000) + " " + "percentage shares 15%" + ")"}</option>
                             </CustomInput>
                         </Box>
