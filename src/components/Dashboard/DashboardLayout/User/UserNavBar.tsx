@@ -71,7 +71,6 @@ export default function UserNavBar() {
     async function ApiLogout() {
         try {
             setLoading(true)
-            await authLogout()
             logout()
             setLoading(false)
         } catch {

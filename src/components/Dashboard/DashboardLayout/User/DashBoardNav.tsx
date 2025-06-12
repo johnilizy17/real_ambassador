@@ -142,11 +142,7 @@ const DashboardNavUser = () => {
     async function ApiLogout() {
         try {
             setLoading(true)
-            const user = await authLogout()
-            deleteCookies()
-            deleteCookies()
-            deleteCookies()
-            logout()
+         logout()
             setLoading(false)
         } catch {
             setLoading(false)
