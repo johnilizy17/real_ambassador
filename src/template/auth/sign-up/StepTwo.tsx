@@ -27,6 +27,7 @@ interface SignUpForm2Props {
   user?: string | string[];
   data: {
     phone_number: string;
+    phone:string;
     [key: string]: any;
   };
 }
@@ -34,10 +35,7 @@ interface SignUpForm2Props {
 const validationSchema = Yup.object({
   password: Yup.string()
     .required('Password is required')
-    .min(8, 'Password must be at least 8 characters')
-    .matches(/[A-Z]/, 'Must contain at least one uppercase letter')
-    .matches(/[a-z]/, 'Must contain at least one lowercase letter')
-    .matches(/[0-9]/, 'Must contain at least one number'),
+    .min(8, 'Password must be at least 8 characters'),
   confirm_password: Yup.string()
     .required('Confirm Password is required')
     .oneOf([Yup.ref('password')], 'Passwords must match'),
@@ -176,8 +174,8 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
                   placeholder='Enter your subscription'
                   value={values.type}
                 >
-                  <option value='1'>Tier 2 {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
-                  <option value='2'>Tier 1 {"(" + cashFormat(15000) + " " + "percentage shares 10%" + ")"}</option>
+                  <option value='1'>Tier 1 {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
+                  <option value='2'>Tier 2 {"(" + cashFormat(15000) + " " + "percentage shares 10%" + ")"}</option>
                   <option value='3'>Tier 3 {"(" + cashFormat(25000) + " " + "percentage shares 15%" + ")"}</option>
                 </CustomInput>
               </Box>
