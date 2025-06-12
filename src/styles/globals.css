@@ -29,6 +29,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.circle-image {
+  width: 80px;         /* or any desired size */
+  height: 80px;
+  object-fit: cover;    /* ensures the image fills the circle without distortion */
+  border-radius: 50%;   /* makes it a circle */
+  border: 2px solid #ccc; /* optional: add a border */
+}
+
 .dashboard_user {
   width: calc(100vw - 270px);
 }
