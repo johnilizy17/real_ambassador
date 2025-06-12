@@ -9,6 +9,8 @@ import Link from 'next/link';
 import { banklist } from "@/url/banklist";
 import { verifyWallet, withdrawWallet } from '@/url/api\'s/userProfile';
 import { useSelector } from 'react-redux';
+import { cashFormat } from '@/utils/cashformat';
+import { referredBalance } from '@/url/api\'s/organization';
 
 export default function Withdraw({ onClose }: { onClose: any }) {
 
@@ -20,6 +22,17 @@ export default function Withdraw({ onClose }: { onClose: any }) {
 
     const [details, setDetails] = useState("");
     const router = useRouter();
+
+    const [amount, setAmount] = useState(0)
+
+    async function Balance() {
+        const result = await referredBalance()
+        setAmount(result)
+    }
+
+    useEffect(() => {
+        Balance()
+    }, [])
 
     const validationSchema = Yup.object({
         account_number: Yup.string().required("Account Number is required"),
@@ -75,6 +88,7 @@ export default function Withdraw({ onClose }: { onClose: any }) {
             >
                 {({ isSubmitting, values, setSubmitting }) => (
                     <Form>
+                        <p style={{ color: "red", fontSize: 12 }}>Kindly note your will be charged {cashFormat(100)} for withdrawal of {cashFormat(amount)}</p>
                         <Box w={["280px", "280px", "280px", "384px"]} mt="30px">
                             <CustomInput
                                 label="Select Bank"

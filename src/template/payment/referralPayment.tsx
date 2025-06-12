@@ -22,7 +22,7 @@ export default function ReferralPaymentFlutterwave({
     const router = useRouter()
     const showToast = useCustomToast();
     const baseFlutterConfig = {
-        public_key: "FLWPUBK_TEST-6412c61469c946cebca98335ccc39d45-X",
+        public_key: "FLWPUBK-b63ca273dbde270802f38c5b6f57a5bf-X",
         tx_ref: Date.now().toString(),
         amount: amount,
         currency: "NGN",
