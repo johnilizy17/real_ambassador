@@ -34,7 +34,7 @@ export default function StepOne({ data, page, setPage, setData }: any) {
     ) => {
         try {
             // Include the role_id based on userType
-            setData({ ...values });
+            setData({ ...data, ...values });
             setPage(2);
             setSubmitting(true);
         } catch (error) {

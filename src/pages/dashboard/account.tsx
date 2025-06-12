@@ -2,6 +2,7 @@
 import UserSideBar from '@/components/Dashboard/DashboardLayout/UserSideBar';
 import CreateAccount from '@/components/Dashboard/Verification/Home/CreateAccount';
 import Withdraw from '@/components/Dashboard/Verification/Home/Withdraw';
+import { referredBalance } from '@/url/api\'s/organization';
 import { cashFormat } from '@/utils/cashformat';
 import {
     Box,
@@ -22,6 +23,7 @@ import {
     ModalBody,
 } from '@chakra-ui/react';
 import { CopyCheckIcon } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { LineChart, Line, ResponsiveContainer } from 'recharts';
 
@@ -40,6 +42,17 @@ export default function AccountNumber() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { wallet } = useSelector((a: any) => a.user)
+    const [amount, setAmount] = useState(0)
+
+    async function Balance() {
+        const result = await referredBalance()
+        setAmount(result)
+    }
+
+    useEffect(() => {
+        Balance()
+    }, [])
+
 
     function AccountComponent() {
 
@@ -47,7 +60,7 @@ export default function AccountNumber() {
             <Modal isOpen={isOpen} onClose={onClose} isCentered>
                 <ModalOverlay />
                 <ModalContent h="auto" pb="20px" w={["300px", "300px", "300px", "504px"]}>
-                    <ModalHeader justifyContent="center" fontSize="20px" fontWeight="500" alignItems="center">{wallet.bank_name === "N/A" ? "Create Account":"Withdraw Money"}</ModalHeader>
+                    <ModalHeader justifyContent="center" fontSize="20px" fontWeight="500" alignItems="center">{wallet.bank_name === "N/A" ? "Create Account" : "Withdraw Money"}</ModalHeader>
                     <ModalBody w="full">
                         {wallet.bank_name === "N/A" ?
                             <CreateAccount onClose={onClose} />
@@ -75,7 +88,7 @@ export default function AccountNumber() {
                         Total balance from all accounts
                     </StatLabel>
                     <StatNumber fontSize="2xl" fontWeight="bold">
-                        {cashFormat(wallet.amount)}
+                        {cashFormat(amount)}
                     </StatNumber>
                 </Stat>
 

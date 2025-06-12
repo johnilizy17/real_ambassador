@@ -7,8 +7,6 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store/store";
 import { ChrakaLayout } from "@/contants/ChrakaLayout";
-import Script from "next/script";
-
 
 export default function App({ Component, pageProps }: AppProps) {
 

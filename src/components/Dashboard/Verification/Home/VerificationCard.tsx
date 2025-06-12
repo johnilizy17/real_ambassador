@@ -1,12 +1,24 @@
 import { cashFormat, cashFormat2 } from '@/utils/cashformat'
 import { COLORS } from "@/layout/Theme";
 import { Box, Card, Center, Flex, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { referredBalance } from '@/url/api\'s/organization';
 
 export default function VerificationCard() {
 
+    const [amount, setAmount] = useState(0)
+
+    async function Balance() {
+        const result = await referredBalance()
+        setAmount(result)
+    }
+
+    useEffect(() => {
+        Balance()
+    }, [])
+
     const cardData = [
-        { amount: cashFormat(0), title: "Balance", color: "#2766AD" },
+        { amount: cashFormat(amount), title: "Balance", color: "#2766AD" },
         { amount: 0, title: "Customer", color: "#7ED31F" },
         { amount: 0, title: "Downline", color: "#F58E18" },
     ]

@@ -5,13 +5,15 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-export default function NormalPaymentFlutterwave({
+export default function ReferralPaymentFlutterwave({
     amount,
     id,
     setDisplay,
+    onClose,
     user = { email: "", firstName: "", lastName: "", phone: "", id: "" }
 }: {
     amount: number;
+    onClose: any;
     setDisplay: any;
     id: string;
     user?: any
@@ -46,11 +48,10 @@ export default function NormalPaymentFlutterwave({
 
     async function PaymentActivation() {
         const status = amount === 5000 ? 2 : amount === 15000 ? 3 : 4
-        await userActive({ email: user.email, payment: status, amount:amount })
+        await userActive({ email: user.email, payment: status, amount: amount })
         showToast("Subscription successful", "success")
         setDisplay(false);
-        router.push("auth/login")
-
+        onClose()
     }
 
     const triggerFlutterPayment = useFlutterwave(baseFlutterConfig);

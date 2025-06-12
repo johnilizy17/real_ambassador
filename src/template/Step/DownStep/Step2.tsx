@@ -18,7 +18,7 @@ import CustomInput from '@/components/CustomInput/CustomInput';
 export const runtime = 'edge';
 
 export default function StepTwo({ data, page, setPage, setData }: any) {
-    const [phoneNumber, setPhoneNumber] = useState("+234");
+    const [phoneNumber, setPhoneNumber] = useState(data.phone);
     const router = useRouter();
 
     // Adjust validation schema based on userType
@@ -34,11 +34,10 @@ export default function StepTwo({ data, page, setPage, setData }: any) {
     ) => {
         try {
             // Include the role_id based on userType
-            setData({ ...data, phone:phoneNumber, ...values });
+            setData({ ...data,  ...values,phone: phoneNumber, });
             setPage(3);
             setSubmitting(true);
-        } catch (error) {
-            console.log(error);
+        } catch (error: any) {
         } finally {
             setSubmitting(false);
         }
@@ -87,7 +86,7 @@ export default function StepTwo({ data, page, setPage, setData }: any) {
                                 <Button mr={3} mt={8} colorScheme='bllue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
                                     Back
                                 </Button>
-                                <Button mt={8} colorScheme='green' type={"submit"}>
+                                <Button isLoading={isSubmitting} isDisabled={isSubmitting} mt={8} colorScheme='green' type={"submit"}>
                                     Next
                                 </Button>
                             </>

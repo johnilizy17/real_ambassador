@@ -12,7 +12,7 @@ import {
     Box, IconButton,
     Center
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DashboardHome from '@/components/Dashboard/Home'
 import VerificationNavBar from '@/components/Dashboard/Verification/Home/SideBar';
 import { COLORS } from '@/layout/Theme';
@@ -21,12 +21,22 @@ import AccountForm from '@/components/Dashboard/Verification/Account/AccountForm
 import UserSideBar from '@/components/Dashboard/DashboardLayout/UserSideBar';
 import { useSelector } from 'react-redux';
 import { EmptyState } from '@/components/EmptyState';
+import { referredTransaction } from '@/url/api\'s/organization';
 
 export default function Dashboard() {
 
     const router = useRouter()
 
-    const { wallet, history } = useSelector((a: any) => a.user)
+    const [history, setHistory] = useState([])
+
+    async function DashboardUser() {
+        const historyPeople = await referredTransaction()
+        setHistory(historyPeople.transaction)
+    }
+
+    useEffect(() => {
+        DashboardUser()
+    }, [])
 
     return (
         <UserSideBar>
@@ -50,25 +60,19 @@ export default function Dashboard() {
                                     <Table size='sm' variant='striped' colorScheme='gray' >
                                         <Thead>
                                             <Tr h="75px">
-                                                <Th>Date</Th>
+                                                <Th>Name</Th>
                                                 <Th>Amount</Th>
-                                                <Th>Bank</Th>
-                                                <Th>Refrence</Th>
-                                                <Th>Status</Th>
+                                                <Th>Type</Th>
+                                                <Th>Date</Th>
                                             </Tr>
                                         </Thead>
                                         <Tbody>
                                             {history.map((a: any, b: number) => (
                                                 <Tr key={b} h="75px">
+                                                    <Td>{JSON.parse(a.user_id).firstName + "," + JSON.parse(a.user_id).lastName}</Td>
+                                                    <Td color={a.amount > 0 ? "green" : "red"}>{a.amount}</Td>
+                                                    <Td>{!a.type ? "Registration fee" : "Subscription"}</Td>
                                                     <Td>{a.date}</Td>
-                                                    <Td>{a.Amount}</Td>
-                                                    <Td>{a.flw_ref}</Td>
-                                                    <Td>{a.Refrence}</Td>
-                                                    <Td>
-                                                        <Center borderRadius="16px" bg={a.Verification === "Pending" ? "#FAF4EE" : "#E7FCF2"} color={a.Verification === "Pending" ? "#F58E18" : "#32A071"} h="26px" fontWeight="500" fontSize="12px" w="80px" >
-                                                            {a.Status}
-                                                        </Center>
-                                                    </Td>
                                                 </Tr>
                                             ))}
                                         </Tbody>

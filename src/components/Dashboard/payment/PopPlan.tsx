@@ -17,6 +17,7 @@ import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import NormalPaymentFlutterwave from '@/template/payment/normalPayment';
 import { useSelector } from 'react-redux';
+import { userActive } from '@/url/api\'s/userProfile';
 
 export default function RegistrationPopUp({ isOpen, onOpen, onClose }: { isOpen: boolean, onOpen: any, onClose: any }) {
 
@@ -35,12 +36,12 @@ export default function RegistrationPopUp({ isOpen, onOpen, onClose }: { isOpen:
     ) => {
 
         if (values.type === '1') {
-            setAmount(5000);
+            setAmount(500);
         }
         else if (values.type === '2') {
-            setAmount(15000);
+            setAmount(1500);
         } else if (values.type === '3') {
-            setAmount(25000);
+            setAmount(2500);
         }
     };
 

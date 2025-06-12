@@ -14,18 +14,18 @@ import React, { useState } from 'react';
 import { Form, Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import CustomInput from '@/components/CustomInput/CustomInput';
+import { UsersPlan } from '@/utils/constants';
+import { cashFormat } from '@/utils/cashformat';
 
 export const runtime = 'edge';
 
-export default function StepTwo({ data, page, setPage, setData }: any) {
+export default function StepFive({ data, page, setPage, setData }: any) {
     const [phoneNumber, setPhoneNumber] = useState(data.phone);
     const router = useRouter();
 
     // Adjust validation schema based on userType
     const validationSchema = Yup.object({
-        firstName: Yup.string().required('First name is required'),
-        birth_date: Yup.string().required('Date of Birth is required'),
-        lastName: Yup.string().required('Last name is required')
+        payment: Yup.string().required('Plan is required'),
     });
 
     const initiateLogin = async (
@@ -34,14 +34,23 @@ export default function StepTwo({ data, page, setPage, setData }: any) {
     ) => {
         try {
             // Include the role_id based on userType
-            setData({ ...data,  ...values,phone: phoneNumber, });
-            setPage(3);
+            setData({ ...data, ...values, phone: phoneNumber, });
+            setPage(5);
             setSubmitting(true);
         } catch (error: any) {
         } finally {
             setSubmitting(false);
         }
     };
+
+    const amountResult = () => {
+        const amount = data.duration === 356 ? UsersPlan[data.plan][356] :
+            data.duration === 546 ? UsersPlan[data.plan][546] :
+                UsersPlan[data.plan][730]
+
+        const result = data.type === "daily" ? 1 : data.type === "weekly" ? 7 : 30
+        return result*amount
+    }
 
     return (
         <Center flexDir='column'>
@@ -61,27 +70,23 @@ export default function StepTwo({ data, page, setPage, setData }: any) {
                             {/* Conditionally render name fields based on userType */}
 
                             <>
+                                <p>
+                                    You are subscribing to {UsersPlan[data.plan].name} which is for {data.duration} days and you will be charge {cashFormat(amountResult())} every {data.type}
+                                </p>
                                 <Box w='full' mt='44px'>
                                     <CustomInput
-                                        label='Email'
-                                        name='email'
-                                        placeholder='example@gmail.com'
-                                        fieldProps={{ type: 'email' }}
+                                        label='Do you want to be automatically Charged'
+                                        name='duration'
+                                        fieldProps={{ type: 'select' }}
                                         typeInput=''
+                                        type='select'
                                         value=''
-                                    />
-                                </Box>
-                                <Box w='full' mt='44px'>
-                                    <CustomInput
-                                        label='Phone Number'
-                                        name='phone'
-                                        typeInput=''
-                                        type='phone'
-                                        value={phoneNumber}
-                                        handleChange={setPhoneNumber}
-                                        placeholder='Enter phone number'
-                                        fieldProps={{ type: 'phone' }}
-                                    />
+                                    >
+                                        <>
+                                            <option value={1}>Yes</option>
+                                            <option value={2}>No</option>
+                                        </>
+                                    </CustomInput>
                                 </Box>
                                 <Button mr={3} mt={8} colorScheme='bllue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
                                     Back

@@ -1,6 +1,6 @@
 import { COLORS } from '@/layout/Theme'
 import { Box, Button, Center, Flex, IconButton, Img, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import VerificationCard from './VerificationCard'
 import VerificationDashboardTable from './VerificationDashboardTable'
 import VerificationDashboardChart from './VerificationDashboardChart'
@@ -9,13 +9,23 @@ import Withdraw from './Withdraw'
 import Image from "next/image";
 import { cashFormat } from '@/utils/cashformat'
 import { useSelector } from 'react-redux'
+import { referredBalance } from '@/url/api\'s/organization'
 
 export default function VerificationBanner() {
 
     const router = useRouter()
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const {wallet} = useSelector((a:any)=>a.user)
+    const { wallet } = useSelector((a: any) => a.user)
+    const [amount, setAmount] = useState(0)
 
+    async function Balance() {
+        const result = await referredBalance()
+        setAmount(result)
+    }
+
+    useEffect(() => {
+        Balance()
+    }, [])
 
     function WithdrawComponent() {
 
@@ -23,7 +33,7 @@ export default function VerificationBanner() {
             <Modal isOpen={isOpen} onClose={onClose} isCentered>
                 <ModalOverlay />
                 <ModalContent h="auto" w={["300px", "300px", "300px", "504px"]}>
-                    <ModalHeader justifyContent="center" fontSize="20px" fontWeight="500"  alignItems="center">Withdraw Money</ModalHeader>
+                    <ModalHeader justifyContent="center" fontSize="20px" fontWeight="500" alignItems="center">Withdraw Money</ModalHeader>
                     <ModalBody w="full">
                         <Withdraw onClose={onClose} />
                     </ModalBody>
@@ -35,19 +45,19 @@ export default function VerificationBanner() {
     return (
         <>
             <Box pr="20px" pl="20px">
-                <Center justifyContent="space-between" w="full" h={["auto","auto","auto","129px"]} mt="16px" bg={COLORS.blue} borderRadius="8px" flexDir={["column-reverse","column-reverse","column-reverse","row"]} pl="10px" pr="20px">
+                <Center justifyContent="space-between" w="full" h={["auto", "auto", "auto", "129px"]} mt="16px" bg={COLORS.blue} borderRadius="8px" flexDir={["column-reverse", "column-reverse", "column-reverse", "row"]} pl="10px" pr="20px">
                     <Center>
                         <Img src="/images/money.png" />
                         <Box>
-                            <Box  fontWeight="700" fontSize={["18px", "18px", "18px", "26px"]} color="#fff">
-                                {cashFormat(wallet.amount)}
+                            <Box fontWeight="700" fontSize={["18px", "18px", "18px", "26px"]} color="#fff">
+                                {cashFormat(amount)}
                             </Box>
-                            <Box  fontSize={["10px", "10px", "10px", "11px"]} color="#fff" opacity={0.8}>
+                            <Box fontSize={["10px", "10px", "10px", "11px"]} color="#fff" opacity={0.8}>
                                 AVAILABLE WALLET AMOUUNT
                             </Box>
                         </Box>
                     </Center>
-                    <Flex flexDir="column" mt={["20px","20px","20px","0px"]}>
+                    <Flex flexDir="column" mt={["20px", "20px", "20px", "0px"]}>
                         <Button onClick={onOpen} borderRadius="4.81px" bg={COLORS.green} color={COLORS.white}>
                             <Box mr="5px">Withdraw</Box>
                             <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">

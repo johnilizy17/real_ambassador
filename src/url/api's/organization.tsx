@@ -1,5 +1,6 @@
 
 import server from "@/url/axios/server";
+import { userRequest } from "@/utils/axios";
 
 export const organizationProfile = async (corp_id: string) => {
     try {
@@ -11,6 +12,36 @@ export const organizationProfile = async (corp_id: string) => {
     }
 
 
+}
+
+export const referredProfile = async (role: string) => {
+    try {
+        const { data } = await userRequest.get(`/profile/referred?role=${role}`);
+        return data;
+    } catch (error) {
+        console.log('Error fetching organization profile:', error)
+        throw new Error('Failed to fetch organization profile');
+    }
+}
+
+export const referredTransaction = async () => {
+    try {
+        const { data } = await userRequest.get(`/profile/history`);
+        return data.data;
+    } catch (error) {
+        console.log('Error fetching organization profile:', error)
+        throw new Error('Failed to fetch organization profile');
+    }
+}
+
+export const referredBalance = async () => {
+    try {
+        const { data } = await userRequest.get(`/profile/balance`);
+        return data.data;
+    } catch (error) {
+        console.log('Error fetching organization profile:', error)
+        throw new Error('Failed to fetch organization profile');
+    }
 }
 
 export const getgainVerificationAddresses = async (status: string) => {

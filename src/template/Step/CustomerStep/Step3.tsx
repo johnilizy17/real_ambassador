@@ -16,38 +16,53 @@ import * as Yup from 'yup';
 import CustomInput from '@/components/CustomInput/CustomInput';
 import { cashFormat } from '@/utils/cashformat';
 import NormalPaymentFlutterwave from '@/template/payment/normalPayment';
+import { RegisterReferral } from '@/url/api\'s/userProfile';
+import useCustomToast from '@/hooks/useCustomToast';
+import ReferralPaymentFlutterwave from '@/template/payment/referralPayment';
 
 export const runtime = 'edge';
 
-export default function StepThree({ data, page, setPage, setData, onClose }: any) {
+export default function StepThree({ data, VerificationApi, page, setPage, setData, onClose }: any) {
 
     const router = useRouter();
     const [amount, setAmount] = useState(0);
+    const showMassage = useCustomToast()
 
     // Adjust validation schema based on userType
     const validationSchema = Yup.object({
-        type: Yup.string().required('Type is required'),
     });
+
+    function refreshData() {
+        VerificationApi()
+        onClose()
+    }
 
     const initiateLogin = async (
         values: any,
         { setSubmitting, resetForm }: any
     ) => {
         try {
+            let phoneNumber = data.phone;
+            if (
+                phoneNumber &&
+                (phoneNumber.startsWith('+') || phoneNumber.startsWith('0'))
+            ) {
+                phoneNumber = phoneNumber.slice(1);
+            }
+
+            if (!phoneNumber) {
+                showMassage('Please enter a proper phone number', 'warning');
+                return;
+            }
+            setData({ ...data, ...values });
+            await RegisterReferral({ ...data, phone: phoneNumber, ...values, role: "USER" })
             // Include the role_id based on userType
-            setData({ ...values });
-            if (values.type === '1') {
-                setAmount(5000);
-            }
-            else if (values.type === '2') {
-                setAmount(20000);
-            } else if (values.type === '3') {
-                setAmount(35000);
-            }
-            onClose(false)
+            showMassage('Account successfully created', 'info');
+            setAmount(5000);
             setSubmitting(true);
-        } catch (error) {
-            console.log(error);
+            VerificationApi()
+        } catch (error: any) {
+            showMassage(error.response.data.message, "error")
         } finally {
             setSubmitting(false);
         }
@@ -61,7 +76,7 @@ export default function StepThree({ data, page, setPage, setData, onClose }: any
                 paddingRight={['10px']}
                 pos='relative'
             >
-                {amount && amount !== 0 ? <NormalPaymentFlutterwave id={data.email} user={data} amount={amount} setDisplay={setAmount} /> : ""}
+                {amount && amount !== 0 ? <ReferralPaymentFlutterwave id={data.email} user={data} amount={amount} setDisplay={setAmount} onClose={() => setPage(4)} /> : ""}
 
                 <Formik
                     initialValues={{ type: "" }}
@@ -73,24 +88,15 @@ export default function StepThree({ data, page, setPage, setData, onClose }: any
                             {/* Conditionally render name fields based on userType */}
 
                             <>
-                                <Box w='full' mt='44px'>
-                                    <CustomInput
-                                        label='Subscription'
-                                        name='type'
-                                        type={"select"}
-                                        placeholder='Enter your subscription'
-                                        value={values.type}
-                                    >
-                                        <option value='1'>Tier 2 {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
-                                        <option value='2'>Tier 1 {"(" + cashFormat(15000) + " " + "percentage shares 10%" + ")"}</option>
-                                        <option value='3'>Tier 3 {"(" + cashFormat(25000) + " " + "percentage shares 15%" + ")"}</option>
-                                    </CustomInput>
+                                <Box color={COLORS.gray}>
+                                    <p>
+                                        Registeation fee for saving small is {cashFormat(5000)}
+                                    </p>
                                 </Box>
-
-                                <Button mr={3} mt={8} colorScheme='bllue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
+                                <Button mr={3} mt={8} colorScheme='blue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
                                     Back
                                 </Button>
-                                <Button mt={8} colorScheme='green' type={"submit"}>
+                                <Button mt={8} colorScheme='green' isLoading={isSubmitting} isDisabled={isSubmitting} type={"submit"}>
                                     Next
                                 </Button>
                             </>

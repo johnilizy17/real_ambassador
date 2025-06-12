@@ -9,6 +9,7 @@ import * as Yup from "yup";
 import { useSelector } from "react-redux";
 import { fetchAddressData, getAddressData } from "@/url/api's/claimAddress";
 import DownStep from "@/template/Step/DownStep";
+import CustomerStep from "@/template/Step/CustomerStep";
 
 
 export default function AccountBanner({ list, name, VerificationApi }: { list: any, name: string, VerificationApi: any }) {
@@ -58,10 +59,9 @@ export default function AccountBanner({ list, name, VerificationApi }: { list: a
                     <ModalCloseButton />
                     <ModalBody>
                         {name === "Referrals" ?
-                            <DownStep />
+                            <DownStep onClose={onClose} VerificationApi={VerificationApi} />
                             :
-                            <>
-                            </>
+                            <CustomerStep onClose={onClose} VerificationApi={VerificationApi} />
                         }
                     </ModalBody>
                 </ModalContent>

@@ -7,7 +7,7 @@ export default function PaymentFlutterwave({ amount, id, setDisplay }: { amount:
     const { user } = useSelector((state: any) => state.auth)
 
     const baseFlutterConfig = {
-        public_key: "FLWPUBK-baf0cd9d1437e27f737ed807ed860971-X",
+        public_key: "FLWPUBK_TEST-6412c61469c946cebca98335ccc39d45-X",
         tx_ref: Date.now().toString(),
         amount: amount,
         currency: "NGN",

@@ -17,40 +17,62 @@ import CustomInput from '@/components/CustomInput/CustomInput';
 import { cashFormat } from '@/utils/cashformat';
 import NormalPaymentFlutterwave from '@/template/payment/normalPayment';
 import { RegisterReferral } from '@/url/api\'s/userProfile';
+import useCustomToast from '@/hooks/useCustomToast';
+import ReferralPaymentFlutterwave from '@/template/payment/referralPayment';
 
 export const runtime = 'edge';
 
-export default function StepThree({ data, page, setPage, setData, onClose }: any) {
+export default function StepThree({ data, VerificationApi, page, setPage, setData, onClose }: any) {
 
     const router = useRouter();
     const [amount, setAmount] = useState(0);
+    const showMassage = useCustomToast()
 
     // Adjust validation schema based on userType
     const validationSchema = Yup.object({
         type: Yup.string().required('Type is required'),
     });
 
+    function refreshData() {
+        VerificationApi()
+        onClose()
+    }
+
     const initiateLogin = async (
         values: any,
         { setSubmitting, resetForm }: any
     ) => {
         try {
+            let phoneNumber = data.phone;
+            if (
+                phoneNumber &&
+                (phoneNumber.startsWith('+') || phoneNumber.startsWith('0'))
+            ) {
+                phoneNumber = phoneNumber.slice(1);
+            }
+
+            if (!phoneNumber) {
+                showMassage('Please enter a proper phone number', 'warning');
+                return;
+            }
             setData({ ...data, ...values });
-            await RegisterReferral({ ...data, ...values, role: "USERAMBASSADOR" })
+            await RegisterReferral({ ...data, phone: phoneNumber, ...values, role: "USERAMBASSADOR" })
             // Include the role_id based on userType
-            // setData({ ...values });
-            // if (values.type === '1') {
-            //     setAmount(5000);
-            // }
-            // else if (values.type === '2') {
-            //     setAmount(20000);
-            // } else if (values.type === '3') {
-            //     setAmount(35000);
-            // }
+            showMassage('Account successfully created', 'info');
+            setData({ ...values });
+            if (values.type === '1') {
+                setAmount(5000);
+            }
+            else if (values.type === '2') {
+                setAmount(15000);
+            } else if (values.type === '3') {
+                setAmount(25000);
+            }
             onClose(false)
             setSubmitting(true);
-        } catch (error) {
-            console.log(error);
+            VerificationApi()
+        } catch (error: any) {
+            showMassage(error.response.data.message, "error")
         } finally {
             setSubmitting(false);
         }
@@ -64,7 +86,7 @@ export default function StepThree({ data, page, setPage, setData, onClose }: any
                 paddingRight={['10px']}
                 pos='relative'
             >
-                {amount && amount !== 0 ? <NormalPaymentFlutterwave id={data.email} user={data} amount={amount} setDisplay={setAmount} /> : ""}
+                {amount && amount !== 0 ? <ReferralPaymentFlutterwave id={data.email} user={data} amount={amount} setDisplay={setAmount} onClose={refreshData} /> : ""}
 
                 <Formik
                     initialValues={{ type: "" }}
@@ -90,10 +112,10 @@ export default function StepThree({ data, page, setPage, setData, onClose }: any
                                     </CustomInput>
                                 </Box>
 
-                                <Button mr={3} mt={8} colorScheme='bllue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
+                                <Button mr={3} mt={8} colorScheme='blue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
                                     Back
                                 </Button>
-                                <Button mt={8} colorScheme='green' type={"submit"}>
+                                <Button mt={8} colorScheme='green' isLoading={isSubmitting} isDisabled={isSubmitting} type={"submit"}>
                                     Next
                                 </Button>
                             </>

@@ -1,12 +1,12 @@
 import { COLORS } from '@/layout/Theme';
-import { Button, Modal, ModalFooter, Step, StepIndicator, Stepper, StepStatus } from '@chakra-ui/react';
+import { Box, Button, Modal, ModalFooter, Step, StepIndicator, Stepper, StepStatus } from '@chakra-ui/react';
 import { ShieldCheckIcon } from 'lucide-react';
 import React, { useState } from 'react';
 import StepOne from './Step1';
 import StepTwo from './Step2';
 import StepThree from './Step3';
 
-export default function DownStep({ onClose }: any) {
+export default function DownStep({ onClose, VerificationApi }: any) {
 
     const [wizardStep, setWizardStep] = useState(1)
     const steps = [
@@ -31,12 +31,15 @@ export default function DownStep({ onClose }: any) {
                     ))
                 }
             </Stepper>
+            <Box mt="10px">
+                <h1>{steps[wizardStep].title}</h1>
+            </Box>
             {
                 wizardStep === 1 ? <StepOne setData={setData} page={wizardStep} setPage={setWizardStep} data={data} /> :
                     wizardStep === 2 ?
                         <StepTwo setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
                         :
-                        <StepThree onClose={onClose} setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
+                        <StepThree onClose={onClose} VerificationApi={VerificationApi} setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
             }
         </>
     )
