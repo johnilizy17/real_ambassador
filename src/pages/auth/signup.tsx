@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 export default function SignUp() {
 
   const [page, setPage] = useState(1)
-  const [data, setData] = useState({phone_number:""})
+  const [data, setData] = useState({phone:"+234"})
 
   const { query } = useRouter()
 

@@ -1,3 +1,4 @@
+import { cashFormat } from "@/utils/cashformat";
 import React from "react";
 
 export default function FAQ() {
@@ -23,25 +24,71 @@ export default function FAQ() {
                             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
 
                                 <div className="card index3_card">
-                                    <div className="card_pagee" role="tab" id="headingOne">
+
+                                    <div className="card_pagee" role="tab" id="headingfive">
                                         <h5 className="h5-md">
-                                            <a data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true"
-                                                aria-controls="collapseOne">
-                                                50% Commission on Subscriptions?
+                                            <a className="collapsed" data-toggle="collapse" href="#collapse2" role="button"
+                                                aria-expanded="false" aria-controls="collapse2">
+                                                How do I become an ABN Narinohs Partner?
                                             </a>
                                         </h5>
                                     </div>
-                                    <div id="collapseOne" className="collapse show" role="tabpanel" aria-labelledby="headingOne"
+
+                                    <div id="collapse2" className="collapse" role="tabpanel" aria-labelledby="headingfive"
                                         data-parent="#accordion" >
                                         <div className="card-body">
 
                                             <div className="card_cntnt">
-                                                <p>Get 50% of the subscription fee every time someone subscribes through your referral link.</p>
+                                                <p>Just sign up through our website and access your referral dashboard. You’ll get a unique link to start referring right away.</p>
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
+                                <div className="card index3_card">
+
+                                    <div className="card_pagee" role="tab" id="headingfive1">
+                                        <h5 className="h5-md">
+                                            <a className="collapsed" data-toggle="collapse" href="#collapse2u" role="button"
+                                                aria-expanded="false" aria-controls="collapse2u">
+                                                How can I withdraw my earnings?
+                                            </a>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapse2u" className="collapse" role="tabpanel" aria-labelledby="headingfive1"
+                                        data-parent="#accordion" >
+                                        <div className="card-body">
+
+                                            <div className="card_cntnt">
+                                                <p>Log into your dashboard and click on “Withdraw”. There’s no limit or waiting period — withdraw any amount, anytime.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="card index3_card">
+
+                                    <div className="card_pagee" role="tab" id="headingTwo3">
+                                        <h5 className="h5-md">
+                                            <a className="collapsed" data-toggle="collapse" href="#collapseTwo" role="button"
+                                                aria-expanded="false" aria-controls="collapseTwo">
+                                                Is there any charges for withdrawal?
+                                            </a>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapseTwo" className="collapse" role="tabpanel" aria-labelledby="headingTwo3"
+                                        data-parent="#accordion" >
+                                        <div className="card-body">
+
+                                            <div className="card_cntnt">
+                                                <p>Yes Just {cashFormat(100)}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                                 <div className="card index3_card">
 
                                     <div className="card_pagee" role="tab" id="headingTwo">
@@ -70,7 +117,7 @@ export default function FAQ() {
                                         <h5 className="h5-md">
                                             <a className="collapsed" data-toggle="collapse" href="#collapseThree" role="button"
                                                 aria-expanded="false" aria-controls="collapseThree">
-                                                Instant Withdrawals
+                                                Withdrawals?
                                             </a>
                                         </h5>
                                     </div>
@@ -157,50 +204,6 @@ export default function FAQ() {
                                 </div>
                                 <div className="card index3_card">
 
-                                    <div className="card_pagee" role="tab" id="headingfive">
-                                        <h5 className="h5-md">
-                                            <a className="collapsed" data-toggle="collapse" href="#collapse2" role="button"
-                                                aria-expanded="false" aria-controls="collapse2">
-                                                How do I become an ABN Narinohs ambassador?
-                                            </a>
-                                        </h5>
-                                    </div>
-
-                                    <div id="collapse2" className="collapse" role="tabpanel" aria-labelledby="headingfive"
-                                        data-parent="#accordion" >
-                                        <div className="card-body">
-
-                                            <div className="card_cntnt">
-                                                <p>Just sign up through our website and access your referral dashboard. You’ll get a unique link to start referring right away.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div className="card index3_card">
-
-                                    <div className="card_pagee" role="tab" id="headingfive1">
-                                        <h5 className="h5-md">
-                                            <a className="collapsed" data-toggle="collapse" href="#collapse2u" role="button"
-                                                aria-expanded="false" aria-controls="collapse2u">
-                                                How can I withdraw my earnings?
-                                            </a>
-                                        </h5>
-                                    </div>
-
-                                    <div id="collapse2u" className="collapse" role="tabpanel" aria-labelledby="headingfive1"
-                                        data-parent="#accordion" >
-                                        <div className="card-body">
-
-                                            <div className="card_cntnt">
-                                                <p>Log into your dashboard and click on “Withdraw”. There’s no limit or waiting period — withdraw any amount, anytime.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div className="card index3_card">
-
                                     <div className="card_pagee" role="tab" id="headingnine">
                                         <h5 className="h5-md">
                                             <a className="collapsed" data-toggle="collapse" href="#collapse02" role="button"
@@ -260,50 +263,6 @@ export default function FAQ() {
 
                                             <div className="card_cntnt">
                                                 <p>When your referrals bring in others, they become part of your downline. You earn not just from your direct referrals but also from people under them (multi-level).</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div className="card index3_card">
-
-                                    <div className="card_pagee" role="tab" id="headingseven">
-                                        <h5 className="h5-md">
-                                            <a className="collapsed" data-toggle="collapse" href="#collapse31" role="button"
-                                                aria-expanded="false" aria-controls="collapse31">
-                                                What does “earn a percentage of every payment” mean?
-                                            </a>
-                                        </h5>
-                                    </div>
-
-                                    <div id="collapse31" className="collapse" role="tabpanel" aria-labelledby="headingseven"
-                                        data-parent="#accordion">
-                                        <div className="card-body">
-
-                                            <div className="card_cntnt">
-                                                <p>In addition to the initial 50%, you’ll also earn a percentage every time your referral makes any future payment, including renewals or upgrades.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div className="card index3_card">
-
-                                    <div className="card_pagee" role="tab" id="headingeight">
-                                        <h5 className="h5-md">
-                                            <a className="collapsed" data-toggle="collapse" href="#collapse32" role="button"
-                                                aria-expanded="false" aria-controls="collapse32">
-                                                How does the 50% commission work?
-                                            </a>
-                                        </h5>
-                                    </div>
-
-                                    <div id="collapse32" className="collapse" role="tabpanel" aria-labelledby="headingeight"
-                                        data-parent="#accordion">
-                                        <div className="card-body">
-
-                                            <div className="card_cntnt">
-                                                <p>Whenever someone subscribes through your referral link, you immediately earn 50% of their subscription fee.</p>
                                             </div>
                                         </div>
                                     </div>

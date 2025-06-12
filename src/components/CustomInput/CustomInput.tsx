@@ -94,6 +94,7 @@ function CustomInput({
               name={name}
               placeholder={placeholder}
               value={value}
+              defaultCountry='NG'
               onChange={(e) => handleChange(e as string)}
             />
           </Box>
