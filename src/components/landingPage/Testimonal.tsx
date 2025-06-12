@@ -89,8 +89,8 @@ export default function Testimonial() {
                     <div className="col-md-12 col-lg-12 col-sm-12 col-12">
                         <div
                             className="sv_heading_wraper heading_wrapper_dark index2_heading index2_heading_center index3_heading">
-                            <h4>Ambassadors</h4>
-                            <h3>What Our Ambassadors Say</h3>
+                            <h4>Partners</h4>
+                            <h3>What Our Partners Say</h3>
                             <div className="line_shape line_shape2"></div>
                         </div>
                     </div>
@@ -105,10 +105,10 @@ export default function Testimonial() {
                                         </div>
                                         <div className="saying_img_name">
                                             <h1><a href="#" style={{ color: "#fff" }}>Amara Okoye</a></h1>
-                                            <p>Lead Ambassador</p>
+                                            <p>Lead Partner</p>
                                         </div>
                                         <p style={{ color: "#fff" }}>
-                                            “Joining the ABN Nariohs Ambassador Program has empowered me to connect with amazing people and make a real difference.”
+                                            “Joining the ABN Nariohs Partner Program has empowered me to connect with amazing people and make a real difference.”
                                         </p>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@ export default function Testimonial() {
                                         </div>
                                         <div className="saying_img_name">
                                             <h1><a href="#" style={{ color: "#fff" }}>Chinedu Eze</a></h1>
-                                            <p>Community Ambassador</p>
+                                            <p>Community Partner</p>
                                         </div>
                                         <p style={{ color: "#fff" }}>
                                             “Being part of this program gave me the platform to share my passion and grow my network globally.”
@@ -133,10 +133,10 @@ export default function Testimonial() {
                                         </div>
                                         <div className="saying_img_name">
                                             <h1><a href="#" style={{ color: "#fff" }}>Nkechi Nwosu</a></h1>
-                                            <p>Social Media Ambassador</p>
+                                            <p>Social Media Partner</p>
                                         </div>
                                         <p style={{ color: "#fff" }}>
-                                            “The ABN Nariohs Ambassador Program has been a rewarding journey of learning, leadership, and impact.”
+                                            “The ABN Nariohs Partner Program has been a rewarding journey of learning, leadership, and impact.”
                                         </p>
                                     </div>
                                 </div>

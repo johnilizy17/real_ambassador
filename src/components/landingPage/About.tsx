@@ -17,7 +17,7 @@ export default function About() {
                                 <div className="line_shape line_shape2"></div>
                             </div>
                             <div style={{ color: COLORS.light_gray }} className="welcone_savehiyp float_left">
-                                <p>Are you passionate about making an impact, connecting with your community, and representing a bold, forward-thinking brand? The ABN Nariohs Ambassador Program is your chance to be part of something bigger — and be rewarded for it. </p>
+                                <p>Are you passionate about making an impact, connecting with your community, and representing a bold, forward-thinking brand? The ABN Nariohs Partner Program is your chance to be part of something bigger — and be rewarded for it. </p>
                                 <p>
                                     For every person you refer who signs up or makes a purchase,
                                     <br />

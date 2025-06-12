@@ -227,7 +227,7 @@ export default function FAQ() {
                                         <h5 className="h5-md">
                                             <a className="collapsed" data-toggle="collapse" href="#collapse092" role="button"
                                                 aria-expanded="false" aria-controls="collapse092">
-                                                Can I upgrade my ambassador package?
+                                                Can I upgrade my Partner package?
                                             </a>
                                         </h5>
                                     </div>

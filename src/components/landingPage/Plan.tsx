@@ -42,7 +42,7 @@ export default function Plan() {
                             <div className="about_btn plans_btn index2_investment_btn">
                                 <ul>
                                     <li>
-                                        <a href="/auth/login">Get Started</a>
+                                        <a href="/auth/signup">Get Started</a>
                                     </li>
                                 </ul>
                             </div>
@@ -72,7 +72,7 @@ export default function Plan() {
                             <div className="about_btn plans_btn red_btn_plans index2_investment_btn">
                                 <ul>
                                     <li>
-                                        <a href="/auth/login">Get Started</a>
+                                        <a href="/auth/signup">Get Started</a>
                                     </li>
                                 </ul>
                             </div>
@@ -102,7 +102,7 @@ export default function Plan() {
                             <div className="about_btn plans_btn green_plan_btn index2_investment_btn">
                                 <ul>
                                     <li>
-                                        <a href="/auth/login">Get Started</a>
+                                        <a href="/auth/signup">Get Started</a>
                                     </li>
                                 </ul>
                             </div>
