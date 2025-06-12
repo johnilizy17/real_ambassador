@@ -90,7 +90,7 @@ const DashboardNavUser = () => {
 
 
     const logout = () => {
-        router.push("/")
+        router.push("/auth/login")
         toast({
             position: "top-right",
             description: "successfully Logged out",
