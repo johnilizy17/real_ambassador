@@ -59,7 +59,7 @@ export default function UserNavBar() {
     }, [router.pathname]);
 
     const logout = () => {
-        router.push("/")
+        router.push("/auth/login")
         toast({
             position: "top-right",
             description: "successfully Logged out",
