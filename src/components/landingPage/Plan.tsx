@@ -33,9 +33,9 @@ export default function Plan() {
                                 </p>
                                 <Box w="full" textAlign={"start"}>
                                     <li>Price:{cashFormat(5000)}</li>
-                                    <li>Refferal Downline: 15%</li>
-                                    <li>Registration Interest: 15%</li>
-                                    <li>interest product: 5%</li>
+                                    <li>Refferal Earning: 15%</li>
+                                    <li>Sub Earning: 15%</li>
+                                    <li>Product Earning: 5%</li>
                                     <li>Refferal stages: 1</li>
                                 </Box>
                             </div>
@@ -63,10 +63,10 @@ export default function Plan() {
                                 </p>
                                 <Box w="full" textAlign={"start"}>
                                     <li>Price:{cashFormat(15000)}</li>
-                                    <li>Refferal Downline: 30%</li>
-                                    <li>Registration Interest: 25%</li>
-                                    <li>interest product: 10%</li>
-                                    <li>Refferal stages: 3</li>
+                                    <li>Refferal Earning: 30%</li>
+                                    <li>Sub Earning: 25%</li>
+                                    <li>Product Earning: 10%</li>
+                                    <li>Refferal stages: 2{"(30%, 15%)"}</li>
                                 </Box>
                             </div>
                             <div className="about_btn plans_btn red_btn_plans index2_investment_btn">
@@ -93,11 +93,11 @@ export default function Plan() {
                                 </p>
                                 <Box w="full" textAlign={"start"}>
                                     <li>Price:{cashFormat(25000)}</li>
-                                    <li>Refferal Downline: 40%</li>
-                                    <li>Registration Interest: 40%</li>
-                                    <li>interest product: 15%</li>
-                                   <li>Refferal stages: 4{"(40%, 20%, 10%, 5%)"}</li>
-                                 </Box>
+                                    <li>Refferal Earning: 40%</li>
+                                    <li>Sub Earning: 40%</li>
+                                    <li>Product Earning: 15%</li>
+                                    <li>Refferal stages: 4{"(40%, 20%, 10%, 5%)"}</li>
+                                </Box>
                             </div>
                             <div className="about_btn plans_btn green_plan_btn index2_investment_btn">
                                 <ul>
