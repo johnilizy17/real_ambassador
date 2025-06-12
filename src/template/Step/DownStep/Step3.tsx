@@ -59,8 +59,7 @@ export default function StepThree({ data, VerificationApi, page, setPage, setDat
             await RegisterReferral({ ...data, phone: phoneNumber, ...values, role: "USERAMBASSADOR" })
             // Include the role_id based on userType
             showMassage('Account successfully created', 'info');
-            setData({ ...values });
-            if (values.type === '1') {
+           if (values.type === '1') {
                 setAmount(5000);
             }
             else if (values.type === '2') {
