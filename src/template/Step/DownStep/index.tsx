@@ -32,7 +32,7 @@ export default function DownStep({ onClose, VerificationApi }: any) {
                 }
             </Stepper>
             <Box mt="10px">
-                <h1>{steps[wizardStep].title}</h1>
+                <h1>{steps[wizardStep-1].title}</h1>
             </Box>
             {
                 wizardStep === 1 ? <StepOne setData={setData} page={wizardStep} setPage={setWizardStep} data={data} /> :
