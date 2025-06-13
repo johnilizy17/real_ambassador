@@ -24,7 +24,7 @@ function AuthLayout({ children, seoTitle }: { children: any, seoTitle?: string }
     const {user} = useSelector((a: any) => a.auth)
 
     useEffect(() => {
-        if (user.id) {
+        if (user && user.id) {
             router.push("/dashboard")
         }
     }, [])
