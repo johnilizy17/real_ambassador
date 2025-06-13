@@ -61,7 +61,7 @@ export default function UserNavBar() {
 
     const logout = () => {
         router.push("/auth/login")
-         dispatch(logoutUser(""))
+        dispatch(logoutUser("") as any)
         toast({
             position: "top-right",
             description: "successfully Logged out",
