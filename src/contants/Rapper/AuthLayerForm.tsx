@@ -21,7 +21,7 @@ import { useSelector } from 'react-redux';
 
 function AuthLayout({ children, seoTitle }: { children: any, seoTitle?: string }) {
     const router = useRouter();
-    const user = useSelector((a: any) => a.auth)
+    const {user} = useSelector((a: any) => a.auth)
 
     useEffect(() => {
         if (user.id) {
