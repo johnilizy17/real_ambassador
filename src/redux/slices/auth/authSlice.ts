@@ -56,7 +56,7 @@ export const refreshToken = async (): Promise<string> => {
 // Logout Thunk
 export const logoutUser = createAsyncThunk(
   'auth/logout',
-  async (_, { rejectWithValue }) => {
+  async (_: any, { rejectWithValue }) => {
     try {
       // await userRequest.post('/auth/logout', {});
       clearTokens();

@@ -92,7 +92,7 @@ const DashboardNavUser = () => {
 
     const logout = () => {
         router.push("/auth/login")
-        dispatch(logoutUser())
+        dispatch(logoutUser(""))
         toast({
             position: "top-right",
             description: "successfully Logged out",
