@@ -27,6 +27,7 @@ import { COLORS } from '@/layout/Theme';
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import authLogout from "@/url/axios/logout";
+import { logoutUser } from "@/redux/slices/auth/authSlice";
 
 // Define interfaces for type safety
 interface NavItem {
@@ -60,6 +61,7 @@ export default function UserNavBar() {
 
     const logout = () => {
         router.push("/auth/login")
+         dispatch(logoutUser())
         toast({
             position: "top-right",
             description: "successfully Logged out",

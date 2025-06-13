@@ -42,6 +42,7 @@ import Lottie from "react-lottie";
 import NotificationVendDisplay from '../Notification';
 import { getNotifications } from "@/url/api's/userProfile";
 import LottieLoader from "@/utils/LottieLoader";
+import { logoutUser } from "@/redux/slices/auth/authSlice";
 
 interface Notification {
     id: string;
@@ -91,6 +92,7 @@ const DashboardNavUser = () => {
 
     const logout = () => {
         router.push("/auth/login")
+        dispatch(logoutUser())
         toast({
             position: "top-right",
             description: "successfully Logged out",
