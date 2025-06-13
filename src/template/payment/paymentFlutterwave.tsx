@@ -11,7 +11,7 @@ export default function PaymentFlutterwave({ amount, id, setDisplay }: { amount:
         tx_ref: Date.now().toString(),
         amount: amount,
         currency: "NGN",
-        payment_options: "card,account,ussd",
+        payment_options: "account,ussd,card",
         customer: {
             email: user.email,
             name: `${user.firstName} ${user.lastName}`,

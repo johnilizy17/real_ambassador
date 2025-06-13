@@ -24,7 +24,7 @@ export default function NormalPaymentFlutterwave({
         tx_ref: Date.now().toString(),
         amount: amount,
         currency: "NGN",
-        payment_options: "card,account,ussd",
+        payment_options: "account,ussd,card",
         customer: {
             email: user.email,
             name: `${user.firstName} ${user.lastName}`,
@@ -33,7 +33,7 @@ export default function NormalPaymentFlutterwave({
         customizations: {
             title: "ABN Narinohs Payment",
             description: `Payment by user ID: ${user.email}`,
-            logo: "https://realvest-one.vercel.app/favicon.ico"
+            logo: "https://www.abn.com.ng/favicon.ico"
         },
         callback: function (response: any) {
             console.log("Payment callback:", response);
