@@ -22,6 +22,7 @@ import UserSideBar from '@/components/Dashboard/DashboardLayout/UserSideBar';
 import { useSelector } from 'react-redux';
 import { EmptyState } from '@/components/EmptyState';
 import { referredTransaction } from '@/url/api\'s/organization';
+import { formatDate } from '@/utils/date';
 
 export default function Dashboard() {
 
@@ -72,7 +73,7 @@ export default function Dashboard() {
                                                     <Td>{JSON.parse(a.user_id).firstName + "," + JSON.parse(a.user_id).lastName}</Td>
                                                     <Td color={a.amount > 0 ? "green" : "red"}>{a.amount}</Td>
                                                     <Td>{!a.type ? "Registration fee" : "Subscription"}</Td>
-                                                    <Td>{a.date}</Td>
+                                                    <Td>{formatDate(a.created_at)}</Td>
                                                 </Tr>
                                             ))}
                                         </Tbody>

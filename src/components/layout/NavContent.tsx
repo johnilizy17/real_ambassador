@@ -1,9 +1,12 @@
-import { Box, Img } from "@chakra-ui/react";
+import { Box, Button, Img } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
+import { useSelector } from "react-redux";
+import { COLORS } from "../utils/theme";
 
 export default function NavContent() {
 
+    const { user } = useSelector((state: any) => state.auth);
     const router = useRouter();
 
     return (
@@ -14,20 +17,27 @@ export default function NavContent() {
                     <Img display={["flex", "flex", "flex", "none"]} h="50px" src="images/logo4.png" alt="logo" />
                 </Box>
                 <Box className="top_header_right_wrapper top_phonecalls">
-                    <Box className="header_btn">
-                        <ul>
-                            <li>
-                                <Box onClick={() => router.push("/auth/signup")} style={{ color: "white" }}> <a style={{color:"#fff"}}>   register
-                                </a></Box>
-                            </li>
-                            <li>
+                    {user && user.id ?
+                        <Box mt="15px" className="header_btn">
+                            <Button onClick={()=>router.push("/dashboard")} bg={COLORS.blue} colorScheme="blue">
+                                Dashboard
+                            </Button>
+                        </Box>
+                        :
+                        <Box className="header_btn">
+                            <ul>
+                                <li>
+                                    <Box onClick={() => router.push("/auth/signup")} style={{ color: "white" }}> <a style={{ color: "#fff" }}>   register
+                                    </a></Box>
+                                </li>
+                                <li>
 
-                                <Box onClick={() => router.push("/auth/login")}> <a>login</a> </Box>
+                                    <Box onClick={() => router.push("/auth/login")}> <a>login</a> </Box>
 
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
 
-                    </Box>
+                        </Box>}
                 </Box>
             </Box>
         </Box>

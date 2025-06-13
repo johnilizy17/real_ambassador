@@ -268,6 +268,28 @@ export default function FAQ() {
                                     </div>
 
                                 </div>
+                                 <div className="card index3_card">
+
+                                    <div className="card_pagee" role="tab" id="headingsiz">
+                                        <h5 className="h5-md">
+                                            <a className="collapsed" data-toggle="collapse" href="#collapse55" role="button"
+                                                aria-expanded="false" aria-controls="collapse3">
+                                                Is my fund refundable?
+                                            </a>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapse55" className="collapse" role="tabpanel" aria-labelledby="headingsiz"
+                                        data-parent="#accordion">
+                                        <div className="card-body">
+
+                                            <div className="card_cntnt">
+                                                <p>Your Fund are not refundable</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
