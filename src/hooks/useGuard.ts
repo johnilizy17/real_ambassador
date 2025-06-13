@@ -24,11 +24,11 @@ export default function useGuard() {
   
         const hasRequiredData = await checkRequiredData();
         if (!hasRequiredData) {
-          await dispatch(logoutUser());
+          await dispatch(logoutUser("") as any);
           router.push(ROUTES.login);
         }
       } catch (error) {
-        await dispatch(logoutUser());
+        await dispatch(logoutUser("") as any);
         router.push(ROUTES.login);
       }
     }
