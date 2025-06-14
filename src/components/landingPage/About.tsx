@@ -13,7 +13,7 @@ export default function About() {
                         <div className="about_content_wrapper">
                             <div className="sv_heading_wraper index2_heading index3_heading index3_headung2">
                                 <h4>who we are</h4>
-                                <h3>Welcome to AB NARIONHS</h3>
+                                <h3>Welcome to AB Narinohs</h3>
                                 <div className="line_shape line_shape2"></div>
                             </div>
                             <div style={{ color: COLORS.light_gray }} className="welcone_savehiyp float_left">

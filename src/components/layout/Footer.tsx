@@ -41,7 +41,7 @@ export default function Footer() {
                     <Box className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                         <Box className="copyright_wrapper float_left">
                             <Box className="copyright">
-                                <p>Copyright <i className="far fa-copyright"></i> 2025 <a style={{color:"#fff"}} href="index.html"> AB Narionhs</a>
+                                <p>Copyright <i className="far fa-copyright"></i> 2025 <a style={{color:"#fff"}} href="index.html"> AB Narinohs</a>
                                 </p>
                             </Box>
                             <Box className="social_link_foter">
