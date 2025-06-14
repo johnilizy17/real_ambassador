@@ -234,7 +234,7 @@ export const getUserProfile = createAsyncThunk(
     try {
       const response = await userRequest.get(`/profile`);
 
-      STORAGE.set(LOCAL_STORAGE_KEYS.USER, response.data.user);
+      STORAGE.set(LOCAL_STORAGE_KEYS.USER, response.data);
       return response.data
 
     } catch (error: any) {

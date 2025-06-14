@@ -24,7 +24,7 @@ export default function NormalPaymentFlutterwave({
         tx_ref: Date.now().toString(),
         amount: amount,
         currency: "NGN",
-        payment_options: "account,ussd,card",
+        payment_options: "account,card",
         customer: {
             email: user.email,
             name: `${user.firstName} ${user.lastName}`,
