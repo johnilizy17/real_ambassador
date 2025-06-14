@@ -1,4 +1,3 @@
-import { userRequest } from "@/utils/axios";
 import server from "../axios/server";
 
 export const listverificationOfficers = async () => {
@@ -11,9 +10,9 @@ export const listverificationOfficers = async () => {
     }
 };
 
-export const getVerificationOfficer = async () => {
+export const getVerificationOfficer = async (userId: string) => {
 try{
-    const { data } = await userRequest.get(`profile`);
+    const { data } = await server.get(`/verification/${userId}`);
     return data;
 
 }catch(err){

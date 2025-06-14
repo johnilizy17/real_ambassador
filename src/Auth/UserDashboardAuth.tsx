@@ -31,6 +31,21 @@ export default function UserDashboardAuth({ children }: any) {
 
     useEffect(() => {
         dispatch(getUserProfile("") as any)
+        const fetchProfileAndOnboard = async () => {
+            try {
+
+                let profileData = await getVerificationOfficer("");
+
+                console.log(profileData.data, "profileData")
+            } catch (error) {
+                console.error("Error fetching profile or onboarding:", error);
+            } finally {
+                setLoading(false); // Set loading to false regardless of success or failure
+            }
+        };
+
+        fetchProfileAndOnboard();
+
     }, []); // Run only once on mount
 
     return (

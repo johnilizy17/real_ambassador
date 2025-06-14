@@ -234,7 +234,9 @@ export const getUserProfile = createAsyncThunk(
     try {
       const response = await userRequest.get(`/profile`);
 
-      STORAGE.set(LOCAL_STORAGE_KEYS.USER, response.data);
+      console.log(response.data.data, "response")
+
+      STORAGE.set(LOCAL_STORAGE_KEYS.USER, response.data.data);
       return response.data
 
     } catch (error: any) {
@@ -324,19 +326,19 @@ const authSlice = createSlice({
         state.isError = true;
       })
       .addCase(getUserProfile.pending, (state) => {
-        state.isLoading = true;
+        // state.isLoading = true;
       })
       .addCase(UpdateProfile.fulfilled, (state, action) => {
         state.user = action.payload.data;
         state.isLoading = true;
       })
       .addCase(getUserProfile.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.isLoading = false;
+        state.user = action.payload.data;
+        // state.isLoading = false;
       })
       .addCase(getUserProfile.rejected, (state) => {
-        state.isLoading = false;
-        state.isError = true;
+        // state.isLoading = false;
+        // state.isError = true;
       })
   },
 });
