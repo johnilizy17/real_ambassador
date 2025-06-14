@@ -16,6 +16,7 @@ export default function UserDashboardAuth({ children }: any) {
     const wallet = useSelector((a: { user: { wallet: any } }) => a)
     const { isOpen, onOpen, onClose } = useDisclosure();
     const dispatch = useDispatch()
+    const [reload, setReload] = useState(false)
     const [loading, setLoading] = useState(true); // Track overall loading state
     const router = useRouter();
 
@@ -45,8 +46,10 @@ export default function UserDashboardAuth({ children }: any) {
         };
 
         fetchProfileAndOnboard();
-
-    }, []); // Run only once on mount
+        setTimeout(() => {
+            setReload(!reload)
+        }, 3000)
+    }, [reload]); // Run only once on mount
 
     return (
         <>
