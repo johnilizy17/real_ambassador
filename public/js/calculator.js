@@ -1,6 +1,6 @@
 
 var investA = $("#investmentAmount").val(0);
-var investY = $("#investmentAmountSIP").val(5000);
+var investY = $("#investmentAmountSIP").val(5100);
 var investY = $("#investmentYears").val(25);
 
 

@@ -36,12 +36,12 @@ export default function RegistrationPopUp({ isOpen, onOpen, onClose }: { isOpen:
     ) => {
 
         if (values.type === '1') {
-            setAmount(5000);
+            setAmount(5100);
         }
         else if (values.type === '2') {
-            setAmount(15000);
+            setAmount(15350);
         } else if (values.type === '3') {
-            setAmount(25000);
+            setAmount(25530);
         }
     };
 
@@ -72,9 +72,9 @@ export default function RegistrationPopUp({ isOpen, onOpen, onClose }: { isOpen:
                                         placeholder='Enter your subscription'
                                         value={values.type}
                                     >
-                                        <option value='1'>Tier 2 {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
-                                        <option value='2'>Tier 1 {"(" + cashFormat(15000) + " " + "percentage shares 10%" + ")"}</option>
-                                        <option value='3'>Tier 3 {"(" + cashFormat(25000) + " " + "percentage shares 15%" + ")"}</option>
+                                        <option value='1'>Tier 2 {"(" + cashFormat(5100) + " " + "percentage shares 5%" + ")"}</option>
+                                        <option value='2'>Tier 1 {"(" + cashFormat(15350) + " " + "percentage shares 10%" + ")"}</option>
+                                        <option value='3'>Tier 3 {"(" + cashFormat(25530) + " " + "percentage shares 15%" + ")"}</option>
                                     </CustomInput>
                                 </Box>
                                 <ModalFooter>

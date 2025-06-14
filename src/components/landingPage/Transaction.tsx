@@ -134,7 +134,7 @@ export default function Transaction() {
 
                                                     <td>May 24,2025</td>
 
-                                                    <td>{cashFormat(25000)}</td>
+                                                    <td>{cashFormat(25530)}</td>
                                                 </tr>
                                             </table>
 

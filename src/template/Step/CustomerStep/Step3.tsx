@@ -58,7 +58,7 @@ export default function StepThree({ data, VerificationApi, page, setPage, setDat
             await RegisterReferral({ ...data, phone: phoneNumber, ...values, role: "USER" })
             // Include the role_id based on userType
             showMassage('Account successfully created', 'info');
-            setAmount(5000);
+            setAmount(5100);
             setSubmitting(true);
             VerificationApi()
         } catch (error: any) {
@@ -90,7 +90,7 @@ export default function StepThree({ data, VerificationApi, page, setPage, setDat
                             <>
                                 <Box color={COLORS.gray}>
                                     <p>
-                                        Registeation fee for saving small is {cashFormat(5000)}
+                                        Registeation fee for saving small is {cashFormat(5100)}
                                     </p>
                                 </Box>
                                 <Button mr={3} mt={8} colorScheme='blue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
