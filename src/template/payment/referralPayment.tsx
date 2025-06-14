@@ -54,6 +54,8 @@ export default function ReferralPaymentFlutterwave({
         onClose()
     }
 
+    // new changes
+
     const triggerFlutterPayment = useFlutterwave(baseFlutterConfig);
 
     useEffect(() => {
