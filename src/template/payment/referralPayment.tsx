@@ -26,7 +26,7 @@ export default function ReferralPaymentFlutterwave({
         tx_ref: Date.now().toString(),
         amount: amount,
         currency: "NGN",
-        payment_options: "account,card",
+        payment_options: "account",
         customer: {
             email: user.email,
             name: `${user.firstName} ${user.lastName}`,

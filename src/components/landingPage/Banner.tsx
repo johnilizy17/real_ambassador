@@ -1,28 +1,29 @@
-import { Img } from "@chakra-ui/react";
+import { Box, Img } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
+import { COLORS } from "../utils/theme";
 
 export default function Banner() {
 
     const router = useRouter();
 
     return (
-        <div className="slider-area slider_index2_wrapper slider_index3_wrapper  float_left">
-            <div className="bg-animation">
+        <Box bg={COLORS.black} className="slider-area slider_index2_wrapper slider_index3_wrapper  float_left">
+            {/* <Box className="bg-animation">
                 <Img mt="-50%" className="zoom-fade" src="images/pattern.png" alt="img" h={["130vh", "130vh", "100%"]} />
-            </div>
-            <div className="index2_sliderbg index3_sliderbg">
+            </Box> */}
+            <Box className="index2_sliderbg index3_sliderbg">
                 <img src="images/shape1.png" alt="img" className="img-responsive" />
-            </div>
+            </Box>
 
-            <div id="carousel-example-generic" className="carousel slide" data-ride="carousel">
-                <div className="carousel-inner" role="listbox">
-                    <div className="carousel-item active">
-                        <div className="carousel-captions caption-1">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-xl-6 col-lg-10 col-md-12 col-sm-12 col-12">
-                                        <div className="content">
+            <Box id="carousel-example-generic" className="carousel slide" data-ride="carousel">
+                <Box className="carousel-inner" role="listbox">
+                    <Box className="carousel-item active">
+                        <Box className="carousel-captions caption-1">
+                            <Box className="container">
+                                <Box className="row">
+                                    <Box className="col-xl-6 col-lg-10 col-md-12 col-sm-12 col-12">
+                                        <Box className="content">
 
                                             <h2 data-animation="animated bounceInUp">Earn with ease</h2>
 
@@ -31,21 +32,21 @@ export default function Banner() {
 
                                             <p data-animation="animated bounceInUp">In today’s fast-paced digital world, your marketing skills are more powerful than ever. Whether you're an entrepreneur, freelancer, or career professional, knowing how to promote, position, and persuade can give you a serious competitive edge.</p>
 
-                                            <div className="slider_btn index2_sliderbtn index3_sliderbtn float_left">
+                                            <Box className="slider_btn index2_sliderbtn index3_sliderbtn float_left">
                                                 <ul>
                                                     <li data-animation="animated bounceInLeft">
-                                                        <div onClick={() => router.push("/auth/login")}>
+                                                        <Box onClick={() => router.push("/auth/login")}>
                                                             <a>
                                                                 start now
                                                             </a>
-                                                        </div>
+                                                        </Box>
                                                     </li>
                                                     <li data-animation="animated bounceInLeft">
                                                         <a href="#plans">view plans</a>
                                                     </li>
                                                 </ul>
-                                            </div>
-                                            <div data-animation="animated bounceInLeft"
+                                            </Box>
+                                            <Box data-animation="animated bounceInLeft"
                                                 className="social_link_foter slider_btm_icon_links">
 
                                                 <ul>
@@ -55,21 +56,21 @@ export default function Banner() {
                                                     <li><a href="#"><i className="fab fa-google-plus-g"></i></a></li>
 
                                                 </ul>
-                                            </div>
-                                            <div className="clear"></div>
-                                        </div>
-                                    </div>
+                                            </Box>
+                                            <Box className="clear"></Box>
+                                        </Box>
+                                    </Box>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="carousel-item">
-                        <div className="carousel-captions caption-2">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-xl-6 col-lg-10 col-md-12 col-sm-12 col-12">
-                                        <div className="content">
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Box>
+                    <Box className="carousel-item">
+                        <Box className="carousel-captions caption-2">
+                            <Box className="container">
+                                <Box className="row">
+                                    <Box className="col-xl-6 col-lg-10 col-md-12 col-sm-12 col-12">
+                                        <Box className="content">
 
                                             <h2 data-animation="animated bounceInUp">Often Have Small</h2>
 
@@ -77,21 +78,21 @@ export default function Banner() {
                                                 Business <span>Brands</span></h3>
                                             <p data-animation="animated bounceInUp">Your ability to tell a story, create content, and engage audiences is the foundation of a strong brand. With effective marketing, you can grow visibility, credibility, and trust — fast.</p>
 
-                                            <div className="slider_btn index2_sliderbtn index3_sliderbtn float_left">
+                                            <Box className="slider_btn index2_sliderbtn index3_sliderbtn float_left">
                                                 <ul>
                                                     <li data-animation="animated bounceInLeft">
-                                                        <div onClick={() => router.push("/auth/login")}>
+                                                        <Box onClick={() => router.push("/auth/login")}>
                                                             <a>
                                                                 start now
                                                             </a>
-                                                        </div>
+                                                        </Box>
                                                     </li>
                                                     <li data-animation="animated bounceInLeft">
                                                         <a href="#plans">view plans</a>
                                                     </li>
                                                 </ul>
-                                            </div>
-                                            <div data-animation="animated bounceInLeft"
+                                            </Box>
+                                            <Box data-animation="animated bounceInLeft"
                                                 className="social_link_foter slider_btm_icon_links">
 
                                                 <ul>
@@ -101,21 +102,21 @@ export default function Banner() {
                                                     <li><a href="#"><i className="fab fa-google-plus-g"></i></a></li>
 
                                                 </ul>
-                                            </div>
-                                            <div className="clear"></div>
-                                        </div>
-                                    </div>
+                                            </Box>
+                                            <Box className="clear"></Box>
+                                        </Box>
+                                    </Box>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="carousel-item">
-                        <div className="carousel-captions caption-3">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-xl-6 col-lg-10 col-md-12 col-sm-12 col-12">
-                                        <div className="content">
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Box>
+                    <Box className="carousel-item">
+                        <Box className="carousel-captions caption-3">
+                            <Box className="container">
+                                <Box className="row">
+                                    <Box className="col-xl-6 col-lg-10 col-md-12 col-sm-12 col-12">
+                                        <Box className="content">
 
                                             <h2 data-animation="animated bounceInUp">Build your network</h2>
 
@@ -124,21 +125,21 @@ export default function Banner() {
 
                                             <p data-animation="animated bounceInUp">Marketing is not just about ads — it's also about people. Leverage your communication and persuasion skills to build valuable relationships and strategic partnerships.</p>
 
-                                            <div className="slider_btn index2_sliderbtn index3_sliderbtn float_left">
+                                            <Box className="slider_btn index2_sliderbtn index3_sliderbtn float_left">
                                                 <ul>
                                                     <li data-animation="animated bounceInLeft">
-                                                        <div onClick={() => router.push("/auth/login")}>
+                                                        <Box onClick={() => router.push("/auth/login")}>
                                                             <a>
                                                                 start now
                                                             </a>
-                                                        </div>
+                                                        </Box>
                                                     </li>
                                                     <li data-animation="animated bounceInLeft">
                                                         <a href="#plans">view plans</a>
                                                     </li>
                                                 </ul>
-                                            </div>
-                                            <div data-animation="animated bounceInLeft"
+                                            </Box>
+                                            <Box data-animation="animated bounceInLeft"
                                                 className="social_link_foter slider_btm_icon_links">
 
                                                 <ul>
@@ -148,15 +149,15 @@ export default function Banner() {
                                                     <li><a href="#"><i className="fab fa-google-plus-g"></i></a></li>
 
                                                 </ul>
-                                            </div>
-                                            <div className="clear"></div>
-                                        </div>
-                                    </div>
+                                            </Box>
+                                            <Box className="clear"></Box>
+                                        </Box>
+                                    </Box>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Box>
 
                     <ol className="carousel-indicators">
 
@@ -170,18 +171,18 @@ export default function Banner() {
                             className="number">03</span>
                         </li>
                     </ol>
-                    <div className="carousel-nevigation">
+                    <Box className="carousel-nevigation">
                         <a className="prev" href="#carousel-example-generic" role="button" data-slide="prev"> <span></span> <i
                             className="flaticon-left-arrow"></i>
                         </a>
                         <a className="next" href="#carousel-example-generic" role="button" data-slide="next"> <span></span> <i
                             className="flaticon-arrow-pointing-to-right"></i>
                         </a>
-                    </div>
-                </div>
-            </div>
+                    </Box>
+                </Box>
+            </Box>
 
-        </div>
+        </Box>
 
     )
 }

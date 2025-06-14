@@ -14,7 +14,7 @@ export default function Plan() {
                         <div
                             className="sv_heading_wraper heading_wrapper_dark dark_heading index2_heading index2_heading_center index3_heading ">
                             <h4> our plans </h4>
-                            <h3>our investment plans </h3>
+                            <h3>our Package plans </h3>
                             <div className="line_shape line_shape2"></div>
                         </div>
                     </div>
