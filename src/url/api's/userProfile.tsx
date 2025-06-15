@@ -57,6 +57,11 @@ export const withdrawWallet = async (payload: any) => {
     return data;
 };
 
+export const generateAccount = async (payload: any) => {
+    const { data } = await server.post(`wallet/generate`, payload);
+    return data;
+};
+
 export const claimAddress = async (userId: string, address: string, data: any) => {
     const { data: response } = await server.post(`/user/${userId}/address/claim/${address}`, data);
     return response;

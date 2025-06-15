@@ -106,24 +106,15 @@ export default function VerificationBody() {
             <Box display={"flex"} flexDir={["column", "column", "column", "row"]} justifyContent="space-between" mr={["0px", "0px", "0px", "45px"]} mb="20px">
                 <Card h="243px" pt="20px" w={["full", "full", "full", "263px"]}>
                     <Box pl="20px" fontWeight="600" fontSize={["24px", "24px", "24px", "36px"]}>
-                        Hi {user.firstname || 'there'},
+                        Hi {user.firstName || 'there'},
                     </Box>
                     <Box pl="20px" marginTop="8px" fontWeight="400" color={COLORS.grey} fontSize={["13px", "13px", "13px", "14px"]}>
-                        What would you like to do today?
+                        Enjoy becoming a million with ABN
                     </Box>
-                    <Center pl="20px" justifyContent="start" mt="22px" mb="16px">
-                        <Center overflow="hidden" borderRadius="32px" w="32px" h="32px">
-                            <Img
-                                src={user.profileImage || "/images/inves1.png"}
-                                objectFit="contain"
-                                w="100px"
-                                h="100px"
-                                alt="Profile"
-                            />
-                        </Center>
-                        <Box pl="20px" ml="12px">
+                    <Center justifyContent="start" p="20px" pt="10px">
+                        <Box>
                             <Box fontWeight="500" fontSize={["15px", "15px", "15px", "16px"]}>
-                                {`${user.firstname || ''} ${user.lastname || ''}`}
+                                {`${user.firstName || ''} ${user.lastName || ''}`}
                             </Box>
                             <Box color={COLORS.grey} marginTop="2px" fontWeight="400" fontSize={["13px", "13px", "13px", "14px"]}>
                                 {user.email || 'No email provided'}
@@ -140,7 +131,7 @@ export default function VerificationBody() {
                     </Center>
                 </Card>
                 <Card mt="16px" p="10px" w={["full", "full", "full", "263px"]}>
-                    <Img src="/images/illustration.png" alt="Illustration" />
+                    <Img src="/images/illustration.png"/>
                     <Box p="16px">
                         <Box marginTop="8px" fontWeight="400" color={COLORS.grey} fontSize={["13px", "13px", "13px", "14px"]}>
                             I’m eager to represent the brand, connect with others, and make a positive impact as an partner.

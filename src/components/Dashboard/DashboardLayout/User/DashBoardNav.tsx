@@ -192,14 +192,14 @@ const DashboardNavUser = () => {
                             <Center ml="20px">
                                 <Center borderRadius={"50px"} height="40px" w="40px" mr="10px" overflow="hidden">
                                     <Avatar
-                                        name={user?.firstname || "User"}
+                                        name={user?.firstName || "User"}
                                         size="xl"
                                         borderRadius="full"
                                     />
                                 </Center>
                                 <Box>
                                     <Box fontWeight="500" fontSize="14px">
-                                        {user && user.lastname && user.lastname || ""}
+                                        {user && user.lastName && user.lastName || ""}
                                     </Box>
                                     <Box fontWeight="800" color="green" fontSize="12px">
                                         Profiles

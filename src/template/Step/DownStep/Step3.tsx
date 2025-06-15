@@ -67,7 +67,7 @@ export default function StepThree({ data, VerificationApi, page, setPage, setDat
             } else if (values.type === '3') {
                 setAmount(25530);
             }
-            onClose(false)
+            // onClose(false)
             setSubmitting(true);
             VerificationApi()
         } catch (error: any) {

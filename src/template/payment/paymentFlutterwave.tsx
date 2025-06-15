@@ -1,45 +1,26 @@
+import useCustomToast from "@/hooks/useCustomToast";
+import { userActive } from "@/url/api's/userProfile";
 import { closePaymentModal, useFlutterwave } from "flutterwave-react-v3";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import AccountGeneration from "./Account";
 
-export default function PaymentFlutterwave({ amount, id, setDisplay }: { amount: number, setDisplay: any, id: string }) {
+export default function NormalPaymentFlutterwavePaymentFlutterwave({ amount, id, setDisplay }: { amount: number, setDisplay: any, id: string }) {
 
     const { user } = useSelector((state: any) => state.auth)
 
-    const baseFlutterConfig = {
-        public_key: "FLWPUBK-b63ca273dbde270802f38c5b6f57a5bf-X",
-        tx_ref: Date.now().toString(),
-        amount: amount,
-        currency: "NGN",
-        payment_options: "account",
-        customer: {
-            email: user.email,
-            name: `${user.firstName} ${user.lastName}`,
-            phone_number: user.phone,
-        },
-        customizations: {
-            title: "Real Vest Subscription",
-            description: `${user.id} subscription`,
-            logo: "https://novorealms.com/logo.png",
-        },
-    };
+    const router = useRouter()
+    const showToast = useCustomToast();
 
-    const triggerFlutterPayment = useFlutterwave(baseFlutterConfig);
+    async function PaymentActivation() {
+        // const status = amount === 5100 ? 2 : amount === 15350 ? 3 : 4
+        // await userActive({ email: user.email, payment: status, amount: amount })
+        setDisplay(false);
+        closePaymentModal();
+    }
 
-    useEffect(() => {
-        triggerFlutterPayment({
-            callback: (response: any) => {
-                console.log("Payment callback:", response);
-                setDisplay(false);
-                closePaymentModal();
-            },
-            onClose: () => {
-                console.log("Payment closed");
-            },
-        });
-    }, [])
     return (
-        <>
-        </>
+        <AccountGeneration closingApi={() => setDisplay(false)} paymentApi={() => PaymentActivation()} data={{ ...user, amount: amount, name: user.lastName + "," + user.firstName }} />
     )
 }
