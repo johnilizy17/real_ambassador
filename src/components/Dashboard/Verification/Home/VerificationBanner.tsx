@@ -46,8 +46,17 @@ export default function VerificationBanner() {
         <>
             <Box pr="20px" pl="20px">
                 <Flex justifyContent={"flex-end"}><Button colorScheme='blue' mr="10px" bg={COLORS.blue}
-                onClick={()=>router.push("https://www.abn.com.ng/")}
-                >Buy House</Button><Button colorScheme='green' bg={COLORS.green} onClick={()=>router.push("https://www.pay.abn.com.ng/")}>Save to Own</Button></Flex>
+                    onClick={() => router.push("https://www.abn.com.ng/")}
+                >
+                    <Box>
+                        <Box>
+                            Buy and Sell
+                        </Box>
+                        <Box fontSize={"7px"} textDecor={"underline"}>
+                            properties
+                        </Box>
+                    </Box>
+                </Button><Button colorScheme='green' bg={COLORS.green} onClick={() => router.push("https://www.pay.abn.com.ng/")}>Pay small small</Button></Flex>
                 <Center justifyContent="space-between" w="full" h={["auto", "auto", "auto", "129px"]} mt="16px" bg={COLORS.blue} borderRadius="8px" flexDir={["column-reverse", "column-reverse", "column-reverse", "row"]} pl="10px" pr="20px">
                     <Center>
                         <Img src="/images/money.png" />
