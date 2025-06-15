@@ -11,6 +11,7 @@ import { verifyWallet, withdrawWallet } from '@/url/api\'s/userProfile';
 import { useSelector } from 'react-redux';
 import { cashFormat } from '@/utils/cashformat';
 import { referredBalance } from '@/url/api\'s/organization';
+import useCustomToast from '@/hooks/useCustomToast';
 
 export default function Withdraw({ onClose }: { onClose: any }) {
 
@@ -18,12 +19,13 @@ export default function Withdraw({ onClose }: { onClose: any }) {
     const [showPassword, setShowPassword] = useState(true);
     const [data, setData] = useState({ "account_number": "", "account_bank": "" })
     const [loading, setLoading] = useState(false)
-    const { user } = useSelector((a: { auth: any }) => a.auth)    //const [notificationsData, setNotifictionData] = useState([{ uniqueID: "1", header: "created account", text: "You're now part of the G-AIM community, where we’re committed to helping you achieve your goals with ease and efficiency. Whether you’re here to track progress, stay organized, or explore new opportunities, we're excited to have you on board.", createAt:"10:00am" }]);
+    const { user } = useSelector((a: { auth: any }) => a.auth)
 
     const [details, setDetails] = useState("");
     const router = useRouter();
 
     const [amount, setAmount] = useState(0)
+    const showMessage = useCustomToast()
 
     async function Balance() {
         const result = await referredBalance()
@@ -73,8 +75,10 @@ export default function Withdraw({ onClose }: { onClose: any }) {
         try {
             setLoading(true);
             const result = await withdrawWallet(data)
+            showMessage("Withdrawal Successful", "success")
             setLoading(false);
         } catch (error: any) {
+            showMessage(error.response.data.message, "error")
             setLoading(false);
         }
     };

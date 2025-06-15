@@ -53,7 +53,7 @@ export const verifyWallet = async (payload: any) => {
 };
 
 export const withdrawWallet = async (payload: any) => {
-    const { data } = await server.post(`wallet/withdraw`, payload);
+    const { data } = await userRequest.post(`wallet/withdraw`, payload);
     return data;
 };
 

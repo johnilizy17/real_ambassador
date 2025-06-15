@@ -19,7 +19,7 @@ export default function NavContent() {
                 <Box>
                     {user && user.id ?
                         <Box className="header_btn">
-                            <Button onClick={() => router.push("/dashboard")} bg={COLORS.blue} colorScheme="blue">
+                            <Button onClick={() => router.push("/dashboard")} colorScheme="whiteAlpha">
                                 Dashboard
                             </Button>
                         </Box>

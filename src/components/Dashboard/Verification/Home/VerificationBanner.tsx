@@ -31,7 +31,6 @@ export default function VerificationBanner() {
 
         return (
             <Modal isOpen={isOpen} onClose={onClose} isCentered>
-                <ModalOverlay />
                 <ModalContent h="auto" w={["300px", "300px", "300px", "504px"]}>
                     <ModalHeader justifyContent="center" fontSize="20px" fontWeight="500" alignItems="center">Withdraw Money</ModalHeader>
                     <ModalBody w="full">
@@ -45,7 +44,7 @@ export default function VerificationBanner() {
     return (
         <>
             <Box pr="20px" pl="20px">
-                <Flex justifyContent={"flex-end"}><Button colorScheme='blue' mr="10px" bg={COLORS.blue}
+                <Flex display={["none","none","none","flex"]} justifyContent={"flex-end"}><Button colorScheme='blue' mr="10px" bg={COLORS.blue}
                     onClick={() => router.push("https://www.abn.com.ng/")}
                 >
                     <Box>

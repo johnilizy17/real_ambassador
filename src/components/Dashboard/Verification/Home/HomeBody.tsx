@@ -1,5 +1,5 @@
 import { COLORS } from '@/layout/Theme';
-import { Box, Button, Card, Center, Flex, Img, Spinner, Text, useDisclosure, useToast } from '@chakra-ui/react';
+import { Avatar, Box, Button, Card, Center, Flex, Img, Spinner, Text, useDisclosure, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import VerificationBanner from './VerificationBanner';
 import { useRouter } from 'next/router';
@@ -104,7 +104,7 @@ export default function VerificationBody() {
     return (
         <Flex flexDir={["column"]} >
             <Box display={"flex"} flexDir={["column", "column", "column", "row"]} justifyContent="space-between" mr={["0px", "0px", "0px", "45px"]} mb="20px">
-                <Card h="243px" pt="20px" w={["full", "full", "full", "263px"]}>
+                <Card h="243px" pt="20px" w={["full", "full", "full", "400px"]}>
                     <Box pl="20px" fontWeight="600" fontSize={["24px", "24px", "24px", "36px"]}>
                         Hi {user.firstName || 'there'},
                     </Box>
@@ -112,7 +112,12 @@ export default function VerificationBody() {
                         Enjoy becoming a millionary with ABN
                     </Box>
                     <Center justifyContent="start" p="20px" pt="10px">
-                        <Box>
+                        <Avatar
+                            name={user?.firstName || "User"}
+                            size="md"
+                            borderRadius="full"
+                        />
+                        <Box ml="5px">
                             <Box fontWeight="500" fontSize={["15px", "15px", "15px", "16px"]}>
                                 {`${user.firstName || ''} ${user.lastName || ''}`}
                             </Box>
@@ -130,6 +135,26 @@ export default function VerificationBody() {
                         </Box>
                     </Center>
                 </Card>
+                <Flex mt="20px" mb="20px" display={["flex", "flex", "flex", "none"]} justifyContent={"flex-end"}><Button colorScheme='blue' mr="10px" bg={COLORS.blue}
+                    onClick={() => router.push("https://www.abn.com.ng/")}
+                >
+                    <Box>
+                        <Box>
+                            Buy and Sell
+                        </Box>
+                        <Box fontSize={"7px"} textDecor={"underline"}>
+                            properties
+                        </Box>
+                    </Box>
+                </Button><Button colorScheme='green' bg={COLORS.green} onClick={() => router.push("https://www.pay.abn.com.ng/")}>  <Box>
+                    <Box>
+                        Land Dey
+                    </Box>
+                    <Box fontSize={"7px"} textDecor={"underline"}>
+                        Pay small small
+                    </Box>
+                </Box></Button></Flex>
+
                 <Card mt="16px" p="10px" w={["full", "full", "full", "263px"]}>
                     <Img src="/images/Illustration.png" />
                     <Box p="16px">
