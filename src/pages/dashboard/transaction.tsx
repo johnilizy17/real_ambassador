@@ -27,7 +27,7 @@ import { formatDate } from '@/utils/date';
 export default function Dashboard() {
 
     const router = useRouter()
-
+    const { user } = useSelector((a: { auth: { user: any } }) => a.auth)
     const [history, setHistory] = useState([])
 
     async function DashboardUser() {
@@ -70,7 +70,7 @@ export default function Dashboard() {
                                         <Tbody>
                                             {history.map((a: any, b: number) => (
                                                 <Tr key={b} h="75px">
-                                                    <Td>{JSON.parse(a.user_id).firstName + "," + JSON.parse(a.user_id).lastName}</Td>
+                                                    <Td>{a.user_id == "" ? user.firstName : JSON.parse(a.user_id).firstName + "," + JSON.parse(a.user_id).lastName}</Td>
                                                     <Td color={a.amount > 0 ? "green" : "red"}>{a.amount}</Td>
                                                     <Td>{!a.type ? "Registration fee" : "Subscription"}</Td>
                                                     <Td>{formatDate(a.created_at)}</Td>
