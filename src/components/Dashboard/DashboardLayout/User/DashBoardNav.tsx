@@ -144,7 +144,7 @@ const DashboardNavUser = () => {
     async function ApiLogout() {
         try {
             setLoading(true)
-         logout()
+            logout()
             setLoading(false)
         } catch {
             setLoading(false)
@@ -160,7 +160,7 @@ const DashboardNavUser = () => {
     return (
         <>
             <Center h="72px" p="30px" className="TopNavTab" boxShadow="0 0 0 1px rgba(0, 0, 0, 0.1)" justifyContent="space-between" bg={COLORS.white} pos="fixed" zIndex={1000}>
-                <Center>
+                <Center w="full" justifyContent={"space-between "}>
                     <Flex
                         bg={COLORS.blue}
                         h="40px"
@@ -187,48 +187,6 @@ const DashboardNavUser = () => {
                     </Link>
                 </Center>
                 <Center>
-                    <Popover>
-                        <PopoverTrigger>
-                            <Center ml="20px">
-                                <Center borderRadius={"50px"} height="40px" w="40px" mr="10px" overflow="hidden">
-                                    <Avatar
-                                        name={user?.firstName || "User"}
-                                        size="xl"
-                                        borderRadius="full"
-                                    />
-                                </Center>
-                                <Box>
-                                    <Box fontWeight="500" fontSize="14px">
-                                        {user && user.lastName && user.lastName || ""}
-                                    </Box>
-                                    <Box fontWeight="800" color="green" fontSize="12px">
-                                        Profiles
-                                    </Box>
-                                </Box>
-                            </Center>
-                        </PopoverTrigger>
-                        <PopoverContent>
-                            <PopoverArrow />
-                            <PopoverCloseButton />
-                            <PopoverHeader>Click the button to logout!</PopoverHeader>
-                            <PopoverBody><Button
-                                onClick={() => {
-                                    ApiLogout()
-                                }}
-
-                                isLoading={loading}
-                                isDisabled={loading}
-                                colorScheme='gray'> <Center justifyContent="flex-start">
-                                    <Box textAlign="left" fontWeight="400" mr='20px' fontSize="18px" >
-                                        Log Out
-                                    </Box>
-                                </Center>
-                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                                    <path fillRule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
-                                    <path fillRule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
-                                </svg></Button></PopoverBody>
-                        </PopoverContent>
-                    </Popover>
 
                 </Center >
             </Center>

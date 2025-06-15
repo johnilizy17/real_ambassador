@@ -8,7 +8,7 @@ export default function Banner() {
     const router = useRouter();
 
     return (
-        <Box bg={COLORS.black} className="slider-area slider_index2_wrapper slider_index3_wrapper  float_left">
+        <Box bg={COLORS.white} className="slider-area slider_index2_wrapper slider_index3_wrapper  float_left">
             {/* <Box className="bg-animation">
                 <Img mt="-50%" className="zoom-fade" src="images/pattern.png" alt="img" h={["130vh", "130vh", "100%"]} />
             </Box> */}
@@ -27,7 +27,7 @@ export default function Banner() {
 
                                             <h2 data-animation="animated bounceInUp">Earn with ease</h2>
 
-                                            <h3 data-animation="animated bounceInUp">Leverage on <br />
+                                            <h3 data-animation="animated bounceInUp" style={{color:"#000"}}>Leverage on <br />
                                                 your <span>Marketing Skills</span></h3>
 
                                             <p data-animation="animated bounceInUp">In today’s fast-paced digital world, your marketing skills are more powerful than ever. Whether you're an entrepreneur, freelancer, or career professional, knowing how to promote, position, and persuade can give you a serious competitive edge.</p>
@@ -74,7 +74,7 @@ export default function Banner() {
 
                                             <h2 data-animation="animated bounceInUp">Often Have Small</h2>
 
-                                            <h3 data-animation="animated bounceInUp"> Build Personal  <br />
+                                            <h3 data-animation="animated bounceInUp" style={{color:"#000"}}> Build Personal  <br />
                                                 Business <span>Brands</span></h3>
                                             <p data-animation="animated bounceInUp">Your ability to tell a story, create content, and engage audiences is the foundation of a strong brand. With effective marketing, you can grow visibility, credibility, and trust — fast.</p>
 
@@ -120,7 +120,7 @@ export default function Banner() {
 
                                             <h2 data-animation="animated bounceInUp">Build your network</h2>
 
-                                            <h3 data-animation="animated bounceInUp">Network with <br />
+                                            <h3 data-animation="animated bounceInUp" style={{color:"#000"}}>Network with <br />
                                                 <span>Purpose</span></h3>
 
                                             <p data-animation="animated bounceInUp">Marketing is not just about ads — it's also about people. Leverage your communication and persuasion skills to build valuable relationships and strategic partnerships.</p>
