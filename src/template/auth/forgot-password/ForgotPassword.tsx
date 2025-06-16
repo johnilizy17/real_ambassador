@@ -54,7 +54,7 @@ export default function ForgotPassword() {
         .then(() => {
           router.push("/auth/otp")
           showToast(
-            'Password your pin has been set to your email',
+            'If your email exists on this platform, you will receive a mail with an OTP to reset your password.',
             'success'
           );
         });
