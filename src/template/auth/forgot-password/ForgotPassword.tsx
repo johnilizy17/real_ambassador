@@ -20,7 +20,7 @@ import React from 'react';
 import { Form, Formik, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import useCustomToast from '@/hooks/useCustomToast';
-import { authForgottenPassword } from '@/redux/slices/auth/authSlice';
+import { authVerifyEmail } from '@/redux/slices/auth/authSlice';
 import { useAppDispatch } from '@/redux/store/store';
 import ROUTES from '@/utils/ROUTES';
 
@@ -49,7 +49,7 @@ export default function ForgotPassword() {
   ) => {
     try {
       setSubmitting(true);
-      await dispatch(authForgottenPassword(values))
+      await dispatch(authVerifyEmail(values))
         .unwrap()
         .then(() => {
           router.push("/auth/otp")

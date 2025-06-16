@@ -136,6 +136,7 @@ export const authLogin = createAsyncThunk(
   }
 );
 
+
 export const authForgottenPassword = createAsyncThunk(
   'auth/verify-otp',
   async (payload: EmailDto, { rejectWithValue }) => {
@@ -216,7 +217,7 @@ export const authVerifyEmail = createAsyncThunk(
   async (payload: EmailDto, { rejectWithValue }) => {
     try {
       const { data } = await userRequest.post(
-        `auth/send-verification-email`,
+        `auth/forgot-password`,
         payload
       );
       return data;
