@@ -83,7 +83,11 @@ const DashboardNavUser = () => {
     };
     const handleNavigation = (e: React.MouseEvent<HTMLElement>, path: string) => {
         e.preventDefault();
-        router.push(path);
+        if (path === "/") {
+            window.location.href = "/"
+        } else {
+            router.push(path);
+        }
     };
     const [notificationsData, setNotificationsData] = useState<Notification[]>([]); // Type the state
     const dispatch = useDispatch()
