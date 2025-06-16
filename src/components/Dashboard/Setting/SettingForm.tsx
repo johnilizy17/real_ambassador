@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { COLORS } from '@/layout/Theme';
 import ChangePassword from './ChangePassword';
-import { updateProfileVerification, getUserProfile } from '@/url/api\'s/userProfile';
+import { updateProfileVerification, getUserProfile, updateUserActive } from '@/url/api\'s/userProfile';
 import { useSelector } from 'react-redux';
 import CustomInput from '@/layout/utills/CustomInput';
 
@@ -24,7 +24,7 @@ interface User {
     user_id: string;
     firstName: string;
     lastName: string;
-    email_address: string;
+    email: string;
     phone_number: string;
     // ... other properties as needed
 }
@@ -33,7 +33,7 @@ export default function SettingForm() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { user } = useSelector((state: any) => state.auth);
-    const [phoneNumber, setPhoneNumber] = useState(user.contact_info)
+    const [phoneNumber, setPhoneNumber] = useState("234")
     const [showPassword, setShowPassword] = useState(false);
     const showMessage = useCustomToast()
     const [images, setImage] = useState("");
@@ -45,9 +45,9 @@ export default function SettingForm() {
         { setSubmitting, resetForm }: any
     ) => {
         try {
-            const result = await updateProfileVerification({
+            const result = await updateUserActive({
                 ...values,
-                contact_info: phoneNumber,
+                phone: phoneNumber,
                 file:images
             })
             showMessage(
@@ -82,15 +82,18 @@ export default function SettingForm() {
     }
 
     useEffect(() => {
-        console.log(user, "email_address")
+        if(user && user.phone){
+             console.log(user.phone, "email")
+        //   setPhoneNumber(user.phone)
+        }
     }, [])
     return (
         <Box>
             <Formik
                 initialValues={{
-                    last_name: user?.last_name || '',
-                    first_name: user?.first_name || '',
-                    email: user?.email_address || '',
+                    lastName: user?.lastName || '',
+                    firstName: user?.firstName || '',
+                    email: user?.email || '',
                     phoneNumber: user?.phone_number || "0000",
                 }}
                 onSubmit={initiateProfile}
@@ -166,25 +169,25 @@ export default function SettingForm() {
                                     <Center flexDir={["column", "column", "row"]} alignItems={["start", "start", "center"]} justifyContent="start" pt="30px">
                                         <Box w="126px" mb={["10px", "10px", "0px"]} mr="21px" textAlign={["start", "start", "end"]} fontWeight="700" fontSize="14px" color={COLORS.grey}>Firt Name</Box>
                                         <Input
-                                            id="first_name"
+                                            id="firstName"
                                             name="Firt Name"
                                             placeholder='Enter First Name'
                                             type="text"
                                             w="300px"
                                             onChange={handleChange}
-                                            value={values.first_name}
+                                            value={values.firstName}
                                         />
                                     </Center>
                                     <Center flexDir={["column", "column", "row"]} alignItems={["start", "start", "center"]} justifyContent="start" pt="30px">
                                         <Box w="126px" mb={["10px", "10px", "0px"]} mr="21px" textAlign={["start", "start", "end"]} fontWeight="700" fontSize="14px" color={COLORS.grey}>Last Name</Box>
                                         <Input
-                                            id="last_name"
+                                            id="lastName"
                                             name="Last Name"
                                             placeholder='Enter Last Name'
                                             type="text"
                                             w="300px"
                                             onChange={handleChange}
-                                            value={values.last_name}
+                                            value={values.lastName}
                                         />
                                     </Center>
                                     <Center flexDir={["column", "column", "row"]} alignItems={["start", "start", "center"]} justifyContent="start" pt="30px">
@@ -204,7 +207,7 @@ export default function SettingForm() {
                                         <Box w="300px" mt="0px">
                                             <CustomInput
                                                 label=""
-                                                name="phone_number"
+                                                name="phone"
                                                 typeInput=""
                                                 type="phone"
                                                 value={phoneNumber}

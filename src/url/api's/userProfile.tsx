@@ -72,6 +72,11 @@ export const userActive = async (payload: any) => {
     return response;
 };
 
+export const updateUserActive = async (payload: any) => {
+    const { data: response } = await userRequest.put(`/profile`, payload);
+    return response;
+};
+
 export const RegisterReferral = async (payload: any) => {
     const { data: response } = await userRequest.post(`/auth/signup/referral`, payload);
     return response;
