@@ -241,9 +241,7 @@ export const getUserProfile = createAsyncThunk(
       return response.data
 
     } catch (error: any) {
-      return rejectWithValue(
-        error.response?.data || 'Email verification failed'
-      );
+    
     }
   }
 );
@@ -338,8 +336,10 @@ const authSlice = createSlice({
         // state.isLoading = false;
       })
       .addCase(getUserProfile.rejected, (state) => {
-        // state.isLoading = false;
-        // state.isError = true;
+        state.token = null;
+      state.refreshToken = null;
+      state.user = null;
+      clearTokens();
       })
   },
 });
