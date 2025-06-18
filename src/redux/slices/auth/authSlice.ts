@@ -120,6 +120,7 @@ export const authLogin = createAsyncThunk(
       const response: AxiosResponse<RegisterResponse> =
         await publicRequest.post('/auth/login', data);
 
+   console.log(response.data, "response.data")
 
       saveTokens({
         accessToken: response.data.data.token,

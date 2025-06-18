@@ -90,7 +90,7 @@ export default function StepThree({ data, VerificationApi, page, setPage, setDat
                             <>
                                 <Box color={COLORS.gray}>
                                     <p>
-                                        Registeation fee for saving small is {cashFormat(5100)}
+                                        Registeration fee for saving small is {cashFormat(5100)}
                                     </p>
                                 </Box>
                                 <Button mr={3} mt={8} colorScheme='blue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
