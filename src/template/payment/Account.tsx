@@ -41,10 +41,10 @@ const AccountGeneration = ({ paymentApi, closingApi, data }: { paymentApi: any, 
     const copyToClipboard = async (text: string) => {
         try {
             await navigator.clipboard.writeText(text);
-            alert("Copied to clipboard!");
+            showMessage("copy successful", "success")
         } catch (err) {
             console.error("Failed to copy:", err);
-            alert("Failed to copy");
+           showMessage("Failed to copy", "error")
         }
     };
 
