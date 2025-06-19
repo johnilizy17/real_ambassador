@@ -13,28 +13,28 @@ export const LOCAL_STORAGE_KEYS = {
 export const UsersPlan = [
   {
     name: "Asa Plan",
-    total: 210000,
-    356: 800,
+    total: 300000,
+    356: 850,
     546: 600,
     730: 500
   },
   {
     name: "Sky Plan",
-    total: 310000,
-    356: 900,
-    546: 750,
-    730: 650
+    total: 350000,
+    356: 1100,
+    546: 800,
+    730: 700
   },
   {
     name: "Ami Plan",
-    total: 410000,
+    total: 400000,
     356: 1200,
     546: 1000,
     730: 900
   },
   {
     name: "Slay Plan",
-    total: 510000,
+    total: 750000,
     356: 2000,
     546: 1600,
     730: 1500
