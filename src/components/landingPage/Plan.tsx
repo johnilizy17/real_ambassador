@@ -63,7 +63,7 @@ export default function Plan() {
                                 </p>
                                 <Box w="full" textAlign={"start"}>
                                     <li>Price:{cashFormat(15350)}</li>
-                                    <li>Refferal Earning: 30%</li>
+                                    <li>Refferal Earning: 25%</li>
                                     <li>Sub Earning: 25%</li>
                                     <li>Product Earning: 10%</li>
                                     <li>Refferal stages: 2{"(30%, 15%)"}</li>

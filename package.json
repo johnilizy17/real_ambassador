@@ -32,6 +32,7 @@
     "leaflet.locatecontrol": "^0.84.1",
     "lucide-react": "^0.477.0",
     "next": "^15.1.6",
+    "next-pwa": "^5.6.0",
     "next-themes": "^0.4.4",
     "react": "^19.0.0",
     "react-chartjs-2": "^5.3.0",
