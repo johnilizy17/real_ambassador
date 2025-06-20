@@ -18,7 +18,8 @@ export default function CustomerStep({ onClose, VerificationApi }: any) {
         { title: "Subscribe" },
         { title: "Payment Method" },
     ]
-    const [data, setData] = useState({})
+    const [data, setData] = useState({ plan: "Asa Plan", duration: 365, type: "daily" })
+
     return (
         <>
             <Stepper index={wizardStep - 1}>
@@ -47,7 +48,7 @@ export default function CustomerStep({ onClose, VerificationApi }: any) {
                             : wizardStep === 4 ?
                                 <StepFour setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
                                 :
-                                <StepFive setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
+                                <StepFive setData={setData} page={wizardStep} setPage={setWizardStep} data={data} onClose={onClose} />
             }
         </>
     )

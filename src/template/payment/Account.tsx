@@ -44,14 +44,14 @@ const AccountGeneration = ({ paymentApi, closingApi, data }: { paymentApi: any, 
             showMessage("copy successful", "success")
         } catch (err) {
             console.error("Failed to copy:", err);
-           showMessage("Failed to copy", "error")
+            showMessage("Failed to copy", "error")
         }
     };
 
     useEffect(() => {
         AccountNumber()
         onOpen()
-    }, [])
+    }, ["error"])
 
 
     return (
@@ -106,6 +106,10 @@ const AccountGeneration = ({ paymentApi, closingApi, data }: { paymentApi: any, 
                                                 <Text color="green.500" fontWeight="semibold">{accountDetails.bank_name}</Text>
                                             </Flex>
 
+                                            <Flex justify="space-between">
+                                                <Text fontWeight="medium">Account Name</Text>
+                                                <Text  fontWeight="semibold">{accountDetails.account_name}</Text>
+                                            </Flex>
                                             <Flex onClick={() => copyToClipboard(accountDetails.account_number)} justify="space-between">
                                                 <Text fontWeight="medium">Account Number</Text>
                                                 <Text>{accountDetails.account_number} <CopyIcon /></Text>

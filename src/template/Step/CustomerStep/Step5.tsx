@@ -16,16 +16,18 @@ import * as Yup from 'yup';
 import CustomInput from '@/components/CustomInput/CustomInput';
 import { UsersPlan } from '@/utils/constants';
 import { cashFormat } from '@/utils/cashformat';
+import ReferralPaymentFlutterwave from '@/template/payment/referralPayment';
 
 export const runtime = 'edge';
 
-export default function StepFive({ data, page, setPage, setData }: any) {
+export default function StepFive({ data, page, setPage, setData, onClose }: any) {
     const [phoneNumber, setPhoneNumber] = useState(data.phone);
+    const [amount2, setAmount2] = useState(0);
     const router = useRouter();
 
     // Adjust validation schema based on userType
     const validationSchema = Yup.object({
-        payment: Yup.string().required('Plan is required'),
+        notification: Yup.string().required('notification is required'),
     });
 
     const initiateLogin = async (
@@ -33,6 +35,7 @@ export default function StepFive({ data, page, setPage, setData }: any) {
         { setSubmitting, resetForm }: any
     ) => {
         try {
+            setAmount2(amountResult)
             // Include the role_id based on userType
             setData({ ...data, ...values, phone: phoneNumber, });
             setPage(5);
@@ -49,11 +52,12 @@ export default function StepFive({ data, page, setPage, setData }: any) {
                 UsersPlan[data.plan][730]
 
         const result = data.type === "daily" ? 1 : data.type === "weekly" ? 7 : 30
-        return result*amount
+        return result * amount
     }
 
     return (
         <Center flexDir='column'>
+            {amount2 && amount2 !== 0 ? <ReferralPaymentFlutterwave id={data.email} user={data} amount={amount2} setDisplay={setAmount2} onClose={() => onClose()} /> : ""}
             <Box
                 paddingLeft={['10px']}
                 w="full"
@@ -75,16 +79,16 @@ export default function StepFive({ data, page, setPage, setData }: any) {
                                 </p>
                                 <Box w='full' mt='44px'>
                                     <CustomInput
-                                        label='Do you want to be automatically Charged'
-                                        name='duration'
+                                        label='Form of notification'
+                                        name='notification'
                                         fieldProps={{ type: 'select' }}
                                         typeInput=''
                                         type='select'
                                         value=''
                                     >
                                         <>
-                                            <option value={1}>Yes</option>
-                                            <option value={2}>No</option>
+                                            <option value={1}>Email</option>
+                                            <option value={2}>SMS</option>
                                         </>
                                     </CustomInput>
                                 </Box>
