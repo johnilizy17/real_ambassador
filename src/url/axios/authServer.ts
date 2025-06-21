@@ -10,4 +10,4 @@ const authInstance = axios.create({
 });
 
 
-export default authInstance;
+export default authInstance
