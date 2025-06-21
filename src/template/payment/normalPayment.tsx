@@ -22,7 +22,7 @@ export default function NormalPaymentFlutterwave({
     const showToast = useCustomToast();
 
     async function PaymentActivation() {
-        // const status = amount === 5100 ? 2 : amount === 15350 ? 3 : 4
+        // const status = amount === 5000 ? 2 : amount === 15000 ? 3 : 4
         // await userActive({ email: user.email, payment: status, amount: amount })
         showToast("Subscription successful", "success")
         setDisplay(false);

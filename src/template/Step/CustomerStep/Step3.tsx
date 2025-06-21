@@ -60,7 +60,7 @@ export default function StepThree({ data, VerificationApi, disable, page, setPag
             // Include the role_id based on userType
             showMassage('Account successfully created', 'info');
         }
-            setAmount(5100);
+            setAmount(5000);
             setSubmitting(true);
             VerificationApi()
         } catch (error: any) {
@@ -92,7 +92,7 @@ export default function StepThree({ data, VerificationApi, disable, page, setPag
                             <>
                                 <Box color={COLORS.gray}>
                                     <p>
-                                        Registeration fee for saving small is {cashFormat(5100)}
+                                        Registeration fee for saving small is {cashFormat(5000)}
                                     </p>
                                 </Box>
                                 <Button mr={3} mt={8} colorScheme='blue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>

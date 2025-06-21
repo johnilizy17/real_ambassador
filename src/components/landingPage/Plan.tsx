@@ -32,7 +32,7 @@ export default function Plan() {
                                 <p>Up to 5% interest on any transaction the user makes
                                 </p>
                                 <Box w="full" textAlign={"start"}>
-                                    <li>Price:{cashFormat(5100)}</li>
+                                    <li>Price:{cashFormat(5000)}</li>
                                     <li>Refferal Earning: 15%</li>
                                     <li>Sub Earning: 15%</li>
                                     <li>Product Earning: 5%</li>
@@ -62,7 +62,7 @@ export default function Plan() {
                                 <p>Up to 10% interest on any transaction the user makes
                                 </p>
                                 <Box w="full" textAlign={"start"}>
-                                    <li>Price:{cashFormat(15350)}</li>
+                                    <li>Price:{cashFormat(15000)}</li>
                                     <li>Refferal Earning: 25%</li>
                                     <li>Sub Earning: 25%</li>
                                     <li>Product Earning: 10%</li>
@@ -92,7 +92,7 @@ export default function Plan() {
                                 <p>Up to 15% interest on any transaction the user makes
                                 </p>
                                 <Box w="full" textAlign={"start"}>
-                                    <li>Price:{cashFormat(25530)}</li>
+                                    <li>Price:{cashFormat(25000)}</li>
                                     <li>Refferal Earning: 40%</li>
                                     <li>Sub Earning: 40%</li>
                                     <li>Product Earning: 15%</li>
