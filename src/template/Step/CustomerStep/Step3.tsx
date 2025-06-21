@@ -42,24 +42,25 @@ export default function StepThree({ data, VerificationApi, disable, page, setPag
         { setSubmitting, resetForm }: any
     ) => {
         try {
-            let phoneNumber = data.phone;
-            if (
-                phoneNumber &&
-                (phoneNumber.startsWith('+') || phoneNumber.startsWith('0'))
-            ) {
-                phoneNumber = phoneNumber.slice(1);
-            }
-
-            if (!phoneNumber) {
-                showMassage('Please enter a proper phone number', 'warning');
-                return;
-            }
             setData({ ...data, ...values });
-            if(!disable){
-            await RegisterReferral({ ...data, phone: phoneNumber, ...values, role: "USER" })
-            // Include the role_id based on userType
-            showMassage('Account successfully created', 'info');
-        }
+            if (!disable) {
+                let phoneNumber = data.phone;
+                if (
+                    phoneNumber &&
+                    (phoneNumber.startsWith('+') || phoneNumber.startsWith('0'))
+                ) {
+                    phoneNumber = phoneNumber.slice(1);
+                }
+
+                if (!phoneNumber) {
+                    showMassage('Please enter a proper phone number', 'warning');
+                    return;
+                }
+
+                await RegisterReferral({ ...data, phone: phoneNumber, ...values, role: "USER" })
+                // Include the role_id based on userType
+                showMassage('Account successfully created', 'info');
+            }
             setAmount(5000);
             setSubmitting(true);
             VerificationApi()

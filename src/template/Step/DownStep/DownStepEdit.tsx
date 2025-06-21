@@ -1,7 +1,7 @@
 import { COLORS } from '@/layout/Theme';
 import { Box, Button, Modal, ModalFooter, Step, StepIndicator, Stepper, StepStatus } from '@chakra-ui/react';
 import { ShieldCheckIcon } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import StepOne from './Step1';
 import StepTwo from './Step2';
 import StepThree from './Step3';
@@ -12,7 +12,10 @@ export default function DownStepEdit({ onClose, VerificationApi, tx }: any) {
     const steps = [
         { title: "Registeration Fee" }
     ]
-    const [data, setData] = useState({...tx})
+    const [data, setData] = useState()
+    useEffect(() => {
+        setData(tx)
+    }, [])
     return (
         <>
             <Stepper index={wizardStep - 1}>
