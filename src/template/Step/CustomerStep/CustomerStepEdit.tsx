@@ -5,16 +5,19 @@ import React, { useState } from 'react';
 import StepOne from './Step1';
 import StepTwo from './Step2';
 import StepThree from './Step3';
+import StepFour from './Step4';
+import StepFive from './Step5';
 
-export default function DownStep({ onClose, VerificationApi }: any) {
+export default function CustomerStepEdit({ onClose, VerificationApi, tx }: any) {
 
     const [wizardStep, setWizardStep] = useState(1)
     const steps = [
-        { title: "Personal details" },
-        { title: "Contact Info" },
-        { title: "Registeration Fee" }
+        { title: "Registeration Fee" },
+        { title: "Subscribe" },
+        { title: "Payment Method" },
     ]
-    const [data, setData] = useState({})
+    const [data, setData] = useState({ plan: "Asa Plan", duration: 365, type: "daily", ...tx })
+
     return (
         <>
             <Stepper index={wizardStep - 1}>
@@ -32,14 +35,15 @@ export default function DownStep({ onClose, VerificationApi }: any) {
                 }
             </Stepper>
             <Box mt="10px">
-                <h1>{steps[wizardStep-1].title}</h1>
+                <h1>{steps[wizardStep - 1].title}</h1>
             </Box>
             {
-                wizardStep === 1 ? <StepOne setData={setData} page={wizardStep} setPage={setWizardStep} data={data} /> :
-                    wizardStep === 2 ?
-                        <StepTwo setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
+                wizardStep === 1 ?
+                    <StepThree onClose={onClose} VerificationApi={VerificationApi} disable={true} setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
+                    : wizardStep === 2 ?
+                        <StepFour setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
                         :
-                        <StepThree disable={false} onClose={onClose} VerificationApi={VerificationApi} setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
+                        <StepFive setData={setData} page={wizardStep} setPage={setWizardStep} data={data} onClose={onClose} />
             }
         </>
     )

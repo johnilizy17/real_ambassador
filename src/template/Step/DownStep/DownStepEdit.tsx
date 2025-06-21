@@ -6,15 +6,13 @@ import StepOne from './Step1';
 import StepTwo from './Step2';
 import StepThree from './Step3';
 
-export default function DownStep({ onClose, VerificationApi }: any) {
+export default function DownStepEdit({ onClose, VerificationApi, tx }: any) {
 
     const [wizardStep, setWizardStep] = useState(1)
     const steps = [
-        { title: "Personal details" },
-        { title: "Contact Info" },
         { title: "Registeration Fee" }
     ]
-    const [data, setData] = useState({})
+    const [data, setData] = useState({...tx})
     return (
         <>
             <Stepper index={wizardStep - 1}>
@@ -32,15 +30,9 @@ export default function DownStep({ onClose, VerificationApi }: any) {
                 }
             </Stepper>
             <Box mt="10px">
-                <h1>{steps[wizardStep-1].title}</h1>
+                <h1>{steps[wizardStep - 1].title}</h1>
             </Box>
-            {
-                wizardStep === 1 ? <StepOne setData={setData} page={wizardStep} setPage={setWizardStep} data={data} /> :
-                    wizardStep === 2 ?
-                        <StepTwo setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
-                        :
-                        <StepThree disable={false} onClose={onClose} VerificationApi={VerificationApi} setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
-            }
+            <StepThree onClose={onClose} VerificationApi={VerificationApi} disable={true} setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
         </>
     )
 }

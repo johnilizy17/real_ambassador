@@ -31,6 +31,11 @@ export default function UserDashboardAuth({ children }: any) {
 
 
     useEffect(() => {
+        if (!user) {
+            router.push("/auth/login")
+        } else if (!user.id) {
+            router.push("/auth/login")
+        }
         dispatch(getUserProfile("") as any)
         const fetchProfileAndOnboard = async () => {
             try {

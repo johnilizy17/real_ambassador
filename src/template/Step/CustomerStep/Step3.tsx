@@ -22,7 +22,7 @@ import ReferralPaymentFlutterwave from '@/template/payment/referralPayment';
 
 export const runtime = 'edge';
 
-export default function StepThree({ data, VerificationApi, page, setPage, setData, onClose }: any) {
+export default function StepThree({ data, VerificationApi, disable, page, setPage, setData, onClose }: any) {
 
     const router = useRouter();
     const [amount, setAmount] = useState(0);
@@ -55,9 +55,11 @@ export default function StepThree({ data, VerificationApi, page, setPage, setDat
                 return;
             }
             setData({ ...data, ...values });
+            if(!disable){
             await RegisterReferral({ ...data, phone: phoneNumber, ...values, role: "USER" })
             // Include the role_id based on userType
             showMassage('Account successfully created', 'info');
+        }
             setAmount(5100);
             setSubmitting(true);
             VerificationApi()

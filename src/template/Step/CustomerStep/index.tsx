@@ -44,7 +44,7 @@ export default function CustomerStep({ onClose, VerificationApi }: any) {
                     wizardStep === 2 ?
                         <StepTwo setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
                         : wizardStep === 3 ?
-                            <StepThree onClose={onClose} VerificationApi={VerificationApi} setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
+                            <StepThree disable={false} onClose={onClose} VerificationApi={VerificationApi} setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
                             : wizardStep === 4 ?
                                 <StepFour setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
                                 :
