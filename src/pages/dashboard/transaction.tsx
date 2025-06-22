@@ -32,6 +32,7 @@ export default function Dashboard() {
 
     async function DashboardUser() {
         const historyPeople = await referredTransaction()
+        console.log(history, "history")
         setHistory(historyPeople.transaction)
     }
 
@@ -57,7 +58,7 @@ export default function Dashboard() {
                     {history.length > 0.1 ?
                         <Box w="full" mt="40px">
                             <Box overflow="scroll" bg={COLORS.white}>
-                                <TableContainer display={["none", "none", "block"]} overflow="scroll">
+                                <TableContainer overflow="scroll">
                                     <Table size='sm' variant='striped' colorScheme='gray' >
                                         <Thead>
                                             <Tr h="75px">

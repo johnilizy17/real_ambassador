@@ -18,7 +18,7 @@ export default function CustomerStep({ onClose, VerificationApi }: any) {
         { title: "Subscribe" },
         { title: "Payment Method" },
     ]
-    const [data, setData] = useState({ plan: "Asa Plan", duration: 365, type: "daily" })
+    const [data, setData] = useState({ plan: "", duration: 365, type: "" })
 
     return (
         <>

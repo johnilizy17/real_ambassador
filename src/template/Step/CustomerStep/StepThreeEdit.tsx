@@ -22,7 +22,7 @@ import ReferralPaymentFlutterwave from '@/template/payment/referralPayment';
 
 export const runtime = 'edge';
 
-export default function StepThree({ data, VerificationApi, page, disable, setPage, setData, onClose }: any) {
+export default function StepThreeEdit({ data, VerificationApi, disable, page, setPage, setData, onClose }: any) {
 
     const router = useRouter();
     const [amount, setAmount] = useState(0);
@@ -30,7 +30,6 @@ export default function StepThree({ data, VerificationApi, page, disable, setPag
 
     // Adjust validation schema based on userType
     const validationSchema = Yup.object({
-        type: Yup.string().required('Type is required'),
     });
 
     function refreshData() {
@@ -43,7 +42,6 @@ export default function StepThree({ data, VerificationApi, page, disable, setPag
         { setSubmitting, resetForm }: any
     ) => {
         try {
-
             setData({ ...data, ...values });
             if (!disable) {
                 let phoneNumber = data.phone;
@@ -58,24 +56,15 @@ export default function StepThree({ data, VerificationApi, page, disable, setPag
                     showMassage('Please enter a proper phone number', 'warning');
                     return;
                 }
-                await RegisterReferral({ ...data, phone: phoneNumber, ...values, role: "USERAMBASSADOR" })
+
+                await RegisterReferral({ ...data, phone: phoneNumber, ...values, role: "USER" })
+                // Include the role_id based on userType
                 showMassage('Account successfully created', 'info');
             }
-            console.log("try")
-            // Include the role_id based on userType
-            if (values.type === '1') {
-                setAmount(5000);
-            }
-            else if (values.type === '2') {
-                setAmount(15000);
-            } else if (values.type === '3') {
-                setAmount(25000);
-            }
-            // onClose(false)
+            setAmount(5000);
             setSubmitting(true);
             VerificationApi()
         } catch (error: any) {
-            console.log(error, "error response")
             showMassage(error.response.data.message, "error")
         } finally {
             setSubmitting(false);
@@ -90,7 +79,7 @@ export default function StepThree({ data, VerificationApi, page, disable, setPag
                 paddingRight={['10px']}
                 pos='relative'
             >
-                {amount && amount !== 0 ? <ReferralPaymentFlutterwave id={data.email} user={data} amount={amount} setDisplay={setAmount} onClose={refreshData} /> : ""}
+                {amount && amount !== 0 ? <ReferralPaymentFlutterwave id={data.email} user={data} amount={amount} setDisplay={setAmount} onClose={() => setPage(4)} /> : ""}
 
                 <Formik
                     initialValues={{ type: "" }}
@@ -102,23 +91,11 @@ export default function StepThree({ data, VerificationApi, page, disable, setPag
                             {/* Conditionally render name fields based on userType */}
 
                             <>
-                                <Box w='full' mt='44px'>
-                                    <CustomInput
-                                        label='Subscription'
-                                        name='type'
-                                        type={"select"}
-                                        placeholder='Enter your subscription'
-                                        value={values.type}
-                                    >
-                                        <option value='1'>Tier 1 {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
-                                        <option value='2'>Tier 2 {"(" + cashFormat(15000) + " " + "percentage shares 10%" + ")"}</option>
-                                        <option value='3'>Tier 3 {"(" + cashFormat(25000) + " " + "percentage shares 15%" + ")"}</option>
-                                    </CustomInput>
+                                <Box color={COLORS.gray}>
+                                    <p>
+                                        Registeration fee for saving small is {cashFormat(5000)}
+                                    </p>
                                 </Box>
-
-                                <Button mr={3} mt={8} colorScheme='blue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
-                                    Back
-                                </Button>
                                 <Button mt={8} colorScheme='green' isLoading={isSubmitting} isDisabled={isSubmitting} type={"submit"}>
                                     Next
                                 </Button>

@@ -10,7 +10,7 @@ import {
     useToast,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import CustomInput from '@/components/CustomInput/CustomInput';
@@ -47,12 +47,13 @@ export default function StepFive({ data, page, setPage, setData, onClose }: any)
     };
 
     const amountResult = () => {
-        const amount = data.duration === 356 ? UsersPlan[data.plan][356] :
-            data.duration === 546 ? UsersPlan[data.plan][546] :
-                UsersPlan[data.plan][730]
-
+        const amount = data.duration === 365 ? UsersPlan[data.plan][365] : data.duration === 548 ? UsersPlan[data.plan][548] : UsersPlan[data.plan][730]
+        if(data.type === "instant"){
+        return  UsersPlan[data.plan].total
+        }else{
         const result = data.type === "daily" ? 1 : data.type === "weekly" ? 7 : 30
         return result * amount
+        }
     }
 
     return (
@@ -71,8 +72,6 @@ export default function StepFive({ data, page, setPage, setData, onClose }: any)
                 >
                     {({ isSubmitting, handleChange }) => (
                         <Form>
-                            {/* Conditionally render name fields based on userType */}
-
                             <>
                                 <p>
                                     You are subscribing to {UsersPlan[data.plan].name} which is for {data.duration} days and you will be charge {cashFormat(amountResult())} every {data.type}
@@ -87,6 +86,7 @@ export default function StepFive({ data, page, setPage, setData, onClose }: any)
                                         value=''
                                     >
                                         <>
+                                            <option value={""}>Alert Form</option>
                                             <option value={1}>Email</option>
                                             <option value={2}>SMS</option>
                                         </>
