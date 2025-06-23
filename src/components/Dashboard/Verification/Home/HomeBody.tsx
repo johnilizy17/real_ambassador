@@ -109,7 +109,7 @@ export default function VerificationBody() {
                         Hi {user.firstName || 'there'},
                     </Box>
                     <Box pl="20px" marginTop="8px" fontWeight="400" color={COLORS.grey} fontSize={["13px", "13px", "13px", "14px"]}>
-                        Enjoy becoming a millionary with ABN
+                        Enjoy becoming a millionaire with ABN
                     </Box>
                     <Center justifyContent="start" p="20px" pt="10px">
                         <Avatar
