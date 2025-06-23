@@ -59,7 +59,7 @@ export default function ForgotPassword() {
           );
         });
     } catch (error: any) {
-      showToast(error.response?.data?.message || 'An error occurred', 'error');
+      showToast( 'Email does not exist', 'error');
     } finally {
       setSubmitting(false);
     }
