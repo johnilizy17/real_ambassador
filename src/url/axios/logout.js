@@ -1,5 +1,5 @@
 import axios from "axios";
-let baseURL = "http://127.0.0.1:8787/v1/";
+let baseURL = "https://farm.johnabrahamtosin.workers.dev/v1/";
 
 const authLogout = () => fetch(`${baseURL}auth/logout`, {
   method: 'POST',

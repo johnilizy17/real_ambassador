@@ -48,6 +48,7 @@ export default function AccountNumber() {
 
     async function Balance() {
         const result = await referredBalance()
+        console.log(result, "result")
         setAmount(result)
         const account = await generateAccount({ ...user, amount:0, name:`${user.lastName},${user.firstName}` })
         setWallet(account.data)

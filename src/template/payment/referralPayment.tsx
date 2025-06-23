@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import AccountGeneration from "./Account";
+import WalletSelection from "./WalletSelection";
 
 export default function ReferralPaymentFlutterwave({
     amount,
@@ -22,16 +23,22 @@ export default function ReferralPaymentFlutterwave({
 
     const router = useRouter()
     const showToast = useCustomToast();
-    const [select, setSelect] = useState(false)
+    const [select, setSelect] = useState(true)
 
     async function PaymentActivation() {
-        showToast("Subscription successful", "success")
+        showToast("Payment successful", "success")
         setDisplay(false);
         onClose()
         closePaymentModal();
     }
 
     return (
-        <AccountGeneration closingApi={() => setDisplay(false)} paymentApi={() => PaymentActivation()} data={{ ...user, amount: amount, name: user.lastName + "," + user.firstName }} />
+        <>
+            {select ?
+                <WalletSelection closingApi={() => setDisplay(false)} paymentApi={() => PaymentActivation()} data={{ ...user, amount: amount, name: user.lastName + "," + user.firstName }} setNext={setSelect} />
+                :
+                <AccountGeneration closingApi={() => setDisplay(false)} paymentApi={() => PaymentActivation()} data={{ ...user, amount: amount, name: user.lastName + "," + user.firstName }} />
+            }
+        </>
     )
 }

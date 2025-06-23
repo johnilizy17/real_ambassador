@@ -17,6 +17,8 @@ import CustomInput from '@/components/CustomInput/CustomInput';
 import { UsersPlan } from '@/utils/constants';
 import { cashFormat } from '@/utils/cashformat';
 import ReferralPaymentFlutterwave from '@/template/payment/referralPayment';
+import useCustomToast from '@/hooks/useCustomToast';
+import { createSubUsers } from '@/url/api\'s/organization';
 
 export const runtime = 'edge';
 
@@ -24,6 +26,7 @@ export default function StepFive({ data, page, setPage, setData, onClose }: any)
     const [phoneNumber, setPhoneNumber] = useState(data.phone);
     const [amount2, setAmount2] = useState(0);
     const router = useRouter();
+    const showMessage = useCustomToast()
 
     // Adjust validation schema based on userType
     const validationSchema = Yup.object({
@@ -35,12 +38,29 @@ export default function StepFive({ data, page, setPage, setData, onClose }: any)
         { setSubmitting, resetForm }: any
     ) => {
         try {
-            setAmount2(amountResult)
-            // Include the role_id based on userType
+            // setAmount2(amountResult)
+            const valueData = UsersPlan[data.plan]
+            // Include the role_id based on userType 
+            const computedAmount = amountResult()
+
+            const computedDuration = data.type === "daily" ? data.duration : data.type === "weekly" ? Math.round(data.duration / 7) : Math.round(data.duration / 30)
+
+            const payload = {
+                amount: computedAmount,
+                subId: computedDuration,
+                savingsId: JSON.stringify(UsersPlan[data.plan]),
+                interval: data.type,
+                duration: data.duration,
+                email: data.email
+            };
+            await createSubUsers(payload)
             setData({ ...data, ...values, phone: phoneNumber, });
+            showMessage("Subscription Successfully created", "success")
             setPage(5);
+            onClose()
             setSubmitting(true);
         } catch (error: any) {
+            showMessage(error.response.data.message, "error")
         } finally {
             setSubmitting(false);
         }
@@ -48,17 +68,21 @@ export default function StepFive({ data, page, setPage, setData, onClose }: any)
 
     const amountResult = () => {
         const amount = data.duration === 365 ? UsersPlan[data.plan][365] : data.duration === 548 ? UsersPlan[data.plan][548] : UsersPlan[data.plan][730]
-        if(data.type === "instant"){
-        return  UsersPlan[data.plan].total
-        }else{
-        const result = data.type === "daily" ? 1 : data.type === "weekly" ? 7 : 30
-        return result * amount
+        if (data.type === "instant") {
+            return UsersPlan[data.plan].total
+        } else {
+            const result = data.type === "daily" ? 1 : data.type === "weekly" ? 7 : 30
+            return result * amount
         }
     }
 
+    useEffect(() => {
+        console.log(data, "data")
+    }, [])
+
     return (
         <Center flexDir='column'>
-            {amount2 && amount2 !== 0 ? <ReferralPaymentFlutterwave id={data.email} user={data} amount={amount2} setDisplay={setAmount2} onClose={() => onClose()} /> : ""}
+            {/* {amount2 && amount2 !== 0 ? <ReferralPaymentFlutterwave id={data.email} user={data} amount={amount2} setDisplay={setAmount2} onClose={() => onClose()} /> : ""} */}
             <Box
                 paddingLeft={['10px']}
                 w="full"

@@ -116,7 +116,7 @@ export const deleteUserData = async (userId: string) => {
 
 //cross-worker request, this makes use of internal cloudflare request handling and makes it not subjected to external cors and handling. Check out cloudflare service binding
 export const getNotifications = async (userId: string) => {
-    const data = await fetch(`http://127.0.0.1:8787/v1/user/${userId}/notifications`);
+    const data = await fetch(`https://farm.johnabrahamtosin.workers.dev/v1/user/${userId}/notifications`);
     if (!data.ok) {
         const errorData: any = await data.json().catch(() => ({ message: 'Unable to parse response' }));
         throw new Error(`HTTP error! status: ${data.status}, message: ${errorData.message || 'Unknown error'}`);

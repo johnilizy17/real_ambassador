@@ -53,7 +53,7 @@ export default function UserDashboardAuth({ children }: any) {
         fetchProfileAndOnboard();
         // setTimeout(() => {
         //     setReload(!reload)
-        // }, 3000)
+        // }, 10000)
     }, [reload]); // Run only once on mount
 
     return (
