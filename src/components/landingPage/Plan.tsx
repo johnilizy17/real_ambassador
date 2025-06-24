@@ -35,7 +35,7 @@ export default function Plan() {
                                     <li>Price:{cashFormat(5000)}</li>
                                     <li>Refferal Earning: 15%</li>
                                     <li>Sub Earning: 15%</li>
-                                    <li>Product Earning: 5%</li>
+                                    <li>Product Earning: 2.5%</li>
                                     <li>Refferal stages: 1</li>
                                 </Box>
                             </div>
@@ -65,7 +65,7 @@ export default function Plan() {
                                     <li>Price:{cashFormat(15000)}</li>
                                     <li>Refferal Earning: 25%</li>
                                     <li>Sub Earning: 25%</li>
-                                    <li>Product Earning: 10%</li>
+                                    <li>Product Earning: 5%</li>
                                     <li>Refferal stages: 2{"(30%, 15%)"}</li>
                                 </Box>
                             </div>
@@ -95,7 +95,7 @@ export default function Plan() {
                                     <li>Price:{cashFormat(25000)}</li>
                                     <li>Refferal Earning: 40%</li>
                                     <li>Sub Earning: 40%</li>
-                                    <li>Product Earning: 15%</li>
+                                    <li>Product Earning: 10%</li>
                                     <li>Refferal stages: 4{"(40%, 20%, 10%, 5%)"}</li>
                                 </Box>
                             </div>
