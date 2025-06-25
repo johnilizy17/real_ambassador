@@ -47,11 +47,11 @@ export default function AccountNumber() {
     const [amount, setAmount] = useState(0)
 
     async function Balance() {
+        const account = await generateAccount({ ...user, amount:0, name:`${user.lastName},${user.firstName}` })
+        setWallet(account.data)
         const result = await referredBalance()
         console.log(result, "result")
         setAmount(result)
-        const account = await generateAccount({ ...user, amount:0, name:`${user.lastName},${user.firstName}` })
-        setWallet(account.data)
     }
 
     useEffect(() => {

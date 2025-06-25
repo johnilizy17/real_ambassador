@@ -54,18 +54,19 @@ userFileUpload.interceptors.request.use(
 userRequest.interceptors.response.use(
   (response) => response,
   async (error) => {
+  
     const originalRequest = error.config;
 
     // If 401 and not retried yet
-    // if (error.response.data?.statusCode=== 401 && !originalRequest._retry) {
-    //   if (refreshAttempted) {
-    //     handleLogout(); // Logout after one failed refresh
-    //     return Promise.reject(error);
-    //   }
+    if (error.response.data?.statusCode=== 401 && !originalRequest._retry) {
+      if (refreshAttempted) {
+        handleLogout(); // Logout after one failed refresh
+        return Promise.reject(error);
+      }
 
-    //   originalRequest._retry = true;
-    //   refreshAttempted = true;
-
+      originalRequest._retry = true;
+      refreshAttempted = true;
+    }
     //   try {
     //     const refreshToken = getRefreshToken();
     //     if (!refreshToken) throw new Error('No refresh token available');
