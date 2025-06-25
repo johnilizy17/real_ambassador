@@ -135,25 +135,32 @@ export default function VerificationBody() {
                         </Box>
                     </Center>
                 </Card>
-                <Flex mt="20px" mb="20px" display={["flex", "flex", "flex", "none"]} justifyContent={"flex-end"}><Button colorScheme='blue' mr="10px" bg={COLORS.blue}
-                    onClick={() => router.push("https://www.abn.com.ng/")}
-                >
-                    <Box>
-                        <Box>
-                            Buy and Sell
-                        </Box>
-                        <Box fontSize={"7px"} textDecor={"underline"}>
-                            properties
-                        </Box>
-                    </Box>
-                </Button><Button colorScheme='green' bg={COLORS.green} onClick={() => router.push("https://www.pay.abn.com.ng/")}>  <Box>
-                    <Box>
-                        Land Dey
-                    </Box>
-                    <Box fontSize={"7px"} textDecor={"underline"}>
-                        Pay small small
-                    </Box>
-                </Box></Button></Flex>
+                <Flex mt="20px" mb="20px" display={["flex", "flex", "flex", "none"]} justifyContent={"flex-end"}>
+                    <a href="https://www.abn.com.ng/">
+                        <Button colorScheme='blue' mr="10px" bg={COLORS.blue}
+                        >
+                            <Box>
+                                <Box>
+                                    Buy and Sell
+                                </Box>
+                                <Box fontSize={"7px"} textDecor={"underline"}>
+                                    properties
+                                </Box>
+                            </Box>
+                        </Button>
+                    </a>
+                    <a href="https://www.pay.abn.com.ng/">
+                        <Button colorScheme='green' bg={COLORS.green}>
+                            <Box>
+                                <Box>
+                                    Land Dey
+                                </Box>
+                                <Box fontSize={"7px"} textDecor={"underline"}>
+                                    Pay small small
+                                </Box>
+                            </Box></Button>
+                    </a>
+                </Flex>
 
                 <Card mt="16px" p="10px" w={["full", "full", "full", "263px"]}>
                     <Img src="/images/Illustration.png" />
