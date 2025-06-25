@@ -10,12 +10,13 @@ export default function NormalPaymentFlutterwave({
     amount,
     id,
     setDisplay,
-    user = { email: "", firstName: "", lastName: "", phone: "", id: "" }
+    user = { email: "", firstName: "", lastName: "", phone: "", id: "", payment:amount }
 }: {
     amount: number;
     setDisplay: any;
     id: string;
-    user?: any
+    user?: any;
+    payment?: number;
 }) {
 
     const router = useRouter()
