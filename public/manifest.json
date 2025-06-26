@@ -1,7 +1,7 @@
 {
   "name": "ABN Partners",
   "short_name": "ABN Partner",
-  "start_url": "/",
+  "start_url": "/auth/login",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
