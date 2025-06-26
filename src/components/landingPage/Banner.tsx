@@ -1,13 +1,45 @@
 import { Box, Button, Center, Img } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { COLORS } from "../utils/theme";
 import { useSelector } from "react-redux";
+import useCustomToast from "@/hooks/useCustomToast";
 
 export default function Banner() {
 
     const { user } = useSelector((state: any) => state.auth);
     const router = useRouter();
+    const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+    const showMessage = useCustomToast()
+    const [showInstallButton, setShowInstallButton] = useState(false);
+
+    useEffect(() => {
+        const handler = (e: any) => {
+            e.preventDefault();
+            setDeferredPrompt(e);
+            setShowInstallButton(true);
+        };
+
+        window.addEventListener('beforeinstallprompt', handler);
+
+        return () => {
+            window.removeEventListener('beforeinstallprompt', handler);
+        };
+    }, []);
+
+
+    const handleInstallClick = async () => {
+        console.log(deferredPrompt)
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                showMessage('App installed', "success");
+            }
+            setDeferredPrompt(null);
+            setShowInstallButton(false);
+        }
+    };
 
     return (
         <>
@@ -24,9 +56,9 @@ export default function Banner() {
                             In today’s fast-paced digital world, your marketing skills are more powerful than ever. Whether you're an entrepreneur, freelancer, or career professional, knowing how to promote, position, and persuade can give you a serious competitive edge.
                         </p>
                     </Box>
-                    {user && user.id ? <Button onClick={()=>router.push("/dashboard")} mt="30px" color={COLORS.blue} colorScheme="whiteAlpha" bg="#fff" h="50px" w="300px">
+                    {user && user.id ? <Button onClick={() => router.push("/dashboard")} mt="30px" color={COLORS.blue} colorScheme="whiteAlpha" bg="#fff" h="50px" w="300px">
                         Dashboard
-                    </Button> : <Button onClick={()=>router.push("/auth/signup")} mt="30px" color="white" colorScheme="yellow" bg="#FFAA01" h="50px" w="300px">
+                    </Button> : <Button onClick={() => router.push("/auth/signup")} mt="30px" color="white" colorScheme="yellow" bg="#FFAA01" h="50px" w="300px">
                         Get Started
                     </Button>}
                 </Center>
@@ -36,17 +68,17 @@ export default function Banner() {
                 <Center p="30px" flexDir={"column"}>
                     <Box pb="20px" color="#000"> Install in your Device</Box>
                     <Center>
-                        <Button _hover={{ backgroundImage: "/phone/play.png" }} bgImage={"/phone/play.png"} bgSize={"cover"} h="50px" w={["150px", "150px"]}>
+                        <Button onClick={handleInstallClick} _hover={{ backgroundImage: "/phone/play.png" }} bgImage={"/phone/play.png"} bgSize={"cover"} h="50px" w={["150px", "150px"]}>
 
                         </Button>
-                        <Button _hover={{ backgroundImage: "/phone/apple.png" }} bgImage={"/phone/apple.png"} bgSize={"cover"} ml="20px" h="50px" w={["150px", "150px"]}>
+                        <Button onClick={handleInstallClick} _hover={{ backgroundImage: "/phone/apple.png" }} bgImage={"/phone/apple.png"} bgSize={"cover"} ml="20px" h="50px" w={["150px", "150px"]}>
 
                         </Button>
                     </Center>
                 </Center>
                 <Img pos="absolute" right="0px" bottom="0px" display={["none", "none", "none", "flex"]} src="/phone/2.png" />
             </Center>
-            <Center display={["flex","flex","flex","none"]}>
+            <Center display={["flex", "flex", "flex", "none"]}>
                 <Img src="/phone/3.png" alt="ios" />
             </Center>
         </>
