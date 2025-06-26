@@ -38,6 +38,8 @@ export default function Banner() {
             }
             setDeferredPrompt(null);
             setShowInstallButton(false);
+        } else {
+            showMessage('You have already installed ABN Partners', "info");
         }
     };
 
