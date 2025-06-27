@@ -65,7 +65,7 @@ export default function Withdraw({ onClose }: { onClose: any }) {
             setShowPassword(false)
         } catch (error: any) {
             setSubmitting(false);
-            setDetails(error.response.data.message)
+            setDetails("Incorrect account")
             setShowPassword(true)
         }
     };
@@ -78,7 +78,7 @@ export default function Withdraw({ onClose }: { onClose: any }) {
             showMessage("Withdrawal Successful", "success")
             setLoading(false);
         } catch (error: any) {
-            showMessage(error.response.data.message, "error")
+            showMessage("Failed to withdraw", "error")
             setLoading(false);
         }
     };
