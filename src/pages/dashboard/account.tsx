@@ -45,7 +45,7 @@ export default function AccountNumber() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [wallet, setWallet] = useState({ account_number: "", bank_name: "" })
-    const { user } = useSelector((a: { auth:{ user: any }}) => a.auth)
+    const { user } = useSelector((a: { auth: { user: any } }) => a.auth)
     const [amount, setAmount] = useState(0)
     const showMessage = useCustomToast();
 
@@ -128,7 +128,7 @@ export default function AccountNumber() {
                             <VStack align="start" spacing={0}>
                                 <Text fontWeight="bold">{wallet.account_number}</Text>
                                 <Text fontSize="sm" color="gray.500">{wallet.bank_name}</Text>
-                                <Text fontSize="sm" color="gray.500">{user.firstName}, {user.lastName}</Text>
+                                <Text fontSize="sm" color="gray.500">{user && user.firstName && user.firstName}, {user && user.firstName && user.lastName}</Text>
                             </VStack>
                         </HStack>
                         <CopyCheckIcon />
