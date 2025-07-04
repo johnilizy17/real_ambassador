@@ -30,7 +30,7 @@ export const NavDataUser = [
         type: 3
     },
     {
-        item: "Account",
+        item: "Wallet",
         nav: "/dashboard/account",
         type: 4,
         svg: (
