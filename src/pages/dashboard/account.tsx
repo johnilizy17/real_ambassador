@@ -45,7 +45,7 @@ export default function AccountNumber() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [wallet, setWallet] = useState({ account_number: "", bank_name: "" })
-    const { user } = useSelector((a: any) => a.auth)
+    const { user } = useSelector((a: { auth:{ user: any }}) => a.auth)
     const [amount, setAmount] = useState(0)
     const showMessage = useCustomToast();
 
