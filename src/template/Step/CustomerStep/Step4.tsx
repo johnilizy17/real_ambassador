@@ -26,7 +26,6 @@ export default function StepFour({ data, page, setPage, setData }: any) {
     // Adjust validation schema based on userType
     const validationSchema = Yup.object({
         plan: Yup.string().required('Plan is required'),
-        duration: Yup.string().required('Duration is required'),
         type: Yup.string().required('Type is required')
     });
 
@@ -36,7 +35,8 @@ export default function StepFour({ data, page, setPage, setData }: any) {
     ) => {
         try {
             // Include the role_id based on userType
-            setData({ ...data, ...values, phone: phoneNumber, });
+            const type = values.type === "instant" ? 1 : values.type === "" ? 365 : values.duration
+            setData({ ...data, ...values, phone: phoneNumber, duration: type });
             setPage(5);
             setSubmitting(true);
         } catch (error: any) {
@@ -58,7 +58,7 @@ export default function StepFour({ data, page, setPage, setData }: any) {
                     onSubmit={initiateLogin}
                     validationSchema={validationSchema}
                 >
-                    {({ isSubmitting, handleChange }) => (
+                    {({ isSubmitting, handleChange, values }) => (
                         <Form>
                             {/* Conditionally render name fields based on userType */}
 
@@ -73,12 +73,12 @@ export default function StepFour({ data, page, setPage, setData }: any) {
                                         value=''
                                     >
                                         <>
-                                        <option value={""}>Select Name</option>
-                                            {UsersPlan.map((a: { name: string, total: number }, b: number) => (<option value={b}>{a.name} - {cashFormat(a.total)}</option>))}
+                                            <option value={""}>Select Name</option>
+                                            {UsersPlan.map((a: { name: string, total: number }, b: number) => (<option value={b}>{a.name}</option>))}
                                         </>
                                     </CustomInput>
                                 </Box>
-                                <Box w='full' mt='44px'>
+                                {values.type != "instant" && <Box w='full' mt='44px'>
                                     <CustomInput
                                         label='Plan Duration'
                                         name='duration'
@@ -89,12 +89,12 @@ export default function StepFour({ data, page, setPage, setData }: any) {
                                     >
                                         <>
                                             <option value={""}>Select Duration</option>
-                                             <option value={365}>365 DAYS</option>
+                                            <option value={365}>365 DAYS</option>
                                             <option value={548}>548 DAYS</option>
                                             <option value={730}>730 DAYS</option>
                                         </>
                                     </CustomInput>
-                                </Box>
+                                </Box>}
                                 <Box w='full' mt='44px'>
                                     <CustomInput
                                         label='Plan Duration'
@@ -106,6 +106,7 @@ export default function StepFour({ data, page, setPage, setData }: any) {
                                     >
                                         <>
                                             <option value={""}>Select Interval</option>
+                                            <option value={"instant"}>Instant</option>
                                             <option value={"daily"}>Daily</option>
                                             <option value={"weekly"}>Weekly</option>
                                             <option value={"monthly"}>Monthly</option>
