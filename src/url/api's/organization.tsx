@@ -44,6 +44,16 @@ export const referredBalance = async () => {
     }
 }
 
+export const walletPayment = async (payload : any) => {
+    const { data } = await userRequest.post(`/wallet/registeration/payment`, payload);
+    return data
+}
+
+export const createSubUsers = async (payload : any) => {
+    const { data } = await userRequest.post(`/sub/create/referral`, payload);
+    return data
+}
+
 export const getgainVerificationAddresses = async (status: string) => {
     try {
         const { data } = await server.get(`/org/verification/request/${status}`);

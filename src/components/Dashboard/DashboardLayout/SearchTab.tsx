@@ -54,7 +54,7 @@ const defaultOptions = {
 
 export default function SearchTab() {
     const [notification, setNotification] = useState(false);
-    const { user } = useSelector((state: { auth: { user: { user_id: string, lastname?: string, firstname?: string } } }) => state.auth);
+    const { user } = useSelector((state: { auth: { user: { user_id: string, lastName?: string, firstName?: string } } }) => state.auth);
     const [notificationsData, setNotificationsData] = useState<Notification[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -210,14 +210,14 @@ export default function SearchTab() {
                                 <Center ml="20px">
                                     <Center borderRadius={"50px"} height="40px" w="40px" mr="10px" overflow="hidden">
                                         <Avatar
-                                            name={user?.firstname || "User"}
+                                            name={user?.firstName || "User"}
                                             size="xl" // 'xl' roughly corresponds to 60px
                                             borderRadius="full"
                                         />
                                     </Center>
                                     <Box>
                                         <Box fontWeight="500" fontSize="14px">
-                                            {user?.lastname}
+                                            {user?.lastName}
                                         </Box>
                                         <Box fontWeight="800" color="green" fontSize="12px">
                                             Profiles

@@ -73,6 +73,7 @@ export default function StepFour({ data, page, setPage, setData }: any) {
                                         value=''
                                     >
                                         <>
+                                        <option value={""}>Select Name</option>
                                             {UsersPlan.map((a: { name: string, total: number }, b: number) => (<option value={b}>{a.name} - {cashFormat(a.total)}</option>))}
                                         </>
                                     </CustomInput>
@@ -87,9 +88,10 @@ export default function StepFour({ data, page, setPage, setData }: any) {
                                         value=''
                                     >
                                         <>
-                                            <option value={365}>365 DAYS</option>
+                                            <option value={""}>Select Duration</option>
+                                             <option value={365}>365 DAYS</option>
                                             <option value={548}>548 DAYS</option>
-                                            <option value={750}>750 DAYS</option>
+                                            <option value={730}>730 DAYS</option>
                                         </>
                                     </CustomInput>
                                 </Box>
@@ -103,6 +105,7 @@ export default function StepFour({ data, page, setPage, setData }: any) {
                                         value=''
                                     >
                                         <>
+                                            <option value={""}>Select Interval</option>
                                             <option value={"daily"}>Daily</option>
                                             <option value={"weekly"}>Weekly</option>
                                             <option value={"monthly"}>Monthly</option>

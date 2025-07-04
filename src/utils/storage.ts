@@ -18,8 +18,18 @@ export const STORAGE = {
   },
   get: (key: string) => {
     if (typeof window === "undefined") return null;
-    const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : null;
+    const value: any = localStorage.getItem(key);
+    let result
+    if (value !== null && value !== undefined && value !== "undefined") {
+      try {
+        result = JSON.parse(value);
+      } catch (e) {
+        result = null;
+      }
+    } else {
+      result = null;
+    }
+    return result
   },
   remove: (key: string) => {
     localStorage.removeItem(key);

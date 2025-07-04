@@ -31,7 +31,6 @@ export default function VerificationBanner() {
 
         return (
             <Modal isOpen={isOpen} onClose={onClose} isCentered>
-                <ModalOverlay />
                 <ModalContent h="auto" w={["300px", "300px", "300px", "504px"]}>
                     <ModalHeader justifyContent="center" fontSize="20px" fontWeight="500" alignItems="center">Withdraw Money</ModalHeader>
                     <ModalBody w="full">
@@ -45,6 +44,25 @@ export default function VerificationBanner() {
     return (
         <>
             <Box pr="20px" pl="20px">
+                <Flex display={["none","none","none","flex"]} justifyContent={"flex-end"}><Button colorScheme='blue' mr="10px" bg={COLORS.blue}
+                    onClick={() => router.push("https://www.abn.com.ng/")}
+                >
+                    <Box>
+                        <Box>
+                            Buy and Sell
+                        </Box>
+                        <Box fontSize={"7px"} textDecor={"underline"}>
+                            properties
+                        </Box>
+                    </Box>
+                </Button><Button colorScheme='green' bg={COLORS.green} onClick={() => router.push("https://www.pay.abn.com.ng/")}>  <Box>
+                    <Box>
+                        Land Dey
+                    </Box>
+                    <Box fontSize={"7px"} textDecor={"underline"}>
+                        Pay small small
+                    </Box>
+                </Box></Button></Flex>
                 <Center justifyContent="space-between" w="full" h={["auto", "auto", "auto", "129px"]} mt="16px" bg={COLORS.blue} borderRadius="8px" flexDir={["column-reverse", "column-reverse", "column-reverse", "row"]} pl="10px" pr="20px">
                     <Center>
                         <Img src="/images/money.png" />
@@ -74,7 +92,7 @@ export default function VerificationBanner() {
                     </Flex>
                 </Center>
                 <VerificationCard />
-                <VerificationDashboardTable />
+                {/* <VerificationDashboardTable /> */}
                 <WithdrawComponent />
             </Box>
         </>

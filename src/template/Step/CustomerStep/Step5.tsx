@@ -10,22 +10,27 @@ import {
     useToast,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import CustomInput from '@/components/CustomInput/CustomInput';
 import { UsersPlan } from '@/utils/constants';
 import { cashFormat } from '@/utils/cashformat';
+import ReferralPaymentFlutterwave from '@/template/payment/referralPayment';
+import useCustomToast from '@/hooks/useCustomToast';
+import { createSubUsers } from '@/url/api\'s/organization';
 
 export const runtime = 'edge';
 
-export default function StepFive({ data, page, setPage, setData }: any) {
+export default function StepFive({ data, page, setPage, setData, onClose }: any) {
     const [phoneNumber, setPhoneNumber] = useState(data.phone);
+    const [amount2, setAmount2] = useState(0);
     const router = useRouter();
+    const showMessage = useCustomToast()
 
     // Adjust validation schema based on userType
     const validationSchema = Yup.object({
-        payment: Yup.string().required('Plan is required'),
+        notification: Yup.string().required('notification is required'),
     });
 
     const initiateLogin = async (
@@ -33,27 +38,51 @@ export default function StepFive({ data, page, setPage, setData }: any) {
         { setSubmitting, resetForm }: any
     ) => {
         try {
-            // Include the role_id based on userType
+            // setAmount2(amountResult)
+            const valueData = UsersPlan[data.plan]
+            // Include the role_id based on userType 
+            const computedAmount = amountResult()
+
+            const computedDuration = data.type === "daily" ? data.duration : data.type === "weekly" ? Math.round(data.duration / 7) : Math.round(data.duration / 30)
+
+            const payload = {
+                amount: computedAmount,
+                subId: computedDuration,
+                savingsId: JSON.stringify(UsersPlan[data.plan]),
+                interval: data.type,
+                duration: data.duration,
+                email: data.email
+            };
+            await createSubUsers(payload)
             setData({ ...data, ...values, phone: phoneNumber, });
+            showMessage("Subscription Successfully created", "success")
             setPage(5);
+            onClose()
             setSubmitting(true);
         } catch (error: any) {
+            showMessage(error.response.data.message, "error")
         } finally {
             setSubmitting(false);
         }
     };
 
     const amountResult = () => {
-        const amount = data.duration === 356 ? UsersPlan[data.plan][356] :
-            data.duration === 546 ? UsersPlan[data.plan][546] :
-                UsersPlan[data.plan][730]
-
-        const result = data.type === "daily" ? 1 : data.type === "weekly" ? 7 : 30
-        return result*amount
+        const amount = data.duration === 365 ? UsersPlan[data.plan][365] : data.duration === 548 ? UsersPlan[data.plan][548] : UsersPlan[data.plan][730]
+        if (data.type === "instant") {
+            return UsersPlan[data.plan].total
+        } else {
+            const result = data.type === "daily" ? 1 : data.type === "weekly" ? 7 : 30
+            return result * amount
+        }
     }
+
+    useEffect(() => {
+        console.log(data, "data")
+    }, [])
 
     return (
         <Center flexDir='column'>
+            {/* {amount2 && amount2 !== 0 ? <ReferralPaymentFlutterwave id={data.email} user={data} amount={amount2} setDisplay={setAmount2} onClose={() => onClose()} /> : ""} */}
             <Box
                 paddingLeft={['10px']}
                 w="full"
@@ -67,24 +96,23 @@ export default function StepFive({ data, page, setPage, setData }: any) {
                 >
                     {({ isSubmitting, handleChange }) => (
                         <Form>
-                            {/* Conditionally render name fields based on userType */}
-
                             <>
                                 <p>
                                     You are subscribing to {UsersPlan[data.plan].name} which is for {data.duration} days and you will be charge {cashFormat(amountResult())} every {data.type}
                                 </p>
                                 <Box w='full' mt='44px'>
                                     <CustomInput
-                                        label='Do you want to be automatically Charged'
-                                        name='duration'
+                                        label='Form of notification'
+                                        name='notification'
                                         fieldProps={{ type: 'select' }}
                                         typeInput=''
                                         type='select'
                                         value=''
                                     >
                                         <>
-                                            <option value={1}>Yes</option>
-                                            <option value={2}>No</option>
+                                            <option value={""}>Alert Form</option>
+                                            <option value={1}>Email</option>
+                                            <option value={2}>SMS</option>
                                         </>
                                     </CustomInput>
                                 </Box>

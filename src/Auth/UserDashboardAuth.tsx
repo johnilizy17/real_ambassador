@@ -1,4 +1,3 @@
-import { getUserProfile } from '@/url/api\'s/userProfile'
 import { organizationProfile } from '@/url/api\'s/organization'
 import { getVerificationOfficer } from '@/url/api\'s/verification'
 import { getCookie } from '@/url/variable'
@@ -10,12 +9,14 @@ import { Button, Center, Img, useDisclosure } from '@chakra-ui/react'
 import LottieLoader from "@/utils/LottieLoader";
 import Head from 'next/head'
 import RegistrationPopUp from '@/components/Dashboard/payment/PopPlan'
+import { getUserProfile } from '@/redux/slices/auth/authSlice'
 
 export default function UserDashboardAuth({ children }: any) {
     const { user, setOnboarded } = useSelector((a: { auth: { user: any, setOnboarded: any } }) => a.auth)
     const wallet = useSelector((a: { user: { wallet: any } }) => a)
     const { isOpen, onOpen, onClose } = useDisclosure();
     const dispatch = useDispatch()
+    const [reload, setReload] = useState(false)
     const [loading, setLoading] = useState(true); // Track overall loading state
     const router = useRouter();
 
@@ -30,14 +31,18 @@ export default function UserDashboardAuth({ children }: any) {
 
 
     useEffect(() => {
-        const user_id = getCookie("user_id");
-        const role = getCookie("role");
+        if (!user) {
+            router.push("/auth/login")
+        } else if (!user.id) {
+            router.push("/auth/login")
+        }
+        dispatch(getUserProfile("") as any)
         const fetchProfileAndOnboard = async () => {
             try {
 
-                let profileData = await getVerificationOfficer(user.officer_id);
+                let profileData = await getVerificationOfficer("");
 
-
+                console.log(profileData.data, "profileData")
             } catch (error) {
                 console.error("Error fetching profile or onboarding:", error);
             } finally {
@@ -46,7 +51,10 @@ export default function UserDashboardAuth({ children }: any) {
         };
 
         fetchProfileAndOnboard();
-    }, []); // Run only once on mount
+        // setTimeout(() => {
+        //     setReload(!reload)
+        // }, 10000)
+    }, [reload]); // Run only once on mount
 
     return (
         <>

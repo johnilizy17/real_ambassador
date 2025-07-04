@@ -39,7 +39,7 @@ export default function DownStep({ onClose, VerificationApi }: any) {
                     wizardStep === 2 ?
                         <StepTwo setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
                         :
-                        <StepThree onClose={onClose} VerificationApi={VerificationApi} setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
+                        <StepThree disable={false} onClose={onClose} VerificationApi={VerificationApi} setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
             }
         </>
     )

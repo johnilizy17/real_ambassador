@@ -22,7 +22,7 @@ import ReferralPaymentFlutterwave from '@/template/payment/referralPayment';
 
 export const runtime = 'edge';
 
-export default function StepThree({ data, VerificationApi, page, setPage, setData, onClose }: any) {
+export default function StepThree({ data, VerificationApi, disable, page, setPage, setData, onClose }: any) {
 
     const router = useRouter();
     const [amount, setAmount] = useState(0);
@@ -42,22 +42,25 @@ export default function StepThree({ data, VerificationApi, page, setPage, setDat
         { setSubmitting, resetForm }: any
     ) => {
         try {
-            let phoneNumber = data.phone;
-            if (
-                phoneNumber &&
-                (phoneNumber.startsWith('+') || phoneNumber.startsWith('0'))
-            ) {
-                phoneNumber = phoneNumber.slice(1);
-            }
-
-            if (!phoneNumber) {
-                showMassage('Please enter a proper phone number', 'warning');
-                return;
-            }
             setData({ ...data, ...values });
-            await RegisterReferral({ ...data, phone: phoneNumber, ...values, role: "USER" })
-            // Include the role_id based on userType
-            showMassage('Account successfully created', 'info');
+            if (!disable) {
+                let phoneNumber = data.phone;
+                if (
+                    phoneNumber &&
+                    (phoneNumber.startsWith('+') || phoneNumber.startsWith('0'))
+                ) {
+                    phoneNumber = phoneNumber.slice(1);
+                }
+
+                if (!phoneNumber) {
+                    showMassage('Please enter a proper phone number', 'warning');
+                    return;
+                }
+
+                await RegisterReferral({ ...data, phone: phoneNumber, ...values, role: "USER" })
+                // Include the role_id based on userType
+                showMassage('Account successfully created', 'info');
+            }
             setAmount(5000);
             setSubmitting(true);
             VerificationApi()
@@ -90,7 +93,7 @@ export default function StepThree({ data, VerificationApi, page, setPage, setDat
                             <>
                                 <Box color={COLORS.gray}>
                                     <p>
-                                        Registeation fee for saving small is {cashFormat(5000)}
+                                        Registeration fee for saving small is {cashFormat(5000)}
                                     </p>
                                 </Box>
                                 <Button mr={3} mt={8} colorScheme='blue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>

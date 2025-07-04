@@ -41,7 +41,7 @@ export default function Transaction() {
                                                 </tr>
                                                 <tr>
 
-                                                    <td><img src="images/mem1.png" alt="img" /> <span>Olympia Ripple</span>
+                                                    <td><img src="images/meme1.jpg" className="circle-image" alt="img" /> <span>Jones Shola</span>
                                                     </td>
 
                                                     <td>April 24,2025</td>
@@ -49,23 +49,15 @@ export default function Transaction() {
                                                 </tr>
                                                 <tr>
 
-                                                    <td><img src="images/mem4.png" alt="img" /> <span>Nancee Broom</span></td>
+                                                    <td><img src="images/meme4.jpg" className="circle-image" alt="img" /> <span>Akinola Danial</span></td>
 
                                                     <td>April 04,2025</td>
 
-                                                    <td>{cashFormat(20000)}</td>
+                                                    <td>{cashFormat(44000)}</td>
                                                 </tr>
                                                 <tr>
 
-                                                    <td><img src="images/mem1.png" alt="img" /> <span>Broom Nancee</span></td>
-
-                                                    <td>April 24,2025</td>
-
-                                                    <td>{cashFormat(20000)}</td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td><img src="images/mem2.png" alt="img" /> <span>Ripple Alison</span>
+                                                    <td><img src="images/meme2.jpg" className="circle-image" alt="img" /> <span>Ripple David</span>
                                                     </td>
 
                                                     <td>April 24,2025</td>
@@ -73,35 +65,19 @@ export default function Transaction() {
                                                 </tr>
                                                 <tr>
 
-                                                    <td><img src="images/mem3.png" alt="img" /> <span>Olympia Ripple</span>
+                                                    <td><img src="images/meme3.jpg" className="circle-image" alt="img" /> <span>Oluseyin Akin</span>
                                                     </td>
 
                                                     <td>April 05,2025</td>
-                                                    <td>{cashFormat(20000)}</td>
+                                                    <td>{cashFormat(35600)}</td>
                                                 </tr>
                                                 <tr>
 
-                                                    <td><img src="images/mem4.png" alt="img" /> <span>Alison Rittichier</span>
-                                                    </td>
-
-                                                    <td>April 28,2025</td>
-                                                    <td>{cashFormat(20000)}</td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td><img src="images/mem5.png" alt="img" /> <span>Olympia Ripple</span>
+                                                    <td><img src="images/meme5.jpg" className="circle-image" alt="img" /> <span> Ola Precious</span>
                                                     </td>
 
                                                     <td>April 24,2025</td>
-                                                    <td>{cashFormat(20000)}</td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td><img src="images/mem6.png" alt="img" /> <span>Emmett Stein </span>
-                                                    </td>
-
-                                                    <td>April 21,2025</td>
-                                                    <td>{cashFormat(20000)}</td>
+                                                    <td>{cashFormat(15500)}</td>
                                                 </tr>
 
                                             </table>
@@ -123,15 +99,15 @@ export default function Transaction() {
 
                                                 <tr>
 
-                                                    <td><img src="images/mem4.png" alt="img" /> <span>Nancee Broom</span></td>
+                                                    <td><img src="images/meme7.jpg" className="circle-image" alt="img" /> <span>Nancee Broom</span></td>
 
                                                     <td>May 04,2025</td>
 
-                                                    <td>{cashFormat(20000)}</td>
+                                                    <td>{cashFormat(27700)}</td>
                                                 </tr>
                                                 <tr>
 
-                                                    <td><img src="images/mem1.png" alt="img" /> <span>Olympia Ripple</span>
+                                                    <td><img src="images/meme8.jpg" className="circle-image" alt="img" /> <span>Olympia Ripple</span>
                                                     </td>
 
                                                     <td>May 24,2025</td>
@@ -139,52 +115,27 @@ export default function Transaction() {
                                                 </tr>
                                                 <tr>
 
-                                                    <td><img src="images/mem2.png" alt="img" /> <span>Ripple Alison</span>
+                                                    <td><img src="images/meme9.jpg" className="circle-image" alt="img" /> <span>Ripple Alison</span>
                                                     </td>
 
                                                     <td>May 24,2025</td>
-                                                    <td>{cashFormat(20000)}</td>
+                                                    <td>{cashFormat(17000)}</td>
                                                 </tr>
                                                 <tr>
 
-                                                    <td><img src="images/mem6.png" alt="img" /> <span>Emmett Stein
+                                                    <td><img src="images/meme10.jpg" className="circle-image" alt="img" /> <span>Emmett Stein
                                                     </span></td>
                                                     <td>May 21,2025</td>
-                                                    <td>{cashFormat(20000)}</td>
+                                                    <td>{cashFormat(67000)}</td>
                                                 </tr>
                                                 <tr>
 
-                                                    <td><img src="images/mem1.png" alt="img" /> <span>Broom Nancee</span></td>
+                                                    <td><img src="images/meme11.jpg" className="circle-image" alt="img" /> <span>Broom Nancee</span></td>
 
                                                     <td>May 24,2025</td>
 
-                                                    <td>{cashFormat(20000)}</td>
+                                                    <td>{cashFormat(25000)}</td>
                                                 </tr>
-                                                <tr>
-
-                                                    <td><img src="images/mem4.png" alt="img" /> <span>Alison Rittichier</span>
-                                                    </td>
-
-                                                    <td>May 28,2025</td>
-                                                    <td>{cashFormat(20000)}</td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td><img src="images/mem3.png" alt="img" /> <span>Olympia Ripple</span>
-                                                    </td>
-
-                                                    <td>May 05,2025</td>
-                                                    <td>{cashFormat(20000)}</td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td><img src="images/mem5.png" alt="img" /> <span>Olympia Ripple</span>
-                                                    </td>
-
-                                                    <td>May 24,2025</td>
-                                                    <td>{cashFormat(20000)}</td>
-                                                </tr>
-
                                             </table>
 
                                         </div>

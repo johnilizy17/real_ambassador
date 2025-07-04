@@ -4,72 +4,33 @@ import { closePaymentModal, useFlutterwave } from "flutterwave-react-v3";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import AccountGeneration from "./Account";
 
 export default function NormalPaymentFlutterwave({
     amount,
     id,
     setDisplay,
-    user = { email: "", firstName: "", lastName: "", phone: "", id: "" }
+    user = { email: "", firstName: "", lastName: "", phone: "", id: "", payment:amount }
 }: {
     amount: number;
     setDisplay: any;
     id: string;
-    user?: any
+    user?: any;
+    payment?: number;
 }) {
 
     const router = useRouter()
     const showToast = useCustomToast();
-    const baseFlutterConfig = {
-        public_key: "FLWPUBK_TEST-6412c61469c946cebca98335ccc39d45-X",
-        tx_ref: Date.now().toString(),
-        amount: amount,
-        currency: "NGN",
-        payment_options: "card,account,ussd",
-        customer: {
-            email: user.email,
-            name: `${user.firstName} ${user.lastName}`,
-            phone_number: user.phone,
-        },
-        customizations: {
-            title: "ABN Narinohs Payment",
-            description: `Payment by user ID: ${user.email}`,
-            logo: "https://realvest-one.vercel.app/favicon.ico"
-        },
-        callback: function (response: any) {
-            console.log("Payment callback:", response);
-            setDisplay(false);
-        },
-        onclose: function () {
-            setDisplay(false);
-        },
-    };
 
     async function PaymentActivation() {
-        const status = amount === 5000 ? 2 : amount === 15000 ? 3 : 4
-        await userActive({ email: user.email, payment: status, amount:amount })
+        // const status = amount === 5000 ? 2 : amount === 15000 ? 3 : 4
+        // await userActive({ email: user.email, payment: status, amount: amount })
         showToast("Subscription successful", "success")
         setDisplay(false);
         router.push("/auth/login")
-
     }
 
-    const triggerFlutterPayment = useFlutterwave(baseFlutterConfig);
-
-    useEffect(() => {
-
-        triggerFlutterPayment({
-            callback: (response: any) => {
-                setDisplay(false);
-                PaymentActivation()
-                closePaymentModal();
-            },
-            onClose: () => {
-                setDisplay(false);
-            },
-        });
-    }, [])
     return (
-        <>
-        </>
+        <AccountGeneration closingApi={() => setDisplay(false)} paymentApi={() => PaymentActivation()} data={{ ...user, amount: amount, name: user.lastName + "," + user.firstName }} />
     )
 }

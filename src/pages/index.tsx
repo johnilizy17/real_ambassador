@@ -14,9 +14,7 @@ import FAQ from "@/components/landingPage/FAQ";
 export default function Home() {
   return (
     <NoAuthLayer seoTitle="Home">
-      <Box color={COLORS.brand_grey} bg={COLORS.black}>
-        <Header />
-        <Box h="100px" />
+      <Box color={COLORS.brand_grey} bg={COLORS.white}>
         <Banner />
         <About />
         <Plan />

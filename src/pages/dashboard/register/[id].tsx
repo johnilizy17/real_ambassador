@@ -19,6 +19,7 @@ import { COLORS } from "@/layout/Theme";
 import { EmptyState } from "@/components/EmptyState";
 import AccountBanner from "@/components/Dashboard/AccountBanner";
 import { referredProfile } from "@/url/api's/organization";
+import PaymentDetails from "@/components/landingPage/Payment";
 
 
 
@@ -65,26 +66,13 @@ export default function TokenTransactions() {
                   Total people {transactions.length}
                 </h2>
                 {transactions.map((tx: any, index: number) => (
-                  <Box
-                    key={index}
-                    bg={cardBg}
-                    borderWidth="1px"
-                    borderColor={borderColor}
-                    borderRadius="lg"
-                    px={4}
-                    py={3}
-                  >
-                    <Flex justify="space-between" align="center">
-                      <HStack spacing={4}>
-                        <Circle size="10px" bg={tx.payment && tx.payment != 1 ? "green" : "yellow"} />
-                        <Box>
-                          <Text fontWeight="bold" color="black.400">{tx.firstName}</Text>
-                          <Text fontSize="sm" color="black.400"> {tx.lastName}</Text>
-                          <Text fontSize="sm" color={COLORS.blue}> {tx.email}</Text>
-                        </Box>
-                      </HStack>
-                    </Flex>
-                  </Box>
+                  <PaymentDetails VerificationApi={() => {
+                    if (path == "downline") {
+                      registeredUsers("USERAMBASSADOR")
+                    } else {
+                      registeredUsers("USER")
+                    }
+                  }} name={path === "downline" ? "Referrals" : "Customer"} key={index} borderColor={borderColor} cardBg={cardBg} tx={tx} />
                 ))}
               </>
               :

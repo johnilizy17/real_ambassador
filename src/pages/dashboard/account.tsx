@@ -3,6 +3,7 @@ import UserSideBar from '@/components/Dashboard/DashboardLayout/UserSideBar';
 import CreateAccount from '@/components/Dashboard/Verification/Home/CreateAccount';
 import Withdraw from '@/components/Dashboard/Verification/Home/Withdraw';
 import { referredBalance } from '@/url/api\'s/organization';
+import { generateAccount } from '@/url/api\'s/userProfile';
 import { cashFormat } from '@/utils/cashformat';
 import {
     Box,
@@ -41,11 +42,15 @@ const data = [
 export default function AccountNumber() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { wallet } = useSelector((a: any) => a.user)
+    const [wallet, setWallet] = useState({account_number:"", bank_name:""})
+    const { user } = useSelector((a: any) => a.auth)
     const [amount, setAmount] = useState(0)
 
     async function Balance() {
+        const account = await generateAccount({ ...user, amount:0, name:`${user.lastName},${user.firstName}` })
+        setWallet(account.data)
         const result = await referredBalance()
+        console.log(result, "result")
         setAmount(result)
     }
 
@@ -60,13 +65,9 @@ export default function AccountNumber() {
             <Modal isOpen={isOpen} onClose={onClose} isCentered>
                 <ModalOverlay />
                 <ModalContent h="auto" pb="20px" w={["300px", "300px", "300px", "504px"]}>
-                    <ModalHeader justifyContent="center" fontSize="20px" fontWeight="500" alignItems="center">{wallet.bank_name === "N/A" ? "Create Account" : "Withdraw Money"}</ModalHeader>
+                    <ModalHeader justifyContent="center" fontSize="20px" fontWeight="500" alignItems="center">Withdraw Money</ModalHeader>
                     <ModalBody w="full">
-                        {wallet.bank_name === "N/A" ?
-                            <CreateAccount onClose={onClose} />
-                            :
-                            <Withdraw onClose={onClose} />
-                        }
+                        <Withdraw onClose={onClose} />
                     </ModalBody>
                 </ModalContent>
             </Modal>
@@ -111,15 +112,9 @@ export default function AccountNumber() {
                     <CopyCheckIcon />
                 </Flex>
                 <Box mt="20px">
-                    {wallet.bank_name === "N/A" ?
-                        <Button onClick={onOpen} colorScheme='green' w={["full", "full", "full", "300px"]}>
-                            Create Account
-                        </Button>
-                        :
-                        <Button onClick={onOpen} colorScheme='green' w={["full", "full", "full", "300px"]}>
-                            Withdraw
-                        </Button>
-                    }
+                    <Button onClick={onOpen} colorScheme='green' w={["full", "full", "full", "300px"]}>
+                        Withdraw
+                    </Button>
                 </Box>
             </Box>
             <AccountComponent />

@@ -1,9 +1,8 @@
-import { userFileUpload, userRequest } from "@/utils/axios";
-import server from "../axios/server";
+import { publicRequest, userFileUpload, userRequest } from "@/utils/axios";
 
 
 export const getUserProfile = async (userId: string) => {
-    const { data } = await server.get(`/user/${userId}`, {
+    const { data } = await publicRequest.get(`/user/${userId}`, {
         // headers: { 'X-Environment': env } // Example: Pass environment in headers if required
     });
     return data;
@@ -11,12 +10,12 @@ export const getUserProfile = async (userId: string) => {
 
 
 export const getKeyUserMetrics = async (userId: string) => {
-    const { data } = await server.get(`/user/metrics/${userId}`);
+    const { data } = await publicRequest.get(`/user/metrics/${userId}`);
     return data;
 };
 
 export const submitKYC = async (userId: string, data: any) => {
-    const { data: response } = await server.post(`/user/${userId}/kyc`, data);
+    const { data: response } = await publicRequest.post(`/user/${userId}/kyc`, data);
     return response;
 };
 
@@ -38,32 +37,42 @@ export const updateProfileVerification = async (payload: any) => {
 };
 
 export const getClaimedAddresses = async (userId: string) => {
-    const { data } = await server.get(`/user/${userId}/claimed-addresses`);
+    const { data } = await publicRequest.get(`/user/${userId}/claimed-addresses`);
     return data;
 };
 
 export const createAccountWallet = async (payload: any) => {
-    const { data } = await server.post(`wallet`, payload);
+    const { data } = await publicRequest.post(`wallet`, payload);
     return data;
 };
 
 export const verifyWallet = async (payload: any) => {
-    const { data } = await server.post(`wallet/verify`, payload);
+    const { data } = await publicRequest.post(`wallet/verify`, payload);
     return data;
 };
 
 export const withdrawWallet = async (payload: any) => {
-    const { data } = await server.post(`wallet/withdraw`, payload);
+    const { data } = await userRequest.post(`wallet/withdraw`, payload);
+    return data;
+};
+
+export const generateAccount = async (payload: any) => {
+    const { data } = await publicRequest.post(`wallet/generate`, payload);
     return data;
 };
 
 export const claimAddress = async (userId: string, address: string, data: any) => {
-    const { data: response } = await server.post(`/user/${userId}/address/claim/${address}`, data);
+    const { data: response } = await publicRequest.post(`/user/${userId}/address/claim/${address}`, data);
     return response;
 };
 
 export const userActive = async (payload: any) => {
     const { data: response } = await userRequest.post(`/profile/activate`, payload);
+    return response;
+};
+
+export const updateUserActive = async (payload: any) => {
+    const { data: response } = await userRequest.put(`/profile`, payload);
     return response;
 };
 
@@ -73,33 +82,33 @@ export const RegisterReferral = async (payload: any) => {
 };
 
 export const deleteUserClaimedAddress = async (userId: string, addressId: string) => {
-    const { data } = await server.delete(`/user/${userId}/address/${addressId}`);
+    const { data } = await publicRequest.delete(`/user/${userId}/address/${addressId}`);
     return data;
 };
 
 
 export const requestAddressValidation = async (userId: string, data: any) => {
-    const { data: response } = await server.post(`/user/${userId}/address-validation`, data);
+    const { data: response } = await publicRequest.post(`/user/${userId}/address-validation`, data);
     return response;
 };
 
 export const getValidatedAddresses = async (userId: string) => {
-    const { data } = await server.get(`/user/${userId}/address-validation`);
+    const { data } = await publicRequest.get(`/user/${userId}/address-validation`);
     return data;
 };
 
 export const getUserPrivacyData = async (userId: string) => {
-    const { data } = await server.get(`/user/${userId}/privacy`);
+    const { data } = await publicRequest.get(`/user/${userId}/privacy`);
     return data;
 };
 
 export const updateUserPrivacySettings = async (userId: string, data: any) => {
-    const { data: response } = await server.put(`/user/${userId}/privacy`, data);
+    const { data: response } = await publicRequest.put(`/user/${userId}/privacy`, data);
     return response;
 };
 
 export const deleteUserData = async (userId: string) => {
-    const { data } = await server.delete(`/user/${userId}`);
+    const { data } = await publicRequest.delete(`/user/${userId}`);
     return data;
 };
 

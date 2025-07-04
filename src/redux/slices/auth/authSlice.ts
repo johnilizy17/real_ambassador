@@ -56,9 +56,9 @@ export const refreshToken = async (): Promise<string> => {
 // Logout Thunk
 export const logoutUser = createAsyncThunk(
   'auth/logout',
-  async (_, { rejectWithValue }) => {
+  async (_: any, { rejectWithValue }) => {
     try {
-      await userRequest.post('/auth/logout', {});
+      // await userRequest.post('/auth/logout', {});
       clearTokens();
       return true;
     } catch (error: any) {
@@ -120,6 +120,7 @@ export const authLogin = createAsyncThunk(
       const response: AxiosResponse<RegisterResponse> =
         await publicRequest.post('/auth/login', data);
 
+   console.log(response.data, "response.data")
 
       saveTokens({
         accessToken: response.data.data.token,
@@ -135,6 +136,7 @@ export const authLogin = createAsyncThunk(
     }
   }
 );
+
 
 export const authForgottenPassword = createAsyncThunk(
   'auth/verify-otp',
@@ -216,7 +218,7 @@ export const authVerifyEmail = createAsyncThunk(
   async (payload: EmailDto, { rejectWithValue }) => {
     try {
       const { data } = await userRequest.post(
-        `auth/send-verification-email`,
+        `auth/forgot-password`,
         payload
       );
       return data;
@@ -234,13 +236,13 @@ export const getUserProfile = createAsyncThunk(
     try {
       const response = await userRequest.get(`/profile`);
 
-      STORAGE.set(LOCAL_STORAGE_KEYS.USER, response.data.user);
+      console.log(response.data.data, "response")
+
+      STORAGE.set(LOCAL_STORAGE_KEYS.USER, response.data.data);
       return response.data
 
     } catch (error: any) {
-      return rejectWithValue(
-        error.response?.data || 'Email verification failed'
-      );
+    
     }
   }
 );
@@ -324,19 +326,21 @@ const authSlice = createSlice({
         state.isError = true;
       })
       .addCase(getUserProfile.pending, (state) => {
-        state.isLoading = true;
+        // state.isLoading = true;
       })
       .addCase(UpdateProfile.fulfilled, (state, action) => {
         state.user = action.payload.data;
         state.isLoading = true;
       })
       .addCase(getUserProfile.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.isLoading = false;
+        state.user = action.payload.data;
+        // state.isLoading = false;
       })
       .addCase(getUserProfile.rejected, (state) => {
-        state.isLoading = false;
-        state.isError = true;
+        state.token = null;
+      state.refreshToken = null;
+      state.user = null;
+      clearTokens();
       })
   },
 });

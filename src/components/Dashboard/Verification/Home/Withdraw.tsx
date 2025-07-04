@@ -9,6 +9,9 @@ import Link from 'next/link';
 import { banklist } from "@/url/banklist";
 import { verifyWallet, withdrawWallet } from '@/url/api\'s/userProfile';
 import { useSelector } from 'react-redux';
+import { cashFormat } from '@/utils/cashformat';
+import { referredBalance } from '@/url/api\'s/organization';
+import useCustomToast from '@/hooks/useCustomToast';
 
 export default function Withdraw({ onClose }: { onClose: any }) {
 
@@ -16,10 +19,22 @@ export default function Withdraw({ onClose }: { onClose: any }) {
     const [showPassword, setShowPassword] = useState(true);
     const [data, setData] = useState({ "account_number": "", "account_bank": "" })
     const [loading, setLoading] = useState(false)
-    const { user } = useSelector((a: { auth: any }) => a.auth)    //const [notificationsData, setNotifictionData] = useState([{ uniqueID: "1", header: "created account", text: "You're now part of the G-AIM community, where we’re committed to helping you achieve your goals with ease and efficiency. Whether you’re here to track progress, stay organized, or explore new opportunities, we're excited to have you on board.", createAt:"10:00am" }]);
+    const { user } = useSelector((a: { auth: any }) => a.auth)
 
     const [details, setDetails] = useState("");
     const router = useRouter();
+
+    const [amount, setAmount] = useState(0)
+    const showMessage = useCustomToast()
+
+    async function Balance() {
+        const result = await referredBalance()
+        setAmount(result)
+    }
+
+    useEffect(() => {
+        Balance()
+    }, [])
 
     const validationSchema = Yup.object({
         account_number: Yup.string().required("Account Number is required"),
@@ -50,7 +65,7 @@ export default function Withdraw({ onClose }: { onClose: any }) {
             setShowPassword(false)
         } catch (error: any) {
             setSubmitting(false);
-            setDetails(error.response.data.message)
+            setDetails("Incorrect account")
             setShowPassword(true)
         }
     };
@@ -60,8 +75,10 @@ export default function Withdraw({ onClose }: { onClose: any }) {
         try {
             setLoading(true);
             const result = await withdrawWallet(data)
+            showMessage("Withdrawal Successful", "success")
             setLoading(false);
         } catch (error: any) {
+            showMessage("Failed to withdraw", "error")
             setLoading(false);
         }
     };
@@ -75,6 +92,7 @@ export default function Withdraw({ onClose }: { onClose: any }) {
             >
                 {({ isSubmitting, values, setSubmitting }) => (
                     <Form>
+                        <p style={{ color: "red", fontSize: 12 }}>Kindly note your will be charged {cashFormat(100)} for withdrawal of {cashFormat(amount)}</p>
                         <Box w={["280px", "280px", "280px", "384px"]} mt="30px">
                             <CustomInput
                                 label="Select Bank"

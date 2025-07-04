@@ -22,7 +22,7 @@ import ReferralPaymentFlutterwave from '@/template/payment/referralPayment';
 
 export const runtime = 'edge';
 
-export default function StepThree({ data, VerificationApi, page, setPage, setData, onClose }: any) {
+export default function StepThree({ data, VerificationApi, page, disable, setPage, setData, onClose }: any) {
 
     const router = useRouter();
     const [amount, setAmount] = useState(0);
@@ -43,23 +43,27 @@ export default function StepThree({ data, VerificationApi, page, setPage, setDat
         { setSubmitting, resetForm }: any
     ) => {
         try {
-            let phoneNumber = data.phone;
-            if (
-                phoneNumber &&
-                (phoneNumber.startsWith('+') || phoneNumber.startsWith('0'))
-            ) {
-                phoneNumber = phoneNumber.slice(1);
-            }
 
-            if (!phoneNumber) {
-                showMassage('Please enter a proper phone number', 'warning');
-                return;
-            }
             setData({ ...data, ...values });
-            await RegisterReferral({ ...data, phone: phoneNumber, ...values, role: "USERAMBASSADOR" })
+            if (!disable) {
+                let phoneNumber = data.phone;
+                if (
+                    phoneNumber &&
+                    (phoneNumber.startsWith('+') || phoneNumber.startsWith('0'))
+                ) {
+                    phoneNumber = phoneNumber.slice(1);
+                }
+
+                if (!phoneNumber) {
+                    showMassage('Please enter a proper phone number', 'warning');
+                    return;
+                }
+                await RegisterReferral({ ...data, phone: phoneNumber, ...values, role: "USERAMBASSADOR" })
+                showMassage('Account successfully created', 'info');
+            }
+            console.log("try")
             // Include the role_id based on userType
-            showMassage('Account successfully created', 'info');
-           if (values.type === '1') {
+            if (values.type === '1') {
                 setAmount(5000);
             }
             else if (values.type === '2') {
@@ -67,10 +71,11 @@ export default function StepThree({ data, VerificationApi, page, setPage, setDat
             } else if (values.type === '3') {
                 setAmount(25000);
             }
-            onClose(false)
+            // onClose(false)
             setSubmitting(true);
             VerificationApi()
         } catch (error: any) {
+            console.log(error, "error response")
             showMassage(error.response.data.message, "error")
         } finally {
             setSubmitting(false);
@@ -105,8 +110,8 @@ export default function StepThree({ data, VerificationApi, page, setPage, setDat
                                         placeholder='Enter your subscription'
                                         value={values.type}
                                     >
-                                        <option value='1'>Tier 2 {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
-                                        <option value='2'>Tier 1 {"(" + cashFormat(15000) + " " + "percentage shares 10%" + ")"}</option>
+                                        <option value='1'>Tier 1 {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
+                                        <option value='2'>Tier 2 {"(" + cashFormat(15000) + " " + "percentage shares 10%" + ")"}</option>
                                         <option value='3'>Tier 3 {"(" + cashFormat(25000) + " " + "percentage shares 15%" + ")"}</option>
                                     </CustomInput>
                                 </Box>

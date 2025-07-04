@@ -54,10 +54,11 @@ userFileUpload.interceptors.request.use(
 userRequest.interceptors.response.use(
   (response) => response,
   async (error) => {
+  
     const originalRequest = error.config;
 
     // If 401 and not retried yet
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (error.response.data?.statusCode=== 401 && !originalRequest._retry) {
       if (refreshAttempted) {
         handleLogout(); // Logout after one failed refresh
         return Promise.reject(error);
@@ -65,28 +66,28 @@ userRequest.interceptors.response.use(
 
       originalRequest._retry = true;
       refreshAttempted = true;
-
-      try {
-        const refreshToken = getRefreshToken();
-        if (!refreshToken) throw new Error('No refresh token available');
-
-        const { data } = await axios.post(`${baseURL}auth/refresh-tokens`, {
-          refresh_token: refreshToken,
-        });
-
-        saveTokens({
-          accessToken: data.data.access.token,
-          refreshToken: data.data.refresh.token,
-          expiresIn: data.data.access.expires,
-        });
-
-        originalRequest.headers.Authorization = `Bearer ${data.data.access.token}`;
-        return axios(originalRequest);
-      } catch (refreshError) {
-        handleLogout();
-        return Promise.reject(refreshError);
-      }
     }
+    //   try {
+    //     const refreshToken = getRefreshToken();
+    //     if (!refreshToken) throw new Error('No refresh token available');
+
+    //     const { data } = await axios.post(`${baseURL}auth/refresh-tokens`, {
+    //       refresh_token: refreshToken,
+    //     });
+
+    //     saveTokens({
+    //       accessToken: data.data.access.token,
+    //       refreshToken: data.data.refresh.token,
+    //       expiresIn: data.data.access.expires,
+    //     });
+
+    //     originalRequest.headers.Authorization = `Bearer ${data.data.access.token}`;
+    //     return axios(originalRequest);
+    //   } catch (refreshError) {
+    //     handleLogout();
+    //     return Promise.reject(refreshError);
+    //   }
+    // }
 
     return Promise.reject(error);
   }
