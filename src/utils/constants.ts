@@ -14,48 +14,31 @@ export const UsersPlan = [
   {
     name: "Asa Plan",
     total: 300000,
-<<<<<<< HEAD
     1: 300000,
-=======
->>>>>>> f6632eda12fbee0d3fa0cc9046243214223d5c27
-    365: 850,
+   365: 850,
     548: 600,
     730: 500
   },
   {
-<<<<<<< HEAD
     name: "Ami Plan",
     total: 350000,
     1: 350000,
-=======
-    name: "Sky Plan",
-    total: 350000,
->>>>>>> f6632eda12fbee0d3fa0cc9046243214223d5c27
     365: 1100,
     548: 800,
     730: 700
   },
   {
-<<<<<<< HEAD
     name: "Sky Plan",
     total: 400000,
     1: 400000,
-=======
-    name: "Ami Plan",
-    total: 400000,
->>>>>>> f6632eda12fbee0d3fa0cc9046243214223d5c27
     365: 1200,
     548: 1000,
     730: 900
   },
   {
     name: "Slay Plan",
-<<<<<<< HEAD
     total: 700000,
     1: 700000,
-=======
-    total: 750000,
->>>>>>> f6632eda12fbee0d3fa0cc9046243214223d5c27
     365: 2000,
     548: 1600,
     730: 1500
@@ -71,10 +54,7 @@ export const UsersPlan = [
   {
     name: "Race Plan",
     total: 1550000,
-<<<<<<< HEAD
     1: 1550000,
-=======
->>>>>>> f6632eda12fbee0d3fa0cc9046243214223d5c27
     365: 5000,
     548: 4500,
     730: 3500
@@ -82,10 +62,7 @@ export const UsersPlan = [
   {
     name: "Combo Plan",
     total: 2100000,
-<<<<<<< HEAD
     1: 2100000,
-=======
->>>>>>> f6632eda12fbee0d3fa0cc9046243214223d5c27
     365: 7000,
     548: 6000,
     730: 5000
@@ -93,10 +70,7 @@ export const UsersPlan = [
   {
     name: "Lamb Plan",
     total: 3000000,
-<<<<<<< HEAD
     1: 3000000,
-=======
->>>>>>> f6632eda12fbee0d3fa0cc9046243214223d5c27
     365: 10000,
     548: 8000,
     730: 7000
