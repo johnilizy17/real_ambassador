@@ -97,7 +97,7 @@ export default function StepThree({ data, VerificationApi, page, disable, setPag
                     onSubmit={initiateLogin}
                     validationSchema={validationSchema}
                 >
-                    {({ isSubmitting, handleChange, values }) => (
+                    {({ isSubmitting, handleChange, values, setFieldValue }) => (
                         <Form>
                             {/* Conditionally render name fields based on userType */}
 
@@ -108,6 +108,7 @@ export default function StepThree({ data, VerificationApi, page, disable, setPag
                                         name='type'
                                         type={"select"}
                                         placeholder='Enter your subscription'
+                                        handleChange={(val: any) => setFieldValue('type', val)}
                                         value={values.type}
                                     >
                                         <option value='1'>Tier 1 {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>

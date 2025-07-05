@@ -4,14 +4,14 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import CustomInput from '@/layout/utills/CustomInput';
+import CustomInput from '@/components/CustomInput/CustomInput';
 import Link from 'next/link';
 import { banklist } from "@/url/banklist";
 import { verifyWallet, withdrawWallet } from '@/url/api\'s/userProfile';
 import { useSelector } from 'react-redux';
-import { cashFormat } from '@/utils/cashformat';
 import { referredBalance } from '@/url/api\'s/organization';
 import useCustomToast from '@/hooks/useCustomToast';
+import { cashFormat } from '@/utils/cashformat';
 
 export default function Withdraw({ onClose }: { onClose: any }) {
 
@@ -90,7 +90,7 @@ export default function Withdraw({ onClose }: { onClose: any }) {
                 onSubmit={initiateLogin}
                 validationSchema={validationSchema}
             >
-                {({ isSubmitting, values, setSubmitting }) => (
+                {({ isSubmitting, setSubmitting, setFieldValue, values }) => (
                     <Form>
                         <p style={{ color: "red", fontSize: 12 }}>Kindly note your will be charged {cashFormat(100)} for withdrawal of {cashFormat(amount)}</p>
                         <Box w={["280px", "280px", "280px", "384px"]} mt="30px">
@@ -100,15 +100,14 @@ export default function Withdraw({ onClose }: { onClose: any }) {
                                 placeholder="Enter Bank name"
                                 fieldProps={{ type: "select" }}
                                 typeInput=""
-                                value=""
                                 type="select"
+                                handleChange={(val: any) => setFieldValue('account_bank', val)}
+                                value={values.account_bank}
                             >
-                                <>
-                                    <option value={""}>Select Bank</option>
-                                    {banklist.map((a, b) => (
-                                        <option key={b} value={a.code}>{a.name}</option>
-                                    ))}
-                                </>
+                                <option value={""}>Select Bank</option>
+                                {banklist.map((a, b) => (
+                                    <option key={b} value={a.code}>{a.name}</option>
+                                ))}
                             </CustomInput>
                         </Box>
                         <Box w="full" mt="60px">
@@ -119,8 +118,6 @@ export default function Withdraw({ onClose }: { onClose: any }) {
                                 fieldProps={{ type: "text" }}
                                 typeInput=""
                                 value=""
-                                showPassword={showPassword}
-                                onChangeShowPassword={setShowPassword}
                             />
                             <Box color={showPassword ? "red" : "black"}>{details}</Box>
                         </Box>

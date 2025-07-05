@@ -35,9 +35,9 @@ export default function PaymentDetails({ cardBg, borderColor, tx, name, Verifica
                 px={4}
                 py={3}
                 onClick={() => {
-                    tx.payment && tx.payment != 1 ?
-                        console.log("alert")
-                        :
+                    // tx.payment && tx.payment != 1 ?
+                    //     console.log("alert")
+                    //     :
                         onOpen()
                 }}
             >

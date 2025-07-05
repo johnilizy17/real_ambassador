@@ -7,7 +7,6 @@ import {
   InputGroup,
   IconButton,
   InputRightElement,
-  Select,
   Textarea,
 } from '@chakra-ui/react';
 import { Eye, EyeOff } from 'lucide-react';
@@ -15,6 +14,8 @@ import { Field, FieldProps } from 'formik';
 import React, { useState } from 'react';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
+import Select from 'react-select';
+
 
 interface CustomInputProps {
   fieldProps?: object;
@@ -65,19 +66,41 @@ function CustomInput({
           />
         );
       case 'select':
+        const options2 = React.Children.map(children, (child: any) => ({
+          label: child.props.children,
+          value: child.props.value,
+        }));
+
+        const selectedOption = options2?.find((opt: any) => opt.value === value) || null;
+
         return (
-          <Select
-            id={name}
-            name={name}
-            placeholder={placeholder}
-            bg='#EFF0F6'
-            borderWidth='none'
-            borderColor='transparent'
-            {...options}
-          >
-            {children}
-          </Select>
+          <Box fontSize='14px'>
+            <Select
+              id={name}
+              name={name}
+              options={options2}
+              placeholder={placeholder}
+              value={selectedOption}
+              onChange={(option) => handleChange(option?.value || '')}
+              styles={{
+                control: (base) => ({
+                  ...base,
+                  backgroundColor: '#EFF0F6',
+                  borderColor: 'rgba(226, 230, 241, 1)',
+                  borderRadius: '8px',
+                  fontWeight: 700,
+                  minHeight: '44px',
+                }),
+                placeholder: (base) => ({
+                  ...base,
+                  color: 'rgba(102, 112, 133, 1)',
+                  fontWeight: 400,
+                }),
+              }}
+            />
+          </Box>
         );
+
       case 'phone':
         return (
           <Box
@@ -161,7 +184,7 @@ function CustomInput({
                 rounded='md'
                 fontWeight='400'
                 px='2'
-                zIndex='2'
+                zIndex='0'
                 mb='1'
                 fontSize='13px'
                 color={isInvalid ? 'red' : 'rgba(16, 24, 40, 1)'}

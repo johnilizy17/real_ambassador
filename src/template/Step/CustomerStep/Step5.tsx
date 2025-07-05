@@ -94,7 +94,7 @@ export default function StepFive({ data, page, setPage, setData, onClose }: any)
                     onSubmit={initiateLogin}
                     validationSchema={validationSchema}
                 >
-                    {({ isSubmitting, handleChange }) => (
+                    {({ isSubmitting, handleChange, setFieldValue, values }) => (
                         <Form>
                             <>
                                 <p>
@@ -107,13 +107,13 @@ export default function StepFive({ data, page, setPage, setData, onClose }: any)
                                         fieldProps={{ type: 'select' }}
                                         typeInput=''
                                         type='select'
-                                        value=''
+                                        handleChange={(val: any) => setFieldValue('notification', val)}
+                                        value={values.notification}
                                     >
-                                        <>
-                                            <option value={""}>Alert Form</option>
-                                            <option value={1}>Email</option>
-                                            <option value={2}>SMS</option>
-                                        </>
+
+                                        <option value={""}>Alert Form</option>
+                                        <option value={1}>Email</option>
+                                        <option value={2}>SMS</option>
                                     </CustomInput>
                                 </Box>
                                 <Button mr={3} mt={8} colorScheme='bllue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
