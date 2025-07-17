@@ -55,7 +55,7 @@ export default function RegistrationPopUp({ isOpen, onOpen, onClose }: { isOpen:
                 }}
                 onSubmit={handleSubmit}
             >
-                {({ isSubmitting, handleChange, values, errors, touched }) => (
+                {({ isSubmitting, handleChange, values, errors, touched, setFieldValue }) => (
 
                     <Modal isOpen={isOpen} onClose={onClose} isCentered>
                         <ModalContent>
@@ -70,6 +70,7 @@ export default function RegistrationPopUp({ isOpen, onOpen, onClose }: { isOpen:
                                         name='type'
                                         type={"select"}
                                         placeholder='Enter your subscription'
+                                        handleChange={(val: any) => setFieldValue('type', val)}
                                         value={values.type}
                                     >
                                         <option value='1'>Tier 2 {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
