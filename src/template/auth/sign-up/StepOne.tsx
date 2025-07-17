@@ -130,9 +130,9 @@ export default function StepOne({ data, setPage, user, setData }: any) {
               <>
                 <Box w='full' mt='44px'>
                   <CustomInput
-                    label='First Name'
-                    name='firstName'
-                    placeholder='Enter First Name'
+                    label='Email'
+                    name='email'
+                    placeholder='Enter Email'
                     fieldProps={{ type: 'text' }}
                     typeInput=''
                     value=''
