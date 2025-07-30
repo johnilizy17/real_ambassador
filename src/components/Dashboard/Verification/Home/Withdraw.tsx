@@ -58,8 +58,8 @@ export default function Withdraw({ onClose }: { onClose: any }) {
     ) => {
         try {
             setSubmitting(true);
-            const result = await verifyWallet(values)
-            setData(values)
+            const result = await verifyWallet({...values, account_bank:banklist[values.account_bank].bank_code})
+            setData({...values, account_bank:banklist[values.account_bank].code})
             setDetails(result.data.account_name)
             setSubmitting(false);
             setShowPassword(false)
@@ -106,7 +106,7 @@ export default function Withdraw({ onClose }: { onClose: any }) {
                             >
                                 <option value={""}>Select Bank</option>
                                 {banklist.map((a, b) => (
-                                    <option key={b} value={a.code}>{a.name}</option>
+                                    <option key={b} value={b}>{a.name}</option>
                                 ))}
                             </CustomInput>
                         </Box>
