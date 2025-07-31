@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { fetchAddressData, getAddressData } from "@/url/api's/claimAddress";
 import DownStep from "@/template/Step/DownStep";
 import CustomerStep from "@/template/Step/CustomerStep";
-
+import { ShareLink } from "@/template/ShareLink";
 
 export default function AccountBanner({ list, name, VerificationApi }: { list: any, name: string, VerificationApi: any }) {
     const [data, setData] = useState([])
@@ -20,6 +20,7 @@ export default function AccountBanner({ list, name, VerificationApi }: { list: a
     const [loading, setLoading] = useState(false)
     const { user } = useSelector((state: any) => state.auth);
     const [showPassword, setShowPassword] = useState(false);
+    const [shareButton, setShareButton] = useState(false);
     const [bulk, setBulk] = useState(false)
     const [phoneNumber, setPhoneNumber] = useState("");
     const [position, setPosition] = useState({
@@ -89,8 +90,23 @@ export default function AccountBanner({ list, name, VerificationApi }: { list: a
                             <path d="M3.86919 0.897135L4.23538 0.530951C4.40183 0.381149 4.6515 0.381149 4.8013 0.530951L8.04702 3.76003C8.19682 3.92647 8.19682 4.17614 8.04702 4.32595L4.8013 7.57166C4.6515 7.72147 4.40183 7.72147 4.23538 7.57166L3.86919 7.20548C3.71939 7.03903 3.71939 6.78936 3.86919 6.62292L5.8832 4.70877H1.10617C0.873147 4.70877 0.7067 4.54233 0.7067 4.3093V3.77667C0.7067 3.56029 0.873147 3.3772 1.10617 3.3772H5.8832L3.86919 1.4797C3.71939 1.31325 3.70275 1.06358 3.86919 0.897135Z" fill="white" />
                         </svg>
                     </Button>
+                    <Button
+                        onClick={() => setShareButton(!shareButton)}
+                        colorScheme="whiteAlpha">
+                        Share Links
+                    </Button>
                 </Flex>
             </Center>
+            <Modal isCentered isOpen={shareButton} onClose={() => setShareButton(false)}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Share your link</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <ShareLink url={name === "Referrals" ? "https://partners.abn.com.ng/" : "https://pay.abn.com.ng"} />
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
         </>
     )
 }
