@@ -1,5 +1,6 @@
 import authInstance from "../axios/authServer";
 import server from "../axios/server";
+import axios from 'axios'
 
 export const authLogin = async (payload: loginDto) => {
     try {

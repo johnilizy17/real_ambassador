@@ -7,11 +7,13 @@ import StepTwo from './Step2';
 import StepThree from './Step3';
 import StepFour from './Step4';
 import StepFive from './Step5';
+import StepStarter from './Step';
 
 export default function CustomerStep({ onClose, VerificationApi }: any) {
 
-    const [wizardStep, setWizardStep] = useState(1)
+    const [wizardStep, setWizardStep] = useState(0)
     const steps = [
+        { title: "Account Type" },
         { title: "Personal details" },
         { title: "Contact Info" },
         { title: "Registeration Fee" },
@@ -22,7 +24,7 @@ export default function CustomerStep({ onClose, VerificationApi }: any) {
 
     return (
         <>
-            <Stepper index={wizardStep - 1}>
+            <Stepper index={wizardStep}>
                 {
                     steps.map((a: { title: string }, b: number) => (
                         <Step key={b}>
@@ -37,9 +39,10 @@ export default function CustomerStep({ onClose, VerificationApi }: any) {
                 }
             </Stepper>
             <Box mt="10px">
-                <h1>{steps[wizardStep - 1].title}</h1>
+                <h1>{steps[wizardStep].title}</h1>
             </Box>
-            {
+            {wizardStep === 0 ? <StepStarter setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
+                :
                 wizardStep === 1 ? <StepOne setData={setData} page={wizardStep} setPage={setWizardStep} data={data} /> :
                     wizardStep === 2 ?
                         <StepTwo setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />

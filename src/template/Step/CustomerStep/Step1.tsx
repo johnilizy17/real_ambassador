@@ -93,7 +93,7 @@ export default function StepOne({ data, page, setPage, setData }: any) {
                                     value=''
                                 />
                             </Box>
-                            <Button mr={3} mt={8} colorScheme='blue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
+                            <Button mr={3} mt={8} colorScheme='blue' bg={COLORS.blue} disabled={page > 0.2 ? false : true} onClick={() => setPage(page - 1)}>
                                 Back
                             </Button>
                             <Button mt={8} colorScheme='green' type={"submit"}>

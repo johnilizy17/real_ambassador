@@ -1,4 +1,12 @@
-
+export function generateShortUUID() {
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  let uuid = '';
+  for (let i = 0; i < 6; i++) {
+    const randomIndex = Math.floor(Math.random() * letters.length);
+    uuid += letters[randomIndex];
+  }
+  return uuid;
+}
 export const LOCAL_STORAGE_KEYS = {
   USER: 'gain-user',
   ACCESS_TOKEN: 'access_token',
