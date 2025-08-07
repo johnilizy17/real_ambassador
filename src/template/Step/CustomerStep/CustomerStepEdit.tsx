@@ -18,7 +18,7 @@ export default function CustomerStepEdit({ onClose, VerificationApi, tx }: any) 
         { title: "Subscribe" },
         { title: "Payment Method" },
     ]
-    const [data, setData] = useState({ plan: "", duration: 365, type: "", ...tx })
+    const [data, setData] = useState({ plan: "", plot:1, duration: 365, type: "", ...tx })
 
     return (
         <>

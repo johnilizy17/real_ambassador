@@ -26,7 +26,8 @@ export default function StepFour({ data, page, setPage, setData }: any) {
     // Adjust validation schema based on userType
     const validationSchema = Yup.object({
         plan: Yup.string().required('Plan is required'),
-        type: Yup.string().required('Type is required')
+        type: Yup.string().required('Type is required'),
+        plot: Yup.string().required('Plot is required')
     });
 
     const initiateLogin = async (
@@ -48,10 +49,19 @@ export default function StepFour({ data, page, setPage, setData }: any) {
     const amountResult = (DataCount: any) => {
         const amount = DataCount.duration === 365 ? UsersPlan[DataCount.plan][365] : DataCount.duration === 548 ? UsersPlan[DataCount.plan][548] : UsersPlan[DataCount.plan][730]
         if (DataCount.type === "instant") {
-            return [UsersPlan[DataCount.plan].total, UsersPlan[DataCount.plan].total]
+            if (DataCount.plot) {
+                return [UsersPlan[DataCount.plan].total * DataCount.plot, UsersPlan[DataCount.plan].total]
+            } else {
+                return [UsersPlan[DataCount.plan].total, UsersPlan[DataCount.plan].total]
+            }
         } else {
             const result = DataCount.type === "daily" ? 1 : DataCount.type === "weekly" ? 7 : 30
-            return [result * amount, DataCount.duration * amount]
+            if (DataCount.plot) {
+                return [result * amount * DataCount.plot, DataCount.duration * amount]
+
+            } else {
+                return [result * amount, DataCount.duration * amount]
+            }
         }
     }
 
@@ -75,7 +85,7 @@ export default function StepFour({ data, page, setPage, setData }: any) {
                             <>
                                 <Box>
                                     {values.type != "instant" && values.type != "" && <Box>Total Amount:{cashFormat(amountResult(values)[1])}</Box>}
-                                    <Box>Amount Paid {values.type === "instant" ? "Once" : values.type != "daily" ? "Daily" : values.type != "weekly" ? "Weekly" : "Moneys"}:{values.type != "" && values.duration != "" && (values.plan != "" || values.plan === 0 ) ? cashFormat(amountResult(values)[0]) : "Please select your plan"}</Box>
+                                    <Box>Amount Paid {values.type === "instant" ? "Once" : values.type != "daily" ? "Daily" : values.type != "weekly" ? "Weekly" : "Moneys"}:{values.type != "" && values.duration != "" && (values.plan != "" || values.plan === 0) ? cashFormat(amountResult(values)[0]) : "Please select your plan"}</Box>
                                 </Box>
                                 <Box w='full' mt='44px'>
                                     <CustomInput
@@ -123,6 +133,14 @@ export default function StepFour({ data, page, setPage, setData }: any) {
                                         <option value={"weekly"}>Weekly</option>
                                         <option value={"monthly"}>Monthly</option>
                                     </CustomInput>
+                                </Box>
+                                <Box w='full' mt='44px'>
+                                    <CustomInput
+                                        label='Plot Number'
+                                        name='plot'
+                                        fieldProps={{ type: 'number' }}
+                                        typeInput=''
+                                    />
                                 </Box>
                                 <Button mr={3} mt={8} colorScheme='bllue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
                                     Back

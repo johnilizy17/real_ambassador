@@ -69,10 +69,10 @@ export default function StepFive({ data, page, setPage, setData, onClose }: any)
     const amountResult = () => {
         const amount = data.duration === 365 ? UsersPlan[data.plan][365] : data.duration === 548 ? UsersPlan[data.plan][548] : UsersPlan[data.plan][730]
         if (data.type === "instant") {
-            return UsersPlan[data.plan].total
+            return UsersPlan[data.plan].total*data.plot
         } else {
             const result = data.type === "daily" ? 1 : data.type === "weekly" ? 7 : 30
-            return result * amount
+            return result * amount*data.plot
         }
     }
 
