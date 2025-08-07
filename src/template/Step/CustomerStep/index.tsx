@@ -13,7 +13,7 @@ export default function CustomerStep({ onClose, VerificationApi }: any) {
 
     const [wizardStep, setWizardStep] = useState(0)
     const steps = [
-        { title: "Account Type" },
+        { title: "Register with email or phone number" },
         { title: "Personal details" },
         { title: "Contact Info" },
         { title: "Registeration Fee" },
