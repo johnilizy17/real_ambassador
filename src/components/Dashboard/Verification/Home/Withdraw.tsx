@@ -58,8 +58,8 @@ export default function Withdraw({ onClose }: { onClose: any }) {
     ) => {
         try {
             setSubmitting(true);
-            const result = await verifyWallet({...values, account_bank:banklist[values.account_bank].bank_code})
-            setData({...values, account_bank:banklist[values.account_bank].code})
+            const result = await verifyWallet({ ...values, account_bank: banklist[values.account_bank].code })
+            setData({ ...values, account_bank: banklist[values.account_bank].bank_code })
             setDetails(result.data.account_name)
             setSubmitting(false);
             setShowPassword(false)
@@ -74,6 +74,7 @@ export default function Withdraw({ onClose }: { onClose: any }) {
     const initiateWithdrawVerifcation = async () => {
         try {
             setLoading(true);
+            
             const result = await withdrawWallet(data)
             showMessage("Withdrawal Successful", "success")
             setLoading(false);
