@@ -1,6 +1,7 @@
 // components/BalanceCard.tsx
 import UserSideBar from '@/components/Dashboard/DashboardLayout/UserSideBar';
 import CreateAccount from '@/components/Dashboard/Verification/Home/CreateAccount';
+import TransferModel from '@/components/Dashboard/Verification/Home/TransferModel';
 import Withdraw from '@/components/Dashboard/Verification/Home/Withdraw';
 import useCustomToast from '@/hooks/useCustomToast';
 import { referredBalance } from '@/url/api\'s/organization';
@@ -46,6 +47,7 @@ export default function AccountNumber() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [wallet, setWallet] = useState({ account_number: "", bank_name: "" })
     const { user } = useSelector((a: { auth: { user: any } }) => a.auth)
+    const [transferWallet, setTransferWallet] = useState(false)
     const [amount, setAmount] = useState(0)
     const showMessage = useCustomToast();
 
@@ -75,15 +77,26 @@ export default function AccountNumber() {
     function AccountComponent() {
 
         return (
-            <Modal isOpen={isOpen} onClose={onClose} isCentered>
-                <ModalOverlay />
-                <ModalContent h="auto" pb="20px" w={["300px", "300px", "300px", "504px"]}>
-                    <ModalHeader justifyContent="center" fontSize="20px" fontWeight="500" alignItems="center">Withdraw Money</ModalHeader>
-                    <ModalBody w="full">
-                        <Withdraw onClose={onClose} />
-                    </ModalBody>
-                </ModalContent>
-            </Modal>
+            <>
+                <Modal isOpen={isOpen} onClose={onClose} isCentered>
+                    <ModalOverlay />
+                    <ModalContent h="auto" pb="20px" w={["300px", "300px", "300px", "504px"]}>
+                        <ModalHeader justifyContent="center" fontSize="20px" fontWeight="500" alignItems="center">Withdraw Money</ModalHeader>
+                        <ModalBody w="full">
+                            <Withdraw onClose={onClose} />
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
+                <Modal isOpen={transferWallet} onClose={() => setTransferWallet(false)} isCentered>
+                    <ModalOverlay />
+                    <ModalContent h="auto" pb="20px" w={["300px", "300px", "300px", "504px"]}>
+                        <ModalHeader justifyContent="center" fontSize="20px" fontWeight="500" alignItems="center">Transfer To Account in ABN</ModalHeader>
+                        <ModalBody w="full">
+                            <TransferModel onClose={()=>setTransferWallet(false)} />
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
+            </>
         )
     }
 
@@ -139,6 +152,11 @@ export default function AccountNumber() {
                         </Button>
                         <Button mt="20px" onClick={() => copyToClipboard(wallet.account_number)} colorScheme='blue' w={["140px", "140px", "140px", "300px"]}>
                             Deposit
+                        </Button>
+                    </Center>
+                    <Center>
+                        <Button mt="20px" color="#fff" onClick={() => setTransferWallet(true)} colorScheme='pink' w={["140px", "140px", "140px", "300px"]}>
+                            Transfer
                         </Button>
                     </Center>
                 </Box>

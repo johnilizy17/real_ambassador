@@ -71,7 +71,7 @@ export default function Dashboard() {
                                         <Tbody>
                                             {history.map((a: any, b: number) => (
                                                 <Tr key={b} h="75px">
-                                                    <Td>{a.user_id == "" ? user.firstName : JSON.parse(a.user_id).firstName + "," + JSON.parse(a.user_id).lastName}</Td>
+                                                    <Td>{a.user_id === user.id ? user.lastName : a.user_id == "" ? user.firstName : JSON.parse(a.user_id).firstName + "," + JSON.parse(a.user_id).lastName}</Td>
                                                     <Td color={a.amount > 0 ? "green" : "red"}>{a.amount}</Td>
                                                     <Td>{!a.type ? "Registration fee" : a.type}</Td>
                                                     <Td>{formatDate(a.created_at)}</Td>
