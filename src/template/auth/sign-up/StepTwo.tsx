@@ -88,7 +88,7 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
       else if (values.type === '2') {
         setAmount(15000);
       } else if (values.type === '3') {
-        setAmount(25000);
+        setAmount(50000);
       }
       showToast('you have successfully been registered', 'success');
       // router.push(ROUTES.login);
@@ -177,7 +177,7 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
                 >
                   <option value='1'>Tier 1 {"(" + cashFormat(5000) + " " + "percentage shares 2.5%" + ")"}</option>
                   <option value='2'>Tier 2 {"(" + cashFormat(15000) + " " + "percentage shares 5%" + ")"}</option>
-                  <option value='3'>Tier 3 {"(" + cashFormat(25000) + " " + "percentage shares 10%" + ")"}</option>
+                  <option value='3'>Tier 3 {"(" + cashFormat(50000) + " " + "percentage shares 10%" + ")"}</option>
                 </CustomInput>
               </Box>
               <Box w='full' mt='44px'>
