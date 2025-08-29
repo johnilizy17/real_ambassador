@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import CustomInput from '@/components/CustomInput/CustomInput';
 import Link from 'next/link';
 import { banklist } from "@/url/banklist";
-import { verifyWallet, withdrawWallet } from '@/url/api\'s/userProfile';
+import { verifyInternalWallet, verifyWallet, withdrawInternalWallet, withdrawWallet } from '@/url/api\'s/userProfile';
 import { useSelector } from 'react-redux';
 import { referredBalance } from '@/url/api\'s/organization';
 import useCustomToast from '@/hooks/useCustomToast';
@@ -17,8 +17,9 @@ export default function TransferModel({ onClose }: { onClose: any }) {
 
     const toast = useToast();
     const [showPassword, setShowPassword] = useState(true);
-    const [data, setData] = useState({ "account_number": "", "account_bank": "" })
+    const [data, setData] = useState({ "email": "", amount: 0 })
     const [loading, setLoading] = useState(false)
+    const [userId, setUserId] = useState<any>(null)
     const { user } = useSelector((a: { auth: any }) => a.auth)
 
     const [details, setDetails] = useState("");
@@ -37,7 +38,7 @@ export default function TransferModel({ onClose }: { onClose: any }) {
     }, [])
 
     const validationSchema = Yup.object({
-        account_number: Yup.string().required("Account Number is required"),
+        email: Yup.string().required("Email/Phone is required"),
     });
 
     const initiateLogin = async (
@@ -46,7 +47,13 @@ export default function TransferModel({ onClose }: { onClose: any }) {
     ) => {
         try {
             setSubmitting(true);
+            const data = values.email.includes("@") ? { "email": values.email } : { "phone": values.email }
+            const result = await verifyInternalWallet(data)
+            console.log(result, "result")
+            // setDetails(result.data.account_name)
+            setSubmitting(false);
         } catch (error) {
+            setSubmitting(false);
         } finally {
             setSubmitting(false);
         }
@@ -58,14 +65,17 @@ export default function TransferModel({ onClose }: { onClose: any }) {
     ) => {
         try {
             setSubmitting(true);
-            const result = await verifyWallet({ ...values, account_bank: banklist[values.account_bank].code })
-            setData({ ...values, account_bank: banklist[values.account_bank].bank_code })
-            setDetails(result.data.account_name)
+            const data = values.email.includes("@") ? { "email": values.email } : { "phone": values.email }
+            const result = await verifyInternalWallet(data)
             setSubmitting(false);
             setShowPassword(false)
+            showMessage("Account successfully verified", "success")
+            setUserId(result.data.id)
+            setData(values)
+            setDetails(result.data.firstName + "," + result.data.lastName)
         } catch (error: any) {
             setSubmitting(false);
-            setDetails("Incorrect account")
+            setDetails(error.response.data.message)
             setShowPassword(true)
         }
     };
@@ -74,12 +84,11 @@ export default function TransferModel({ onClose }: { onClose: any }) {
     const initiateWithdrawVerifcation = async () => {
         try {
             setLoading(true);
-            
-            const result = await withdrawWallet(data)
-            showMessage("Withdrawal Successful", "success")
+            const result = await withdrawInternalWallet({ ...data, id: userId })
+            showMessage("Transfer Successful", "success")
             setLoading(false);
         } catch (error: any) {
-            showMessage("Failed to withdraw", "error")
+            showMessage(error.response.data.message || "Failed to withdraw", "error")
             setLoading(false);
         }
     };
@@ -92,7 +101,7 @@ export default function TransferModel({ onClose }: { onClose: any }) {
                 validationSchema={validationSchema}
             >
                 {({ isSubmitting, setSubmitting, setFieldValue, values }) => (
-                    <Form style={{width:"100%"}}>
+                    <Form style={{ width: "100%" }}>
                         <Box w="full" mt="20px">
                             <CustomInput
                                 label="Email/Phone Number"
@@ -103,7 +112,18 @@ export default function TransferModel({ onClose }: { onClose: any }) {
                                 value=""
                             />
                             <Box color={showPassword ? "red" : "black"}>{details}</Box>
-                        </Box>
+                        </Box> 
+                            <Box w="full" mt="40px">
+                                <CustomInput
+                                    label="Amount"
+                                    name="amount"
+                                    placeholder="Enter Amount"
+                                    fieldProps={{ type: "number" }}
+                                    typeInput=""
+                                    value=""
+                                />
+                            </Box>
+                        
                         <Center mt="30px" flexDir={["column-reverse", "column-reverse", "column-reverse", "row"]} justifyContent="space-between">
                             <Button
                                 colorScheme="white"
@@ -141,7 +161,7 @@ export default function TransferModel({ onClose }: { onClose: any }) {
                                 borderRadius="5px"
                                 color={COLORS.white}
                             >
-                                Withdraw
+                                Transfer
                             </Button>}
                         </Center>
                     </Form>

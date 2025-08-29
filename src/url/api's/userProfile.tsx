@@ -51,8 +51,18 @@ export const verifyWallet = async (payload: any) => {
     return data;
 };
 
+export const verifyInternalWallet = async (payload: any) => {
+    const { data } = await publicRequest.post(`wallet/verify/internal`, payload);
+    return data;
+};
+
 export const withdrawWallet = async (payload: any) => {
     const { data } = await userRequest.post(`wallet/withdraw`, payload);
+    return data;
+};
+
+export const withdrawInternalWallet = async (payload: any) => {
+    const { data } = await userRequest.post(`wallet/withdraw/internal`, payload);
     return data;
 };
 
