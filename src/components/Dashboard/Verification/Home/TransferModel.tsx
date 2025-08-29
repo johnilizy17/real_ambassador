@@ -91,7 +91,8 @@ export default function TransferModel({ onClose }: { onClose: any }) {
             showMessage(error.response.data.message || "Failed to withdraw", "error")
             setLoading(false);
         }
-    };
+    }
+
 
     return (
         <Center flexDir="column" w="full">
