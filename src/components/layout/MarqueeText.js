@@ -19,7 +19,7 @@ export default function MarqueeText({ top = "0px" }) {
       py={2}
       top={top}
       right="0px"
-      zIndex={"2"}
+      zIndex={"200"}
       w={top === "70px" ? ["full", "full", "full", "calc(100% - 280px)"] : "full"}
       position="fixed"
     >
@@ -30,7 +30,7 @@ export default function MarqueeText({ top = "0px" }) {
         animation={`${marqueeKeyframes} 15s linear infinite`}
         fontWeight="900"
       >
-        🚀 Welcome to ABN Partners where you earn on referral all re tier 3 account have been increase to {cashFormat(50000)} and the percentage is now 30% 🚀, all registeration fee is not refundable kindly note
+        🚀 Welcome to ABN Partners where you referral to  earn on remember all registeration fee is not refundable kindly note. kindly notice all tier 3 account promo has been deactivated tier 3 is now {cashFormat(50000)} and the percentage is now 30% 🚀
       </Text>
     </Box>
   );
