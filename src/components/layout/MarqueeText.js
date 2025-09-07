@@ -9,7 +9,7 @@ const marqueeKeyframes = keyframes`
 `;
 
 
-export default function MarqueeText({top="0px"}) {
+export default function MarqueeText({ top = "0px" }) {
   return (
     <Box
       overflow="hidden"
@@ -20,7 +20,7 @@ export default function MarqueeText({top="0px"}) {
       top={top}
       right="0px"
       zIndex={"200"}
-      w={top ==="70px"?["full","full","full","calc(100% - 280px)"]: "full"}
+      w={top === "70px" ? ["full", "full", "full", "calc(100% - 280px)"] : "full"}
       position="fixed"
     >
       <Text
@@ -30,7 +30,7 @@ export default function MarqueeText({top="0px"}) {
         animation={`${marqueeKeyframes} 15s linear infinite`}
         fontWeight="900"
       >
-        🚀 Welcome to ABN tier 3 account have been increase to {cashFormat(50000)} and the percentage is now 30% 🚀
+        🚀 Welcome to ABN tier 3 account have been increase to {cashFormat(50000)} and the percentage is now 30% 🚀, all registeration fee is not refundable kindly note
       </Text>
     </Box>
   );
