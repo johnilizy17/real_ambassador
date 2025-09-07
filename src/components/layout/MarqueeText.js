@@ -14,12 +14,12 @@ export default function MarqueeText({ top = "0px" }) {
     <Box
       overflow="hidden"
       whiteSpace="nowrap"
-      bg={COLORS.red}
+      bg={COLORS.black}
       color="white"
       py={2}
       top={top}
       right="0px"
-      zIndex={"200"}
+      zIndex={"2"}
       w={top === "70px" ? ["full", "full", "full", "calc(100% - 280px)"] : "full"}
       position="fixed"
     >
@@ -30,7 +30,7 @@ export default function MarqueeText({ top = "0px" }) {
         animation={`${marqueeKeyframes} 15s linear infinite`}
         fontWeight="900"
       >
-        🚀 Welcome to ABN tier 3 account have been increase to {cashFormat(50000)} and the percentage is now 30% 🚀, all registeration fee is not refundable kindly note
+        🚀 Welcome to ABN Partners where you earn on referral all re tier 3 account have been increase to {cashFormat(50000)} and the percentage is now 30% 🚀, all registeration fee is not refundable kindly note
       </Text>
     </Box>
   );
