@@ -8,6 +8,7 @@ import { useHydration } from "@/utils/hydrate";
 import { Box } from "@chakra-ui/react";
 import { COLORS } from "@/utils/Theme";
 import Footer from "@/components/layout/Footer";
+import MarqueeText from '@/components/layout/MarqueeText';
 
 export default function NoAuthLayer({ children, seoTitle }: { children: any, seoTitle?: string }) {
 
@@ -51,6 +52,7 @@ export default function NoAuthLayer({ children, seoTitle }: { children: any, seo
 
             <LoadingScreen />
             <Box bg={COLORS.black} letterSpacing={"2px"} fontFamily={"Emoji"}>
+                <MarqueeText />
                 {hydrated && children}
                 <Footer />
             </Box>

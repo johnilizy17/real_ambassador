@@ -93,10 +93,10 @@ export default function Plan() {
                                 </p>
                                 <Box w="full" textAlign={"start"}>
                                     <li>Price:{cashFormat(50000)}</li>
-                                    <li>Refferal Earning: 40%</li>
-                                    <li>Sub Earning: 40%</li>
+                                    <li>Refferal Earning: 30%</li>
+                                    <li>Sub Earning: 30%</li>
                                     <li>Product Earning: 10%</li>
-                                    <li>Refferal stages: 4{"(40%, 20%, 10%, 5%)"}</li>
+                                    <li>Refferal stages: 4{"(30%, 20%, 10%, 5%)"}</li>
                                 </Box>
                             </div>
                             <div className="about_btn plans_btn green_plan_btn index2_investment_btn">

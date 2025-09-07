@@ -5,6 +5,7 @@ import DashboardNav from "./User/DashBoardNav";
 import UserNavBar from "./User/UserNavBar";
 import VerificationAlert from "./VerificationAlert";
 import UserDashboardAuth from "@/Auth/UserDashboardAuth";
+import MarqueeText from "@/components/layout/MarqueeText";
 
 export default function UserSideBar({ children }: any) {
 
@@ -12,6 +13,7 @@ export default function UserSideBar({ children }: any) {
 
     return (
         <UserDashboardAuth>
+            <MarqueeText top="70px" />
             <Flex bg="#FAFAFA" zIndex={4} pos="fixed" h="100vh">
                 <Box display={["block", "block", "block", "none"]}>
                     <DashboardNav />
