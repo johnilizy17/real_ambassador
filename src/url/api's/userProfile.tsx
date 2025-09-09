@@ -66,6 +66,26 @@ export const withdrawInternalWallet = async (payload: any) => {
     return data;
 };
 
+export const getAllMassages = async () => {
+    const { data } = await userRequest.get(`ai`);
+    return data;
+};
+
+export const createChatMassages = async (payload: any) => {
+    const { data } = await userRequest.post(`ai`, payload);
+    return data;
+};
+
+export const createKnowledgeBase = async () => {
+    const { data } = await userRequest.get(`ai/knowledgebase`);
+    return data;
+};
+
+export const createKnowledgeBaseAnonymous = async (email: string) => {
+    const { data } = await userRequest.get(`ai/knowledgebase/anonymous/${email}`);
+    return data;
+};
+
 export const generateAccount = async (payload: any) => {
     const { data } = await publicRequest.post(`wallet/generate`, payload);
     return data;

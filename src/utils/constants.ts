@@ -18,12 +18,20 @@ export const LOCAL_STORAGE_KEYS = {
   SUB: "Subs"
 } as const;
 
+export function extractEmail(text: string): string | null {
+  if (!text) return null; // safeguard for undefined/null/empty
+
+  // Regex pattern for email (case-insensitive)
+  const match = text.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i);
+  return match ? match[0] : null;
+}
+
 export const UsersPlan = [
   {
     name: "Asa Plan",
     total: 300000,
     1: 300000,
-   365: 850,
+    365: 850,
     548: 600,
     730: 500
   },

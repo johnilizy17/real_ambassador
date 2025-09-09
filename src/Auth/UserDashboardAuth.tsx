@@ -80,7 +80,7 @@ export default function UserDashboardAuth({ children }: any) {
             <RegistrationPopUp isOpen={user && user.payment && user.payment > 1.5 ? isOpen : !isOpen} onOpen={onOpen} onClose={onClose} />
             {/* Show loading screen only while loading is true */}
             {loading && (
-                <Center w="full" background="white" zIndex={1000} pos="fixed" top="0px" flexDir="column" h="100vh">
+                <Center w="full" background="white" zIndex={"2000"} pos="fixed" top="0px" flexDir="column" h="100vh">
                     <Img src="/logo/logo_blue.png" className='animate-image' h="100px" mb="10px" alt="logo Icon" />
                 </Center>
             )}

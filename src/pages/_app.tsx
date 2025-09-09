@@ -7,6 +7,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store/store";
 import { ChrakaLayout } from "@/contants/ChrakaLayout";
+import AIChat from "@/components/layout/AIchat";
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <ChrakaLayout>
           <Component {...pageProps} />
+          <AIChat />
         </ChrakaLayout>
       </Provider>
     </div>

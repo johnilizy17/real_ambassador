@@ -12,6 +12,8 @@ import { logout } from '@/redux/slices/auth/authSlice';
 
 const baseURL = 'https://farm.johnabrahamtosin.workers.dev/api/v1/';
 
+// const baseURL = 'http://127.0.0.1:8787/api/v1/';
+
 export const userRequest = axios.create({ baseURL });
 export const publicRequest = axios.create({ baseURL });
 export const userFileUpload = axios.create({
