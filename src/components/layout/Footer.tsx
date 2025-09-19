@@ -29,7 +29,7 @@ export default function Footer() {
                                 </li>
                                 <li><a style={{ color: "#fff" }} href="mailto:info@narinohs.com"><i style={{color:"#fff", marginBottom:5}} className="flaticon-mail"></i>info@narinohs.com</a>
                                 </li>
-                                <li><a style={{ color: "#fff" }} href="www.abn.com.ng"><i style={{color:"#fff", marginBottom:5}} className="flaticon-language"></i>www.abn.com.ng</a>
+                                <li><a style={{ color: "#fff" }} href="www.abn.com.ng"><i style={{color:"#fff", marginBottom:5}} className="flaticon-language"></i>www.pay.abn.com.ng</a>
                                 </li>
 
                                 <li><a style={{ color: "#fff" }} href="#"><i style={{color:"#fff", marginBottom:5}} className="flaticon-placeholder"></i>9 Okun-Ajah Complex off Ogombo Abraham Adesanya road,
