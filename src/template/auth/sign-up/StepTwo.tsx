@@ -207,7 +207,7 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
                   isChecked={values.acceptedTerms}
                 >
                   I agree to the{' '}
-                  <Link href='/terms-and-conditions"'>
+                  <Link href='/terms-and-conditions'>
                     <Text as='span' color='blue.500' cursor='pointer'>
                       Terms and Conditions
                     </Text>
