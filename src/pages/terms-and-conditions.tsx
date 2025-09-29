@@ -12,7 +12,7 @@ export default function Terms() {
     return (
         <NoAuthLayer seoTitle="Terms and Conditions">
             <Box color={COLORS.white} bg={COLORS.black}>
-                <Header text={false} logo={true} />
+                <Header/>
                 <Box className="fade-slide bottom" p={["20px", "20px", "20px", "120px"]} pt="0px">
                     <Box h={["100px", "100px", "100px", "0px"]} />
 
