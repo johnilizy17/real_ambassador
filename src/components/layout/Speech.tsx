@@ -208,7 +208,7 @@ export default function Speech({ setDisplay }: any) {
                 createKnowledgeBaseAnonymous(email)
             }
         }
-    }, [email])
+    }, [email, text])
 
     useEffect(() => {
         if (user && user.id) {
