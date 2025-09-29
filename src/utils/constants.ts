@@ -100,3 +100,26 @@ export const UsersPlan = [
     730: 7000
   }
 ]
+
+export function extractEmailFromSpeech(speech: string): string | null {
+  if (!speech) return null;
+
+  let text = speech.toLowerCase().trim();
+
+  // Replace common speech words
+  text = text
+    .replace(/\s+at\s+/g, "@") // "at" → "@"
+    .replace(/\sdot\s/g, ".") // "dot" → "."
+    .replace(/\s+/g, "") // remove spaces
+
+    // Extra cleanup
+    .replace(/(@{2,})/g, "@") // multiple @
+    .replace(/(\.{2,})/g, "."); // multiple dots
+
+  // Simple email regex
+  const emailRegex =
+    /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/;
+
+  const match = text.match(emailRegex);
+  return match ? match[0] : null;
+}
