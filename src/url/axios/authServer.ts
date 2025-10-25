@@ -1,5 +1,5 @@
 import axios from "axios";
-let baseURL = "https://farm.johnabrahamtosin.workers.dev/v1/";
+let baseURL = "https://abn.com.ng/v1/";
 
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
