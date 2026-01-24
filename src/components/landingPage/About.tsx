@@ -1,6 +1,5 @@
 import { Box, Center, Flex, Img, Heading, Text, Container, SimpleGrid, Icon } from "@chakra-ui/react";
 import React from "react";
-import { COLORS } from "../utils/Theme";
 import { UserPlus, Share2, DollarSign } from "lucide-react";
 
 export default function About() {
@@ -46,7 +45,7 @@ export default function About() {
                             <Center
                                 w="64px"
                                 h="64px"
-                                bg={COLORS.soft_blue}
+                                bg={COLORS.blue}
                                 color={COLORS.brand_blue}
                                 borderRadius="full"
                                 mx="auto"
@@ -68,4 +67,5 @@ export default function About() {
     );
 }
 
-import { VStack } from "@chakra-ui/react";
+import { VStack } from "@chakra-ui/react"; import { COLORS } from "../utils/theme";
+
