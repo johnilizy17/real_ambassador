@@ -2,7 +2,7 @@ import { Box, Button, Flex, Img, Container } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
 import { useSelector } from "react-redux";
-import { COLORS } from "../utils/Theme";
+import { COLORS } from "../utils/theme";
 
 export default function NavContent() {
 
@@ -40,7 +40,7 @@ export default function NavContent() {
                                 </Button>
                                 <Button
                                     onClick={() => router.push("/auth/login")}
-                                    bg={COLORS.soft_blue}
+                                    bg={COLORS.blue}
                                     color={COLORS.brand_blue}
                                     _hover={{ bg: "blue.100" }}
                                     borderRadius="full"

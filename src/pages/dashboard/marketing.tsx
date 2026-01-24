@@ -158,8 +158,6 @@ export default function Marketing() {
                                     variants={itemVariants}
                                     whileHover={{ scale: 1.01, shadow: "md", borderColor: "blue.200" }}
                                     as="a"
-                                    href={link.url}
-                                    target="_blank"
                                     rel="noopener noreferrer"
                                     bg="white"
                                     p="6"

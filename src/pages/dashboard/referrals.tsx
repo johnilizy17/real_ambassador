@@ -125,174 +125,176 @@ export default function Referrals() {
 
     return (
         <UserSideBar>
-            <Box bg="#F9FAFB" minH="100vh" p={{ base: "4", md: "8" }} mt="120px">
-                {/* Header Section */}
-                <Flex justify="space-between" align="center" mb="8" direction={{ base: "column", md: "row" }} gap="4">
-                    <Box>
-                        <Heading size="lg" fontWeight="700" mb="1">Referrals</Heading>
-                        <Text color="gray.600">Manage and track all your referrals</Text>
-                    </Box>
-                    <Button
-                        leftIcon={<Plus size={20} />}
-                        bg="#0047AB"
-                        color="white"
-                        _hover={{ bg: "#003580" }}
-                        px="8"
-                        h="50px"
-                        borderRadius="xl"
-                        onClick={onOpen}
-                    >
-                        Create Partner/Customer
-                    </Button>
-                </Flex>
-
-                {/* Tabs for Category */}
-                <Tabs variant='soft-rounded' colorScheme='blue' mb="8" index={activeTab} onChange={(index) => setActiveTab(index)}>
-                    <TabList bg="white" p="2" borderRadius="full" display="inline-flex" shadow="sm" border="1px solid" borderColor="gray.100">
-                        <Tab px="8" fontWeight="600" fontSize="sm">Partners</Tab>
-                        <Tab px="8" fontWeight="600" fontSize="sm">Users</Tab>
-                    </TabList>
-                </Tabs>
-
-                {/* Referral Code Card */}
-                <Box bg="white" p="6" borderRadius="xl" shadow="sm" border="1px solid" borderColor="gray.100" mb="8">
-                    <Heading size="sm" mb="6" fontWeight="600">Your {activeTab === 0 ? 'Partner' : 'User'} Referral Details</Heading>
-                    <VStack spacing="4" align="stretch">
-                        <InputGroup size="lg">
-                            <Input
-                                readOnly
-                                value={referralCode}
-                                bg="gray.50"
-                                border="none"
-                                fontSize="md"
-                                fontWeight="600"
-                            />
-                            <InputRightElement h="full" pr="2">
-                                <IconButton
-                                    aria-label="Copy code"
-                                    icon={<Copy size={18} />}
-                                    variant="ghost"
-                                    onClick={() => copyToClipboard(referralCode, "Referral code")}
-                                />
-                            </InputRightElement>
-                        </InputGroup>
-
-                        <InputGroup size="lg">
-                            <Input
-                                readOnly
-                                value={referralLink}
-                                bg="gray.50"
-                                border="none"
-                                fontSize="sm"
-                                color="gray.600"
-                            />
-                            <InputRightElement h="full" pr="2">
-                                <IconButton
-                                    aria-label="Copy link"
-                                    icon={<Copy size={18} />}
-                                    variant="ghost"
-                                    onClick={() => copyToClipboard(referralLink, "Referral link")}
-                                />
-                            </InputRightElement>
-                        </InputGroup>
-                    </VStack>
-                    <Text mt="4" fontSize="xs" color="gray.500">
-                        * Referrals via this link will be registered as {activeTab === 0 ? 'Partners' : 'Normal Users'}.
-                    </Text>
-                </Box>
-
-                {/* All Referrals Section */}
-                <Box bg="white" borderRadius="xl" shadow="sm" border="1px solid" borderColor="gray.100" overflow="hidden">
-                    <Flex p="6" justify="space-between" align={{ base: "start", md: "center" }} direction={{ base: "column", md: "row" }} gap="4">
-                        <Heading size="md" fontWeight="700">All {activeTab === 0 ? 'Partners' : 'Users'}</Heading>
-                        <InputGroup maxW={{ base: "full", md: "300px" }}>
-                            <InputLeftElement pointerEvents='none'>
-                                <Search size={18} color="gray.400" />
-                            </InputLeftElement>
-                            <Input
-                                placeholder="Search..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                bg="gray.50"
-                                border="none"
-                                _focus={{ bg: "white", ring: 2, ringColor: "blue.400" }}
-                            />
-                        </InputGroup>
+            <PageAnimation>
+                <Box bg="#F9FAFB" minH="100vh" p={{ base: "4", md: "8" }} mt="120px">
+                    {/* Header Section */}
+                    <Flex justify="space-between" align="center" mb="8" direction={{ base: "column", md: "row" }} gap="4">
+                        <Box>
+                            <Heading size="lg" fontWeight="700" mb="1">Referrals</Heading>
+                            <Text color="gray.600">Manage and track all your referrals</Text>
+                        </Box>
+                        <Button
+                            leftIcon={<Plus size={20} />}
+                            bg="#0047AB"
+                            color="white"
+                            _hover={{ bg: "#003580" }}
+                            px="8"
+                            h="50px"
+                            borderRadius="xl"
+                            onClick={onOpen}
+                        >
+                            Create Partner/Customer
+                        </Button>
                     </Flex>
 
-                    {currentItems.length > 0 ? (
-                        <>
-                            <TableContainer px="2">
-                                <Table variant="simple" size="md">
-                                    <Thead>
-                                        <Tr>
-                                            <Th color="gray.400" textTransform="none" fontWeight="500">ID</Th>
-                                            <Th color="gray.400" textTransform="none" fontWeight="500">Name</Th>
-                                            <Th color="gray.400" textTransform="none" fontWeight="500">Date Joined</Th>
-                                            <Th color="gray.400" textTransform="none" fontWeight="500">Status</Th>
-                                            <Th color="gray.400" textTransform="none" fontWeight="500" isNumeric>Revenue</Th>
-                                        </Tr>
-                                    </Thead>
-                                    <Tbody>
-                                        {currentItems.map((ref, idx) => (
-                                            <Tr key={idx}>
-                                                <Td fontSize="sm" color="gray.600">REF-{(currentPage - 1) * ITEMS_PER_PAGE + idx + 101}</Td>
-                                                <Td>
-                                                    <VStack align="start" spacing="0">
-                                                        <Text fontWeight="600" fontSize="sm">{ref.firstName} {ref.lastName}</Text>
-                                                        <Text fontSize="xs" color="gray.500">{ref.email}</Text>
-                                                    </VStack>
-                                                </Td>
-                                                <Td fontSize="sm" color="gray.600">{formatDate(ref.createAt || ref.created_at)}</Td>
-                                                <Td>
-                                                    <Badge
-                                                        px="2"
-                                                        py="1"
-                                                        borderRadius="full"
-                                                        colorScheme={ref.payment === 4 ? "green" : ref.payment === 1 ? "orange" : "gray"}
-                                                        textTransform="lowercase"
-                                                    >
-                                                        {ref.payment === 4 ? "active" : "pending"}
-                                                    </Badge>
-                                                </Td>
-                                                <Td fontSize="sm" fontWeight="700" isNumeric>₦0</Td>
-                                            </Tr>
-                                        ))}
-                                    </Tbody>
-                                </Table>
-                            </TableContainer>
+                    {/* Tabs for Category */}
+                    <Tabs variant='soft-rounded' colorScheme='blue' mb="8" index={activeTab} onChange={(index) => setActiveTab(index)}>
+                        <TabList bg="white" p="2" borderRadius="full" display="inline-flex" shadow="sm" border="1px solid" borderColor="gray.100">
+                            <Tab px="8" fontWeight="600" fontSize="sm">Partners</Tab>
+                            <Tab px="8" fontWeight="600" fontSize="sm">Users</Tab>
+                        </TabList>
+                    </Tabs>
 
-                            {/* Pagination Controls */}
-                            <Flex p="6" justify="space-between" align="center" borderTop="1px solid" borderColor="gray.50">
-                                <Text fontSize="sm" color="gray.500">
-                                    Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1} to {Math.min(currentPage * ITEMS_PER_PAGE, filteredReferrals.length)} of {filteredReferrals.length} referrals
-                                </Text>
-                                <HStack spacing="2">
+                    {/* Referral Code Card */}
+                    <Box bg="white" p="6" borderRadius="xl" shadow="sm" border="1px solid" borderColor="gray.100" mb="8">
+                        <Heading size="sm" mb="6" fontWeight="600">Your {activeTab === 0 ? 'Partner' : 'User'} Referral Details</Heading>
+                        <VStack spacing="4" align="stretch">
+                            <InputGroup size="lg">
+                                <Input
+                                    readOnly
+                                    value={referralCode}
+                                    bg="gray.50"
+                                    border="none"
+                                    fontSize="md"
+                                    fontWeight="600"
+                                />
+                                <InputRightElement h="full" pr="2">
                                     <IconButton
-                                        aria-label="Previous page"
-                                        icon={<ChevronLeft size={18} />}
-                                        variant="outline"
-                                        isDisabled={currentPage === 1}
-                                        onClick={() => setCurrentPage(p => p - 1)}
+                                        aria-label="Copy code"
+                                        icon={<Copy size={18} />}
+                                        variant="ghost"
+                                        onClick={() => copyToClipboard(referralCode, "Referral code")}
                                     />
-                                    <Text fontSize="sm" fontWeight="600" px="4">Page {currentPage} of {totalPages}</Text>
+                                </InputRightElement>
+                            </InputGroup>
+
+                            <InputGroup size="lg">
+                                <Input
+                                    readOnly
+                                    value={referralLink}
+                                    bg="gray.50"
+                                    border="none"
+                                    fontSize="sm"
+                                    color="gray.600"
+                                />
+                                <InputRightElement h="full" pr="2">
                                     <IconButton
-                                        aria-label="Next page"
-                                        icon={<ChevronRight size={18} />}
-                                        variant="outline"
-                                        isDisabled={currentPage === totalPages}
-                                        onClick={() => setCurrentPage(p => p + 1)}
+                                        aria-label="Copy link"
+                                        icon={<Copy size={18} />}
+                                        variant="ghost"
+                                        onClick={() => copyToClipboard(referralLink, "Referral link")}
                                     />
-                                </HStack>
-                            </Flex>
-                        </>
-                    ) : (
-                        <Box py="10">
-                            <EmptyState title={searchQuery ? 'No matching results' : `No ${activeTab === 0 ? 'partners' : 'users'} found`} />
-                        </Box>
-                    )}
+                                </InputRightElement>
+                            </InputGroup>
+                        </VStack>
+                        <Text mt="4" fontSize="xs" color="gray.500">
+                            * Referrals via this link will be registered as {activeTab === 0 ? 'Partners' : 'Normal Users'}.
+                        </Text>
+                    </Box>
+
+                    {/* All Referrals Section */}
+                    <Box bg="white" borderRadius="xl" shadow="sm" border="1px solid" borderColor="gray.100" overflow="hidden">
+                        <Flex p="6" justify="space-between" align={{ base: "start", md: "center" }} direction={{ base: "column", md: "row" }} gap="4">
+                            <Heading size="md" fontWeight="700">All {activeTab === 0 ? 'Partners' : 'Users'}</Heading>
+                            <InputGroup maxW={{ base: "full", md: "300px" }}>
+                                <InputLeftElement pointerEvents='none'>
+                                    <Search size={18} color="gray.400" />
+                                </InputLeftElement>
+                                <Input
+                                    placeholder="Search..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    bg="gray.50"
+                                    border="none"
+                                    _focus={{ bg: "white", ring: 2, ringColor: "blue.400" }}
+                                />
+                            </InputGroup>
+                        </Flex>
+
+                        {currentItems.length > 0 ? (
+                            <>
+                                <TableContainer px="2">
+                                    <Table variant="simple" size="md">
+                                        <Thead>
+                                            <Tr>
+                                                <Th color="gray.400" textTransform="none" fontWeight="500">ID</Th>
+                                                <Th color="gray.400" textTransform="none" fontWeight="500">Name</Th>
+                                                <Th color="gray.400" textTransform="none" fontWeight="500">Date Joined</Th>
+                                                <Th color="gray.400" textTransform="none" fontWeight="500">Status</Th>
+                                                <Th color="gray.400" textTransform="none" fontWeight="500" isNumeric>Revenue</Th>
+                                            </Tr>
+                                        </Thead>
+                                        <Tbody>
+                                            {currentItems.map((ref, idx) => (
+                                                <Tr key={idx}>
+                                                    <Td fontSize="sm" color="gray.600">REF-{(currentPage - 1) * ITEMS_PER_PAGE + idx + 101}</Td>
+                                                    <Td>
+                                                        <VStack align="start" spacing="0">
+                                                            <Text fontWeight="600" fontSize="sm">{ref.firstName} {ref.lastName}</Text>
+                                                            <Text fontSize="xs" color="gray.500">{ref.email}</Text>
+                                                        </VStack>
+                                                    </Td>
+                                                    <Td fontSize="sm" color="gray.600">{formatDate(ref.createAt || ref.created_at)}</Td>
+                                                    <Td>
+                                                        <Badge
+                                                            px="2"
+                                                            py="1"
+                                                            borderRadius="full"
+                                                            colorScheme={ref.payment === 4 ? "green" : ref.payment === 1 ? "orange" : "gray"}
+                                                            textTransform="lowercase"
+                                                        >
+                                                            {ref.payment === 4 ? "active" : "pending"}
+                                                        </Badge>
+                                                    </Td>
+                                                    <Td fontSize="sm" fontWeight="700" isNumeric>₦0</Td>
+                                                </Tr>
+                                            ))}
+                                        </Tbody>
+                                    </Table>
+                                </TableContainer>
+
+                                {/* Pagination Controls */}
+                                <Flex p="6" justify="space-between" align="center" borderTop="1px solid" borderColor="gray.50">
+                                    <Text fontSize="sm" color="gray.500">
+                                        Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1} to {Math.min(currentPage * ITEMS_PER_PAGE, filteredReferrals.length)} of {filteredReferrals.length} referrals
+                                    </Text>
+                                    <HStack spacing="2">
+                                        <IconButton
+                                            aria-label="Previous page"
+                                            icon={<ChevronLeft size={18} />}
+                                            variant="outline"
+                                            isDisabled={currentPage === 1}
+                                            onClick={() => setCurrentPage(p => p - 1)}
+                                        />
+                                        <Text fontSize="sm" fontWeight="600" px="4">Page {currentPage} of {totalPages}</Text>
+                                        <IconButton
+                                            aria-label="Next page"
+                                            icon={<ChevronRight size={18} />}
+                                            variant="outline"
+                                            isDisabled={currentPage === totalPages}
+                                            onClick={() => setCurrentPage(p => p + 1)}
+                                        />
+                                    </HStack>
+                                </Flex>
+                            </>
+                        ) : (
+                            <Box py="10">
+                                <EmptyState title={searchQuery ? 'No matching results' : `No ${activeTab === 0 ? 'partners' : 'users'} found`} />
+                            </Box>
+                        )}
+                    </Box>
                 </Box>
-            </Box>
+            </PageAnimation>
 
             {/* Create Modal */}
             <Modal isOpen={isOpen} onClose={handleCreationClose} isCentered size={creationType ? "lg" : "3xl"}>
