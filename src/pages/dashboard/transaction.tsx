@@ -58,6 +58,10 @@ export default function Dashboard() {
     const { isOpen: isDepositOpen, onOpen: onDepositOpen, onClose: onDepositClose } = useDisclosure();
     const [transferType, setTransferType] = useState<"internal" | "normal" | null>(null);
 
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const ITEMS_PER_PAGE = 10;
+
     const tiers = [
         { name: "Bronze", rate: "5%", color: "orange.400", id: 2 },
         { name: "Silver", rate: "10%", color: "blue.400", active: true, id: 3 },
@@ -148,6 +152,24 @@ export default function Dashboard() {
         if (!type) return "Registration Fee";
         return type.replace(/Registeration/g, 'Registration');
     }
+
+    // Pagination Logic
+    const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+    const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+    const currentItems = history.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(history.length / ITEMS_PER_PAGE);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
 
     return (
         <UserSideBar>
@@ -249,7 +271,7 @@ export default function Dashboard() {
                                         </Tr>
                                     </Thead>
                                     <Tbody>
-                                        {history.map((item: any, idx: number) => (
+                                        {currentItems.map((item: any, idx: number) => (
                                             <Tr key={idx}>
                                                 <Td fontSize="sm" color="gray.600">PAY-{idx + 100}</Td>
                                                 <Td fontSize="sm" color="gray.600">{formatDate(item.created_at)}</Td>
@@ -273,6 +295,31 @@ export default function Dashboard() {
                             </TableContainer>
                         ) : (
                             <EmptyState title='No Payout History' />
+                        )}
+
+                        {/* Pagination Controls */}
+                        {history.length > ITEMS_PER_PAGE && (
+                            <Flex justify="flex-end" align="center" mt="4" gap="4">
+                                <Button
+                                    size="sm"
+                                    onClick={handlePrevPage}
+                                    isDisabled={currentPage === 1}
+                                    variant="outline"
+                                >
+                                    Previous
+                                </Button>
+                                <Text fontSize="sm" color="gray.600">
+                                    Page {currentPage} of {totalPages}
+                                </Text>
+                                <Button
+                                    size="sm"
+                                    onClick={handleNextPage}
+                                    isDisabled={currentPage === totalPages}
+                                    variant="outline"
+                                >
+                                    Next
+                                </Button>
+                            </Flex>
                         )}
                     </Box>
                 </Box>
