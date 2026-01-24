@@ -42,6 +42,7 @@ import useCustomToast from '@/hooks/useCustomToast';
 import { EmptyState } from '@/components/EmptyState';
 import DownStep from '@/template/Step/DownStep';
 import CustomerStep from '@/template/Step/CustomerStep';
+import PageAnimation from "@/components/PageAnimation";
 
 const ITEMS_PER_PAGE = 10;
 

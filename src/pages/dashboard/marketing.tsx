@@ -9,12 +9,7 @@ import {
     Icon,
     Button,
     Badge,
-    Link as ChakraLink,
     Flex,
-    Divider,
-    List,
-    ListItem,
-    ListIcon
 } from '@chakra-ui/react';
 import UserSideBar from '@/components/Dashboard/DashboardLayout/UserSideBar';
 import {
@@ -27,33 +22,8 @@ import {
     HelpCircle,
     Globe,
     Code,
-    CheckCircle
 } from 'lucide-react';
-import { motion } from 'framer-motion';
-
-const MotionBox = motion(Box);
-const MotionSimpleGrid = motion(SimpleGrid);
-const MotionFlex = motion(Flex);
-
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.2
-        }
-    }
-};
-
-const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-        y: 0,
-        opacity: 1,
-        transition: { type: "spring", stiffness: 300, damping: 24 }
-    }
-};
+import PageAnimation, { MotionBox, MotionFlex, itemVariants } from '@/components/PageAnimation';
 
 const MARKETING_MATERIALS = [
     {
@@ -121,11 +91,7 @@ export default function Marketing() {
     return (
         <UserSideBar>
             <Box bg="#F9FAFB" minH="100vh" p={{ base: "4", md: "8" }} mt="120px">
-                <MotionBox
-                    initial="hidden"
-                    animate="visible"
-                    variants={containerVariants}
-                >
+                <PageAnimation>
                     {/* Header */}
                     <MotionBox mb="10" variants={itemVariants}>
                         <Heading size="lg" fontWeight="700" mb="2" color="gray.800">Resources</Heading>
@@ -252,7 +218,7 @@ export default function Marketing() {
                             ))}
                         </VStack>
                     </MotionBox>
-                </MotionBox>
+                </PageAnimation>
             </Box>
         </UserSideBar>
     );

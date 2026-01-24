@@ -1,8 +1,8 @@
 import { Box, Container, Heading, Text, SimpleGrid, VStack, HStack, Icon, Button, Badge } from "@chakra-ui/react";
 import React from "react";
-import { COLORS } from "../utils/Theme";
 import { Check } from "lucide-react";
 import { cashFormat } from "@/utils/cashformat";
+import { COLORS } from "../utils/theme";
 
 export default function Plan() {
     const tiers = [
