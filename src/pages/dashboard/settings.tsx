@@ -8,6 +8,7 @@ import SettingsAdmin from "@/components/Dashboard/Setting/SettingsAdmin";
 import UserSideBar from "@/components/Dashboard/DashboardLayout/UserSideBar";
 import SettingsBar from "@/components/Dashboard/Setting/SettingsBar";
 import DashboardHeader from "@/components/Dashboard/DashboardHeader";
+import PageAnimation from "@/components/PageAnimation";
 
 interface PageItem {
     id: number;
@@ -64,54 +65,56 @@ function SettingsPage() {
     return (
         <UserSideBar>
             <DashboardHeader title="Organization Settings" />
-            <Flex bg="white" rounded="md" h="full" >
-                <>
-                    <Box
-                        borderRightWidth={["none", "none", "thin"]}
-                        w={["full", "full", "80"]}
-                        display={[
-                            activeComponent ? "none" : "block",
-                            activeComponent ? "none" : "block",
-                            "block",
-                        ]}
-                    >
-                        <VStack
-                            w="full"
-                            align="stretch"
-                            py="8"
-                            px={["4", "4", "8"]}
-                            spacing="4"
+            <PageAnimation>
+                <Flex bg="white" rounded="md" h="full" >
+                    <>
+                        <Box
+                            borderRightWidth={["none", "none", "thin"]}
+                            w={["full", "full", "80"]}
+                            display={[
+                                activeComponent ? "none" : "block",
+                                activeComponent ? "none" : "block",
+                                "block",
+                            ]}
                         >
-                            {pages.map((page) => {
-                                return (
-                                    <Flex
-                                        key={page.id}
-                                        alignItems="center"
-                                        color={page.id === activeComponent2 ? "blue.500" : "gray.500"}
-                                        role="navigation"
-                                        cursor="pointer"
-                                        h="30px"
-                                        onClick={() => handleTabChange(page)}
-                                    >
-                                        <Text
-                                            fontWeight={page.id === activeComponent2 ? "semibold" : "normal"}
-                                            fontSize="md"
-                                            w="full"
-                                            mb="0px"
+                            <VStack
+                                w="full"
+                                align="stretch"
+                                py="8"
+                                px={["4", "4", "8"]}
+                                spacing="4"
+                            >
+                                {pages.map((page) => {
+                                    return (
+                                        <Flex
+                                            key={page.id}
+                                            alignItems="center"
+                                            color={page.id === activeComponent2 ? "blue.500" : "gray.500"}
+                                            role="navigation"
+                                            cursor="pointer"
+                                            h="30px"
+                                            onClick={() => handleTabChange(page)}
                                         >
-                                            {page.title}
-                                        </Text>
-                                        <ChevronRightIcon fontWeight="normal" fontSize="2xl" />
-                                    </Flex>
-                                );
-                            })}
-                        </VStack>
-                    </Box>
-                    <Box flex="1" w="full">
-                        {activeComponent}
-                    </Box>
-                </>
-            </Flex>
+                                            <Text
+                                                fontWeight={page.id === activeComponent2 ? "semibold" : "normal"}
+                                                fontSize="md"
+                                                w="full"
+                                                mb="0px"
+                                            >
+                                                {page.title}
+                                            </Text>
+                                            <ChevronRightIcon fontWeight="normal" fontSize="2xl" />
+                                        </Flex>
+                                    );
+                                })}
+                            </VStack>
+                        </Box>
+                        <Box flex="1" w="full">
+                            {activeComponent}
+                        </Box>
+                    </>
+                </Flex>
+            </PageAnimation>
         </UserSideBar>
     );
 }
