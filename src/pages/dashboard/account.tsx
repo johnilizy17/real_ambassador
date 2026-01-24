@@ -78,21 +78,21 @@ export default function AccountNumber() {
 
         return (
             <>
-                <Modal isOpen={isOpen} onClose={onClose} isCentered>
+                <Modal isOpen={isOpen} onClose={() => { onClose(); Balance(); }} isCentered>
                     <ModalOverlay />
                     <ModalContent h="auto" pb="20px" w={["300px", "300px", "300px", "504px"]}>
                         <ModalHeader justifyContent="center" fontSize="20px" fontWeight="500" alignItems="center">Withdraw Money</ModalHeader>
                         <ModalBody w="full">
-                            <Withdraw onClose={onClose} />
+                            <Withdraw onClose={() => { onClose(); Balance(); }} />
                         </ModalBody>
                     </ModalContent>
                 </Modal>
-                <Modal isOpen={transferWallet} onClose={() => setTransferWallet(false)} isCentered>
+                <Modal isOpen={transferWallet} onClose={() => { setTransferWallet(false); Balance(); }} isCentered>
                     <ModalOverlay />
                     <ModalContent h="auto" pb="20px" w={["300px", "300px", "300px", "504px"]}>
                         <ModalHeader justifyContent="center" fontSize="20px" fontWeight="500" alignItems="center">Transfer To Account in ABN</ModalHeader>
                         <ModalBody w="full">
-                            <TransferModel onClose={()=>setTransferWallet(false)} />
+                            <TransferModel onClose={() => { setTransferWallet(false); Balance(); }} />
                         </ModalBody>
                     </ModalContent>
                 </Modal>

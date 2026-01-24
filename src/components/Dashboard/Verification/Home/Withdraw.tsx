@@ -74,10 +74,12 @@ export default function Withdraw({ onClose }: { onClose: any }) {
     const initiateWithdrawVerifcation = async () => {
         try {
             setLoading(true);
-            
+
             const result = await withdrawWallet(data)
             showMessage("Withdrawal Successful", "success")
             setLoading(false);
+            await Balance(); // Fetch updated balance
+            onClose(); // Added to close modal on success
         } catch (error: any) {
             showMessage("Failed to withdraw", "error")
             setLoading(false);

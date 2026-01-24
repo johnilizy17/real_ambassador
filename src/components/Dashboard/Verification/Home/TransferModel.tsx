@@ -87,6 +87,8 @@ export default function TransferModel({ onClose }: { onClose: any }) {
             const result = await withdrawInternalWallet({ ...data, id: userId })
             showMessage("Transfer Successful", "success")
             setLoading(false);
+            await Balance(); // Fetch updated balance
+            onClose(); // Added to close modal on success
         } catch (error: any) {
             showMessage(error.response.data.message || "Failed to withdraw", "error")
             setLoading(false);
@@ -113,18 +115,18 @@ export default function TransferModel({ onClose }: { onClose: any }) {
                                 value=""
                             />
                             <Box color={showPassword ? "red" : "black"}>{details}</Box>
-                        </Box> 
-                            <Box w="full" mt="40px">
-                                <CustomInput
-                                    label="Amount"
-                                    name="amount"
-                                    placeholder="Enter Amount"
-                                    fieldProps={{ type: "number" }}
-                                    typeInput=""
-                                    value=""
-                                />
-                            </Box>
-                        
+                        </Box>
+                        <Box w="full" mt="40px">
+                            <CustomInput
+                                label="Amount"
+                                name="amount"
+                                placeholder="Enter Amount"
+                                fieldProps={{ type: "number" }}
+                                typeInput=""
+                                value=""
+                            />
+                        </Box>
+
                         <Center mt="30px" flexDir={["column-reverse", "column-reverse", "column-reverse", "row"]} justifyContent="space-between">
                             <Button
                                 colorScheme="white"

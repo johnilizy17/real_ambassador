@@ -2,39 +2,27 @@ import { COLORS } from '@/utils/Theme';
 import {
     Box,
     Button,
-    Center,
-    Flex,
-    Img,
-    ModalFooter,
-    Text,
-    useToast,
+    VStack,
+    HStack,
 } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { Form, Formik, Field } from 'formik';
+import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import CustomInput from '@/components/CustomInput/CustomInput';
 
-export const runtime = 'edge';
-
 export default function StepTwo({ data, page, setPage, setData }: any) {
     const [phoneNumber, setPhoneNumber] = useState(data.phone);
-    const router = useRouter();
 
-    // Adjust validation schema based on userType
     const validationSchema = Yup.object({
-        firstName: Yup.string().required('First name is required'),
-        birth_date: Yup.string().required('Date of Birth is required'),
-        lastName: Yup.string().required('Last name is required')
+        email: Yup.string().email('Invalid email').required('Email is required'),
     });
 
     const initiateLogin = async (
         values: any,
-        { setSubmitting, resetForm }: any
+        { setSubmitting }: any
     ) => {
         try {
-            // Include the role_id based on userType
-            setData({ ...data,  ...values,phone: phoneNumber, });
+            setData({ ...data, ...values, phone: phoneNumber });
             setPage(3);
             setSubmitting(true);
         } catch (error: any) {
@@ -44,38 +32,28 @@ export default function StepTwo({ data, page, setPage, setData }: any) {
     };
 
     return (
-        <Center flexDir='column'>
-            <Box
-                paddingLeft={['10px']}
-                w="full"
-                paddingRight={['10px']}
-                pos='relative'
+        <Box w="full">
+            <Formik
+                initialValues={data}
+                onSubmit={initiateLogin}
+                validationSchema={validationSchema}
             >
-                <Formik
-                    initialValues={data}
-                    onSubmit={initiateLogin}
-                    validationSchema={validationSchema}
-                >
-                    {({ isSubmitting, handleChange }) => (
-                        <Form>
-                            {/* Conditionally render name fields based on userType */}
-
-                            <>
-                                <Box w='full' mt='44px'>
+                {({ isSubmitting }) => (
+                    <Form>
+                        <VStack spacing="5" align="stretch">
+                            <VStack spacing="4">
+                                <Box w='full' mt="44px">
                                     <CustomInput
                                         label='Email'
                                         name='email'
                                         placeholder='example@gmail.com'
                                         fieldProps={{ type: 'email' }}
-                                        typeInput=''
-                                        value=''
                                     />
                                 </Box>
-                                <Box w='full' mt='44px'>
+                                <Box w='full' mt="44px">
                                     <CustomInput
                                         label='Phone Number'
                                         name='phone'
-                                        typeInput=''
                                         type='phone'
                                         value={phoneNumber}
                                         handleChange={setPhoneNumber}
@@ -83,17 +61,33 @@ export default function StepTwo({ data, page, setPage, setData }: any) {
                                         fieldProps={{ type: 'phone' }}
                                     />
                                 </Box>
-                                <Button mr={3} mt={8} colorScheme='bllue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
+                            </VStack>
+
+                            <HStack justify="flex-end" spacing="4" pt="4">
+                                <Button
+                                    variant="ghost"
+                                    isDisabled={isSubmitting}
+                                    onClick={() => setPage(page - 1)}
+                                    borderRadius="lg"
+                                >
                                     Back
                                 </Button>
-                                <Button isLoading={isSubmitting} isDisabled={isSubmitting} mt={8} colorScheme='green' type={"submit"}>
+                                <Button
+                                    type="submit"
+                                    bg="#0047AB"
+                                    color="white"
+                                    _hover={{ bg: "#003580" }}
+                                    borderRadius="lg"
+                                    px="8"
+                                    isLoading={isSubmitting}
+                                >
                                     Next
                                 </Button>
-                            </>
-                        </Form>
-                    )}
-                </Formik>
-            </Box>
-        </Center>
+                            </HStack>
+                        </VStack>
+                    </Form>
+                )}
+            </Formik>
+        </Box>
     );
 }

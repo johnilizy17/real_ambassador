@@ -2,35 +2,24 @@ import { COLORS } from '@/utils/Theme';
 import {
     Box,
     Button,
-    Center,
-    Flex,
-    Img,
-    ModalFooter,
-    Text,
-    useToast,
+    VStack,
+    HStack,
 } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { Form, Formik, Field } from 'formik';
+import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import CustomInput from '@/components/CustomInput/CustomInput';
 import { cashFormat } from '@/utils/cashformat';
-import NormalPaymentFlutterwave from '@/template/payment/normalPayment';
 import { RegisterReferral } from '@/url/api\'s/userProfile';
 import useCustomToast from '@/hooks/useCustomToast';
 import ReferralPaymentFlutterwave from '@/template/payment/referralPayment';
 
-export const runtime = 'edge';
-
 export default function StepThree({ data, VerificationApi, page, disable, setPage, setData, onClose }: any) {
-
-    const router = useRouter();
     const [amount, setAmount] = useState(0);
     const showMassage = useCustomToast()
 
-    // Adjust validation schema based on userType
     const validationSchema = Yup.object({
-        type: Yup.string().required('Type is required'),
+        type: Yup.string().required('Subscription tier is required'),
     });
 
     function refreshData() {
@@ -40,10 +29,9 @@ export default function StepThree({ data, VerificationApi, page, disable, setPag
 
     const initiateLogin = async (
         values: any,
-        { setSubmitting, resetForm }: any
+        { setSubmitting }: any
     ) => {
         try {
-
             setData({ ...data, ...values });
             if (!disable) {
                 let phoneNumber = data.phone;
@@ -61,73 +49,72 @@ export default function StepThree({ data, VerificationApi, page, disable, setPag
                 await RegisterReferral({ ...data, phone: phoneNumber, ...values, role: "USERAMBASSADOR" })
                 showMassage('Account successfully created', 'info');
             }
-            console.log("try")
-            // Include the role_id based on userType
-            if (values.type === '1') {
-                setAmount(5000);
-            }
-            else if (values.type === '2') {
-                setAmount(15000);
-            } else if (values.type === '3') {
-                setAmount(50000);
-            }
-            // onClose(false)
+
+            if (values.type === '1') setAmount(5000);
+            else if (values.type === '2') setAmount(15000);
+            else if (values.type === '3') setAmount(50000);
+
             setSubmitting(true);
             VerificationApi()
         } catch (error: any) {
-            console.log(error, "error response")
-            showMassage(error.response.data.message, "error")
+            showMassage(error.response?.data?.message || "Failed to create account", "error")
         } finally {
             setSubmitting(false);
         }
     };
 
     return (
-        <Center flexDir='column'>
-            <Box
-                paddingLeft={['10px']}
-                w="full"
-                paddingRight={['10px']}
-                pos='relative'
+        <Box w="full">
+            {amount && amount !== 0 ? <ReferralPaymentFlutterwave id={data.email} user={data} amount={amount} setDisplay={setAmount} onClose={refreshData} /> : ""}
+
+            <Formik
+                initialValues={{ type: "" }}
+                onSubmit={initiateLogin}
+                validationSchema={validationSchema}
             >
-                {amount && amount !== 0 ? <ReferralPaymentFlutterwave id={data.email} user={data} amount={amount} setDisplay={setAmount} onClose={refreshData} /> : ""}
+                {({ isSubmitting, values, setFieldValue }) => (
+                    <Form>
+                        <VStack spacing="5" align="stretch">
+                            <Box w='full' mt="44px">
+                                <CustomInput
+                                    label='Select Subscription Tier'
+                                    name='type'
+                                    type={"select"}
+                                    placeholder='Choose a tier'
+                                    handleChange={(val: any) => setFieldValue('type', val)}
+                                    value={values.type}
+                                >
+                                    <option value='1'>Tier 1 - {cashFormat(5000)} (5% Commission)</option>
+                                    <option value='2'>Tier 2 - {cashFormat(15000)} (10% Commission)</option>
+                                    <option value='3'>Tier 3 - {cashFormat(50000)} (15% Commission)</option>
+                                </CustomInput>
+                            </Box>
 
-                <Formik
-                    initialValues={{ type: "" }}
-                    onSubmit={initiateLogin}
-                    validationSchema={validationSchema}
-                >
-                    {({ isSubmitting, handleChange, values, setFieldValue }) => (
-                        <Form>
-                            {/* Conditionally render name fields based on userType */}
-
-                            <>
-                                <Box w='full' mt='44px'>
-                                    <CustomInput
-                                        label='Subscription'
-                                        name='type'
-                                        type={"select"}
-                                        placeholder='Enter your subscription'
-                                        handleChange={(val: any) => setFieldValue('type', val)}
-                                        value={values.type}
-                                    >
-                                        <option value='1'>Tier 1 {"(" + cashFormat(5000) + " " + "percentage shares 5%" + ")"}</option>
-                                        <option value='2'>Tier 2 {"(" + cashFormat(15000) + " " + "percentage shares 10%" + ")"}</option>
-                                        <option value='3'>Tier 3 {"(" + cashFormat(50000) + " " + "percentage shares 15%" + ")"}</option>
-                                    </CustomInput>
-                                </Box>
-
-                                <Button mr={3} mt={8} colorScheme='blue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
+                            <HStack justify="flex-end" spacing="4" pt="4">
+                                <Button
+                                    variant="ghost"
+                                    isDisabled={isSubmitting}
+                                    onClick={() => setPage(page - 1)}
+                                    borderRadius="lg"
+                                >
                                     Back
                                 </Button>
-                                <Button mt={8} colorScheme='green' isLoading={isSubmitting} isDisabled={isSubmitting} type={"submit"}>
-                                    Next
+                                <Button
+                                    type="submit"
+                                    bg="#0047AB"
+                                    color="white"
+                                    _hover={{ bg: "#003580" }}
+                                    borderRadius="lg"
+                                    px="8"
+                                    isLoading={isSubmitting}
+                                >
+                                    Finish & Pay
                                 </Button>
-                            </>
-                        </Form>
-                    )}
-                </Formik>
-            </Box>
-        </Center>
+                            </HStack>
+                        </VStack>
+                    </Form>
+                )}
+            </Formik>
+        </Box>
     );
 }

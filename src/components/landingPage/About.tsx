@@ -1,34 +1,71 @@
-import { Box, Center, Flex, Img } from "@chakra-ui/react";
+import { Box, Center, Flex, Img, Heading, Text, Container, SimpleGrid, Icon } from "@chakra-ui/react";
 import React from "react";
-import { COLORS } from "../utils/theme";
-import { cashFormat } from "@/utils/cashformat";
+import { COLORS } from "../utils/Theme";
+import { UserPlus, Share2, DollarSign } from "lucide-react";
 
 export default function About() {
+    const steps = [
+        {
+            title: "Sign Up",
+            description: "Create your partner account in minutes with a simple registration process.",
+            icon: UserPlus,
+        },
+        {
+            title: "Refer",
+            description: "Share your unique referral link or code with businesses in your network.",
+            icon: Share2,
+        },
+        {
+            title: "Earn",
+            description: "Receive competitive commissions deposited securely to your account.",
+            icon: DollarSign,
+        }
+    ];
 
     return (
-        <Box bg={COLORS.blue} p={["20px", "20px", "20px", "20px"]} pb={["80px", "80px", "80px", "20px"]} pl={["20px", "20px", "20px", "120px"]} pr={["20px", "20px", "20px", "120px"]}>
-            <Center flexDir={"column"}>
-                <Box h="121px" p="16px" w={["full", "full", "full", "350px"]} bg="#F5F5F5" borderRadius={"30.94px"}>
-                    <Center justifyContent={"space-between"}>
-                        <Img w="100px" src="/images/logo2.png" />
-                        <Box fontSize={"11px"} color={COLORS.blue}>
-                            Now
+        <Box py={["60px", "100px"]} bg="white">
+            <Container maxW="container.xl">
+                <VStack spacing={4} mb={16} textAlign="center">
+                    <Heading as="h2" size="xl" color="#1A202C">
+                        How It Works
+                    </Heading>
+                </VStack>
+
+                <SimpleGrid columns={[1, 1, 3]} spacing={10}>
+                    {steps.map((step, index) => (
+                        <Box
+                            key={index}
+                            textAlign="center"
+                            p={8}
+                            borderRadius="2xl"
+                            border="1px solid"
+                            borderColor="gray.100"
+                            _hover={{ shadow: "xl", transform: "translateY(-5px)" }}
+                            transition="all 0.3s"
+                        >
+                            <Center
+                                w="64px"
+                                h="64px"
+                                bg={COLORS.soft_blue}
+                                color={COLORS.brand_blue}
+                                borderRadius="full"
+                                mx="auto"
+                                mb={6}
+                            >
+                                <Icon as={step.icon} boxSize={6} />
+                            </Center>
+                            <Heading as="h3" size="md" mb={4}>
+                                {step.title}
+                            </Heading>
+                            <Text color="gray.600">
+                                {step.description}
+                            </Text>
                         </Box>
-                    </Center>
-                    <Box fontSize="14px" color={"#000"} mt="16px" fontWeight={"bold"}>
-                        Credit Alert
-                    </Box>
-                    <Box fontSize="10px" color={"#000"}>
-                        {cashFormat(100000)} has been credited to your account sade
-                    </Box>
-                </Box>
-                <Box color="#fff" mt="16px" fontSize="20px" mb="16px">
-                    Welcome to AB Narinohs
-                </Box>
-                <Box fontWeight={"400"} w={["full","full","full","500px"]} textAlign="center" color="#fff" lineHeight={"131%"}>
-                    Are you passionate about making an impact, connecting with your community, and representing a bold, forward-thinking brand? The ABN Nariohs Partner Program is your chance to be part of something bigger — and be rewarded for it.
-                </Box>
-            </Center>
+                    ))}
+                </SimpleGrid>
+            </Container>
         </Box>
-    )
+    );
 }
+
+import { VStack } from "@chakra-ui/react";

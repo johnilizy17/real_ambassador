@@ -1,88 +1,94 @@
-import { Box, Button, Center, Img } from "@chakra-ui/react";
+import { Box, Button, Center, Img, Container, Flex, Heading, Text, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import { COLORS } from "../utils/theme";
+import React from "react";
 import { useSelector } from "react-redux";
-import useCustomToast from "@/hooks/useCustomToast";
+import { COLORS } from "../utils/theme";
 
 export default function Banner() {
-
     const { user } = useSelector((state: any) => state.auth);
     const router = useRouter();
-    const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
-    const showMessage = useCustomToast()
-    const [showInstallButton, setShowInstallButton] = useState(false);
-
-    useEffect(() => {
-        const handler = (e: any) => {
-            e.preventDefault();
-            setDeferredPrompt(e);
-            setShowInstallButton(true);
-        };
-
-        window.addEventListener('beforeinstallprompt', handler);
-
-        return () => {
-            window.removeEventListener('beforeinstallprompt', handler);
-        };
-    }, []);
-
-
-    const handleInstallClick = async () => {
-        console.log(deferredPrompt)
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                showMessage('App installed', "success");
-            }
-            setDeferredPrompt(null);
-            setShowInstallButton(false);
-        } else {
-            showMessage('You have already installed ABN Partners', "info");
-        }
-    };
 
     return (
-        <>
-            <Box h={["auto", "730px"]} bg={COLORS.white} color="#fff" p={["20px", "20px", "20px", "20px"]} pb={["80px", "80px", "80px", "20px"]} pl={["20px", "20px", "20px", "120px"]} pr={["20px", "20px", "20px", "120px"]} bgSize={"cover"} bgRepeat={"no-repeat"} bgPos={"center"} className="fade-slide bottom" bgImage={["./bg2.png", "./bg.png"]}>
-                <Center>
-                    <Img src="/logo/logo_white.png" w={"250px"} />
-                </Center>
-                <Center flexDir={"column"} mt="50px" textAlign={"center"}>
-                    <Box fontFamily={"Aclonica"} w={["full", "full", "full", "700px"]} fontSize={["18px", "32px"]} lineHeight={["18px", "32px"]} fontWeight={"bold"} textAlign={"center"}>
-                        Know exactly where you can earn big with no <span style={{ color: "yellow" }}>restriction</span> (become a millionary).
-                    </Box>
-                    <Box mt="30px" w={["full", "full", "full", "700px"]}>
-                        <p>
-                            In today’s fast-paced digital world, your marketing skills are more powerful than ever. Whether you're an entrepreneur, freelancer, or career professional, knowing how to promote, position, and persuade can give you a serious competitive edge.
-                        </p>
-                    </Box>
-                    {user && user.id ? <Button onClick={() => router.push("/dashboard")} mt="30px" color={COLORS.blue} colorScheme="whiteAlpha" bg="#fff" h="50px" w="300px">
-                        Dashboard
-                    </Button> : <Button onClick={() => router.push("/auth/signup")} mt="30px" color="white" colorScheme="yellow" bg="#FFAA01" h="50px" w="300px">
-                        Get Started
-                    </Button>}
-                </Center>
-            </Box>
-            <Center pos="relative" h={["auto", "auto", "auto", "200px"]} mt={["0px", "0px", "0px", "-200px"]}>
-                <Img pos="absolute" left="0px" display={["none", "none", "none", "flex"]} bottom="0px" src="/phone/1.png" />
-                <Center p="30px" flexDir={"column"}>
-                    <Box pb="20px" color="#000"> Install in your Device</Box>
-                    <Center>
-                        <Button onClick={handleInstallClick} _hover={{ backgroundImage: "/phone/play.png" }} bgImage={"/phone/play.png"} bgSize={"cover"} h="50px" w={["150px", "150px"]}>
+        <Box
+            pt={["120px", "150px"]}
+            pb={["60px", "100px"]}
+            bgImage={["/images/mask.png", "/images/mask (1).png"]}
+            bgSize="cover"
+            bgPos="center"
+            bgRepeat="no-repeat"
+            overflow="hidden"
+        >
+            <Container maxW="container.xl">
+                <Flex direction={["column", "column", "row"]} alignItems="center" gap={10}>
+                    <Box flex="1" textAlign={["center", "center", "left"]}>
+                        <Heading
+                            as="h1"
+                            fontSize={["40px", "50px", "64px"]}
+                            lineHeight="1.1"
+                            color="#003580"
+                            fontWeight="800"
+                            mb={6}
+                        >
+                            Earn with ABN Partners
+                        </Heading>
+                        <Text fontSize={["18px", "20px"]} color="gray.600" mb={8} maxW="500px">
+                            Refer businesses, track performance, and get paid seamlessly
+                        </Text>
 
-                        </Button>
-                        <Button onClick={handleInstallClick} _hover={{ backgroundImage: "/phone/apple.png" }} bgImage={"/phone/apple.png"} bgSize={"cover"} ml="20px" h="50px" w={["150px", "150px"]}>
+                        <Stack direction={["column", "row"]} spacing={4} justify={["center", "center", "flex-start"]}>
+                            {user && user.id ? (
+                                <Button
+                                    onClick={() => router.push("/dashboard")}
+                                    size="lg"
+                                    h="60px"
+                                    px={10}
+                                    bg={COLORS.brand_blue}
+                                    color="white"
+                                    _hover={{ bg: "blue.700" }}
+                                    borderRadius="lg"
+                                >
+                                    Go to Dashboard
+                                </Button>
+                            ) : (
+                                <>
+                                    <Button
+                                        onClick={() => router.push("/auth/signup")}
+                                        size="lg"
+                                        h="56px"
+                                        px={10}
+                                        bg={COLORS.brand_blue}
+                                        color="white"
+                                        _hover={{ bg: "blue.700" }}
+                                        borderRadius="lg"
+                                    >
+                                        Become a Partner
+                                    </Button>
+                                    <Button
+                                        onClick={() => router.push("/auth/login")}
+                                        size="lg"
+                                        h="56px"
+                                        px={10}
+                                        variant="outline"
+                                        borderColor="gray.200"
+                                        bg="white"
+                                        color="gray.700"
+                                        _hover={{ bg: "gray.50" }}
+                                        borderRadius="lg"
+                                    >
+                                        Login
+                                    </Button>
+                                </>
+                            )}
+                        </Stack>
+                    </Box>
 
-                        </Button>
-                    </Center>
-                </Center>
-                <Img pos="absolute" right="0px" bottom="0px" display={["none", "none", "none", "flex"]} src="/phone/2.png" />
-            </Center>
-            <Center display={["flex", "flex", "flex", "none"]}>
-                <Img src="/phone/3.png" alt="ios" />
-            </Center>
-        </>
-    )
+                    <Box flex="1" pos="relative" display={["none", "none", "block"]}>
+                        {/* This simulates the collage in the design image */}
+                        <Box pos="relative" w="full" h="500px">
+                        </Box>
+                    </Box>
+                </Flex>
+            </Container>
+        </Box>
+    );
 }

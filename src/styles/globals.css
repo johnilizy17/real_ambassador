@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -24,7 +26,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family:"Emoji";
+  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -72,7 +74,7 @@ a {
   scrollbar-width: none;
   /* For Firefox */
   -ms-overflow-style: none;
-  font-family: "Emoji";
+  font-family: 'Inter', sans-serif;
   /* For IE and Edge */
 }
 

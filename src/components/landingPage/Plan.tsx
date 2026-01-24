@@ -1,115 +1,120 @@
-import { cashFormat } from "@/utils/cashformat";
-import { Box } from "@chakra-ui/react";
+import { Box, Container, Heading, Text, SimpleGrid, VStack, HStack, Icon, Button, Badge } from "@chakra-ui/react";
 import React from "react";
+import { COLORS } from "../utils/Theme";
+import { Check } from "lucide-react";
+import { cashFormat } from "@/utils/cashformat";
 
 export default function Plan() {
+    const tiers = [
+        {
+            name: "Tier 1",
+            interest: "5%",
+            price: 5000,
+            features: [
+                "Basic dashboard access",
+                "Referral tracking",
+                "Email support",
+                "Monthly reports"
+            ]
+        },
+        {
+            name: "Tier 2",
+            interest: "10%",
+            price: 15000,
+            features: [
+                "Everything in Tier 1",
+                "Priority support",
+                "Advanced analytics",
+                "Weekly reports",
+                "Marketing materials"
+            ]
+        },
+        {
+            name: "Tier 3",
+            interest: "15%",
+            price: 50000,
+            features: [
+                "Everything in Tier 2",
+                "Dedicated account manager",
+                "Custom reporting",
+                "API access",
+                "Co-marketing opportunities"
+            ],
+            highlighted: true
+        }
+    ];
 
     return (
-        <div id="plans" className="investment_plans index2_investment_plans index3_investment_plans float_left">
+        <Box py={["60px", "100px"]} bg="gray.50" id="plans">
+            <Container maxW="container.xl">
+                <VStack spacing={4} mb={16} textAlign="center">
+                    <Badge colorScheme="blue" borderRadius="full" px={4} py={1} fontSize="xs" fontWeight="bold">
+                        Our Pricing
+                    </Badge>
+                    <Heading as="h2" size="xl" color="#1A202C">
+                        Choose the best Tier that suites you
+                    </Heading>
+                    <Text color="gray.600" maxW="600px">
+                        Flexible commissions built for every stage — from startup to scale, no hidden fees.
+                    </Text>
+                </VStack>
 
-            <div className="container">
-                <div className="row" style={{ justifyContent: "center" }}>
+                <SimpleGrid columns={[1, 1, 3]} spacing={8}>
+                    {tiers.map((tier, index) => (
+                        <Box
+                            key={index}
+                            bg="white"
+                            p={8}
+                            borderRadius="2xl"
+                            border="2px solid"
+                            borderColor={tier.highlighted ? COLORS.brand_blue : "transparent"}
+                            shadow={tier.highlighted ? "2xl" : "lg"}
+                            pos="relative"
+                            overflow="hidden"
+                        >
+                            <VStack align="start" spacing={6}>
+                                <VStack align="start" spacing={1}>
+                                    <Text fontWeight="bold" fontSize="lg" color="gray.900">{tier.name}</Text>
+                                    <HStack align="baseline">
+                                        <Text fontSize="4xl" fontWeight="800" color="#003580">{tier.interest}</Text>
+                                        <Text color="gray.500" fontSize="sm">/referral</Text>
+                                    </HStack>
+                                    <Text color="gray.600" fontSize="sm">
+                                        Great for partners just getting started.
+                                    </Text>
+                                </VStack>
 
-                    <div className="col-md-12 col-lg-12 col-sm-12 col-12">
-                        <div
-                            className="sv_heading_wraper heading_wrapper_dark dark_heading index2_heading index2_heading_center index3_heading ">
-                            <h4> our plans </h4>
-                            <h3>our Package plans </h3>
-                            <div className="line_shape line_shape2"></div>
-                        </div>
-                    </div>
-                    <div className="col-xl-4 col-md-6 col-lg-6 col-sm-6 col-12">
-                        <div
-                            className="investment_box_wrapper index2_investment_box_Wraper index3_investment_box_Wraper float_left">
-                            <img src="images/in1.png" alt="img" />
-                            <div className="investment_icon_circle">
-                                <i className="flaticon-bar-chart"></i>
-                            </div>
-                            <div className="investment_border_wrapper"></div>
-                            <div className="investment_content_wrapper">
-                                <h1><a href="/auth/login">Tier 1</a></h1>
-                                <div className="line_shape line_shape2"></div>
-                                <p>Up to 5% interest on any transaction the user makes
-                                </p>
-                                <Box w="full" textAlign={"start"}>
-                                    <li>Price:{cashFormat(5000)}</li>
-                                    <li>Refferal Earning: 15%</li>
-                                    <li>Sub Earning: 15%</li>
-                                    <li>Product Earning: 2.5%</li>
-                                    <li>Refferal stages: 1</li>
-                                </Box>
-                            </div>
-                            <div className="about_btn plans_btn index2_investment_btn">
-                                <ul>
-                                    <li>
-                                        <a href="/auth/signup">Get Started</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xl-4 col-md-6 col-lg-6 col-sm-6 col-12">
-                        <div
-                            className="investment_box_wrapper index2_investment_box_Wraper index3_investment_box_Wraper float_left">
-                            <img src="images/in2.png" alt="img" />
-                            <div className="investment_icon_circle red_info_circle">
-                                <i className="flaticon-money"></i>
-                            </div>
-                            <div className="investment_border_wrapper red_border_wrapper"></div>
-                            <div className="investment_content_wrapper red_content_wrapper">
-                                <h1><a href="/auth/login">Tier 2</a></h1>
-                                <div className="line_shape line_shape2"></div>
-                                <p>Up to 10% interest on any transaction the user makes
-                                </p>
-                                <Box w="full" textAlign={"start"}>
-                                    <li>Price:{cashFormat(15000)}</li>
-                                    <li>Refferal Earning: 25%</li>
-                                    <li>Sub Earning: 25%</li>
-                                    <li>Product Earning: 5%</li>
-                                    <li>Refferal stages: 2{"(30%, 15%)"}</li>
-                                </Box>
-                            </div>
-                            <div className="about_btn plans_btn red_btn_plans index2_investment_btn">
-                                <ul>
-                                    <li>
-                                        <a href="/auth/signup">Get Started</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xl-4 col-md-6 col-lg-6 col-sm-6 col-12">
-                        <div
-                            className="investment_box_wrapper index2_investment_box_Wraper index3_investment_box_Wraper float_left height_box">
-                            <img src="images/in3.png" alt="img" />
-                            <div className="investment_icon_circle green_info_circle">
-                                <i className="fas fa-calendar-alt"></i>
-                            </div>
-                            <div className="investment_border_wrapper green_border_wrapper"></div>
-                            <div className="investment_content_wrapper green_content_wrapper">
-                                <h1><a href="/auth/login">Tier 3</a></h1>
-                                <div className="line_shape line_shape2"></div>
-                                <p>Up to 15% interest on any transaction the user makes
-                                </p>
-                                <Box w="full" textAlign={"start"}>
-                                    <li>Price:{cashFormat(50000)}</li>
-                                    <li>Refferal Earning: 30%</li>
-                                    <li>Sub Earning: 30%</li>
-                                    <li>Product Earning: 10%</li>
-                                    <li>Refferal stages: 4{"(30%, 20%, 10%, 5%)"}</li>
-                                </Box>
-                            </div>
-                            <div className="about_btn plans_btn green_plan_btn index2_investment_btn">
-                                <ul>
-                                    <li>
-                                        <a href="/auth/signup">Get Started</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+                                <Box w="full" h="1px" bg="gray.100" />
+
+                                <VStack align="start" spacing={4} w="full">
+                                    <Text fontWeight="bold" fontSize="xs" color="gray.900" textTransform="uppercase" letterSpacing="wider">
+                                        What's included
+                                    </Text>
+                                    {tier.features.map((feature, idx) => (
+                                        <HStack key={idx} align="start" spacing={3}>
+                                            <Icon as={Check} color="green.500" mt={1} />
+                                            <Text fontSize="sm" color="gray.700">{feature}</Text>
+                                        </HStack>
+                                    ))}
+                                </VStack>
+
+                                <Button
+                                    w="full"
+                                    h="50px"
+                                    bg={tier.highlighted ? COLORS.brand_blue : "white"}
+                                    color={tier.highlighted ? "white" : COLORS.brand_blue}
+                                    variant={tier.highlighted ? "solid" : "outline"}
+                                    borderColor={COLORS.brand_blue}
+                                    _hover={{ bg: tier.highlighted ? "blue.700" : "blue.50" }}
+                                    onClick={() => window.location.href = "/auth/signup"}
+                                >
+                                    Get Started
+                                </Button>
+                            </VStack>
+                        </Box>
+                    ))}
+                </SimpleGrid>
+            </Container>
+        </Box>
+    );
 }

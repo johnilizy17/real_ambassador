@@ -1,5 +1,5 @@
 import { COLORS } from '@/layout/Theme';
-import { Box, Button, Modal, ModalFooter, Step, StepIndicator, Stepper, StepStatus } from '@chakra-ui/react';
+import { Box, Button, Flex, Step, StepIcon, StepIndicator, Stepper, StepStatus, Text, VStack } from '@chakra-ui/react';
 import { ShieldCheckIcon } from 'lucide-react';
 import React, { useState } from 'react';
 import StepOne from './Step1';
@@ -7,40 +7,52 @@ import StepTwo from './Step2';
 import StepThree from './Step3';
 
 export default function DownStep({ onClose, VerificationApi }: any) {
-
     const [wizardStep, setWizardStep] = useState(1)
     const steps = [
-        { title: "Personal details" },
+        { title: "Personal Details" },
         { title: "Contact Info" },
-        { title: "Registeration Fee" }
+        { title: "Registration Fee" }
     ]
     const [data, setData] = useState({})
+
     return (
-        <>
-            <Stepper index={wizardStep - 1}>
-                {
-                    steps.map((a: { title: string }, b: number) => (
-                        <Step key={b}>
-                            <StepIndicator>
-                                <StepStatus complete={<ShieldCheckIcon />}
-                                    incomplete={<span>{b + 1}</span>}
-                                    active={<span>{b + 1}</span>}
-                                />
-                            </StepIndicator>
-                        </Step>
-                    ))
-                }
+        <Box py="4">
+            <Stepper index={wizardStep - 1} size="sm" colorScheme="blue" mb="8">
+                {steps.map((step, index) => (
+                    <Step key={index}>
+                        <StepIndicator>
+                            <StepStatus
+                                complete={<StepIcon />}
+                                incomplete={<Text fontSize="xs">{index + 1}</Text>}
+                                active={<Text fontSize="xs">{index + 1}</Text>}
+                            />
+                        </StepIndicator>
+                        <Box flexShrink='0' ml="2">
+                            <Text fontSize="xs" fontWeight="700" color={wizardStep === index + 1 ? "blue.600" : "gray.400"}>
+                                {step.title}
+                            </Text>
+                        </Box>
+                    </Step>
+                ))}
             </Stepper>
-            <Box mt="10px">
-                <h1>{steps[wizardStep-1].title}</h1>
-            </Box>
-            {
-                wizardStep === 1 ? <StepOne setData={setData} page={wizardStep} setPage={setWizardStep} data={data} /> :
-                    wizardStep === 2 ?
-                        <StepTwo setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
-                        :
-                        <StepThree disable={false} onClose={onClose} VerificationApi={VerificationApi} setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
-            }
-        </>
+
+            <VStack align="stretch" spacing="6">
+                {wizardStep === 1 ? (
+                    <StepOne setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
+                ) : wizardStep === 2 ? (
+                    <StepTwo setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
+                ) : (
+                    <StepThree
+                        disable={false}
+                        onClose={onClose}
+                        VerificationApi={VerificationApi}
+                        setData={setData}
+                        page={wizardStep}
+                        setPage={setWizardStep}
+                        data={data}
+                    />
+                )}
+            </VStack>
+        </Box>
     )
 }

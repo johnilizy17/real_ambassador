@@ -43,6 +43,8 @@ import NotificationVendDisplay from '../Notification';
 import { getNotifications } from "@/url/api's/userProfile";
 import LottieLoader from "@/utils/LottieLoader";
 import { logoutUser } from "@/redux/slices/auth/authSlice";
+import { LucideIcon } from "lucide-react";
+import { Icon } from "@chakra-ui/react";
 
 interface Notification {
     id: string;
@@ -62,7 +64,7 @@ interface SubNavItem {
 interface NavItem {
     item: string;
     nav: string;
-    svg: React.ReactNode;
+    icon: LucideIcon;
     subNav?: SubNavItem[];
 }
 
@@ -165,25 +167,6 @@ const DashboardNavUser = () => {
         <>
             <Center h="72px" p="30px" className="TopNavTab" boxShadow="0 0 0 1px rgba(0, 0, 0, 0.1)" justifyContent="space-between" bg={COLORS.white} pos="fixed" zIndex={1000}>
                 <Center w="full" justifyContent={"space-between "}>
-                    <Flex
-                        bg={COLORS.blue}
-                        h="40px"
-                        w="40px"
-                        mr="20px"
-                        align="center"
-                        justify="center"
-                        borderRadius="50%"
-                        display={isOpen ? "none" : "flex"}
-                        onClick={onToggle}
-                    >
-                        <Center>
-                            {!isOpen ? (
-                                <HamburgerIcon w="20px" h="20px" color="#fff" transition="1s" />
-                            ) : (
-                                <CloseIcon w="20px" h="20px" color="#fff" transition="1s" />
-                            )}
-                        </Center>
-                    </Flex>
                     <Link href="/" >
                         <Box cursor="pointer">
                             <Img src="/logo/logo_blue.png" w="130px" />
@@ -284,7 +267,7 @@ const DashboardNavUser = () => {
                                     )}
                                 </Center>
                             </Flex>
-                            {NavDataUser.map((item, index) => {
+                            {NavDataUser.map((item: any, index: any) => {
                                 const isActive = isNavActive(item);
                                 const isExpanded = expandedIndex === index;
 
@@ -311,7 +294,9 @@ const DashboardNavUser = () => {
                                                     w="222px"
                                                 >
                                                     <Center>
-                                                        <Box w="36px">{item.svg}</Box>
+                                                        <Box w="36px">
+                                                            <Icon as={item.icon} boxSize={5} />
+                                                        </Box>
                                                         <Box>{item.item}</Box>
                                                     </Center>
                                                     <Box
@@ -355,7 +340,9 @@ const DashboardNavUser = () => {
                                                         as="span"
                                                     >
                                                         <Center as="span">
-                                                            <Box as="span" w="36px">{item.svg}</Box>
+                                                            <Box as="span" w="36px">
+                                                                <Icon as={item.icon} boxSize={5} />
+                                                            </Box>
                                                             <Box as="span">{item.item}</Box>
                                                         </Center>
                                                     </Flex>
@@ -365,7 +352,7 @@ const DashboardNavUser = () => {
 
                                         {isExpanded && item.subNav && (
                                             <Box pl="46px" display="flex" flexDirection="column" gap="4px">
-                                                {item.subNav.map((subItem, subIndex) => (
+                                                {item.subNav.map((subItem: any, subIndex: any) => (
                                                     <Box
                                                         key={subIndex}
                                                         py="12px"

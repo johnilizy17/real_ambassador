@@ -17,23 +17,25 @@ import {
     MenuOptionGroup,
     MenuItemOption,
     MenuDivider,
-    MenuItem
+    MenuItem,
+    Icon
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from 'react';
 import { NavDataUser } from './NavDataUser';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { COLORS } from '@/layout/Theme';
-import Image from "next/image";
+import { LucideIcon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import authLogout from "@/url/axios/logout";
 import { logoutUser } from "@/redux/slices/auth/authSlice";
+import LogoutModal from "../LogoutModal";
 
 // Define interfaces for type safety
 interface NavItem {
     nav: string;
     item: string;
-    svg: React.ReactNode;
+    icon: LucideIcon;
     subNav?: SubNavItem[];
 }
 
@@ -50,6 +52,12 @@ export default function UserNavBar() {
     const auth = useSelector((a: { user: { auth: any } }) => a)
     const toast = useToast()
     const dispatch = useDispatch()
+
+    const {
+        isOpen: isLogoutOpen,
+        onOpen: onLogoutOpen,
+        onClose: onLogoutClose
+    } = useDisclosure();
 
     useEffect(() => {
         NavDataUser.forEach((a: NavItem, b: number) => {
@@ -68,6 +76,7 @@ export default function UserNavBar() {
             status: "success",
             isClosable: true,
         })
+        onLogoutClose();
     }
 
     async function ApiLogout() {
@@ -95,7 +104,7 @@ export default function UserNavBar() {
                 </Box>
             </Link>
             <Box overflow="scroll" className="SibeBar">
-                {NavDataUser.map((item, index) => (
+                {NavDataUser.map((item: any, index: number) => (
                     <Box key={index}>
                         <IconButton
                             onClick={() => {
@@ -122,7 +131,9 @@ export default function UserNavBar() {
                                 w="222px"
                             >
                                 <Center>
-                                    <Box w="36px">{item.svg}</Box>
+                                    <Box w="36px">
+                                        <Icon as={item.icon} boxSize={5} />
+                                    </Box>
                                     <Box>{item.item}</Box>
                                 </Center>
                                 {item.subNav && ( // Show chevron only if subNav exists
@@ -141,7 +152,7 @@ export default function UserNavBar() {
                         {/* Conditionally render submenu */}
                         {active === index && item.subNav && (
                             <Box mt="-20px"> {/* Adjust top margin to overlap */}
-                                {item.subNav.map((subItem, subIndex) => (
+                                {item.subNav.map((subItem: any, subIndex: number) => (
                                     <Link href={subItem.link} key={subIndex}>
                                         <IconButton
                                             aria-label={subItem.name}
@@ -162,7 +173,7 @@ export default function UserNavBar() {
                     </Box>
                 ))}
                 <Button
-                    onClick={logout}
+                    onClick={onLogoutOpen}
 
                     w={'full'}
                     justifyContent='space-between'
@@ -199,6 +210,12 @@ export default function UserNavBar() {
                 </Button>
                 <Box h="70px" />
             </Box>
+
+            <LogoutModal
+                isOpen={isLogoutOpen}
+                onClose={onLogoutClose}
+                onConfirm={logout}
+            />
         </Box >
     )
 }

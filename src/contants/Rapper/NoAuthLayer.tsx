@@ -51,8 +51,8 @@ export default function NoAuthLayer({ children, seoTitle }: { children: any, seo
             <Script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" strategy="afterInteractive" />
 
             <LoadingScreen />
-            <Box bg={COLORS.black} letterSpacing={"2px"} fontFamily={"Emoji"}>
-                <MarqueeText />
+            <Box bg={COLORS.black} letterSpacing={"2px"} fontFamily={"'Inter', sans-serif"}>
+                {/* <MarqueeText top="140px" /> */}
                 {hydrated && children}
                 <Footer />
             </Box>

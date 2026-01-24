@@ -18,7 +18,8 @@ import {
     MenuOptionGroup,
     MenuItemOption,
     MenuDivider,
-    MenuItem
+    MenuItem,
+    Icon
 } from "@chakra-ui/react";
 import { ArrowForwardIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import Link from "next/link";
@@ -109,7 +110,7 @@ const DashboardNav = () => {
                                     <IconButton borderLeftWidth={3} mb="5px" borderLeftColor={router.pathname == `${a.nav}` ? "#7ED31F" : "transparent"} bg={router.pathname == `${a.nav}` ? "#E9F0F7" : "transparent"} h="50px" aria-label=''>
                                         <Flex alignItems="center" key={b} color={router.pathname == `${a.nav}` ? "#2766AD" : "#667085"} pl="10px" w="222px">
                                             <Box w="36px">
-                                                {a.svg}
+                                                <Icon as={a.icon} boxSize={5} />
                                             </Box>
                                             <Box
                                                 fontSize="14.56px"

@@ -1,65 +1,60 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Container, SimpleGrid, VStack, Text, HStack, Link, Img, Divider } from "@chakra-ui/react";
 import React from "react";
 
 export default function Footer() {
-
     return (
-        <Box className="footer_main_wrapper index2_footer_wrapper float_left">
+        <Box bg="#F9FAFB" py={16}>
+            <Container maxW="container.xl">
+                <SimpleGrid columns={[1, 2, 4]} spacing={10} mb={12}>
+                    <VStack align="start" spacing={6}>
+                        <Img h="40px" src="/logo/logo_blue.png" alt="logo" />
+                        <Text color="gray.600" fontSize="sm">
+                            Gateway to better life and with future sustainance.
+                            Empowering partners to grow and earn together.
+                        </Text>
+                    </VStack>
 
-            <Box className="container">
+                    <VStack align="start" spacing={4}>
+                        <Text fontWeight="bold" color="gray.900">Support</Text>
+                        <VStack align="start" spacing={2}>
+                            <Link fontSize="sm" color="gray.600" href="#">FAQ</Link>
+                            <Link fontSize="sm" color="gray.600" href="#">Contact Us</Link>
+                            <Link fontSize="sm" color="gray.600" href="#">Help Center</Link>
+                        </VStack>
+                    </VStack>
 
-                <Box justifyContent={"space-between"} className="row">
+                    <VStack align="start" spacing={4}>
+                        <Text fontWeight="bold" color="gray.900">Legal</Text>
+                        <VStack align="start" spacing={2}>
+                            <Link fontSize="sm" color="gray.600" href="#">Terms of Service</Link>
+                            <Link fontSize="sm" color="gray.600" href="#">Privacy Policy</Link>
+                            <Link fontSize="sm" color="gray.600" href="#">Partner Agreement</Link>
+                        </VStack>
+                    </VStack>
 
-                    <Box className="col-lg-4 col-md-6 col-12 col-sm-12">
-                        <Box className="wrapper_second_about">
-                            <Box className="wrapper_first_image">
-                                <a style={{ color: "#fff" }} href="index.html"><img src="/logo/logo_white.png" className="img-responsive" alt="logo" /></a>
-                            </Box>
-                            <p>Gateway to better life and with future sustainance.</p>
-                        </Box>
-                    </Box>
+                    <VStack align="start" spacing={4}>
+                        <Text fontWeight="bold" color="gray.900">Company</Text>
+                        <VStack align="start" spacing={2}>
+                            <Link fontSize="sm" color="gray.600" href="#">About ABN Partners</Link>
+                            <Link fontSize="sm" color="gray.600" href="#">Careers</Link>
+                            <Link fontSize="sm" color="gray.600" href="#">Blog</Link>
+                        </VStack>
+                    </VStack>
+                </SimpleGrid>
 
-                    <Box className="col-lg-4 col-md-6 col-12 col-sm-12">
-                        <Box className="wrapper_second_useful wrapper_second_useful_2">
-                            <h4>contact us</h4>
+                <Divider borderColor="gray.200" mb={8} />
 
-                            <ul>
-                                <li>
-                                    <h1>08151175414</h1>
-                                </li>
-                                <li><a style={{ color: "#fff" }} href="mailto:info@narinohs.com"><i style={{color:"#fff", marginBottom:5}} className="flaticon-mail"></i>info@narinohs.com</a>
-                                </li>
-                                <li><a style={{ color: "#fff" }} href="https://pay.abn.com.ng/"><i style={{color:"#fff", marginBottom:5}} className="flaticon-language"></i>www.pay.abn.com.ng</a>
-                                </li>
-
-                                <li><a style={{ color: "#fff" }} href="#"><i style={{color:"#fff", marginBottom:5}} className="flaticon-placeholder"></i>9 Okun-Ajah Complex off Ogombo Abraham Adesanya road,
-                                    Ajah Lagos</a>
-                                </li>
-                            </ul>
-                        </Box>
-                    </Box>
-
-                    <Box className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                        <Box className="copyright_wrapper float_left">
-                            <Box className="copyright">
-                                <p>Copyright <i className="far fa-copyright"></i> 2025 <a style={{ color: "#fff" }} href="index.html"> AB Narinohs</a>
-                                </p>
-                            </Box>
-                            <Box className="social_link_foter">
-
-                                <ul>
-                                    <li><a style={{ color: "#fff" }} href="#"><i className="fab fa-facebook-f"></i></a></li>
-                                    <li><a style={{ color: "#fff" }} href="#"><i className="fab fa-twitter"></i></a></li>
-                                    <li><a style={{ color: "#fff" }} href="#"><i className="fab fa-linkedin-in"></i></a></li>
-                                    <li><a style={{ color: "#fff" }} href="#"><i className="fab fa-google-plus-g"></i></a></li>
-
-                                </ul>
-                            </Box>
-                        </Box>
-                    </Box>
-                </Box>
-
-            </Box>
+                <HStack justify="space-between" wrap="wrap" spacing={4}>
+                    <Text fontSize="xs" color="gray.500">
+                        © 2026 ABN Partners. All rights reserved.
+                    </Text>
+                    <HStack spacing={6}>
+                        <Link fontSize="xs" color="gray.500" href="#">Facebook</Link>
+                        <Link fontSize="xs" color="gray.500" href="#">Twitter</Link>
+                        <Link fontSize="xs" color="gray.500" href="#">LinkedIn</Link>
+                    </HStack>
+                </HStack>
+            </Container>
         </Box>
-    )
+    );
 }

@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <ChrakaLayout>
           <Component {...pageProps} />
-          <AIChat />
+
         </ChrakaLayout>
       </Provider>
     </div>

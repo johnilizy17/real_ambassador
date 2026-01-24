@@ -1,8 +1,8 @@
-import { Box, Button, Img } from "@chakra-ui/react";
+import { Box, Button, Flex, Img, Container } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
 import { useSelector } from "react-redux";
-import { COLORS } from "../utils/theme";
+import { COLORS } from "../utils/Theme";
 
 export default function NavContent() {
 
@@ -10,37 +10,49 @@ export default function NavContent() {
     const router = useRouter();
 
     return (
-        <Box w="full" p={["20px", "20px", "20px", "20px"]} bg={COLORS.blue} pos="fixed" zIndex={10}>
-            <Box>
-                <Box className="cp_logo_wrapper">
-                    <Img display={["none", "none", "none", "flex"]} src="/logo/logo_white.png" alt="logo" />
-                    <Img display={["flex", "flex", "flex", "none"]} h="50px" src="images/logo4.png" alt="logo" />
-                </Box>
-                <Box>
-                    {user && user.id ?
-                        <Box className="header_btn">
-                            <Button onClick={() => router.push("/dashboard")} colorScheme="whiteAlpha">
+        <Box w="full" bg={"#fff"} pos="fixed" top="0" zIndex={100} borderBottom="1px solid" borderColor="gray.100">
+            <Container maxW="container.xl">
+                <Flex h="80px" alignItems="center" justifyContent="space-between">
+                    <Box cursor="pointer" onClick={() => router.push("/")}>
+                        <Img h="40px" src="/logo/logo_blue.png" alt="logo" />
+                    </Box>
+
+                    <Flex alignItems="center" gap={4}>
+                        {user && user.id ? (
+                            <Button
+                                onClick={() => router.push("/dashboard")}
+                                bg={COLORS.brand_blue}
+                                color="white"
+                                _hover={{ bg: "blue.700" }}
+                                borderRadius="full"
+                                px={8}
+                            >
                                 Dashboard
                             </Button>
-                        </Box>
-                        :
-                        <Box className="header_btn">
-                            <ul>
-                                <li>
-                                    <Box onClick={() => router.push("/auth/signup")} style={{ color: "white" }}> <a style={{ color: "#fff" }}>   register
-                                    </a></Box>
-                                </li>
-                                <li>
-
-                                    <Box onClick={() => router.push("/auth/login")}> <a>login</a> </Box>
-
-                                </li>
-                            </ul>
-
-                        </Box>}
-                </Box>
-            </Box>
+                        ) : (
+                            <>
+                                <Button
+                                    display={["none", "flex"]}
+                                    variant="ghost"
+                                    onClick={() => router.push("/auth/signup")}
+                                >
+                                    Register
+                                </Button>
+                                <Button
+                                    onClick={() => router.push("/auth/login")}
+                                    bg={COLORS.soft_blue}
+                                    color={COLORS.brand_blue}
+                                    _hover={{ bg: "blue.100" }}
+                                    borderRadius="full"
+                                    px={8}
+                                >
+                                    Login
+                                </Button>
+                            </>
+                        )}
+                    </Flex>
+                </Flex>
+            </Container>
         </Box>
-
     )
 }
