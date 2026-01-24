@@ -40,7 +40,6 @@ export default function NavContent() {
                                 </Button>
                                 <Button
                                     onClick={() => router.push("/auth/login")}
-                                    bg={COLORS.blue}
                                     color={COLORS.brand_blue}
                                     _hover={{ bg: "blue.100" }}
                                     borderRadius="full"
