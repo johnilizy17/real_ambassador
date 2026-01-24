@@ -25,7 +25,6 @@ import Link from "next/link";
 import Router, { useRouter } from "next/router";
 import { COLORS } from "@/layout/Theme";
 import { NavData } from "./NavData";
-import Image from "next/image";
 
 const DashboardNav = () => {
 
@@ -94,7 +93,7 @@ const DashboardNav = () => {
                         >
                             {NavData.map((a: any, b: number) => (
                                 <Link href={a.nav} key={b}>
-                                    <IconButton borderLeftWidth={3} mb="5px" borderLeftColor={router.pathname == `${a.nav}` ? "#7ED31F" : "transparent"} bg={router.pathname == `${a.nav}`? "#E9F0F7" : "transparent"} h="50px" aria-label=''>
+                                    <IconButton borderLeftWidth={3} mb="5px" borderLeftColor={router.pathname == `${a.nav}` ? "#7ED31F" : "transparent"} bg={router.pathname == `${a.nav}` ? "#E9F0F7" : "transparent"} h="50px" aria-label=''>
                                         <Flex alignItems="center" key={b} color={router.pathname == `${a.nav}` ? "#2766AD" : "#667085"} pl="10px" w="222px">
                                             <Box w="36px">
                                                 {a.svg}
@@ -113,7 +112,7 @@ const DashboardNav = () => {
                             ))}
                             <Flex position="absolute" right="0px" bottom="0px">
                                 <Menu closeOnSelect={false}>
-                                    <MenuButton as={Button} h="70px" w="260px"  bg={COLORS.blue}>
+                                    <MenuButton as={Button} h="70px" w="260px" bg={COLORS.blue}>
                                         <Center justifyContent="space-between">
                                             <Center justifyContent="flex-start">
                                                 <Center borderRadius={"50px"} height="50px" w="50px" mr="20px" overflow="hidden">

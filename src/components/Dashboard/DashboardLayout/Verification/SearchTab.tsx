@@ -1,6 +1,5 @@
 import { Box, Center, Flex, IconButton, Img, Input } from '@chakra-ui/react'
 import React from 'react'
-import Image from "next/image";
 
 export default function SearchTab() {
 

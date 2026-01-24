@@ -25,7 +25,6 @@ import Link from "next/link";
 import Router, { useRouter } from "next/router";
 import { COLORS } from "@/layout/Theme";
 import { NavData } from "../DashboardLayout/NavData";
-import Image from "next/image";
 
 const CoporateNavBar = () => {
 

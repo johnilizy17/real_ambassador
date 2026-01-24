@@ -12,7 +12,6 @@ import {
     Avatar
 } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
-import Image from "next/image";
 import { useDispatch, useSelector } from 'react-redux';
 import animationData from '@/Asset/notification.json';
 import Lottie from "react-lottie";
@@ -195,7 +194,7 @@ export default function SearchTab() {
                 </Flex>
             </Slide>
 
-            <Center h="72px"  p="30px" bg="#fff" className="TopNavTab" boxShadow="0 0 0 1px rgba(0, 0, 0, 0.1)" justifyContent="space-between">
+            <Center h="72px" p="30px" bg="#fff" className="TopNavTab" boxShadow="0 0 0 1px rgba(0, 0, 0, 0.1)" justifyContent="space-between">
                 <Box />
                 <Center>
                     <IconButton onClick={() => setNotification(true)} ml="10px" aria-label='' colorScheme="white">

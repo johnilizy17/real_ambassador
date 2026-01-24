@@ -33,7 +33,6 @@ import Link from "next/link";
 import Router, { useRouter } from "next/router";
 import { COLORS } from "@/layout/Theme";
 import { NavDataUser } from "./NavDataUser";
-import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCookies } from "@/url/variable";
 import authLogout from "@/url/axios/logout";

@@ -6,7 +6,6 @@ import VerificationDashboardTable from './VerificationDashboardTable'
 import VerificationDashboardChart from './VerificationDashboardChart'
 import { useRouter } from 'next/router'
 import Withdraw from './Withdraw'
-import Image from "next/image";
 import { cashFormat } from '@/utils/cashformat'
 import { useSelector } from 'react-redux'
 import { referredBalance } from '@/url/api\'s/organization'
@@ -44,7 +43,7 @@ export default function VerificationBanner() {
     return (
         <>
             <Box pr="20px" pl="20px">
-                <Flex display={["none","none","none","flex"]} justifyContent={"flex-end"}><Button colorScheme='blue' mr="10px" bg={COLORS.blue}
+                <Flex display={["none", "none", "none", "flex"]} justifyContent={"flex-end"}><Button colorScheme='blue' mr="10px" bg={COLORS.blue}
                     onClick={() => router.push("https://www.abn.com.ng/")}
                 >
                     <Box>

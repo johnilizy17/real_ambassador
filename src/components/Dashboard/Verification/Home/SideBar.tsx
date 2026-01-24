@@ -26,7 +26,6 @@ import { ArrowForwardIcon, HamburgerIcon, CloseIcon, ChevronDownIcon } from "@ch
 import Link from "next/link";
 import Router, { useRouter } from "next/router";
 import { COLORS } from "@/layout/Theme";
-import Image from "next/image";
 
 const VerificationNavBar = () => {
 
@@ -46,7 +45,7 @@ const VerificationNavBar = () => {
                             <Img src="/assets/images/logo-icon.png" w="30px" display={["block", "block", "block", "none"]} />
                         </Box>
                     </Link>
-{/*                     <Center ml={["19px", "19px", "19px", "69px"]} bg="#F9F9F9" borderRadius="10px" pl="10px" pr="10px" h="40px">
+                    {/*                     <Center ml={["19px", "19px", "19px", "69px"]} bg="#F9F9F9" borderRadius="10px" pl="10px" pr="10px" h="40px">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" clipRule="evenodd" d="M10.5763 9.54717H10.0343L9.8422 9.36192C10.5146 8.57976 10.9194 7.56432 10.9194 6.45969C10.9194 3.99657 8.92281 2 6.45969 2C3.99657 2 2 3.99657 2 6.45969C2 8.92281 3.99657 10.9194 6.45969 10.9194C7.56432 10.9194 8.57976 10.5146 9.36192 9.8422L9.54717 10.0343V10.5763L12.9777 14L14 12.9777L10.5763 9.54717ZM6.45969 9.54717C4.75129 9.54717 3.37221 8.1681 3.37221 6.45969C3.37221 4.75129 4.75129 3.37221 6.45969 3.37221C8.1681 3.37221 9.54717 4.75129 9.54717 6.45969C9.54717 8.1681 8.1681 9.54717 6.45969 9.54717Z" fill="#898989" />
                         </svg>
@@ -54,7 +53,7 @@ const VerificationNavBar = () => {
                     </Center> */}
                 </Center>
                 <Center>
-                    <Card display={["none", "none", "none", "flex"]} fontWeight="700" borderRadius="30px"  fontSize="12px" color="#f05050" bg="white" >
+                    <Card display={["none", "none", "none", "flex"]} fontWeight="700" borderRadius="30px" fontSize="12px" color="#f05050" bg="white" >
                         <Center h="29.6px" pl="15px" pr="15px">
                             <Switch colorScheme="green" mr="10px" />
 
@@ -74,18 +73,18 @@ const VerificationNavBar = () => {
                             </Center>
                         </MenuButton>
                         <MenuList>
-                            <MenuItem  fontSize="16px" fontWeight="500" minH='48px'>
+                            <MenuItem fontSize="16px" fontWeight="500" minH='48px'>
                                 <span>Profile</span>
                             </MenuItem>
                             <Link href="/dashboard/dashboard/settings">
-                                <MenuItem _hover={{ color: "#7ed31f" }}  fontSize="16px" fontWeight="500" minH='40px'>
+                                <MenuItem _hover={{ color: "#7ed31f" }} fontSize="16px" fontWeight="500" minH='40px'>
                                     <span>Setting</span>
                                 </MenuItem>
                             </Link>
-                            <MenuItem display={["flex", "flex", "flex", "none"]} _hover={{ color: "#7ed31f" }}  fontSize="16px" fontWeight="500" minH='40px'>
+                            <MenuItem display={["flex", "flex", "flex", "none"]} _hover={{ color: "#7ed31f" }} fontSize="16px" fontWeight="500" minH='40px'>
                                 <span>Notification</span>
                             </MenuItem>
-                            <MenuItem display={["flex", "flex", "flex", "none"]} color="#f05050" _hover={{ color: "#7ed31f" }}  fontSize="16px" fontWeight="500" minH='40px'>
+                            <MenuItem display={["flex", "flex", "flex", "none"]} color="#f05050" _hover={{ color: "#7ed31f" }} fontSize="16px" fontWeight="500" minH='40px'>
                                 <Center h="29.6px">
                                     <Switch colorScheme="green" mr="10px" />
                                     Online
