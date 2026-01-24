@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 import { Box } from "@chakra-ui/react";
 import NoAuthLayer from "@/contants/Rapper/NoAuthLayer";
@@ -12,7 +11,7 @@ export default function Terms() {
     return (
         <NoAuthLayer seoTitle="Terms and Conditions">
             <Box color={COLORS.white} bg={COLORS.black}>
-                <Header/>
+                <Header />
                 <Box className="fade-slide bottom" p={["20px", "20px", "20px", "120px"]} pt="0px">
                     <Box h={["100px", "100px", "100px", "0px"]} />
 

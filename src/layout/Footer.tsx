@@ -1,5 +1,4 @@
 import { Box, Center, Link, Text, Img } from '@chakra-ui/react';
-import Image from 'next/image';
 import React from 'react';
 import {
     Modal,

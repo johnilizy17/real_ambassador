@@ -1,6 +1,5 @@
 import { COLORS } from '@/components/utils/theme';
 import { Center, Img } from '@chakra-ui/react';
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import LottieLoader from '../LottieLoader'
 import House from './house.json';

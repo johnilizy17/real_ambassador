@@ -2,7 +2,6 @@ import { COLORS } from "@/layout/Theme";
 import { Box, Button, Center, Flex, Img, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, useDisclosure, useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { Form, Formik } from "formik";
 import CustomInput from "@/layout/utills/CustomInput";
 import * as Yup from "yup";

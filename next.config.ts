@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  transpilePackages: ['@chakra-ui/next-js', '@chakra-ui/react', '@chakra-ui/icons'],
   // Removed experimental.esmExternals: false as it can cause issues in Next 16
 };
 

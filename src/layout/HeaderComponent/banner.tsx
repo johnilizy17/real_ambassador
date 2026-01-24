@@ -16,7 +16,6 @@ import {
     Icon, Container,
     AspectRatio
 } from "@chakra-ui/react";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -64,7 +63,7 @@ export default function Banner({ isOpen, onOpen, onClose }: any) {
                 <ModalOverlay />
                 <ModalContent background="transparent">
                     <AspectRatio>
-                       <Container centerContent>
+                        <Container centerContent>
                             <Box display={["none", "block"]}>
                                 <iframe
                                     width="700"

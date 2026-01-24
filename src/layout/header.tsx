@@ -5,7 +5,6 @@ import { ArrowForwardIcon, HamburgerIcon, CloseIcon, ChevronDownIcon, SearchIcon
 import Link from 'next/link';
 import { COLORS } from './Theme';
 import { useRouter } from 'next/router';
-import Image from "next/image";
 import { getCookie } from '@/url/variable';
 
 export default function LandingPageHeaderComponent() {

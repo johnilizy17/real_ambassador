@@ -7,7 +7,6 @@ import {
     Center,
     Img,
 } from '@chakra-ui/react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import Link from 'next/link';
@@ -21,7 +20,7 @@ import { useSelector } from 'react-redux';
 
 function AuthLayout({ children, seoTitle }: { children: any, seoTitle?: string }) {
     const router = useRouter();
-    const {user} = useSelector((a: any) => a.auth)
+    const { user } = useSelector((a: any) => a.auth)
 
     useEffect(() => {
         if (user && user.id) {
@@ -55,7 +54,7 @@ function AuthLayout({ children, seoTitle }: { children: any, seoTitle?: string }
                                 : '/images/person2.png'
                         }
                         h='70vh'
-                        right={ router.pathname === ROUTES.register? '-15px':"-0vh"}
+                        right={router.pathname === ROUTES.register ? '-15px' : "-0vh"}
                         pos='absolute'
                         bottom='0px'
                         alt='auth sign in'
