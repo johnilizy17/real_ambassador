@@ -23,7 +23,7 @@ export default function TierProgress() {
                         </Text>
                         <Text fontSize="sm" fontWeight="600" color="gray.500">
                             {tiers.map((a, b) => {
-                                if (user.payment === b) {
+                                if (user && user.payment === b) {
                                     return a.name
                                 }
                             })}
@@ -56,9 +56,9 @@ export default function TierProgress() {
                             key={index}
                             p={4}
                             borderRadius="lg"
-                            bg={tier.id === user.payment ? "blue.50" : "gray.50"}
+                            bg={user && tier.id === user.payment ? "blue.50" : "gray.50"}
                             border="2px solid"
-                            borderColor={tier.id === user.payment ? COLORS.brand_blue : "transparent"}
+                            borderColor={user && tier.id === user.payment ? COLORS.brand_blue : "transparent"}
                             cursor="pointer"
                             transition="all 0.2s"
                             _hover={{ bg: tier.id === user.payment ? "blue.50" : "gray.100" }}
