@@ -1,10 +1,10 @@
 import { Box, Circle, Flex, HStack, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react';
 import React from 'react';
-import { COLORS } from '../utils/Theme';
 import DownStep from '@/template/Step/DownStep';
 import CustomerStep from '@/template/Step/CustomerStep';
 import DownStepEdit from '@/template/Step/DownStep/DownStepEdit';
 import CustomerStepEdit from '@/template/Step/CustomerStep/CustomerStepEdit';
+import { COLORS } from '../utils/theme';
 
 export default function PaymentDetails({ cardBg, borderColor, tx, name, VerificationApi }: { cardBg: string, borderColor: string, tx: any, name: string, VerificationApi: any }) {
 
