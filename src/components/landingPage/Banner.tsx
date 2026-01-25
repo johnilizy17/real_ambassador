@@ -2,7 +2,7 @@ import { Box, Button, Center, Img, Container, Flex, Heading, Text, Stack } from 
 import { useRouter } from "next/router";
 import React from "react";
 import { useSelector } from "react-redux";
-import { COLORS } from "../utils/Theme";
+import { COLORS } from "../utils/theme";
 
 export default function Banner() {
     const { user } = useSelector((state: any) => state.auth);
