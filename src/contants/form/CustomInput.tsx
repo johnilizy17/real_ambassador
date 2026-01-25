@@ -1,4 +1,4 @@
-import { COLORS } from "@/components/utils/theme";
+import { COLORS } from "@/utils/Theme";
 import {
     FormControl,
     FormErrorMessage,
@@ -38,7 +38,7 @@ function CustomInput({
                         id={name}
                         name={name}
                         bg="#F1F2F3"
-                       placeholder={placeholder?placeholder:""}
+                        placeholder={placeholder ? placeholder : ""}
                         borderWidth="none"
                         borderColor="transparent"
                         {...options}
@@ -65,7 +65,7 @@ function CustomInput({
                         onFocus={() => setTouched(true)}
                         id={name}
                         name={name}
-                        placeholder={placeholder?placeholder:""}
+                        placeholder={placeholder ? placeholder : ""}
                         size="lg"
                         bg="#F1F2F3"
                         borderWidth="none"
@@ -80,7 +80,7 @@ function CustomInput({
     return (
         <>
             <Field name={name}>
-                {({ field, form }:any) => {
+                {({ field, form }: any) => {
                     const isInvalid = form.errors[name] && form.touched[name];
                     return (
                         <FormControl

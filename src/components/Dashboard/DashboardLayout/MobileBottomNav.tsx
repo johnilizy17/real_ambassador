@@ -79,7 +79,7 @@ export default function MobileBottomNav() {
                     })}
 
                     <Menu autoSelect={false}>
-                        <MenuButton flex="1">
+                        <MenuButton flex="1" as={Box} cursor="pointer" _hover={{ opacity: 0.8 }}>
                             <VStack spacing={0.5} color="gray.400">
                                 <Icon as={MoreHorizontal} boxSize={5} />
                                 <Text fontSize="10px" fontWeight="500">

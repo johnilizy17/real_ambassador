@@ -1,6 +1,8 @@
 import { Box, Center, Flex, Img, Heading, Text, Container, SimpleGrid, Icon } from "@chakra-ui/react";
 import React from "react";
 import { UserPlus, Share2, DollarSign } from "lucide-react";
+import { VStack } from "@chakra-ui/react";
+import { COLORS } from "../utils/theme";
 
 export default function About() {
     const steps = [
@@ -66,6 +68,4 @@ export default function About() {
         </Box>
     );
 }
-
-import { VStack } from "@chakra-ui/react"; import { COLORS } from "../utils/theme";
 

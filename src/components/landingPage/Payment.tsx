@@ -1,6 +1,6 @@
 import { Box, Circle, Flex, HStack, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react';
 import React from 'react';
-import { COLORS } from '../utils/theme';
+import { COLORS } from '../utils/Theme';
 import DownStep from '@/template/Step/DownStep';
 import CustomerStep from '@/template/Step/CustomerStep';
 import DownStepEdit from '@/template/Step/DownStep/DownStepEdit';
@@ -38,7 +38,7 @@ export default function PaymentDetails({ cardBg, borderColor, tx, name, Verifica
                     // tx.payment && tx.payment != 1 ?
                     //     console.log("alert")
                     //     :
-                        onOpen()
+                    onOpen()
                 }}
             >
                 <Flex justify="space-between" align="center">

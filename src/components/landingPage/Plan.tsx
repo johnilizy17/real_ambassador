@@ -2,7 +2,7 @@ import { Box, Container, Heading, Text, SimpleGrid, VStack, HStack, Icon, Button
 import React from "react";
 import { Check } from "lucide-react";
 import { cashFormat } from "@/utils/cashformat";
-import { COLORS } from "../utils/theme";
+import { COLORS } from "../utils/Theme";
 
 export default function Plan() {
     const tiers = [

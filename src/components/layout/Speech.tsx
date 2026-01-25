@@ -10,10 +10,10 @@ import {
     VStack,
     useToast,
 } from "@chakra-ui/react";
-import { COLORS } from "../utils/theme";
 import { createChatMassages, createKnowledgeBase, createKnowledgeBaseAnonymous } from "@/url/api's/userProfile";
 import { useSelector } from "react-redux";
 import { extractEmail, extractEmailFromSpeech } from "@/utils/constants";
+import { COLORS } from "../utils/theme";
 
 interface ChatMessage {
     message: string;

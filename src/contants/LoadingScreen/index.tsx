@@ -1,4 +1,4 @@
-import { COLORS } from '@/components/utils/theme';
+import { COLORS } from '@/utils/Theme';
 import { Center, Img } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import LottieLoader from '../LottieLoader'

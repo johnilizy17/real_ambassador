@@ -24,7 +24,7 @@ import {
 import { ArrowForwardIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 import Router, { useRouter } from "next/router";
-import { COLORS } from "@/layout/Theme";
+import { COLORS } from "@/utils/Theme";
 import { NavData } from "./NavData";
 
 const DashboardNav = () => {

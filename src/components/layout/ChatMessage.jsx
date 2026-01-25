@@ -9,10 +9,10 @@ import {
     Message,
     MessageInput,
 } from "@chatscope/chat-ui-kit-react";
-import { COLORS } from "../utils/theme";
 import { createChatMassages, createKnowledgeBase, createKnowledgeBaseAnonymous, getAllMassages } from "@/url/api's/userProfile";
 import { useSelector } from "react-redux";
 import { extractEmail } from "@/utils/constants";
+import { COLORS } from "../utils/theme";
 
 export default function ChatMessage({ setDisplay, display }) {
     const [isOpen, setIsOpen] = useState(true);
