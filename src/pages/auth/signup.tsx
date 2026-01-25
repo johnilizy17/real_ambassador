@@ -6,10 +6,15 @@ import React, { useState } from 'react';
 
 export default function SignUp() {
 
+  const { query, isReady } = useRouter()
   const [page, setPage] = useState(1)
-  const [data, setData] = useState({phone:"+234",phone_number:""})
+  const [data, setData] = useState({ phone: "+234", phone_number: "", user_id: "" })
 
-  const { query } = useRouter()
+  React.useEffect(() => {
+    if (isReady && query.ref) {
+      setData(prev => ({ ...prev, user_id: query.ref as string }))
+    }
+  }, [query.ref, isReady])
 
 
   return (

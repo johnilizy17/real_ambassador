@@ -70,10 +70,11 @@ export const logoutUser = createAsyncThunk(
 // Register User
 export const authRegister = createAsyncThunk(
   'auth/register',
-  async (payload: RegisterDto, { rejectWithValue }) => {
+  async (payload: any, { rejectWithValue }) => {
     try {
+      const endpoint = payload.user_id ? '/auth/signup/byId' : '/auth/signup/ambassador';
       const response: AxiosResponse<{ data: RegisterResponse }> =
-        await publicRequest.post('/auth/signup/ambassador', payload);
+        await publicRequest.post(endpoint, payload);
       const userData = response.data.data;
       return userData;
     } catch (error: any) {
@@ -120,7 +121,7 @@ export const authLogin = createAsyncThunk(
       const response: AxiosResponse<RegisterResponse> =
         await publicRequest.post('/auth/login', data);
 
-   console.log(response.data, "response.data")
+      console.log(response.data, "response.data")
 
       saveTokens({
         accessToken: response.data.data.token,
@@ -242,7 +243,7 @@ export const getUserProfile = createAsyncThunk(
       return response.data
 
     } catch (error: any) {
-    
+
     }
   }
 );
@@ -338,9 +339,9 @@ const authSlice = createSlice({
       })
       .addCase(getUserProfile.rejected, (state) => {
         state.token = null;
-      state.refreshToken = null;
-      state.user = null;
-      clearTokens();
+        state.refreshToken = null;
+        state.user = null;
+        clearTokens();
       })
   },
 });

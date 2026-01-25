@@ -182,6 +182,15 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
               </Box>
               <Box w='full' mt='44px'>
                 <CustomInput
+                  label='Referral Code (Optional)'
+                  name='user_id'
+                  placeholder='Enter referral code'
+                  fieldProps={{ type: 'text' }}
+                  typeInput=''
+                />
+              </Box>
+              <Box w='full' mt='44px'>
+                <CustomInput
                   label='Password'
                   name='password'
                   placeholder='Enter Password'

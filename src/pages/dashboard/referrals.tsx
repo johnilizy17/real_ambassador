@@ -60,8 +60,8 @@ export default function Referrals() {
 
     const referralCode = user?.id || "ABN-PARTNER-2024";
     const referralLink = activeTab === 0
-        ? `https://partner.abn.com.ng/signup?ref=${referralCode}`
-        : `https://pay.abn.com.ng/signup?ref=${referralCode}`;
+        ? `https://partners.abn.com.ng/auth/signup?ref=${referralCode}`
+        : `https://pay.abn.com.ng/auth/signup?ref=${referralCode}`;
 
     async function fetchReferrals() {
         try {

@@ -122,6 +122,7 @@ export default function StepOne({ data, setPage, user, setData }: any) {
           initialValues={data}
           onSubmit={initiateLogin}
           validationSchema={validationSchema}
+          enableReinitialize
         >
           {({ isSubmitting, handleChange }) => (
             <Form>
@@ -135,7 +136,6 @@ export default function StepOne({ data, setPage, user, setData }: any) {
                     placeholder='Enter First Name'
                     fieldProps={{ type: 'text' }}
                     typeInput=''
-                    value=''
                   />
                 </Box>
                 <Box w='full' mt='44px'>
@@ -145,7 +145,6 @@ export default function StepOne({ data, setPage, user, setData }: any) {
                     placeholder='Enter Last Name'
                     fieldProps={{ type: 'text' }}
                     typeInput=''
-                    value=''
                   />
                 </Box>
               </>
@@ -157,7 +156,6 @@ export default function StepOne({ data, setPage, user, setData }: any) {
                   placeholder='example@gmail.com'
                   fieldProps={{ type: 'email' }}
                   typeInput=''
-                  value=''
                 />
               </Box>
               <Box w='full' mt='44px'>
@@ -167,7 +165,6 @@ export default function StepOne({ data, setPage, user, setData }: any) {
                   placeholder='2/20/2024'
                   fieldProps={{ type: 'date' }}
                   typeInput=''
-                  value=''
                 />
               </Box>
               <Box w='full' mt='44px'>
@@ -182,6 +179,7 @@ export default function StepOne({ data, setPage, user, setData }: any) {
                   fieldProps={{ type: 'phone' }}
                 />
               </Box>
+
 
               <Box
                 w='full'
