@@ -81,12 +81,31 @@ export default function StepStarter({ data, page, setPage, setData }: any) {
                                         <option value={"2"}>Phone number only <span style={{ fontSize: "9px", color: "red" }}>note a fee of 4 naira will be charged for sms</span></option>
                                     </CustomInput>
                                 </Box>
-                                <Button mr={3} mt={8} colorScheme='bllue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
-                                    Back
-                                </Button>
-                                <Button isLoading={isSubmitting} isDisabled={isSubmitting} mt={8} colorScheme='green' type={"submit"}>
-                                    Next
-                                </Button>
+                                <Flex justify="space-between" align="center" mt={10} gap={4}>
+                                    <Button
+                                        flex={["1", "none"]}
+                                        variant="outline"
+                                        isDisabled={true}
+                                        onClick={() => setPage(page - 1)}
+                                        borderRadius="xl"
+                                        h="50px"
+                                        px={8}
+                                    >
+                                        Back
+                                    </Button>
+                                    <Button
+                                        flex={["2", "none"]}
+                                        colorScheme='blue'
+                                        bg={COLORS.blue}
+                                        type={"submit"}
+                                        isLoading={isSubmitting}
+                                        borderRadius="xl"
+                                        h="50px"
+                                        px={12}
+                                    >
+                                        Next
+                                    </Button>
+                                </Flex>
                             </>
                         </Form>
                     )}

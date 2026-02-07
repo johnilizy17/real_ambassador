@@ -10,9 +10,9 @@ import {
 import ROUTES from '@/utils/ROUTES';
 import { logout } from '@/redux/slices/auth/authSlice';
 
-const baseURL = 'https://farm.johnabrahamtosin.workers.dev/api/v1/';
+// const baseURL = 'https://farm.johnabrahamtosin.workers.dev/api/v1/';
 
-// const baseURL = 'http://127.0.0.1:8787/api/v1/';
+const baseURL = 'http://127.0.0.1:8787/api/v1/';
 
 export const userRequest = axios.create({ baseURL });
 export const publicRequest = axios.create({ baseURL });
@@ -56,11 +56,11 @@ userFileUpload.interceptors.request.use(
 userRequest.interceptors.response.use(
   (response) => response,
   async (error) => {
-  
+
     const originalRequest = error.config;
 
     // If 401 and not retried yet
-    if (error.response.data?.statusCode=== 401 && !originalRequest._retry) {
+    if (error.response.data?.statusCode === 401 && !originalRequest._retry) {
       if (refreshAttempted) {
         handleLogout(); // Logout after one failed refresh
         return Promise.reject(error);

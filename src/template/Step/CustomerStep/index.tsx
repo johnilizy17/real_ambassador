@@ -23,24 +23,31 @@ export default function CustomerStep({ onClose, VerificationApi }: any) {
 
     return (
         <Box py="4">
-            <Stepper index={wizardStep} size="xs" colorScheme="blue" mb="8">
-                {steps.map((step, index) => (
-                    <Step key={index}>
-                        <StepIndicator>
-                            <StepStatus
-                                complete={<StepIcon />}
-                                incomplete={<Text fontSize="xs">{index + 1}</Text>}
-                                active={<Text fontSize="xs">{index + 1}</Text>}
-                            />
-                        </StepIndicator>
-                        <Box flexShrink='0'>
-                            <Text fontSize="10px" fontWeight="700" color={wizardStep === index ? "blue.600" : "gray.400"}>
-                                {step.title}
-                            </Text>
-                        </Box>
-                    </Step>
-                ))}
-            </Stepper>
+            {/* Unified Progress Indicator */}
+            <Box mb="8">
+                <Flex justify="space-between" align="center" mb="3">
+                    <VStack align="start" spacing={0}>
+                        <Text fontSize="xs" fontWeight="700" color="blue.600" textTransform="uppercase" letterSpacing="wider">
+                            Step {wizardStep + 1} of {steps.length}
+                        </Text>
+                        <Text fontSize="lg" fontWeight="800" color="gray.900" mt={1}>
+                            {steps[wizardStep].title}
+                        </Text>
+                    </VStack>
+                    <Text fontSize="sm" fontWeight="700" color="gray.400">
+                        {Math.round(((wizardStep + 1) / steps.length) * 100)}%
+                    </Text>
+                </Flex>
+                <Box h="6px" w="full" bg="gray.100" borderRadius="full" overflow="hidden">
+                    <Box
+                        h="full"
+                        w={`${((wizardStep + 1) / steps.length) * 100}%`}
+                        bg="blue.500"
+                        transition="all 0.3s ease-in-out"
+                        borderRadius="full"
+                    />
+                </Box>
+            </Box>
 
             <VStack align="stretch" spacing="6">
                 {wizardStep === 0 ? <StepStarter setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />

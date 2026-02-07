@@ -4,18 +4,21 @@ import {
     Icon,
     Text,
     VStack,
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
-    Portal,
     useDisclosure,
-    useToast
+    useToast,
+    Drawer,
+    DrawerBody,
+    DrawerHeader,
+    DrawerOverlay,
+    DrawerContent,
+    DrawerCloseButton,
+    Divider,
+    HStack
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
 import { NavDataUser } from "./User/NavDataUser";
-import { MoreHorizontal, LogOut } from "lucide-react";
+import { MoreHorizontal, LogOut, ChevronRight } from "lucide-react";
 import { COLORS } from "@/utils/Theme";
 import LogoutModal from "./LogoutModal";
 import { useDispatch } from "react-redux";
@@ -26,6 +29,7 @@ export default function MobileBottomNav() {
     const dispatch = useDispatch();
     const toast = useToast();
     const { isOpen: isLogoutOpen, onOpen: onLogoutOpen, onClose: onLogoutClose } = useDisclosure();
+    const { isOpen: isMoreOpen, onOpen: onMoreOpen, onClose: onMoreClose } = useDisclosure();
 
     // First 4 items are displayed directly
     const primaryItems = NavDataUser.slice(0, 4);
@@ -42,6 +46,7 @@ export default function MobileBottomNav() {
             isClosable: true,
         });
         onLogoutClose();
+        onMoreClose();
     };
 
     return (
@@ -78,44 +83,81 @@ export default function MobileBottomNav() {
                         );
                     })}
 
-                    <Menu autoSelect={false}>
-                        <MenuButton flex="1" as={Box} cursor="pointer" _hover={{ opacity: 0.8 }}>
-                            <VStack spacing={0.5} color="gray.400">
-                                <Icon as={MoreHorizontal} boxSize={5} />
-                                <Text fontSize="10px" fontWeight="500">
-                                    More
-                                </Text>
-                            </VStack>
-                        </MenuButton>
-                        <Portal>
-                            <MenuList zIndex={2000} shadow="xl" borderRadius="xl" mb="10px">
-                                {moreItems.map((item, index) => (
-                                    <MenuItem
-                                        key={index}
-                                        icon={<Icon as={item.icon} boxSize={4} />}
-                                        onClick={() => router.push(item.nav)}
-                                        fontWeight="500"
-                                        fontSize="sm"
-                                        py={3}
-                                    >
-                                        {item.item}
-                                    </MenuItem>
-                                ))}
-                                <MenuItem
-                                    icon={<Icon as={LogOut} boxSize={4} color="red.500" />}
-                                    onClick={onLogoutOpen}
-                                    fontWeight="600"
-                                    fontSize="sm"
-                                    color="red.600"
-                                    py={3}
-                                >
-                                    Log Out
-                                </MenuItem>
-                            </MenuList>
-                        </Portal>
-                    </Menu>
+                    <VStack
+                        spacing={0.5}
+                        as="button"
+                        flex="1"
+                        onClick={onMoreOpen}
+                        color={moreItems.some(item => router.pathname === item.nav) ? COLORS.brand_blue : "gray.400"}
+                    >
+                        <Icon as={MoreHorizontal} boxSize={5} />
+                        <Text fontSize="10px" fontWeight={moreItems.some(item => router.pathname === item.nav) ? "700" : "500"}>
+                            More
+                        </Text>
+                    </VStack>
                 </Flex>
             </Box>
+
+            {/* More Drawer */}
+            <Drawer placement="bottom" onClose={onMoreClose} isOpen={isMoreOpen}>
+                <DrawerOverlay />
+                <DrawerContent borderTopRadius="20px" maxH="80vh">
+                    <DrawerCloseButton mt={2} />
+                    <DrawerHeader borderBottomWidth="0px" pt={6} pb={2}>
+                        <Text fontSize="lg" fontWeight="700" color="gray.900">
+                            Menu
+                        </Text>
+                    </DrawerHeader>
+                    <DrawerBody pb={8}>
+                        <VStack align="stretch" spacing={1}>
+                            {moreItems.map((item, index) => {
+                                const isActive = router.pathname === item.nav;
+                                return (
+                                    <HStack
+                                        key={index}
+                                        as="button"
+                                        w="full"
+                                        p={4}
+                                        borderRadius="xl"
+                                        spacing={4}
+                                        bg={isActive ? "blue.50" : "transparent"}
+                                        color={isActive ? COLORS.brand_blue : "gray.700"}
+                                        onClick={() => {
+                                            router.push(item.nav);
+                                            onMoreClose();
+                                        }}
+                                        _active={{ bg: "gray.100" }}
+                                    >
+                                        <Icon as={item.icon} boxSize={5} />
+                                        <Text fontWeight={isActive ? "700" : "600"} fontSize="md" flex="1" textAlign="left">
+                                            {item.item}
+                                        </Text>
+                                        <Icon as={ChevronRight} boxSize={4} color="gray.400" />
+                                    </HStack>
+                                );
+                            })}
+
+                            <Divider my={4} borderColor="gray.100" />
+
+                            <HStack
+                                as="button"
+                                w="full"
+                                p={4}
+                                borderRadius="xl"
+                                spacing={4}
+                                color="red.600"
+                                onClick={onLogoutOpen}
+                                _active={{ bg: "red.50" }}
+                            >
+                                <Icon as={LogOut} boxSize={5} />
+                                <Text fontWeight="600" fontSize="md" flex="1" textAlign="left">
+                                    Log Out
+                                </Text>
+                            </HStack>
+                        </VStack>
+                    </DrawerBody>
+                </DrawerContent>
+            </Drawer>
 
             <LogoutModal
                 isOpen={isLogoutOpen}

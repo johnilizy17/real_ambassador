@@ -4,6 +4,7 @@ import {
     Button,
     VStack,
     HStack,
+    Flex,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
@@ -90,27 +91,32 @@ export default function StepThree({ data, VerificationApi, page, disable, setPag
                                 </CustomInput>
                             </Box>
 
-                            <HStack justify="flex-end" spacing="4" pt="4">
+                            <Flex justify="space-between" align="center" mt={10} gap={4}>
                                 <Button
-                                    variant="ghost"
+                                    flex={["1", "none"]}
+                                    variant="outline"
                                     isDisabled={isSubmitting}
                                     onClick={() => setPage(page - 1)}
-                                    borderRadius="lg"
+                                    borderRadius="xl"
+                                    h="50px"
+                                    px={8}
                                 >
                                     Back
                                 </Button>
                                 <Button
-                                    type="submit"
+                                    flex={["2", "none"]}
                                     bg="#0047AB"
                                     color="white"
                                     _hover={{ bg: "#003580" }}
-                                    borderRadius="lg"
-                                    px="8"
+                                    type={"submit"}
                                     isLoading={isSubmitting}
+                                    borderRadius="xl"
+                                    h="50px"
+                                    px={12}
                                 >
-                                    Finish & Pay
+                                    Finish
                                 </Button>
-                            </HStack>
+                            </Flex>
                         </VStack>
                     </Form>
                 )}

@@ -5,6 +5,7 @@ import {
     VStack,
     HStack,
     useToast,
+    Flex,
 } from '@chakra-ui/react';
 import React from 'react';
 import { Form, Formik } from 'formik';
@@ -70,27 +71,32 @@ export default function StepOne({ data, page, setPage, setData }: any) {
                                 </Box>
                             </VStack>
 
-                            <HStack justify="flex-end" spacing="4" pt="4">
+                            <Flex justify="space-between" align="center" mt={10} gap={4}>
                                 <Button
-                                    variant="ghost"
+                                    flex={["1", "none"]}
+                                    variant="outline"
                                     isDisabled={page === 1}
                                     onClick={() => setPage(page - 1)}
-                                    borderRadius="lg"
+                                    borderRadius="xl"
+                                    h="50px"
+                                    px={8}
                                 >
                                     Back
                                 </Button>
                                 <Button
-                                    type="submit"
+                                    flex={["2", "none"]}
                                     bg="#0047AB"
                                     color="white"
                                     _hover={{ bg: "#003580" }}
-                                    borderRadius="lg"
-                                    px="8"
+                                    type={"submit"}
                                     isLoading={isSubmitting}
+                                    borderRadius="xl"
+                                    h="50px"
+                                    px={12}
                                 >
                                     Next
                                 </Button>
-                            </HStack>
+                            </Flex>
                         </VStack>
                     </Form>
                 )}

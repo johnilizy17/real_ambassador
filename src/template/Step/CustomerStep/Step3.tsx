@@ -96,12 +96,31 @@ export default function StepThree({ data, VerificationApi, disable, page, setPag
                                         Registeration fee for saving small is {cashFormat(5000)}
                                     </p>
                                 </Box>
-                                <Button mr={3} mt={8} colorScheme='blue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
-                                    Back
-                                </Button>
-                                <Button mt={8} colorScheme='green' isLoading={isSubmitting} isDisabled={isSubmitting} type={"submit"}>
-                                    Next
-                                </Button>
+                                <Flex justify="space-between" align="center" mt={10} gap={4}>
+                                    <Button
+                                        flex={["1", "none"]}
+                                        variant="outline"
+                                        isDisabled={false}
+                                        onClick={() => setPage(page - 1)}
+                                        borderRadius="xl"
+                                        h="50px"
+                                        px={8}
+                                    >
+                                        Back
+                                    </Button>
+                                    <Button
+                                        flex={["2", "none"]}
+                                        colorScheme='blue'
+                                        bg={COLORS.blue}
+                                        type={"submit"}
+                                        isLoading={isSubmitting}
+                                        borderRadius="xl"
+                                        h="50px"
+                                        px={12}
+                                    >
+                                        Next
+                                    </Button>
+                                </Flex>
                             </>
                         </Form>
                     )}

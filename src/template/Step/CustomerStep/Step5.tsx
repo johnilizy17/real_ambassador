@@ -69,10 +69,10 @@ export default function StepFive({ data, page, setPage, setData, onClose }: any)
     const amountResult = () => {
         const amount = data.duration === 365 ? UsersPlan[data.plan][365] : data.duration === 548 ? UsersPlan[data.plan][548] : UsersPlan[data.plan][730]
         if (data.type === "instant") {
-            return UsersPlan[data.plan].total*data.plot
+            return UsersPlan[data.plan].total * data.plot
         } else {
             const result = data.type === "daily" ? 1 : data.type === "weekly" ? 7 : 30
-            return result * amount*data.plot
+            return result * amount * data.plot
         }
     }
 
@@ -116,12 +116,31 @@ export default function StepFive({ data, page, setPage, setData, onClose }: any)
                                         <option value={2}>SMS</option>
                                     </CustomInput>
                                 </Box>
-                                <Button mr={3} mt={8} colorScheme='bllue' bg={COLORS.blue} disabled={page > 1.2 ? false : true} onClick={() => setPage(page - 1)}>
-                                    Back
-                                </Button>
-                                <Button isLoading={isSubmitting} isDisabled={isSubmitting} mt={8} colorScheme='green' type={"submit"}>
-                                    Next
-                                </Button>
+                                <Flex justify="space-between" align="center" mt={10} gap={4}>
+                                    <Button
+                                        flex={["1", "none"]}
+                                        variant="outline"
+                                        isDisabled={false}
+                                        onClick={() => setPage(page - 1)}
+                                        borderRadius="xl"
+                                        h="50px"
+                                        px={8}
+                                    >
+                                        Back
+                                    </Button>
+                                    <Button
+                                        flex={["2", "none"]}
+                                        colorScheme='blue'
+                                        bg={COLORS.blue}
+                                        type={"submit"}
+                                        isLoading={isSubmitting}
+                                        borderRadius="xl"
+                                        h="50px"
+                                        px={12}
+                                    >
+                                        Finish
+                                    </Button>
+                                </Flex>
                             </>
                         </Form>
                     )}

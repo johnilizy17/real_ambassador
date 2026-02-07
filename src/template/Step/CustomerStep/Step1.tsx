@@ -93,12 +93,31 @@ export default function StepOne({ data, page, setPage, setData }: any) {
                                     value=''
                                 />
                             </Box>
-                            <Button mr={3} mt={8} colorScheme='blue' bg={COLORS.blue} disabled={page > 0.2 ? false : true} onClick={() => setPage(page - 1)}>
-                                Back
-                            </Button>
-                            <Button mt={8} colorScheme='green' type={"submit"}>
-                                Next
-                            </Button>
+                            <Flex justify="space-between" align="center" mt={10} gap={4}>
+                                <Button
+                                    flex={["1", "none"]}
+                                    variant="outline"
+                                    isDisabled={page === 0}
+                                    onClick={() => setPage(page - 1)}
+                                    borderRadius="xl"
+                                    h="50px"
+                                    px={8}
+                                >
+                                    Back
+                                </Button>
+                                <Button
+                                    flex={["2", "none"]}
+                                    colorScheme='blue'
+                                    bg={COLORS.blue}
+                                    type={"submit"}
+                                    isLoading={isSubmitting}
+                                    borderRadius="xl"
+                                    h="50px"
+                                    px={12}
+                                >
+                                    Next
+                                </Button>
+                            </Flex>
                         </Form>
                     )}
                 </Formik>
