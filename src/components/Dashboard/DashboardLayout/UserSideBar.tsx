@@ -14,7 +14,6 @@ export default function UserSideBar({ children }: any) {
 
     return (
         <UserDashboardAuth>
-            <MarqueeText top="70px" />
             <Flex bg="#FAFAFA" zIndex={4} pos="fixed" h="100vh">
                 <Box display={["block", "block", "block", "none"]}>
                     <DashBoardNav />

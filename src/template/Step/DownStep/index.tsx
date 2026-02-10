@@ -4,6 +4,7 @@ import { ShieldCheckIcon } from 'lucide-react';
 import React, { useState } from 'react';
 import StepOne from './Step1';
 import StepTwo from './Step2';
+import StepAccountType from './StepAccountType';
 import StepThree from './Step3';
 
 export default function DownStep({ onClose, VerificationApi }: any) {
@@ -11,9 +12,19 @@ export default function DownStep({ onClose, VerificationApi }: any) {
     const steps = [
         { title: "Personal Details" },
         { title: "Contact Info" },
+        { title: "Account Type" },
         { title: "Registration Fee" }
     ]
-    const [data, setData] = useState({})
+    const [data, setData] = useState({
+        accountType: "",
+        accountTypeFee: 0,
+        payment: 0,
+        commissions: {
+            referral: 0,
+            subscription: 0,
+            landSales: 10
+        }
+    })
 
     return (
         <Box py="4">
@@ -48,6 +59,8 @@ export default function DownStep({ onClose, VerificationApi }: any) {
                     <StepOne setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
                 ) : wizardStep === 2 ? (
                     <StepTwo setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
+                ) : wizardStep === 3 ? (
+                    <StepAccountType setData={setData} page={wizardStep} setPage={setWizardStep} data={data} />
                 ) : (
                     <StepThree
                         disable={false}

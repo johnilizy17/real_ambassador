@@ -7,6 +7,7 @@ import {
   Img,
   Text,
   useToast,
+  VStack,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -95,29 +96,23 @@ export default function StepOne({ data, setPage, user, setData }: any) {
           fontSize='14px'
           borderRadius='34px'
           color={COLORS.grey}
-          fontWeight='500'
+          fontWeight='800'
           float='right'
           bg={'rgba(241, 245, 249, 1)'}
         >
-          Step 1 of 2
+          Step 1 of 3
         </Center>
         <Box h='37' />
-        <Box>
-          <Box fontWeight='500' fontSize='20px' color={COLORS.black}>
+        <VStack spacing={2} mb={8} align="start">
+          <Text fontSize="2xl" fontWeight="800" color="gray.900">
             {formHeading}
-          </Box>
-          <Box
-            mt='5px'
-            fontWeight='400'
-            fontSize='13px'
-            lineHeight='16.94px'
-            color={COLORS.grey}
-          >
+          </Text>
+          <Text fontSize="sm" color="gray.600">
             {userType === 'organization'
               ? 'Provide the necessary information about your organization'
               : 'Provide all the necessary information about yourself'}
-          </Box>
-        </Box>
+          </Text>
+        </VStack>
         <Formik
           initialValues={data}
           onSubmit={initiateLogin}
@@ -126,10 +121,8 @@ export default function StepOne({ data, setPage, user, setData }: any) {
         >
           {({ isSubmitting, handleChange }) => (
             <Form>
-              {/* Conditionally render name fields based on userType */}
-
-              <>
-                <Box w='full' mt='44px'>
+              <VStack spacing={5} align="stretch">
+                <Box w='full'>
                   <CustomInput
                     label='First Name'
                     name='firstName'
@@ -138,7 +131,7 @@ export default function StepOne({ data, setPage, user, setData }: any) {
                     typeInput=''
                   />
                 </Box>
-                <Box w='full' mt='44px'>
+                <Box w='full'>
                   <CustomInput
                     label='Last Name (Surname)'
                     name='lastName'
@@ -147,58 +140,60 @@ export default function StepOne({ data, setPage, user, setData }: any) {
                     typeInput=''
                   />
                 </Box>
-              </>
-
-              <Box w='full' mt='44px'>
-                <CustomInput
-                  label='Email'
-                  name='email'
-                  placeholder='example@gmail.com'
-                  fieldProps={{ type: 'email' }}
-                  typeInput=''
-                />
-              </Box>
-              <Box w='full' mt='44px'>
-                <CustomInput
-                  label='Date of Birth'
-                  name='birth_date'
-                  placeholder='2/20/2024'
-                  fieldProps={{ type: 'date' }}
-                  typeInput=''
-                />
-              </Box>
-              <Box w='full' mt='44px'>
-                <CustomInput
-                  label='Phone Number'
-                  name='phone'
-                  typeInput=''
-                  type='phone'
-                  value={phoneNumber}
-                  handleChange={setPhoneNumber}
-                  placeholder='Enter phone number'
-                  fieldProps={{ type: 'phone' }}
-                />
-              </Box>
-
+                <Box w='full'>
+                  <CustomInput
+                    label='Email'
+                    name='email'
+                    placeholder='example@gmail.com'
+                    fieldProps={{ type: 'email' }}
+                    typeInput=''
+                  />
+                </Box>
+                <Box w='full'>
+                  <CustomInput
+                    label='Date of Birth'
+                    name='birth_date'
+                    placeholder='2/20/2024'
+                    fieldProps={{ type: 'date' }}
+                    typeInput=''
+                  />
+                </Box>
+                <Box w='full'>
+                  <CustomInput
+                    label='Phone Number'
+                    name='phone'
+                    typeInput=''
+                    type='phone'
+                    value={phoneNumber}
+                    handleChange={setPhoneNumber}
+                    placeholder='Enter phone number'
+                    fieldProps={{ type: 'phone' }}
+                  />
+                </Box>
+              </VStack>
 
               <Box
                 w='full'
                 paddingTop={['20px', '30px']}
                 paddingBottom={['20px', '30px']}
-                mt='10px'
+                mt='20px'
               >
                 <Button
-                  colorScheme='blackAlpha'
-                  bg={COLORS.black}
-                  h='48px'
+                  colorScheme='blue'
+                  bg={COLORS.blue}
+                  h='56px'
                   w='full'
-                  borderRadius='5px'
+                  borderRadius='xl'
                   type='submit'
                   color={COLORS.white}
+                  fontSize="lg"
+                  fontWeight="bold"
+                  _hover={{ bg: 'blue.600', transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                  _active={{ transform: 'translateY(0)' }}
+                  transition="all 0.2s"
                 >
                   Continue
                 </Button>
-                {/* <SocialAuth /> */}
               </Box>
               <Field type='hidden' name='userType' value={userType} />
             </Form>

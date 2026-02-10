@@ -42,27 +42,25 @@ export default function StepTwo({ data, page, setPage, setData }: any) {
                 {({ isSubmitting }) => (
                     <Form>
                         <VStack spacing="5" align="stretch">
-                            <VStack spacing="4">
-                                <Box w='full' mt="44px">
-                                    <CustomInput
-                                        label='Email'
-                                        name='email'
-                                        placeholder='example@gmail.com'
-                                        fieldProps={{ type: 'email' }}
-                                    />
-                                </Box>
-                                <Box w='full' mt="44px">
-                                    <CustomInput
-                                        label='Phone Number'
-                                        name='phone'
-                                        type='phone'
-                                        value={phoneNumber}
-                                        handleChange={setPhoneNumber}
-                                        placeholder='Enter phone number'
-                                        fieldProps={{ type: 'phone' }}
-                                    />
-                                </Box>
-                            </VStack>
+                            <Box w='full'>
+                                <CustomInput
+                                    label='Email'
+                                    name='email'
+                                    placeholder='example@gmail.com'
+                                    fieldProps={{ type: 'email' }}
+                                />
+                            </Box>
+                            <Box w='full'>
+                                <CustomInput
+                                    label='Phone Number'
+                                    name='phone'
+                                    type='phone'
+                                    value={phoneNumber}
+                                    handleChange={setPhoneNumber}
+                                    placeholder='Enter phone number'
+                                    fieldProps={{ type: 'phone' }}
+                                />
+                            </Box>
 
                             <Flex justify="space-between" align="center" mt={10} gap={4}>
                                 <Button

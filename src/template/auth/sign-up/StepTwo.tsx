@@ -8,6 +8,7 @@ import {
   Img,
   Text,
   useToast,
+  VStack,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -28,6 +29,8 @@ interface SignUpForm2Props {
   data: {
     phone_number: string;
     phone: string;
+    accountType: string;
+    accountTypeFee: number;
     [key: string]: any;
   };
 }
@@ -39,8 +42,6 @@ const validationSchema = Yup.object({
   confirm_password: Yup.string()
     .required('Confirm Password is required')
     .oneOf([Yup.ref('password')], 'Passwords must match'),
-  type: Yup.string()
-    .required('Subscription is required'),
   acceptedTerms: Yup.boolean().oneOf(
     [true],
     'You must accept the terms and conditions'
@@ -49,7 +50,6 @@ const validationSchema = Yup.object({
 
 export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
   const router = useRouter();
-  const userRole = 4; // Default role, adjust as needed
   const dispatch = useAppDispatch();
   const showToast = useCustomToast();
   const [amount, setAmount] = useState(0);
@@ -82,16 +82,14 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
       delete formData.acceptedTerms;
 
       await dispatch(authRegister(formData) as any).unwrap();
-      if (values.type === '1') {
-        setAmount(5000);
+
+      if (data.accountTypeFee > 0) {
+        setAmount(data.accountTypeFee);
+        showToast('Account created! Proceeding to payment...', 'success');
+      } else {
+        showToast('Registration successful!', 'success');
+        router.push(ROUTES.login);
       }
-      else if (values.type === '2') {
-        setAmount(15000);
-      } else if (values.type === '3') {
-        setAmount(50000);
-      }
-      showToast('you have successfully been registered', 'success');
-      // router.push(ROUTES.login);
     } catch (error: any) {
       const errorMessage =
         error.response?.data?.message ||
@@ -124,41 +122,27 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
           fontSize='14px'
           borderRadius='34px'
           color={COLORS.grey}
-          fontFamily='Inter'
-          fontWeight='500'
+          fontWeight='800'
           float='right'
           bg={'rgba(241, 245, 249, 1)'}
         >
-          Step 2 of 2
+          Step 3 of 3
         </Center>
         <Box h='37' />
-        <Box>
-          <Box
-            fontWeight='500'
-            fontSize='20px'
-            color={COLORS.black}
-            fontFamily='Inter'
-          >
+        <VStack spacing={2} mb={8} align="start">
+          <Text fontSize="2xl" fontWeight="800" color="gray.900">
             Secure Your Account
-          </Box>
-          <Box
-            mt='5px'
-            fontWeight='400'
-            fontSize='13px'
-            lineHeight='16.94px'
-            color={COLORS.grey}
-            fontFamily='Inter'
-          >
-            Create a unique account password for your account
-          </Box>
-        </Box>
+          </Text>
+          <Text fontSize="sm" color="gray.600">
+            Create a unique password to safeguard your account.
+          </Text>
+        </VStack>
 
         <Formik
           initialValues={{
             ...data,
             password: '',
             confirm_password: '',
-            type: "",
             acceptedTerms: false,
           }}
           validationSchema={validationSchema}
@@ -166,113 +150,94 @@ export default function StepTwo({ setPage, user, data }: SignUpForm2Props) {
         >
           {({ isSubmitting, handleChange, values, errors, touched, setFieldValue }) => (
             <Form>
-              <Box w='full' mt='44px'>
-                <CustomInput
-                  label='Subscription'
-                  name='type'
-                  type={"select"}
-                  placeholder='Enter your subscription'
-                  handleChange={(val: any) => setFieldValue('type', val)}
-                  value={values.type}
-                >
-                  <option value='1'>Tier 1 {"(" + cashFormat(5000) + " " + "percentage shares 2.5%" + ")"}</option>
-                  <option value='2'>Tier 2 {"(" + cashFormat(15000) + " " + "percentage shares 5%" + ")"}</option>
-                  <option value='3'>Tier 3 {"(" + cashFormat(50000) + " " + "percentage shares 10%" + ")"}</option>
-                </CustomInput>
-              </Box>
-              <Box w='full' mt='44px'>
-                <CustomInput
-                  label='Referral Code (Optional)'
-                  name='user_id'
-                  placeholder='Enter referral code'
-                  fieldProps={{ type: 'text' }}
-                  typeInput=''
-                />
-              </Box>
-              <Box w='full' mt='44px'>
-                <CustomInput
-                  label='Password'
-                  name='password'
-                  placeholder='Enter Password'
-                  typeInput='password'
-                  value={values.password}
-                />
-              </Box>
+              <VStack spacing={6} align="stretch">
+                <Box w='full'>
+                  <CustomInput
+                    label='Referral Code (Optional)'
+                    name='referralcode'
+                    placeholder='Enter referral code'
+                    fieldProps={{ type: 'text' }}
+                    typeInput=''
+                  />
+                </Box>
+                <Box w='full'>
+                  <CustomInput
+                    label='Password'
+                    name='password'
+                    placeholder='Enter Password'
+                    typeInput='password'
+                    value={values.password}
+                  />
+                </Box>
 
-              <Box w='full' mt='44px'>
-                <CustomInput
-                  label='Confirm Password'
-                  name='confirm_password'
-                  placeholder='Confirm Password'
-                  typeInput='password'
-                  value={values.confirm_password}
-                />
-              </Box>
+                <Box w='full'>
+                  <CustomInput
+                    label='Confirm Password'
+                    name='confirm_password'
+                    placeholder='Confirm Password'
+                    typeInput='password'
+                    value={values.confirm_password}
+                  />
+                </Box>
 
-              <Flex mt='10px' alignItems='center'>
-                <Checkbox
-                  name='acceptedTerms'
-                  onChange={handleChange}
-                  isChecked={values.acceptedTerms}
-                >
-                  I agree to the{' '}
-                  <Link href='/terms-and-conditions'>
-                    <Text as='span' color='blue.500' cursor='pointer'>
-                      Terms and Conditions
+                <Flex alignItems='center'>
+                  <Checkbox
+                    name='acceptedTerms'
+                    onChange={handleChange}
+                    isChecked={values.acceptedTerms}
+                    colorScheme="blue"
+                    size="md"
+                  >
+                    <Text fontSize="sm" ml={2}>
+                      I agree to the{' '}
+                      <Link href='/terms-and-conditions'>
+                        <Box as='span' color='blue.500' fontWeight="700" cursor='pointer' _hover={{ textDecoration: 'underline' }}>
+                          Terms and Conditions
+                        </Box>
+                      </Link>
                     </Text>
-                  </Link>
-                </Checkbox>
-              </Flex>
-              {touched.acceptedTerms && errors.acceptedTerms && (
-                <Text color='red.500' fontSize='sm' mt='1'>
-                  {errors.acceptedTerms}
-                </Text>
-              )}
+                  </Checkbox>
+                </Flex>
+                {touched.acceptedTerms && errors.acceptedTerms && (
+                  <Text color='red.500' fontSize='xs' mt='-2'>
+                    {errors.acceptedTerms}
+                  </Text>
+                )}
 
-              <Flex
-                w='full'
-                paddingTop={['20px', '30px']}
-                paddingBottom={['20px', '30px']}
-                mt='10px'
-              >
-                <Button
-                  colorScheme='white'
-                  borderColor={COLORS.black}
-                  borderWidth='1px'
-                  h='48px'
-                  w='full'
-                  borderRadius='5px'
-                  color={COLORS.black}
-                  marginRight='48px'
-                  onClick={() => setPage(1)}
-                  isDisabled={isSubmitting}
-                >
-                  Previous
-                </Button>
-                <Button
-                  colorScheme='blackAlpha'
-                  bg={COLORS.black}
-                  isLoading={isSubmitting}
-                  isDisabled={
-                    isSubmitting ||
-                      !values.acceptedTerms ||
-                      errors.confirm_password
-                      ? true
-                      : false || errors.password
-                        ? true
-                        : false || errors.phone_number
-                          ? true
-                          : false
-                  }
-                  h='48px'
-                  w='full'
-                  borderRadius='5px'
-                  type='submit'
-                  color={COLORS.white}
-                >
-                  Submit
-                </Button>
-              </Flex>
+                <Flex w='full' gap={4} py={6}>
+                  <Button
+                    flex="1"
+                    variant="outline"
+                    borderColor="gray.200"
+                    h='56px'
+                    borderRadius='xl'
+                    color="gray.600"
+                    onClick={() => setPage(2)}
+                    isDisabled={isSubmitting}
+                    fontWeight="bold"
+                  >
+                    Back
+                  </Button>
+                  <Button
+                    flex="2"
+                    colorScheme='blue'
+                    bg={COLORS.blue}
+                    isLoading={isSubmitting}
+                    isDisabled={isSubmitting || !values.acceptedTerms || !!errors.confirm_password || !!errors.password}
+                    h='56px'
+                    borderRadius='xl'
+                    type='submit'
+                    color={COLORS.white}
+                    fontWeight="bold"
+                    fontSize="lg"
+                    _hover={{ bg: 'blue.600', transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                    _active={{ transform: 'translateY(0)' }}
+                    transition="all 0.2s"
+                  >
+                    Finalize
+                  </Button>
+                </Flex>
+              </VStack>
             </Form>
           )}
         </Formik>

@@ -44,32 +44,30 @@ export default function StepOne({ data, page, setPage, setData }: any) {
                 {({ isSubmitting }) => (
                     <Form>
                         <VStack spacing="5" align="stretch">
-                            <VStack spacing="4">
-                                <Box w='full' mt="44px">
-                                    <CustomInput
-                                        label='First Name'
-                                        name='firstName'
-                                        placeholder='Enter First Name'
-                                        fieldProps={{ type: 'text' }}
-                                    />
-                                </Box>
-                                <Box w='full' mt="44px">
-                                    <CustomInput
-                                        label='Last Name (Surname)'
-                                        name='lastName'
-                                        placeholder='Enter Last Name'
-                                        fieldProps={{ type: 'text' }}
-                                    />
-                                </Box>
-                                <Box w='full' mt="44px">
-                                    <CustomInput
-                                        label='Date of Birth'
-                                        name='birth_date'
-                                        placeholder='Select Date'
-                                        fieldProps={{ type: 'date' }}
-                                    />
-                                </Box>
-                            </VStack>
+                            <Box w='full'>
+                                <CustomInput
+                                    label='First Name'
+                                    name='firstName'
+                                    placeholder='Enter First Name'
+                                    fieldProps={{ type: 'text' }}
+                                />
+                            </Box>
+                            <Box w='full'>
+                                <CustomInput
+                                    label='Last Name (Surname)'
+                                    name='lastName'
+                                    placeholder='Enter Last Name'
+                                    fieldProps={{ type: 'text' }}
+                                />
+                            </Box>
+                            <Box w='full'>
+                                <CustomInput
+                                    label='Date of Birth'
+                                    name='birth_date'
+                                    placeholder='Select Date'
+                                    fieldProps={{ type: 'date' }}
+                                />
+                            </Box>
 
                             <Flex justify="space-between" align="center" mt={10} gap={4}>
                                 <Button
