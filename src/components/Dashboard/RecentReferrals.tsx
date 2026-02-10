@@ -35,7 +35,7 @@ export default function RecentReferrals() {
                             <Flex justify="space-between" align="center" py={4}>
                                 <VStack align="start" spacing={0}>
                                     <Text fontWeight="600" color="gray.900">
-                                        {ref.firstName} {ref.lastName} <span style={index > 1 ? { color: "blue", fontSize: "12px" } : { color: "green", fontSize: "12px" }}> {index < 2 ? "Partner" : "User"}</span>
+                                        {ref.firstName} {ref.lastName} <span style={index > 1 ? { color: "blue", fontSize: "12px" } : { color: "green", fontSize: "12px" }}> {index < 2 ? "Ambassador" : "Customer"}</span>
                                     </Text>
                                     <Text fontSize="sm" color="gray.500">
                                         {ref.createAt || "Recently"}

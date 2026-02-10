@@ -48,7 +48,7 @@ export default function SettingForm() {
             const result = await updateUserActive({
                 ...values,
                 phone: phoneNumber,
-                file:images
+                file: images
             })
             showMessage(
                 "Profile successfully upload",
@@ -82,9 +82,9 @@ export default function SettingForm() {
     }
 
     useEffect(() => {
-        if(user && user.phone){
-             console.log(user.phone, "email")
-        //   setPhoneNumber(user.phone)
+        if (user && user.phone) {
+            console.log(user.phone, "email")
+            //   setPhoneNumber(user.phone)
         }
     }, [])
     return (
@@ -167,10 +167,10 @@ export default function SettingForm() {
                                 </Center>
                                 <Box>
                                     <Center flexDir={["column", "column", "row"]} alignItems={["start", "start", "center"]} justifyContent="start" pt="30px">
-                                        <Box w="126px" mb={["10px", "10px", "0px"]} mr="21px" textAlign={["start", "start", "end"]} fontWeight="700" fontSize="14px" color={COLORS.grey}>Firt Name</Box>
+                                        <Box w="126px" mb={["10px", "10px", "0px"]} mr="21px" textAlign={["start", "start", "end"]} fontWeight="700" fontSize="14px" color={COLORS.grey}>First Name</Box>
                                         <Input
                                             id="firstName"
-                                            name="Firt Name"
+                                            name="First Name"
                                             placeholder='Enter First Name'
                                             type="text"
                                             w="300px"

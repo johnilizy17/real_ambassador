@@ -114,7 +114,7 @@ export default function StepAccountType({ data, setPage, setData }: any) {
             title: 'Agent Account',
             price: 25000,
             payment: 6,
-            description: 'Professional tier for active representatives with full earning potential across all streams.',
+            description: 'Professional tier for active ambassadors with full earning potential across all streams.',
             icon: Briefcase,
             benefits: ['40% Referrals', '40% Subscriptions', '10% Land Sales'],
             commissions: { referral: 40, subscription: 40, landSales: 10 }

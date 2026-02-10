@@ -70,8 +70,8 @@ export default function Referrals() {
             const normalUsers = await referredProfile("USER");
 
             const allReferrals = [
-                ...(ambassadors.data || []).map((u: any) => ({ ...u, type: 'Partner' })),
-                ...(normalUsers.data || []).map((u: any) => ({ ...u, type: 'User' }))
+                ...(ambassadors.data || []).map((u: any) => ({ ...u, type: 'Ambassador' })),
+                ...(normalUsers.data || []).map((u: any) => ({ ...u, type: 'Customer' }))
             ];
 
             allReferrals.sort((a, b) => new Date(b.createAt || b.created_at).getTime() - new Date(a.createAt || a.created_at).getTime());
@@ -89,7 +89,7 @@ export default function Referrals() {
     }, []);
 
     const filteredReferrals = useMemo(() => {
-        const roleFilter = activeTab === 0 ? 'Partner' : 'User';
+        const roleFilter = activeTab === 0 ? 'Ambassador' : 'Customer';
         return referrals.filter(ref =>
             ref.type === roleFilter &&
             (`${ref.firstName} ${ref.lastName}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -143,21 +143,21 @@ export default function Referrals() {
                             borderRadius="xl"
                             onClick={onOpen}
                         >
-                            Create Partner/Customer
+                            Create Ambassador/Customer
                         </Button>
                     </Flex>
 
                     {/* Tabs for Category */}
                     <Tabs variant='soft-rounded' colorScheme='blue' mb="8" index={activeTab} onChange={(index) => setActiveTab(index)}>
                         <TabList bg="white" p="2" borderRadius="full" display="inline-flex" shadow="sm" border="1px solid" borderColor="gray.100">
-                            <Tab px="8" fontWeight="600" fontSize="sm">Partners</Tab>
-                            <Tab px="8" fontWeight="600" fontSize="sm">Users</Tab>
+                            <Tab px="8" fontWeight="600" fontSize="sm">Ambassadors</Tab>
+                            <Tab px="8" fontWeight="600" fontSize="sm">Customers</Tab>
                         </TabList>
                     </Tabs>
 
                     {/* Referral Code Card */}
                     <Box bg="white" p="6" borderRadius="xl" shadow="sm" border="1px solid" borderColor="gray.100" mb="8">
-                        <Heading size="sm" mb="6" fontWeight="600">Your {activeTab === 0 ? 'Partner' : 'User'} Referral Details</Heading>
+                        <Heading size="sm" mb="6" fontWeight="600">Your {activeTab === 0 ? 'Ambassador' : 'Customer'} Referral Details</Heading>
                         <VStack spacing="4" align="stretch">
                             <InputGroup size="lg">
                                 <Input
@@ -198,14 +198,14 @@ export default function Referrals() {
                             </InputGroup>
                         </VStack>
                         <Text mt="4" fontSize="xs" color="gray.500">
-                            * Referrals via this link will be registered as {activeTab === 0 ? 'Partners' : 'Normal Users'}.
+                            * Referrals via this link will be registered as {activeTab === 0 ? 'Ambassadors' : 'Customers'}.
                         </Text>
                     </Box>
 
                     {/* All Referrals Section */}
                     <Box bg="white" borderRadius="xl" shadow="sm" border="1px solid" borderColor="gray.100" overflow="hidden">
                         <Flex p="6" justify="space-between" align={{ base: "start", md: "center" }} direction={{ base: "column", md: "row" }} gap="4">
-                            <Heading size="md" fontWeight="700">All {activeTab === 0 ? 'Partners' : 'Users'}</Heading>
+                            <Heading size="md" fontWeight="700">All {activeTab === 0 ? 'Ambassadors' : 'Customers'}</Heading>
                             <InputGroup maxW={{ base: "full", md: "300px" }}>
                                 <InputLeftElement pointerEvents='none'>
                                     <Search size={18} color="gray.400" />
@@ -289,7 +289,7 @@ export default function Referrals() {
                             </>
                         ) : (
                             <Box py="10">
-                                <EmptyState title={searchQuery ? 'No matching results' : `No ${activeTab === 0 ? 'partners' : 'users'} found`} />
+                                <EmptyState title={searchQuery ? 'No matching results' : `No ${activeTab === 0 ? 'ambassadors' : 'customers'} found`} />
                             </Box>
                         )}
                     </Box>
@@ -302,7 +302,7 @@ export default function Referrals() {
                 <ModalContent borderRadius="2xl" p="4">
                     <ModalHeader textAlign="center">
                         <Heading size="md" fontWeight="700">
-                            {creationType === "partner" ? "Create New Partner" :
+                            {creationType === "partner" ? "Create New Ambassador" :
                                 creationType === "customer" ? "Create New Customer" :
                                     "Choose Registration Type"}
                         </Heading>
@@ -325,7 +325,7 @@ export default function Referrals() {
                                 >
                                     <Icon as={Users} color="blue.600" boxSize={12} />
                                     <VStack spacing="1" align="center">
-                                        <Text fontWeight="700" fontSize="lg" color="blue.800">Partner</Text>
+                                        <Text fontWeight="700" fontSize="lg" color="blue.800">Ambassador</Text>
                                         <Text fontSize="xs" color="blue.600" textAlign="center">Register a new ambassador to your downline</Text>
                                     </VStack>
                                 </VStack>
@@ -345,7 +345,7 @@ export default function Referrals() {
                                     <Icon as={UserCheck} color="green.600" boxSize={12} />
                                     <VStack spacing="1" align="center">
                                         <Text fontWeight="700" fontSize="lg" color="green.800">Customer</Text>
-                                        <Text fontSize="xs" color="green.600" textAlign="center">Register a new user to the ABN platform</Text>
+                                        <Text fontSize="xs" color="green.600" textAlign="center">Register a new customer to the ABN platform</Text>
                                     </VStack>
                                 </VStack>
                             </SimpleGrid>

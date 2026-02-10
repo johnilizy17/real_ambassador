@@ -31,7 +31,7 @@ const SupportPage = () => {
         },
         {
             question: "When do I receive my commission?",
-            answer: "Commissions are processed according to our 5-day payout cycle. Once a referred user's payment is confirmed, your commission will appear in your 'Pending Payout' and will be available for withdrawal after the verification period."
+            answer: "Commissions are processed according to our 5-day payout cycle. Once a referred customer's payment is confirmed, your commission will appear in your 'Pending Payout' and will be available for withdrawal after the verification period."
         },
         {
             question: "How do I advance to the next tier?",
@@ -43,7 +43,7 @@ const SupportPage = () => {
         },
         {
             question: "Can I refer businesses from any industry?",
-            answer: "Yes, our program is open to referrals across various industries. However, specific partner categories may have different commission structures."
+            answer: "Yes, our program is open to referrals across various industries. However, specific ambassador categories may have different commission structures."
         },
         {
             question: "How do I share my referral link?",

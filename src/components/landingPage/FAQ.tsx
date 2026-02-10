@@ -29,7 +29,7 @@ export default function FAQ() {
                                         <h5 className="h5-md">
                                             <a className="collapsed" data-toggle="collapse" href="#collapse2" role="button"
                                                 aria-expanded="false" aria-controls="collapse2">
-                                                How do I become an ABN Narinohs Partner?
+                                                How do I become an ABN Narinohs Ambassador?
                                             </a>
                                         </h5>
                                     </div>
@@ -105,7 +105,7 @@ export default function FAQ() {
                                         <div className="card-body">
 
                                             <div className="card_cntnt">
-                                                <p>Earn a percentage of every payment made by your referred users — not just the first one!.</p>
+                                                <p>Earn a percentage of every payment made by your referred customers — not just the first one!.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -230,7 +230,7 @@ export default function FAQ() {
                                         <h5 className="h5-md">
                                             <a className="collapsed" data-toggle="collapse" href="#collapse092" role="button"
                                                 aria-expanded="false" aria-controls="collapse092">
-                                                Can I upgrade my Partner package?
+                                                Can I upgrade my Ambassador package?
                                             </a>
                                         </h5>
                                     </div>
@@ -268,7 +268,7 @@ export default function FAQ() {
                                     </div>
 
                                 </div>
-                                 <div className="card index3_card">
+                                <div className="card index3_card">
 
                                     <div className="card_pagee" role="tab" id="headingsiz">
                                         <h5 className="h5-md">

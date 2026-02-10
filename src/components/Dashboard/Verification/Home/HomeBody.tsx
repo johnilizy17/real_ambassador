@@ -166,7 +166,7 @@ export default function VerificationBody() {
                     <Img src="/images/Illustration.png" />
                     <Box p="16px">
                         <Box marginTop="8px" fontWeight="400" color={COLORS.grey} fontSize={["13px", "13px", "13px", "14px"]}>
-                            I’m eager to represent the brand, connect with others, and make a positive impact as a partner.
+                            I’m eager to represent the brand, connect with others, and make a positive impact as an ambassador.
                         </Box>
                         <Center mt="24px" justifyContent="space-between">
                             <Flex>

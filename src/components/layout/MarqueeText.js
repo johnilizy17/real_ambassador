@@ -30,7 +30,7 @@ export default function MarqueeText({ top = "0px" }) {
         animation={`${marqueeKeyframes} 15s linear infinite`}
         fontWeight="900"
       >
-        🚀 Welcome to ABN Partners! Earn through referrals and remember that all registration fees are non-refundable. Please note that the Tier 3 account promo has been discontinued — Tier 3 is now set at {cashFormat(50000)} with a 30% percentage. 🚀
+        🚀 Welcome to ABN Ambassadors! Earn through referrals and remember that all registration fees are non-refundable. Please note that the Tier 3 account promo has been discontinued — Tier 3 is now set at {cashFormat(50000)} with a 30% percentage. 🚀
       </Text>
     </Box>
   );
