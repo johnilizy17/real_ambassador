@@ -15,7 +15,7 @@ export default function SignUp() {
     referralcode: "",
     accountType: "",
     accountTypeFee: 0,
-    payment: 0,
+    payment: 5,
     commissions: {
       referral: 0,
       subscription: 0,

@@ -106,7 +106,7 @@ export default function StepAccountType({ data, setPage, setData }: any) {
             id: 'agent',
             title: 'Agent Account',
             price: 25000,
-            payment: 5,
+            payment: 6,
             icon: Briefcase,
             benefits: ['40% Referrals', '40% Subscriptions', '10% Land Sales'],
             commissions: { referral: 40, subscription: 40, landSales: 10 }
@@ -115,7 +115,7 @@ export default function StepAccountType({ data, setPage, setData }: any) {
             id: 'realtor',
             title: 'Realtor Account',
             price: 0,
-            payment: 4,
+            payment: 5,
             icon: User,
             benefits: ['10% Land Sales Only'],
             commissions: { referral: 0, subscription: 0, landSales: 10 }

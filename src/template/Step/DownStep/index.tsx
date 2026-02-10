@@ -18,7 +18,7 @@ export default function DownStep({ onClose, VerificationApi }: any) {
     const [data, setData] = useState({
         accountType: "",
         accountTypeFee: 0,
-        payment: 0,
+        payment: 5,
         commissions: {
             referral: 0,
             subscription: 0,
