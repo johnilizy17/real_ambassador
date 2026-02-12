@@ -29,7 +29,7 @@ export default function FAQ() {
                                         <h5 className="h5-md">
                                             <a className="collapsed" data-toggle="collapse" href="#collapse2" role="button"
                                                 aria-expanded="false" aria-controls="collapse2">
-                                                How do I become an ABN Narinohs Ambassador?
+                                                How do I become an ABN Narinohs Agent?
                                             </a>
                                         </h5>
                                     </div>
@@ -230,7 +230,7 @@ export default function FAQ() {
                                         <h5 className="h5-md">
                                             <a className="collapsed" data-toggle="collapse" href="#collapse092" role="button"
                                                 aria-expanded="false" aria-controls="collapse092">
-                                                Can I upgrade my Ambassador package?
+                                                Can I upgrade my Agent package?
                                             </a>
                                         </h5>
                                     </div>

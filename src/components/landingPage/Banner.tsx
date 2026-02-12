@@ -29,7 +29,7 @@ export default function Banner() {
                             fontWeight="800"
                             mb={6}
                         >
-                            Earn with ABN Ambassadors
+                            Earn with ABN Agents
                         </Heading>
                         <Text fontSize={["18px", "20px"]} color="gray.600" mb={8} maxW="500px">
                             Refer businesses, track performance, and get paid seamlessly
@@ -61,7 +61,7 @@ export default function Banner() {
                                         _hover={{ bg: "blue.700" }}
                                         borderRadius="lg"
                                     >
-                                        Become an Ambassador
+                                        Become an Agent
                                     </Button>
                                     <Button
                                         onClick={() => router.push("/auth/login")}

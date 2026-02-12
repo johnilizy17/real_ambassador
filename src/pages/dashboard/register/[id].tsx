@@ -206,7 +206,7 @@ export default function TokenTransactions() {
                                     <Icon as={Users} color="blue.600" boxSize={12} />
                                     <VStack spacing="1" align="center">
                                         <Text fontWeight="700" fontSize="lg" color="blue.800">Partner</Text>
-                                        <Text fontSize="xs" color="blue.600" textAlign="center">Register a new ambassador to your downline</Text>
+                                        <Text fontSize="xs" color="blue.600" textAlign="center">Register a new agent to your downline</Text>
                                     </VStack>
                                 </VStack>
 

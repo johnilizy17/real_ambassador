@@ -8,7 +8,7 @@ export default function About() {
     const steps = [
         {
             title: "Sign Up",
-            description: "Create your ambassador account in minutes with a simple registration process.",
+            description: "Create your agent account in minutes with a simple registration process.",
             icon: UserPlus,
         },
         {

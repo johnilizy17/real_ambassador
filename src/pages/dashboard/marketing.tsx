@@ -27,7 +27,7 @@ import PageAnimation, { MotionBox, MotionFlex, itemVariants } from '@/components
 
 const MARKETING_MATERIALS = [
     {
-        title: "Ambassador Banner 1200x628",
+        title: "Agent Banner 1200x628",
         type: "Image",
         description: "High-res banner for social media and websites",
         icon: ImageIcon,
@@ -68,8 +68,8 @@ const USEFUL_LINKS = [
         icon: Globe
     },
     {
-        title: "Ambassador Portal Help",
-        description: "Documentation and tutorials for ambassadors",
+        title: "Agent Portal Help",
+        description: "Documentation and tutorials for agents",
         url: "/dashboard/support",
         icon: HelpCircle
     },
@@ -95,7 +95,7 @@ export default function Marketing() {
                     {/* Header */}
                     <MotionBox mb="10" variants={itemVariants}>
                         <Heading size="lg" fontWeight="700" mb="2" color="gray.800">Resources</Heading>
-                        <Text color="gray.600">Marketing materials and helpful links for ambassadors</Text>
+                        <Text color="gray.600">Marketing materials and helpful links for agents</Text>
                     </MotionBox>
 
                     {/* Marketing Materials Section */}
@@ -186,7 +186,7 @@ export default function Marketing() {
                         variants={itemVariants}
                         whileHover={{ scale: 1.005 }}
                     >
-                        <Heading size="md" fontWeight="700" mb="6" color="gray.800">Ambassador Tips</Heading>
+                        <Heading size="md" fontWeight="700" mb="6" color="gray.800">Agent Tips</Heading>
                         <VStack spacing="4" align="stretch">
                             {TIPS.map((tip, idx) => (
                                 <MotionFlex

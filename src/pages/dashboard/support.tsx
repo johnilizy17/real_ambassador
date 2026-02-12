@@ -43,7 +43,7 @@ const SupportPage = () => {
         },
         {
             question: "Can I refer businesses from any industry?",
-            answer: "Yes, our program is open to referrals across various industries. However, specific ambassador categories may have different commission structures."
+            answer: "Yes, our program is open to referrals across various industries. However, specific agent categories may have different commission structures."
         },
         {
             question: "How do I share my referral link?",

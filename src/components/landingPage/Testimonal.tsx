@@ -89,8 +89,8 @@ export default function Testimonial() {
                     <div className="col-md-12 col-lg-12 col-sm-12 col-12">
                         <div
                             className="sv_heading_wraper heading_wrapper_dark index2_heading index2_heading_center index3_heading">
-                            <h4>Ambassadors</h4>
-                            <h3>What Our Ambassadors Say</h3>
+                            <h4>Agents</h4>
+                            <h3>What Our Agents Say</h3>
                             <div className="line_shape line_shape2"></div>
                         </div>
                     </div>
@@ -101,25 +101,25 @@ export default function Testimonial() {
                                 <div className="item">
                                     <div className="saying_content_wrapper float_left">
                                         <div className="saying_img">
-                                            <img src="images/cnt1.png" alt="Ambassador 1" />
+                                            <img src="images/cnt1.png" alt="Agent 1" />
                                         </div>
                                         <div className="saying_img_name">
                                             <h1><a href="#" style={{ color: "#fff" }}>Amara Okoye</a></h1>
-                                            <p>Lead Ambassador</p>
+                                            <p>Lead Agent</p>
                                         </div>
                                         <p style={{ color: "#fff" }}>
-                                            “Joining the ABN Nariohs Ambassador Program has empowered me to connect with amazing people and make a real difference.”
+                                            “Joining the ABN Nariohs Agent Program has empowered me to connect with amazing people and make a real difference.”
                                         </p>
                                     </div>
                                 </div>
                                 <div className="item">
                                     <div className="saying_content_wrapper float_left">
                                         <div className="saying_img">
-                                            <img src="images/cnt2.png" alt="Ambassador 2" />
+                                            <img src="images/cnt2.png" alt="Agent 2" />
                                         </div>
                                         <div className="saying_img_name">
                                             <h1><a href="#" style={{ color: "#fff" }}>Chinedu Eze</a></h1>
-                                            <p>Community Ambassador</p>
+                                            <p>Community Agent</p>
                                         </div>
                                         <p style={{ color: "#fff" }}>
                                             “Being part of this program gave me the platform to share my passion and grow my network globally.”
@@ -129,14 +129,14 @@ export default function Testimonial() {
                                 <div className="item">
                                     <div className="saying_content_wrapper float_left">
                                         <div className="saying_img">
-                                            <img src="images/cnt.png" alt="Ambassador 3" />
+                                            <img src="images/cnt.png" alt="Agent 3" />
                                         </div>
                                         <div className="saying_img_name">
                                             <h1><a href="#" style={{ color: "#fff" }}>Nkechi Nwosu</a></h1>
-                                            <p>Social Media Ambassador</p>
+                                            <p>Social Media Agent</p>
                                         </div>
                                         <p style={{ color: "#fff" }}>
-                                            “The ABN Nariohs Ambassador Program has been a rewarding journey of learning, leadership, and impact.”
+                                            “The ABN Nariohs Agent Program has been a rewarding journey of learning, leadership, and impact.”
                                         </p>
                                     </div>
                                 </div>
