@@ -7,38 +7,28 @@ import { COLORS } from "../utils/theme";
 export default function Plan() {
     const tiers = [
         {
-            name: "Tier 1",
-            interest: "5%",
-            price: 5000,
+            name: "Realtor",
+            interest: "Free",
+            price: 0,
             features: [
+                "10% Land Sales Commission",
                 "Basic dashboard access",
-                "Referral tracking",
                 "Email support",
-                "Monthly reports"
+                "Property listings access"
             ]
         },
         {
-            name: "Tier 2",
-            interest: "10%",
-            price: 15000,
+            name: "Agent",
+            interest: "₦25,000",
+            price: 25000,
             features: [
-                "Everything in Tier 1",
+                "40% Referral Commission",
+                "40% Subscription Commission",
+                "10% Land Sales Commission",
                 "Priority support",
                 "Advanced analytics",
-                "Weekly reports",
-                "Marketing materials"
-            ]
-        },
-        {
-            name: "Tier 3",
-            interest: "15%",
-            price: 50000,
-            features: [
-                "Everything in Tier 2",
-                "Dedicated account manager",
-                "Custom reporting",
-                "API access",
-                "Co-marketing opportunities"
+                "Marketing materials",
+                "Dedicated account manager"
             ],
             highlighted: true
         }
@@ -52,14 +42,14 @@ export default function Plan() {
                         Our Pricing
                     </Badge>
                     <Heading as="h2" size="xl" color="#1A202C">
-                        Choose the best Tier that suites you
+                        Choose Your Plan
                     </Heading>
                     <Text color="gray.600" maxW="600px">
-                        Flexible commissions built for every stage — from startup to scale, no hidden fees.
+                        Start as a Realtor for free or become an Agent with full earning potential across all streams.
                     </Text>
                 </VStack>
 
-                <SimpleGrid columns={[1, 1, 3]} spacing={8}>
+                <SimpleGrid columns={[1, 1, 2]} spacing={8} maxW="900px" mx="auto">
                     {tiers.map((tier, index) => (
                         <Box
                             key={index}
@@ -77,10 +67,10 @@ export default function Plan() {
                                     <Text fontWeight="bold" fontSize="lg" color="gray.900">{tier.name}</Text>
                                     <HStack align="baseline">
                                         <Text fontSize="4xl" fontWeight="800" color="#003580">{tier.interest}</Text>
-                                        <Text color="gray.500" fontSize="sm">/referral</Text>
+                                        {tier.price > 0 && <Text color="gray.500" fontSize="sm">/one-time</Text>}
                                     </HStack>
                                     <Text color="gray.600" fontSize="sm">
-                                        Great for partners just getting started.
+                                        {tier.price === 0 ? "Perfect for real estate professionals." : "Full earning potential across all revenue streams."}
                                     </Text>
                                 </VStack>
 

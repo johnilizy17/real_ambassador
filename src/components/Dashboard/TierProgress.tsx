@@ -1,5 +1,4 @@
-import { Box, Flex, Text, VStack, Progress, SimpleGrid, Center } from "@chakra-ui/react";
-import React from "react";
+import { Box, Flex, Text, VStack, SimpleGrid } from "@chakra-ui/react";
 import { COLORS } from "@/utils/Theme";
 import { useSelector } from "react-redux";
 
@@ -8,9 +7,8 @@ export default function TierProgress() {
     const { user } = useSelector((a: { auth: { user: any } }) => a.auth)
 
     const tiers = [
-        { name: "Bronze", rate: "5%", color: "orange.400", id: 2 },
-        { name: "Silver", rate: "10%", color: "blue.400", active: true, id: 3 },
-        { name: "Gold", rate: "15%", color: "yellow.400", id: 4 },
+        { name: "Realtor", rate: "10% Land Sales", color: "green.400", id: 5, benefits: "Land Sales Only" },
+        { name: "Agent", rate: "40% Multi-Stream", color: "blue.400", active: true, id: 6, benefits: "Referrals, Subscriptions & Land Sales" },
     ];
 
     return (
@@ -19,11 +17,11 @@ export default function TierProgress() {
                 <Flex justify="space-between" align="end">
                     <VStack align="start" spacing={1}>
                         <Text fontSize="lg" fontWeight="700" color="gray.900">
-                            Tier Progress
+                            Account Type
                         </Text>
                         <Text fontSize="sm" fontWeight="600" color="gray.500">
                             {tiers.map((a, b) => {
-                                if (user && user.payment === b) {
+                                if (user && user.payment === a.id) {
                                     return a.name
                                 }
                             })}
@@ -33,42 +31,41 @@ export default function TierProgress() {
                 </Flex>
 
                 <Box>
-                    <Progress
-                        value={96}
-                        size="md"
-                        borderRadius="full"
-                        colorScheme="blue"
-                        bg="gray.100"
-                        sx={{
-                            '& > div': {
-                                backgroundColor: COLORS.brand_blue,
-                            },
-                        }}
-                    />
-                    <Text mt={3} fontSize="sm" color="gray.500">
-                        You're 96% of the way to Gold tier! Just 1 more referral to unlock 10% commission.
+                    <Text fontSize="sm" color="gray.600" mb={3}>
+                        {user && user.payment === 6 ? (
+                            <Text>
+                                <Text as="span" fontWeight="700" color="blue.600">Agent Account Active:</Text> Earning 40% on Referrals, 40% on Subscriptions, and 10% on Land Sales.
+                            </Text>
+                        ) : (
+                            <Text>
+                                <Text as="span" fontWeight="700" color="green.600">Realtor Account Active:</Text> Earning 10% on Land Sales. Upgrade to Agent for multi-stream earnings!
+                            </Text>
+                        )}
                     </Text>
                 </Box>
 
-                <SimpleGrid columns={[2, 2, 4]} spacing={4}>
+                <SimpleGrid columns={[1, 2]} spacing={4}>
                     {user && tiers.map((tier, index) => (
                         <Box
                             key={index}
-                            p={4}
+                            p={5}
                             borderRadius="lg"
-                            bg={user && tier.id === user.payment ? "blue.50" : "gray.50"}
+                            bg={user && tier.id === user.payment ? (tier.name === "Agent" ? "blue.50" : "green.50") : "gray.50"}
                             border="2px solid"
-                            borderColor={user && tier.id === user.payment ? COLORS.brand_blue : "transparent"}
+                            borderColor={user && tier.id === user.payment ? (tier.name === "Agent" ? COLORS.brand_blue : "green.500") : "transparent"}
                             cursor="pointer"
                             transition="all 0.2s"
-                            _hover={{ bg: tier.id === user.payment ? "blue.50" : "gray.100" }}
+                            _hover={{ bg: tier.id === user.payment ? (tier.name === "Agent" ? "blue.50" : "green.50") : "gray.100" }}
                         >
-                            <VStack spacing={1}>
+                            <VStack spacing={2} align="start">
                                 <Text fontSize="xs" fontWeight="700" color="gray.500" textTransform="uppercase">
                                     {tier.name}
                                 </Text>
-                                <Text fontSize="xl" fontWeight="800" color={tier.active ? COLORS.brand_blue : "gray.700"}>
+                                <Text fontSize="lg" fontWeight="800" color={tier.name === "Agent" ? COLORS.brand_blue : "green.600"}>
                                     {tier.rate}
+                                </Text>
+                                <Text fontSize="xs" color="gray.600">
+                                    {tier.benefits}
                                 </Text>
                             </VStack>
                         </Box>

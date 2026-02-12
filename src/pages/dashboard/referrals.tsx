@@ -231,7 +231,6 @@ export default function Referrals() {
                                                 <Th color="gray.400" textTransform="none" fontWeight="500">Name</Th>
                                                 <Th color="gray.400" textTransform="none" fontWeight="500">Date Joined</Th>
                                                 <Th color="gray.400" textTransform="none" fontWeight="500">Status</Th>
-                                                <Th color="gray.400" textTransform="none" fontWeight="500" isNumeric>Revenue</Th>
                                             </Tr>
                                         </Thead>
                                         <Tbody>
@@ -256,7 +255,6 @@ export default function Referrals() {
                                                             {ref.payment === 4 ? "active" : "pending"}
                                                         </Badge>
                                                     </Td>
-                                                    <Td fontSize="sm" fontWeight="700" isNumeric>₦0</Td>
                                                 </Tr>
                                             ))}
                                         </Tbody>
