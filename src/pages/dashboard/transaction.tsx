@@ -376,7 +376,7 @@ export default function Dashboard() {
                                     size="sm"
                                     mb="4"
                                 />
-                                <Withdraw onClose={() => { onTransferClose(); setTransferType(null); Balance(); DashboardUser(); }} />
+                                <Withdraw amount={amount} onClose={() => { onTransferClose(); setTransferType(null); Balance(); DashboardUser(); }} />
                             </Box>
                         )}
                     </ModalBody>

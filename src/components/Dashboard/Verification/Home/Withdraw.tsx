@@ -13,23 +13,23 @@ import { referredBalance } from '@/url/api\'s/organization';
 import useCustomToast from '@/hooks/useCustomToast';
 import { cashFormat } from '@/utils/cashformat';
 
-export default function Withdraw({ onClose }: { onClose: any }) {
+export default function Withdraw({ onClose, amount: propAmount }: { onClose: any, amount: number }) {
 
     const toast = useToast();
     const [showPassword, setShowPassword] = useState(true);
-    const [data, setData] = useState({ "account_number": "", "account_bank": "" })
+    const [data, setData] = useState({ "account_number": "", "account_bank": "", "amount": "" })
     const [loading, setLoading] = useState(false)
     const { user } = useSelector((a: { auth: any }) => a.auth)
 
     const [details, setDetails] = useState("");
     const router = useRouter();
 
-    const [amount, setAmount] = useState(0)
+    const [balance, setBalance] = useState(propAmount)
     const showMessage = useCustomToast()
 
     async function Balance() {
         const result = await referredBalance()
-        setAmount(result)
+        setBalance(result)
     }
 
     useEffect(() => {
@@ -38,6 +38,10 @@ export default function Withdraw({ onClose }: { onClose: any }) {
 
     const validationSchema = Yup.object({
         account_number: Yup.string().required("Account Number is required"),
+        amount: Yup.number()
+            .required("Amount is required")
+            .positive("Amount must be positive")
+            .max(balance, `Amount cannot exceed your balance of ${cashFormat(balance)}`),
     });
 
     const initiateLogin = async (
@@ -59,7 +63,7 @@ export default function Withdraw({ onClose }: { onClose: any }) {
         try {
             setSubmitting(true);
             const result = await verifyWallet({ ...values, account_bank: banklist[values.account_bank].code })
-            setData({ ...values, account_bank: banklist[values.account_bank].bank_code })
+            setData({ ...values, account_bank: banklist[values.account_bank].bank_code, amount: values.amount })
             setDetails(result.data.account_name)
             setSubmitting(false);
             setShowPassword(false)
@@ -95,7 +99,17 @@ export default function Withdraw({ onClose }: { onClose: any }) {
             >
                 {({ isSubmitting, setSubmitting, setFieldValue, values }) => (
                     <Form>
-                        <p style={{ color: "red", fontSize: 12 }}>Kindly note your will be charged {cashFormat(100)} for withdrawal of {cashFormat(amount)}</p>
+                        <p style={{ color: "red", fontSize: 12 }}>Kindly note you will be charged {cashFormat(100)} for withdrawal. Available balance: {cashFormat(balance)}</p>
+                        <Box w="full" mt="30px">
+                            <CustomInput
+                                label="Amount"
+                                name="amount"
+                                placeholder="Enter amount to withdraw"
+                                fieldProps={{ type: "number" }}
+                                typeInput=""
+                                value=""
+                            />
+                        </Box>
                         <Box w={["280px", "280px", "280px", "384px"]} mt="30px">
                             <CustomInput
                                 label="Select Bank"
