@@ -8,16 +8,19 @@ import { Provider } from "react-redux";
 import { store } from "@/redux/store/store";
 import { ChrakaLayout } from "@/contants/ChrakaLayout";
 import AIChat from "@/components/layout/AIchat";
+import { AnalyticsProvider } from "@/components/utils/AnalyticsProvider";
 
 export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <div lang="en">
       <Provider store={store}>
-        <ChrakaLayout>
-          <Component {...pageProps} />
+        <AnalyticsProvider>
+          <ChrakaLayout>
+            <Component {...pageProps} />
 
-        </ChrakaLayout>
+          </ChrakaLayout>
+        </AnalyticsProvider>
       </Provider>
     </div>
   );
